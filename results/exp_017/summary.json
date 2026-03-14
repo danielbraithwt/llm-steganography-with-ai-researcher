@@ -1,0 +1,165 @@
+{
+  "experiment": "exp_017_qwen_base_positional_confound",
+  "model": "Qwen/Qwen3-4B-Base",
+  "noise_type": "replacement (norm-matched)",
+  "num_valid": 38,
+  "num_attempted": 40,
+  "pipeline_control": "3/3",
+  "noise_fractions": [
+    0.05,
+    0.1
+  ],
+  "strategies": [
+    "selac",
+    "seltc",
+    "random",
+    "pos_early",
+    "pos_late",
+    "early_half_selac",
+    "early_half_seltc",
+    "late_half_selac",
+    "late_half_seltc"
+  ],
+  "position_correlations": {
+    "pooled": {
+      "n_positions": 4397,
+      "sel_pos_rho": -0.20112410479533974,
+      "ac_pos_rho": 0.34451492020461855,
+      "tc_pos_rho": 0.5013221830563791
+    },
+    "per_problem_mean": {
+      "sel_pos_rho": -0.1913097520156288,
+      "ac_pos_rho": 0.3811743752803143,
+      "tc_pos_rho": 0.543190468262728
+    }
+  },
+  "sweep": {
+    "noise_0.05": {
+      "selac": {
+        "accuracy": 0.5263157894736842,
+        "correct": 20,
+        "total": 38,
+        "mean_noise_position": 0.553738816853723
+      },
+      "seltc": {
+        "accuracy": 0.7631578947368421,
+        "correct": 29,
+        "total": 38,
+        "mean_noise_position": 0.7279947952718737
+      },
+      "random": {
+        "accuracy": 0.5,
+        "correct": 19,
+        "total": 38,
+        "mean_noise_position": 0.5287167730875936
+      },
+      "pos_early": {
+        "accuracy": 0.34210526315789475,
+        "correct": 13,
+        "total": 38,
+        "mean_noise_position": 0.017615099270508493
+      },
+      "pos_late": {
+        "accuracy": 1.0,
+        "correct": 38,
+        "total": 38,
+        "mean_noise_position": 0.9823849007294917
+      },
+      "early_half_selac": {
+        "accuracy": 0.21052631578947367,
+        "correct": 8,
+        "total": 38,
+        "mean_noise_position": 0.2537458566661918
+      },
+      "early_half_seltc": {
+        "accuracy": 0.23684210526315788,
+        "correct": 9,
+        "total": 38,
+        "mean_noise_position": 0.2743439583588055
+      },
+      "late_half_selac": {
+        "accuracy": 0.42105263157894735,
+        "correct": 16,
+        "total": 38,
+        "mean_noise_position": 0.741986367117919
+      },
+      "late_half_seltc": {
+        "accuracy": 0.8421052631578947,
+        "correct": 32,
+        "total": 38,
+        "mean_noise_position": 0.8274356260070717
+      },
+      "dissociation": {
+        "unconstrained_gap": 0.23684210526315796,
+        "positional_gap": 0.6578947368421053,
+        "early_half_gap": 0.02631578947368421,
+        "late_half_gap": 0.42105263157894735,
+        "verdict": "POSITIONAL CONFOUND \u2014 within-half gap collapsed"
+      }
+    },
+    "noise_0.1": {
+      "selac": {
+        "accuracy": 0.13157894736842105,
+        "correct": 5,
+        "total": 38,
+        "mean_noise_position": 0.4833486000410563
+      },
+      "seltc": {
+        "accuracy": 0.2894736842105263,
+        "correct": 11,
+        "total": 38,
+        "mean_noise_position": 0.6814897043058515
+      },
+      "random": {
+        "accuracy": 0.05263157894736842,
+        "correct": 2,
+        "total": 38,
+        "mean_noise_position": 0.49448858668443224
+      },
+      "pos_early": {
+        "accuracy": 0.02631578947368421,
+        "correct": 1,
+        "total": 38,
+        "mean_noise_position": 0.04310182412595018
+      },
+      "pos_late": {
+        "accuracy": 1.0,
+        "correct": 38,
+        "total": 38,
+        "mean_noise_position": 0.9568981758740498
+      },
+      "early_half_selac": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 38,
+        "mean_noise_position": 0.24570279980377355
+      },
+      "early_half_seltc": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 38,
+        "mean_noise_position": 0.25432083056276095
+      },
+      "late_half_selac": {
+        "accuracy": 0.07894736842105263,
+        "correct": 3,
+        "total": 38,
+        "mean_noise_position": 0.6959808708595523
+      },
+      "late_half_seltc": {
+        "accuracy": 0.4473684210526316,
+        "correct": 17,
+        "total": 38,
+        "mean_noise_position": 0.8040901091889863
+      },
+      "dissociation": {
+        "unconstrained_gap": 0.15789473684210528,
+        "positional_gap": 0.9736842105263158,
+        "early_half_gap": 0.0,
+        "late_half_gap": 0.368421052631579,
+        "verdict": "POSITIONAL CONFOUND \u2014 within-half gap collapsed"
+      }
+    }
+  },
+  "elapsed_seconds": 1680.6305284500122
+}

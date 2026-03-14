@@ -1,22 +1,25 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-14 (cycle 17, exp_016)
-Cycles completed: 17
+Last updated: 2026-03-14 (cycle 18, exp_017)
+Cycles completed: 18
 
-### Hypothesis Status: PARTIALLY SUPPORTED — hidden channel confirmed on Qwen-Base via PGD; selectivity-based destruction dissociations on ALL models are predominantly positional confounds
+### Hypothesis Status: PARTIALLY SUPPORTED — PGD null space is genuine; ALL selectivity-based destruction dissociations are predominantly positional confounds (with residual selectivity in late positions on Qwen-Base)
 
-The KV cache carries a functionally separable hidden channel on Qwen-Base (PGD null space at 377x,
-spatial structure rho=0.78, SNR cliff at 14 dB). On Llama-Instruct, the encoding is distributed/analog
-(no PGD null space, no SNR cliff, position dominates). **REVISED (Exp 016): The "reversed dissociation"
-on Qwen-Instruct (-38.5pp unconstrained) is PREDOMINANTLY A POSITIONAL CONFOUND. SelTC targets early
-positions (mean 0.242), SelAC targets late positions (mean 0.991). POS_EARLY=19.2% vs POS_LATE=65.4%
-(+46pp gap). Within-early-half gap collapses to +3.8pp. This mirrors exp_013's finding on Llama: the
-selectivity-based destruction framework is confounded with position on ALL tested models.** Only PGD on
-Qwen-Base provides genuinely position-independent spatial structure evidence.
-- **Qwen-Base**: concentrated/digital — PGD rho=0.78 (genuine spatial structure), SNR cliff at 14 dB
-- **Llama-Instruct**: distributed/analog — position dominates, TC best protection, no PGD null space
-- **Qwen-Instruct**: early-position-critical — H2O/TC protection works because they noise late positions. "Reversed dissociation" is a positional confound, not a genuine instruction-tuning channel reversal
+**MAJOR REVISION (Exp 017): The original +23.5pp destruction dissociation on Qwen-Base (exp_004) is ALSO predominantly a positional confound.** Position dominates on ALL tested models:
+- POS_EARLY=34.2% vs POS_LATE=100.0% (+65.8pp gap) at 5% noise on Qwen-Base
+- Within-early-half gap collapses: SelTC-SelAC = +2.6pp (5%) / 0.0pp (10%)
+- Selectivity correlates with position on Qwen-Base too (SEL-pos rho=-0.201, NEGATIVE — opposite direction from instruct models)
+
+**However, the confound is PARTIAL on Qwen-Base (unlike the complete confound on instruct models):**
+- Within-late-half gap persists: +42.1pp at 5%, +36.8pp at 10%
+- Cross-strategy comparisons at similar positions (~0.73) show 34pp differences
+- This is consistent with PGD rho=0.78: AC-selective positions genuinely carry different information in the late half
+
+**The only position-independent evidence for spatial structure is PGD on Qwen-Base** (null space at 377x, rho=0.78). All destruction-based dissociations are primarily positional artifacts.
+- **Qwen-Base**: PGD-validated concentrated encoding. Destruction dissociation (+23.7pp) is primarily positional but with genuine residual selectivity in late half
+- **Llama-Instruct**: distributed/analog — position dominates, no PGD null space
+- **Qwen-Instruct**: position dominates, destruction dissociation (-38.5pp) is a positional confound
 
 ### Evidence Overview
 | Claim | Status | Strength | Key Experiments | Notes |
@@ -58,7 +61,11 @@ Qwen-Base provides genuinely position-independent spatial structure evidence.
 | ~~Dissociation is REVERSED on Qwen-Instruct~~ | **REVISED: predominantly positional confound** | **strong (confound)** | **Exp 015, Exp 016** | **Unconstrained gap replicates (-38.5pp), but POS_EARLY=19.2% vs POS_LATE=65.4% (+46pp). SelTC targets pos 0.242 (early), SelAC targets pos 0.991 (late). Within-early-half gap collapses to +3.8pp. NOT a genuine instruction-tuning channel reversal** |
 | **TC sign reversal: Qwen-Instruct vs Llama** | **established** | **moderate** | **Exp 014 vs Exp 013** | **Position vs TC: Qwen-Instruct rho=-0.44 (early=high TC), Llama rho=+0.44 (late=high TC). Fundamentally different attention patterns** |
 | **H2O/TC protection is PERFECT on Qwen-Instruct** | **established but positionally explained** | **moderate** | **Exp 015, Exp 016** | **H2O (pos 0.987) and TC (pos 0.946) noise late positions → 65.4% (baseline). AC (pos 0.351) noises early positions → 23.1%. Protection success is driven by WHICH POSITIONS get noised, not by metric-specific channel preservation** |
-| **Selectivity-based destruction is confounded with position on ALL models** | **established** | **strong** | **Exp 013, Exp 016** | **Llama: position dominates (rho=-0.56 pos-H2O). Qwen-Instruct: same pattern (SEL-pos rho=+0.65, TC-pos rho=-0.48). Within-half gaps collapse on both. Only PGD on Qwen-Base is position-independent** |
+| **Selectivity-based destruction is confounded with position on ALL models** | **CONFIRMED on ALL models including Qwen-Base** | **strong** | **Exp 013, Exp 016, Exp 017** | **Qwen-Base: SEL-pos rho=-0.201 (NEGATIVE — opposite from instruct). POS_EARLY=34.2% vs POS_LATE=100% (+65.8pp). Within-early-half gap=2.6pp (collapsed). Llama: same pattern. Qwen-Instruct: same pattern. Position dominates across all tested models** |
+| **Qwen-Base destruction dissociation is PARTIALLY positional** | **established** | **strong** | **Exp 017** | **+23.7pp unconstrained gap replicates exp_004 (+23.5pp). But within-early-half gap=2.6pp (collapsed). Within-late-half gap=42.1pp (persists, with residual positional confound). SEL-pos rho=-0.201 on Qwen-Base (negative, opposite from instruct +0.57-0.65). Partial confound: position explains ≥70% of variance, selectivity adds genuine residual value in late half** |
+| **Late-half selectivity effect may be genuine on Qwen-Base** | **supported** | **moderate** | **Exp 017** | **Within late half: SelAC at pos 0.742 → 42.1%, SelTC at pos 0.827 → 84.2% (+42.1pp gap). Cross-strategy at similar positions: Late+SelAC (0.742) → 42.1% vs SelTC (0.728) → 76.3% (34pp difference). Consistent with PGD rho=0.78 — AC-selective positions in the late half carry genuinely different information** |
+| **Position universally dominates answer accuracy** | **established** | **strong** | **Exp 013, 016, 017** | **ALL models: POS_EARLY << POS_LATE at 5% noise. Qwen-Base: +65.8pp gap. Qwen-Instruct: +46.2pp. Llama: comparable pattern. Early positions form the computational foundation; destroying them is universally devastating regardless of selectivity** |
+| **SEL-position correlation reverses: Base negative, Instruct positive** | **established** | **moderate** | **Exp 017 vs 016/013** | **Qwen-Base: SEL-pos rho=-0.201 (early=high selectivity). Qwen-Instruct: +0.650. Llama-Instruct: -0.162 (weak). Base models attend to early positions more strongly from the answer token (relative to TC), while instruct models attend more to late positions** |
 | **Sharp noise cliff at 0.3x-1.0x on Qwen-Instruct** | **established** | **strong** | **Exp 015** | **Zero degradation at scales ≤0.3x (all strategies=70%). Dramatic effects only at 1.0x. Cliff is between 0.3x and 1.0x additive noise (≈0-10 dB per position)** |
 | **Exp_014 pipeline bug invalidates "ultra-fragile" finding** | **methodological** | **critical** | **Exp 015** | **Exp_014 teacher-forced FULL trace including "#### answer", then generated from beyond — model started new questions. Fixed in exp_015: truncate at "####", lookback re-computation. The "ultra-fragile" regime does not exist** |
 
@@ -109,10 +116,14 @@ Qwen-Base provides genuinely position-independent spatial structure evidence.
 44. **NEW (Exp 015):** Does Llama-Instruct also show reversed dissociation under additive noise at appropriate scales? Exp_004/005 used replacement noise. Additive noise might reveal different patterns.
 45. **NEW (Exp 015):** Does the reversed dissociation replicate on other instruct-tuned models (Qwen2.5-Instruct, Mistral-Instruct)? Would determine if reversal is a universal instruction-tuning effect or Qwen-specific.
 46. **NEW (Exp 015):** Is the 70% pipeline baseline a ceiling artifact? 9/30 problems consistently fail via KV cache generation even without noise. Would improving the pipeline (longer lookback, better truncation) change the results?
-47. **NEW (Exp 016):** Does PGD on Qwen-Base also show the positional confound? PGD is claimed to be position-independent (rho=0.78), but this was computed differently from the selectivity metric. Need to verify that PGD perturbation magnitude correlates with AC attention AFTER controlling for position.
+47. **NEW (Exp 016):** Does PGD on Qwen-Base also show the positional confound? PGD is claimed to be position-independent (rho=0.78), but this was computed differently from the selectivity metric. Need to verify that PGD perturbation magnitude correlates with AC attention AFTER controlling for position. **Exp 017 adds urgency:** if selectivity-based destruction is positional, PGD is the ONLY remaining evidence for genuine spatial structure. Must verify PGD rho=0.78 survives position-partial-correlation analysis.
 48. **NEW (Exp 016):** Why are early positions critical on BOTH Llama-Instruct and Qwen-Instruct? Is this a universal property of autoregressive computation (early tokens build the computational foundation) or specific to instruction-tuned models?
-49. **NEW (Exp 016):** Is the destruction dissociation on Qwen-Base ALSO a positional confound? Exp_004 found +23.5pp but never tested positional controls. Need POS_EARLY vs POS_LATE on Qwen-Base to determine if Qwen-Base is different from Llama/Qwen-Instruct, or if ALL destruction results are positional.
-50. **NEW (Exp 016):** Can we design a position-controlled selectivity test? E.g., within narrow position bands (quartiles), compare SelAC vs SelTC destruction. If the gap persists within strict position bins, the selectivity effect is genuine.
+49. ~~**NEW (Exp 016):** Is the destruction dissociation on Qwen-Base ALSO a positional confound?~~ **ANSWERED (Exp 017): PARTIAL CONFOUND. Position dominates (+65.8pp gap). Within-early-half gap collapses to 2.6pp. BUT within-late-half gap persists at 42.1pp, and cross-strategy comparisons at similar positions show 34pp differences. Scenario C (partial confound) best describes Qwen-Base. Position explains ≥70% of variance; selectivity adds genuine residual value in the late half.**
+50. **NEW (Exp 016):** Can we design a position-controlled selectivity test? E.g., within narrow position bands (quartiles), compare SelAC vs SelTC destruction. If the gap persists within strict position bins, the selectivity effect is genuine. **Exp 017 provides partial evidence:** within-early-half gap=2.6pp (negligible), within-late-half gap=42.1pp (large but residually confounded). Need QUARTILE-level analysis for definitive answer.
+51. **NEW (Exp 017):** Why does SEL-position correlation REVERSE between Base and Instruct? Qwen-Base: rho=-0.201 (early=high selectivity). Qwen-Instruct: rho=+0.650 (late=high selectivity). Does instruction tuning shift where the answer token attends, creating a different selectivity landscape?
+52. **NEW (Exp 017):** Does the PGD perturbation-attention correlation (rho=0.78) survive partial correlation controlling for position? This is now the single most important question. If PGD's correlation is also positional, then ALL evidence for spatial structure collapses. If it survives, PGD genuinely identifies answer-specific positions beyond their sequential order.
+53. **NEW (Exp 017):** Why are late-half AC-selective positions more critical than late-half non-selective positions? The 42.1pp within-late-half gap suggests these positions carry genuinely different information. Is this because they are specifically attended to by answer-computing heads, or because they happen to be at a critical position range (0.7-0.8)?
+54. **NEW (Exp 017):** Would position-QUARTILE-controlled selectivity (within each of Q1-Q4 by position) reveal genuine selectivity effects? The half-based control is too coarse — positions within a half still vary substantially. Quartile control would provide tighter position matching.
 
 ### Confirmed Findings
 - LLM output distributions have ~4-5 bits/token unused capacity (Exp 1)
@@ -138,8 +149,10 @@ Qwen-Base provides genuinely position-independent spatial structure evidence.
 - ~~Qwen-Instruct shows REVERSED dissociation (-47pp)~~ — **REVISED (Exp 016): The -38.5pp gap is a POSITIONAL CONFOUND. SelTC targets early positions (0.242), SelAC targets late positions (0.991). POS_EARLY=19.2% vs POS_LATE=65.4% (+46pp). Within-early-half gap = +3.8pp (negligible). Not a genuine channel reversal.** (Exp 015, 016)
 - **H2O/TC protection works on Qwen-Instruct BECAUSE of position** — H2O (pos 0.987) and TC (pos 0.946) noise late/dispensable positions → maintain baseline. AC (pos 0.351) noises early/critical positions → fails. Protection success is positionally determined, not channel-specific (Exp 015, 016)
 - **Sharp additive noise cliff between 0.3x and 1.0x on Qwen-Instruct** — Zero degradation at all scales ≤0.3x. Dramatic strategy-dependent effects only at 1.0x. The cliff is sharper than predicted (Exp 015)
-- **Selectivity-based destruction is confounded with position on ALL tested instruct models** — Llama-Instruct (exp_013) and Qwen-Instruct (exp_016) both show: selectivity ↔ position correlation, within-half gaps collapse. The destruction dissociation framework does NOT provide genuine spatial structure evidence on instruct models. Only PGD on Qwen-Base is position-independent (Exp 013, 016)
-- **Early positions are critical on Qwen-Instruct** — POS_EARLY (19.2%) << POS_LATE (65.4%) at 3% noise. Same pattern as Llama-Instruct (exp_013). Autoregressive computation builds sequentially; early tokens carry the computational foundation (Exp 016)
+- **Selectivity-based destruction is confounded with position on ALL tested models** — Llama-Instruct (exp_013), Qwen-Instruct (exp_016), AND Qwen-Base (exp_017) all show: within-early-half gaps collapse. Position is the dominant factor across all architectures and training regimes. Only PGD on Qwen-Base is position-independent (Exp 013, 016, 017)
+- **Early positions are critical on ALL tested models** — Qwen-Base: POS_EARLY=34.2% vs POS_LATE=100% (+65.8pp) at 5%. Qwen-Instruct: POS_EARLY=19.2% vs POS_LATE=65.4% (+46.2pp) at 3%. Llama: similar pattern. Position dominance is UNIVERSAL, not training-specific (Exp 013, 016, 017)
+- **Qwen-Base +23.7pp dissociation is a PARTIAL positional confound** — Replicates exp_004 perfectly (+23.7pp vs +23.5pp). But within-early-half gap=2.6pp (collapsed). Within-late-half gap=42.1pp (persists). SEL-pos rho=-0.201 (negative, opposite from instruct). Position explains ≥70% of variance; genuine residual selectivity exists in late half (Exp 017)
+- **SEL-position correlation REVERSES between Base (-0.201) and Instruct (+0.650)** — On Qwen-Base, high-selectivity positions are EARLY; on Qwen-Instruct, they are LATE. Despite opposite directions, both produce the same within-half-collapse pattern, confirming position as the universal dominant factor (Exp 017)
 
 ### Disconfirmed or Revised
 - **Position-level functional separation via zeroing** (Exp 002): Zeroing is too weak. Methodological limitation, not evidence against spatial structure.
@@ -155,7 +168,8 @@ Qwen-Base provides genuinely position-independent spatial structure evidence.
 - **Encoding difference is purely architectural (Qwen vs Llama)** (Exp 014, 015): REVISED. Same Qwen architecture shows different encoding under Base vs Instruct training. The Base/Instruct axis is at least as important as the Qwen/Llama axis. Need Llama-Base to complete the 2x2 comparison.
 - **Exp 014's "ultra-fragile encoding" finding** (Exp 015): DISCONFIRMED — PIPELINE BUG. Exp 014 teacher-forced the full trace including "#### answer", then generated from beyond the answer. The model started new questions instead of regenerating answers → 0% accuracy everywhere. Fixed pipeline in exp 015 shows Qwen-Instruct is not ultra-fragile at all.
 - **"Reversed dissociation" on Qwen-Instruct is a genuine instruction-tuning effect** (Exp 016): DISCONFIRMED — POSITIONAL CONFOUND. SelTC targets early positions (0.242), SelAC targets late positions (0.991). POS_EARLY=19.2% vs POS_LATE=65.4% accounts for the gap. Within-early-half gap collapses to +3.8pp (vs unconstrained -38.5pp). The "three encoding regimes" framework needs revision: only PGD on Qwen-Base provides position-independent evidence.
-- **Selectivity-based destruction provides genuine spatial structure evidence** (Exp 013, 016): DISCONFIRMED on instruct models. Selectivity correlates with position (SEL-pos rho=+0.65 on Qwen-Instruct, similar on Llama). Within-half controls show gap collapse. The ~24pp "dissociation" on both Qwen-Base and Llama (exp_004/005) may ALSO be positional confounds — untested. **Critical re-evaluation needed: does exp_004/005's destruction dissociation survive positional controls on Qwen-Base?**
+- **Selectivity-based destruction provides genuine spatial structure evidence** (Exp 013, 016, 017): DISCONFIRMED as a standalone metric. Selectivity correlates with position on ALL models (rho=-0.201 on Qwen-Base, +0.650 on Qwen-Instruct, -0.162 on Llama). Within-early-half controls show gap collapse on ALL models. **Exp 017 CONFIRMS: the original +23.5pp dissociation on Qwen-Base is ALSO primarily positional.** However, within-late-half gap persists on Qwen-Base (42.1pp), suggesting partial genuine selectivity effect. The destruction dissociation framework is confounded but not completely uninformative — it overestimates effect sizes due to positional confound.
+- **"~24pp dissociation replicated across architectures" is primarily positional** (Exp 017): REVISED. The near-identical +23.5pp (Qwen-Base) and +23.8pp (Llama, exp_005) dissociation effects are driven by the SAME positional factor (SelAC targets earlier positions, SelTC targets later positions) despite the selectivity-position correlation having OPPOSITE signs (-0.201 vs ~0). This means the "architecture-general" replication was actually an architecture-general positional sensitivity, not architecture-general functional separability.
 
 ---
 
@@ -332,3 +346,17 @@ See `literature_notes/cycle_010_*.md` for detailed paper summaries
 - **MAJOR IMPLICATION:** Selectivity-based destruction dissociations on ALL instruct models are positional confounds. Only PGD on Qwen-Base provides genuine position-independent spatial structure evidence
 - Evidential strength: strong (clean confound resolution, replicates exp_013 pattern, n=26)
 - See `experiment_log/exp_016.md`, `results/exp_016/`
+
+### Exp 017 (Cycle 18) — PARTIAL POSITIONAL CONFOUND ON QWEN-BASE
+**Positional Confound Test on Qwen3-4B-Base**
+- Model: Qwen/Qwen3-4B-Base, n=38 valid problems (95% baseline, same seed as exp_004)
+- **Exp_004 replication:** +23.7pp unconstrained gap (vs exp_004's +23.5pp) — near-perfect replication
+- **Position dominates:** POS_EARLY=34.2% vs POS_LATE=100% (+65.8pp gap at 5% noise)
+- **Within-early-half gap COLLAPSES:** +2.6pp at 5%, 0.0pp at 10% — position controls eliminate selectivity effect
+- **Within-late-half gap PERSISTS:** +42.1pp at 5%, +36.8pp at 10% — genuine residual selectivity likely
+- **SEL-position correlation is NEGATIVE** (rho=-0.201) — OPPOSITE from instruct models (+0.57-0.65). On Base, high selectivity = early positions
+- **Cross-strategy at similar positions:** Late+SelAC (pos 0.742) → 42.1% vs SelTC (pos 0.728) → 76.3% — 34pp difference at similar mean position, suggesting genuine selectivity beyond position
+- **Scenario C (partial confound, 15% confidence) was BEST FIT** — position explains ≥70% of variance, selectivity adds genuine residual value in the late half
+- **MAJOR IMPLICATION:** ALL destruction-based dissociation evidence is primarily positional across ALL models. Only PGD on Qwen-Base (rho=0.78) provides position-independent spatial structure evidence. The ~24pp "replicated across architectures" finding was primarily positional sensitivity, not functional separability.
+- Evidential strength: strong (n=38, replicates exp_004, clean positional controls, nuanced result)
+- See `experiment_log/exp_017.md`, `results/exp_017/`

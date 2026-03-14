@@ -1,40 +1,38 @@
 {
-  "cycle": 17,
-  "timestamp": "2026-03-14T20:00:00Z",
+  "cycle": 18,
+  "timestamp": "2026-03-14T22:00:00Z",
   "type": "experiment",
-  "template": "custom (exp_016_positional_confound.py)",
+  "template": "custom (exp_017_qwen_base_positional_confound.py)",
   "parameters": {
-    "model": "Qwen/Qwen3-4B (instruct)",
+    "model": "Qwen/Qwen3-4B-Base",
     "n_problems": 40,
-    "n_valid": 26,
-    "baseline_accuracy_direct": "85%",
-    "baseline_accuracy_pipeline": "65%",
-    "noise_scale": 1.0,
-    "noise_fractions": [0.01, 0.03, 0.05],
-    "strategies_destruction": ["selac", "seltc", "random", "pos_early", "pos_late", "early_half_selac", "early_half_seltc", "late_half_selac", "late_half_seltc"],
-    "strategies_protection": ["ac_protect", "h2o_protect", "tc_protect", "random_protect"],
-    "total_conditions": 39,
-    "total_evaluations": 1014,
-    "runtime_seconds": 1561
+    "n_valid": 38,
+    "baseline_accuracy": "95%",
+    "pipeline_control": "3/3 (100%)",
+    "noise_type": "replacement (norm-matched)",
+    "noise_fractions": [0.05, 0.10],
+    "strategies": ["selac", "seltc", "random", "pos_early", "pos_late", "early_half_selac", "early_half_seltc", "late_half_selac", "late_half_seltc"],
+    "total_conditions": 18,
+    "total_evaluations": 684,
+    "runtime_seconds": 1681
   },
-  "prediction_outcome": "scenario_A_confirmed_6_of_7_criteria",
-  "key_finding": "The 'reversed dissociation' (-38.5pp) on Qwen-Instruct is PREDOMINANTLY A POSITIONAL CONFOUND. SelTC targets early positions (0.242), SelAC targets late positions (0.991). POS_EARLY=19.2% vs POS_LATE=65.4% (+46pp) explains the gap. Within-early-half gap collapses to +3.8pp. This mirrors exp_013's finding on Llama — selectivity-based destruction is confounded with position on ALL tested instruct models.",
-  "evidence_impact": "Major revision: (1) 'Reversed dissociation' on Qwen-Instruct is not a genuine instruction-tuning channel reversal — it's a positional artifact. (2) Selectivity-based destruction provides no genuine spatial structure evidence on instruct models. (3) Only PGD on Qwen-Base provides position-independent evidence for the hidden channel. (4) Need to test whether exp_004/005 destruction dissociations on Qwen-Base also survive positional controls.",
-  "next_planned": "Positional confound test on Qwen-Base (POS_EARLY vs POS_LATE) to determine if the original +24pp dissociation also reduces to position; OR position-controlled selectivity analysis (within narrow position quartiles) to salvage residual selectivity effects; OR PGD position-independence verification",
+  "prediction_outcome": "scenario_C_partial_confound_best_fit",
+  "key_finding": "The original +23.5pp destruction dissociation on Qwen-Base (exp_004) is ALSO primarily a positional confound. Position dominates (+65.8pp gap). Within-early-half gap collapses to 2.6pp. BUT within-late-half gap persists (42.1pp), with cross-strategy evidence of genuine selectivity at similar positions. Partial confound: position explains ≥70%, selectivity adds genuine residual value in late half. ALL destruction-based dissociations across ALL models are now shown to be primarily positional. Only PGD rho=0.78 provides position-independent spatial structure evidence.",
+  "evidence_impact": "Major revision: (1) The foundational +23.5pp dissociation from exp_004 is primarily positional — completing the confound analysis across all tested models. (2) Within-late-half genuine selectivity effect is consistent with PGD rho=0.78. (3) SEL-position correlation reverses between Base (-0.201) and Instruct (+0.650) — different attention patterns produce the same confound pattern. (4) The '~24pp replicated across architectures' finding was primarily positional sensitivity, not functional separability.",
+  "next_planned": "Position-controlled PGD analysis: verify that PGD perturbation-attention correlation (rho=0.78) survives partial correlation controlling for position — the single most important remaining question. Alternatively, quartile-level position-controlled selectivity analysis for definitive separation of position and selectivity effects.",
   "figures": [
-    "results/exp_016/strategy_comparison_3pct.png",
-    "results/exp_016/position_vs_accuracy.png",
-    "results/exp_016/within_half_dissociation.png",
-    "results/exp_016/position_score_correlations.png",
-    "results/exp_016/protection_replication.png"
+    "results/exp_017/strategy_comparison_5pct.png",
+    "results/exp_017/dissociation_analysis.png",
+    "results/exp_017/position_score_correlations.png",
+    "results/exp_017/accuracy_sweep.png"
   ],
-  "open_questions_answered": ["Q43: reversed dissociation is a positional confound, not genuine"],
-  "new_open_questions": ["Q47: does PGD on Qwen-Base show positional confound?", "Q48: why early positions critical on both instruct models?", "Q49: is exp_004/005 destruction on Qwen-Base also positional?", "Q50: position-controlled selectivity test design"],
+  "open_questions_answered": ["Q49: Qwen-Base destruction dissociation is partial positional confound"],
+  "new_open_questions": ["Q51: why SEL-pos reversal between Base/Instruct?", "Q52: does PGD rho=0.78 survive position-partial-correlation?", "Q53: why late-half AC-selective positions more critical?", "Q54: quartile-level position-controlled selectivity test"],
   "progress": {
-    "null_space_existence": {"status": "strong (Qwen-Base PGD only) / none (Llama) / positional confound (Qwen-Instruct)", "bar": 4},
-    "spatial_structure": {"status": "PGD rho=0.78 on Qwen-Base is genuine. ALL destruction dissociations are positional confounds on instruct models", "bar": 3},
-    "natural_usage": {"status": "H2O/TC protection works via position (noise late positions). AC fails (noises early). Not channel-specific", "bar": 3},
-    "cross_model_replication": {"status": "Destruction dissociation confounded with position on Llama-Instruct AND Qwen-Instruct. Only PGD on Qwen-Base is position-independent", "bar": 4},
-    "encoding_strategy": {"status": "Qwen-Base: PGD-validated concentrated. Llama+Qwen-Instruct: position dominates, selectivity confounded", "bar": 4}
+    "null_space_existence": {"status": "strong (PGD only — destruction method is positionally confounded)", "bar": 4},
+    "spatial_structure": {"status": "PGD rho=0.78 genuine, all destruction-based evidence primarily positional. Residual selectivity in late half on Qwen-Base.", "bar": 3},
+    "natural_usage": {"status": "H2O/TC protection works via position (all models). Not channel-specific", "bar": 3},
+    "cross_model_replication": {"status": "Position dominates on ALL models (Qwen-Base, Qwen-Instruct, Llama-Instruct). Only PGD works on Qwen-Base", "bar": 4},
+    "encoding_strategy": {"status": "Position-universal (all models share early-position sensitivity). PGD-validated concentrated encoding unique to Qwen-Base", "bar": 5}
   }
 }
