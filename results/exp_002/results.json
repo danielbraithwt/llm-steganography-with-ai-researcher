@@ -1,0 +1,3994 @@
+[
+  {
+    "problem_idx": 588,
+    "true_answer": "52",
+    "baseline_answer": "52",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 101,
+    "n_pruned": 50,
+    "position_overlap": 29,
+    "answer_coupling_stats": {
+      "mean": 0.0020424628164619207,
+      "std": 0.008908070623874664,
+      "max": 0.08765411376953125
+    },
+    "text_coupling_stats": {
+      "mean": 0.0043282900005578995,
+      "std": 0.0040069161914289,
+      "max": 0.024764856323599815
+    },
+    "no_pruning": {
+      "answer": "52",
+      "correct": true,
+      "mean_orig_text_loss": 0.052287785630477104,
+      "mean_pruned_text_loss": 0.052274772995396665,
+      "text_loss_change": -1.3012635080439372e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "52",
+      "correct": true,
+      "mean_orig_text_loss": 0.052287785630477104,
+      "mean_pruned_text_loss": 0.8746734920300936,
+      "text_loss_change": 0.8223857063996165
+    },
+    "prune_text_coupled": {
+      "answer": "52",
+      "correct": true,
+      "mean_orig_text_loss": 0.052287785630477104,
+      "mean_pruned_text_loss": 0.4651037203638177,
+      "text_loss_change": 0.4128159347333406
+    },
+    "prune_random": {
+      "answer": "52",
+      "correct": true,
+      "mean_orig_text_loss": 0.052287785630477104,
+      "mean_pruned_text_loss": 0.5801354897649664,
+      "text_loss_change": 0.5278477041344893
+    }
+  },
+  {
+    "problem_idx": 1214,
+    "true_answer": "5",
+    "baseline_answer": "5",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 59,
+    "n_pruned": 29,
+    "position_overlap": 21,
+    "answer_coupling_stats": {
+      "mean": 0.0031775194220244884,
+      "std": 0.011035725474357605,
+      "max": 0.08285903930664062
+    },
+    "text_coupling_stats": {
+      "mean": 0.0053831953555345535,
+      "std": 0.003475444857031107,
+      "max": 0.017049631103873253
+    },
+    "no_pruning": {
+      "answer": "5",
+      "correct": true,
+      "mean_orig_text_loss": 0.08085877016970985,
+      "mean_pruned_text_loss": 0.0799250602722168,
+      "text_loss_change": -0.0009337098974930569
+    },
+    "prune_answer_coupled": {
+      "answer": "5",
+      "correct": true,
+      "mean_orig_text_loss": 0.08085877016970985,
+      "mean_pruned_text_loss": 0.471025592402408,
+      "text_loss_change": 0.39016682223269816
+    },
+    "prune_text_coupled": {
+      "answer": "5",
+      "correct": true,
+      "mean_orig_text_loss": 0.08085877016970985,
+      "mean_pruned_text_loss": 0.195310304039403,
+      "text_loss_change": 0.11445153386969315
+    },
+    "prune_random": {
+      "answer": "5",
+      "correct": true,
+      "mean_orig_text_loss": 0.08085877016970985,
+      "mean_pruned_text_loss": 0.16325762397364565,
+      "text_loss_change": 0.0823988538039358
+    }
+  },
+  {
+    "problem_idx": 57,
+    "true_answer": "83",
+    "baseline_answer": "83",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 76,
+    "n_pruned": 38,
+    "position_overlap": 27,
+    "answer_coupling_stats": {
+      "mean": 0.00227941176854074,
+      "std": 0.011027046479284763,
+      "max": 0.09605026245117188
+    },
+    "text_coupling_stats": {
+      "mean": 0.0054643466137349606,
+      "std": 0.006019772030413151,
+      "max": 0.043273236602544785
+    },
+    "no_pruning": {
+      "answer": "83",
+      "correct": true,
+      "mean_orig_text_loss": 0.0369770840594643,
+      "mean_pruned_text_loss": 0.037100879769576225,
+      "text_loss_change": 0.00012379571011192358
+    },
+    "prune_answer_coupled": {
+      "answer": "83",
+      "correct": true,
+      "mean_orig_text_loss": 0.0369770840594643,
+      "mean_pruned_text_loss": 0.08881211280822754,
+      "text_loss_change": 0.05183502874876324
+    },
+    "prune_text_coupled": {
+      "answer": "83",
+      "correct": true,
+      "mean_orig_text_loss": 0.0369770840594643,
+      "mean_pruned_text_loss": 0.1258579178860313,
+      "text_loss_change": 0.08888083382656699
+    },
+    "prune_random": {
+      "answer": "83",
+      "correct": true,
+      "mean_orig_text_loss": 0.0369770840594643,
+      "mean_pruned_text_loss": 0.1366482973098755,
+      "text_loss_change": 0.09967121325041119
+    }
+  },
+  {
+    "problem_idx": 906,
+    "true_answer": "10",
+    "baseline_answer": "10",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 120,
+    "n_pruned": 60,
+    "position_overlap": 45,
+    "answer_coupling_stats": {
+      "mean": 0.0017083495622500777,
+      "std": 0.007900826632976532,
+      "max": 0.08484649658203125
+    },
+    "text_coupling_stats": {
+      "mean": 0.003727635135874152,
+      "std": 0.0037985651288181543,
+      "max": 0.023952066898345947
+    },
+    "no_pruning": {
+      "answer": "10",
+      "correct": true,
+      "mean_orig_text_loss": 0.016953951434085245,
+      "mean_pruned_text_loss": 0.016959610738252338,
+      "text_loss_change": 5.659304167092427e-06
+    },
+    "prune_answer_coupled": {
+      "answer": "10",
+      "correct": true,
+      "mean_orig_text_loss": 0.016953951434085245,
+      "mean_pruned_text_loss": 1.2663331282766241,
+      "text_loss_change": 1.2493791768425389
+    },
+    "prune_text_coupled": {
+      "answer": "10",
+      "correct": true,
+      "mean_orig_text_loss": 0.016953951434085245,
+      "mean_pruned_text_loss": 1.414789500989412,
+      "text_loss_change": 1.3978355495553267
+    },
+    "prune_random": {
+      "answer": "10",
+      "correct": true,
+      "mean_orig_text_loss": 0.016953951434085245,
+      "mean_pruned_text_loss": 0.5424697399139404,
+      "text_loss_change": 0.5255157884798551
+    }
+  },
+  {
+    "problem_idx": 1252,
+    "true_answer": "70",
+    "baseline_answer": "70",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 107,
+    "n_pruned": 53,
+    "position_overlap": 35,
+    "answer_coupling_stats": {
+      "mean": 0.0018401379929855466,
+      "std": 0.008699354715645313,
+      "max": 0.0882568359375
+    },
+    "text_coupling_stats": {
+      "mean": 0.004218049347400665,
+      "std": 0.0042380401864647865,
+      "max": 0.02550491690635681
+    },
+    "no_pruning": {
+      "answer": "70",
+      "correct": true,
+      "mean_orig_text_loss": 0.017357142348038524,
+      "mean_pruned_text_loss": 0.016980321783768505,
+      "text_loss_change": -0.00037682056427001953
+    },
+    "prune_answer_coupled": {
+      "answer": "70",
+      "correct": true,
+      "mean_orig_text_loss": 0.017357142348038524,
+      "mean_pruned_text_loss": 0.462587456954153,
+      "text_loss_change": 0.44523031460611445
+    },
+    "prune_text_coupled": {
+      "answer": "70",
+      "correct": true,
+      "mean_orig_text_loss": 0.017357142348038524,
+      "mean_pruned_text_loss": 0.21908047952150045,
+      "text_loss_change": 0.20172333717346191
+    },
+    "prune_random": {
+      "answer": "70",
+      "correct": true,
+      "mean_orig_text_loss": 0.017357142348038524,
+      "mean_pruned_text_loss": 0.348085880279541,
+      "text_loss_change": 0.3307287379315025
+    }
+  },
+  {
+    "problem_idx": 618,
+    "true_answer": "36",
+    "baseline_answer": "36",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 183,
+    "n_pruned": 91,
+    "position_overlap": 61,
+    "answer_coupling_stats": {
+      "mean": 0.0011744820512831211,
+      "std": 0.006546172313392162,
+      "max": 0.08660507202148438
+    },
+    "text_coupling_stats": {
+      "mean": 0.002867392497137189,
+      "std": 0.0025013922713696957,
+      "max": 0.01592293381690979
+    },
+    "no_pruning": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.01382216026908473,
+      "mean_pruned_text_loss": 0.013803852231878983,
+      "text_loss_change": -1.830803720574703e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.01382216026908473,
+      "mean_pruned_text_loss": 0.49570230433815404,
+      "text_loss_change": 0.4818801440690693
+    },
+    "prune_text_coupled": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.01382216026908473,
+      "mean_pruned_text_loss": 0.3996237516403198,
+      "text_loss_change": 0.3858015913712351
+    },
+    "prune_random": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.01382216026908473,
+      "mean_pruned_text_loss": 0.11673137388731304,
+      "text_loss_change": 0.10290921361822832
+    }
+  },
+  {
+    "problem_idx": 599,
+    "true_answer": "48",
+    "baseline_answer": "48",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 137,
+    "n_pruned": 68,
+    "position_overlap": 47,
+    "answer_coupling_stats": {
+      "mean": 0.0015361784026026726,
+      "std": 0.007876742631196976,
+      "max": 0.09029388427734375
+    },
+    "text_coupling_stats": {
+      "mean": 0.0037133614532649517,
+      "std": 0.0036156410351395607,
+      "max": 0.02218519151210785
+    },
+    "no_pruning": {
+      "answer": "48",
+      "correct": true,
+      "mean_orig_text_loss": 0.014716920099760356,
+      "mean_pruned_text_loss": 0.014741935228046617,
+      "text_loss_change": 2.501512828626158e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "48",
+      "correct": true,
+      "mean_orig_text_loss": 0.014716920099760356,
+      "mean_pruned_text_loss": 0.24935095561178108,
+      "text_loss_change": 0.23463403551202072
+    },
+    "prune_text_coupled": {
+      "answer": "48",
+      "correct": true,
+      "mean_orig_text_loss": 0.014716920099760356,
+      "mean_pruned_text_loss": 0.5977966408980521,
+      "text_loss_change": 0.5830797207982917
+    },
+    "prune_random": {
+      "answer": "48",
+      "correct": true,
+      "mean_orig_text_loss": 0.014716920099760356,
+      "mean_pruned_text_loss": 0.12176841811129921,
+      "text_loss_change": 0.10705149801153885
+    }
+  },
+  {
+    "problem_idx": 289,
+    "true_answer": "16",
+    "baseline_answer": "16",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 98,
+    "n_pruned": 49,
+    "position_overlap": 33,
+    "answer_coupling_stats": {
+      "mean": 0.0018656294560059905,
+      "std": 0.00899585336446762,
+      "max": 0.08724212646484375
+    },
+    "text_coupling_stats": {
+      "mean": 0.004360760562121868,
+      "std": 0.004339443054050207,
+      "max": 0.025446951389312744
+    },
+    "no_pruning": {
+      "answer": "16",
+      "correct": true,
+      "mean_orig_text_loss": 0.005859431467558208,
+      "mean_pruned_text_loss": 0.005906086218984504,
+      "text_loss_change": 4.665475142629546e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "16",
+      "correct": true,
+      "mean_orig_text_loss": 0.005859431467558208,
+      "mean_pruned_text_loss": 0.13236300568831594,
+      "text_loss_change": 0.12650357422075773
+    },
+    "prune_text_coupled": {
+      "answer": "16",
+      "correct": true,
+      "mean_orig_text_loss": 0.005859431467558208,
+      "mean_pruned_text_loss": 0.12816538936213442,
+      "text_loss_change": 0.12230595789457621
+    },
+    "prune_random": {
+      "answer": "16",
+      "correct": true,
+      "mean_orig_text_loss": 0.005859431467558208,
+      "mean_pruned_text_loss": 0.06968231577622264,
+      "text_loss_change": 0.06382288430866442
+    }
+  },
+  {
+    "problem_idx": 608,
+    "true_answer": "8",
+    "baseline_answer": "8",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 153,
+    "n_pruned": 76,
+    "position_overlap": 56,
+    "answer_coupling_stats": {
+      "mean": 0.00131532596424222,
+      "std": 0.007798111066222191,
+      "max": 0.09307098388671875
+    },
+    "text_coupling_stats": {
+      "mean": 0.003111212747171521,
+      "std": 0.0028443762566894293,
+      "max": 0.01922982931137085
+    },
+    "no_pruning": {
+      "answer": "8",
+      "correct": true,
+      "mean_orig_text_loss": 0.03340056695436176,
+      "mean_pruned_text_loss": 0.03333917417024311,
+      "text_loss_change": -6.139278411865234e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "8",
+      "correct": true,
+      "mean_orig_text_loss": 0.03340056695436176,
+      "mean_pruned_text_loss": 0.6730652420144332,
+      "text_loss_change": 0.6396646750600714
+    },
+    "prune_text_coupled": {
+      "answer": "8",
+      "correct": true,
+      "mean_orig_text_loss": 0.03340056695436176,
+      "mean_pruned_text_loss": 0.8325038960105494,
+      "text_loss_change": 0.7991033290561876
+    },
+    "prune_random": {
+      "answer": "8",
+      "correct": true,
+      "mean_orig_text_loss": 0.03340056695436176,
+      "mean_pruned_text_loss": 0.7655982720224481,
+      "text_loss_change": 0.7321977050680863
+    }
+  },
+  {
+    "problem_idx": 400,
+    "true_answer": "48",
+    "baseline_answer": "48",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 62,
+    "n_pruned": 31,
+    "position_overlap": 21,
+    "answer_coupling_stats": {
+      "mean": 0.0029695092234760523,
+      "std": 0.011803440749645233,
+      "max": 0.09300994873046875
+    },
+    "text_coupling_stats": {
+      "mean": 0.0058539560995996,
+      "std": 0.004665011540055275,
+      "max": 0.025013625621795654
+    },
+    "no_pruning": {
+      "answer": "48",
+      "correct": true,
+      "mean_orig_text_loss": 0.0062374817697625415,
+      "mean_pruned_text_loss": 0.006235517953571521,
+      "text_loss_change": -1.9638161910208105e-06
+    },
+    "prune_answer_coupled": {
+      "answer": "48",
+      "correct": true,
+      "mean_orig_text_loss": 0.0062374817697625415,
+      "mean_pruned_text_loss": 0.22377740081987882,
+      "text_loss_change": 0.21753991905011627
+    },
+    "prune_text_coupled": {
+      "answer": "48",
+      "correct": true,
+      "mean_orig_text_loss": 0.0062374817697625415,
+      "mean_pruned_text_loss": 0.0927898507369192,
+      "text_loss_change": 0.08655236896715665
+    },
+    "prune_random": {
+      "answer": "48",
+      "correct": true,
+      "mean_orig_text_loss": 0.0062374817697625415,
+      "mean_pruned_text_loss": 0.14530388932479055,
+      "text_loss_change": 0.139066407555028
+    }
+  },
+  {
+    "problem_idx": 237,
+    "true_answer": "90",
+    "baseline_answer": "90",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 60,
+    "n_pruned": 30,
+    "position_overlap": 21,
+    "answer_coupling_stats": {
+      "mean": 0.0027768544387072325,
+      "std": 0.012328414246439934,
+      "max": 0.09626007080078125
+    },
+    "text_coupling_stats": {
+      "mean": 0.005979760549962521,
+      "std": 0.004910945426672697,
+      "max": 0.03155342862010002
+    },
+    "no_pruning": {
+      "answer": "90",
+      "correct": true,
+      "mean_orig_text_loss": 0.01390770861977025,
+      "mean_pruned_text_loss": 0.014106593633952894,
+      "text_loss_change": 0.00019888501418264398
+    },
+    "prune_answer_coupled": {
+      "answer": "90",
+      "correct": true,
+      "mean_orig_text_loss": 0.01390770861977025,
+      "mean_pruned_text_loss": 0.1021500637656764,
+      "text_loss_change": 0.08824235514590614
+    },
+    "prune_text_coupled": {
+      "answer": "90",
+      "correct": true,
+      "mean_orig_text_loss": 0.01390770861977025,
+      "mean_pruned_text_loss": 0.7566794470736855,
+      "text_loss_change": 0.7427717384539153
+    },
+    "prune_random": {
+      "answer": "90",
+      "correct": true,
+      "mean_orig_text_loss": 0.01390770861977025,
+      "mean_pruned_text_loss": 0.07170500253376208,
+      "text_loss_change": 0.057797293913991826
+    }
+  },
+  {
+    "problem_idx": 616,
+    "true_answer": "10",
+    "baseline_answer": "10",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 78,
+    "n_pruned": 39,
+    "position_overlap": 25,
+    "answer_coupling_stats": {
+      "mean": 0.002502823481336236,
+      "std": 0.011178477667272091,
+      "max": 0.09841156005859375
+    },
+    "text_coupling_stats": {
+      "mean": 0.005076826084405184,
+      "std": 0.004442515317350626,
+      "max": 0.028207741677761078
+    },
+    "no_pruning": {
+      "answer": "10",
+      "correct": true,
+      "mean_orig_text_loss": 0.002172859091507761,
+      "mean_pruned_text_loss": 0.002197089948152241,
+      "text_loss_change": 2.423085664447983e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "10",
+      "correct": true,
+      "mean_orig_text_loss": 0.002172859091507761,
+      "mean_pruned_text_loss": 0.1755995750427246,
+      "text_loss_change": 0.17342671595121684
+    },
+    "prune_text_coupled": {
+      "answer": "10",
+      "correct": true,
+      "mean_orig_text_loss": 0.002172859091507761,
+      "mean_pruned_text_loss": 0.25758135946173416,
+      "text_loss_change": 0.2554085003702264
+    },
+    "prune_random": {
+      "answer": "10",
+      "correct": true,
+      "mean_orig_text_loss": 0.002172859091507761,
+      "mean_pruned_text_loss": 0.236341771326567,
+      "text_loss_change": 0.23416891223505923
+    }
+  },
+  {
+    "problem_idx": 672,
+    "true_answer": "2",
+    "baseline_answer": "2",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 77,
+    "n_pruned": 38,
+    "position_overlap": 29,
+    "answer_coupling_stats": {
+      "mean": 0.0025346502661705017,
+      "std": 0.009282007813453674,
+      "max": 0.07929229736328125
+    },
+    "text_coupling_stats": {
+      "mean": 0.0048330058343708515,
+      "std": 0.0038809850811958313,
+      "max": 0.021497666835784912
+    },
+    "no_pruning": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.05614747499164782,
+      "mean_pruned_text_loss": 0.05700900680140445,
+      "text_loss_change": 0.0008615318097566285
+    },
+    "prune_answer_coupled": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.05614747499164782,
+      "mean_pruned_text_loss": 0.9310643547459653,
+      "text_loss_change": 0.8749168797543174
+    },
+    "prune_text_coupled": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.05614747499164782,
+      "mean_pruned_text_loss": 0.3292774652179919,
+      "text_loss_change": 0.2731299902263441
+    },
+    "prune_random": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.05614747499164782,
+      "mean_pruned_text_loss": 0.13404854347831324,
+      "text_loss_change": 0.07790106848666542
+    }
+  },
+  {
+    "problem_idx": 1132,
+    "true_answer": "45000",
+    "baseline_answer": "45000",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 180,
+    "n_pruned": 90,
+    "position_overlap": 51,
+    "answer_coupling_stats": {
+      "mean": 0.0011131148785352707,
+      "std": 0.006898362655192614,
+      "max": 0.09166336059570312
+    },
+    "text_coupling_stats": {
+      "mean": 0.003420885419473052,
+      "std": 0.00431814044713974,
+      "max": 0.02960161305963993
+    },
+    "no_pruning": {
+      "answer": "45000",
+      "correct": true,
+      "mean_orig_text_loss": 0.014399584970976176,
+      "mean_pruned_text_loss": 0.01451262674833599,
+      "text_loss_change": 0.00011304177735981316
+    },
+    "prune_answer_coupled": {
+      "answer": "45000",
+      "correct": true,
+      "mean_orig_text_loss": 0.014399584970976176,
+      "mean_pruned_text_loss": 0.366787032077187,
+      "text_loss_change": 0.35238744710621084
+    },
+    "prune_text_coupled": {
+      "answer": "45000",
+      "correct": true,
+      "mean_orig_text_loss": 0.014399584970976176,
+      "mean_pruned_text_loss": 1.0619672034916126,
+      "text_loss_change": 1.0475676185206364
+    },
+    "prune_random": {
+      "answer": "45000",
+      "correct": true,
+      "mean_orig_text_loss": 0.014399584970976176,
+      "mean_pruned_text_loss": 0.11942495797809802,
+      "text_loss_change": 0.10502537300712184
+    }
+  },
+  {
+    "problem_idx": 463,
+    "true_answer": "18",
+    "baseline_answer": "18",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 77,
+    "n_pruned": 38,
+    "position_overlap": 25,
+    "answer_coupling_stats": {
+      "mean": 0.0025763711892068386,
+      "std": 0.010322067886590958,
+      "max": 0.08896636962890625
+    },
+    "text_coupling_stats": {
+      "mean": 0.005284141283482313,
+      "std": 0.005166184157133102,
+      "max": 0.03054046630859375
+    },
+    "no_pruning": {
+      "answer": "18",
+      "correct": true,
+      "mean_orig_text_loss": 0.006029423914457622,
+      "mean_pruned_text_loss": 0.006027209131341232,
+      "text_loss_change": -2.2147831163906936e-06
+    },
+    "prune_answer_coupled": {
+      "answer": "18",
+      "correct": true,
+      "mean_orig_text_loss": 0.006029423914457622,
+      "mean_pruned_text_loss": 0.3737817814475612,
+      "text_loss_change": 0.3677523575331036
+    },
+    "prune_text_coupled": {
+      "answer": "18",
+      "correct": true,
+      "mean_orig_text_loss": 0.006029423914457622,
+      "mean_pruned_text_loss": 0.2363401588640715,
+      "text_loss_change": 0.23031073494961388
+    },
+    "prune_random": {
+      "answer": "18",
+      "correct": true,
+      "mean_orig_text_loss": 0.006029423914457622,
+      "mean_pruned_text_loss": 0.08156393076244153,
+      "text_loss_change": 0.0755345068479839
+    }
+  },
+  {
+    "problem_idx": 222,
+    "true_answer": "140",
+    "baseline_answer": "140",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 79,
+    "n_pruned": 39,
+    "position_overlap": 28,
+    "answer_coupling_stats": {
+      "mean": 0.002257067244499922,
+      "std": 0.010292882099747658,
+      "max": 0.0906524658203125
+    },
+    "text_coupling_stats": {
+      "mean": 0.004953526426106691,
+      "std": 0.004584897309541702,
+      "max": 0.026444388553500175
+    },
+    "no_pruning": {
+      "answer": "140",
+      "correct": true,
+      "mean_orig_text_loss": 0.004037624911258095,
+      "mean_pruned_text_loss": 0.004038515843843159,
+      "text_loss_change": 8.909325850637792e-07
+    },
+    "prune_answer_coupled": {
+      "answer": "140",
+      "correct": true,
+      "mean_orig_text_loss": 0.004037624911258095,
+      "mean_pruned_text_loss": 0.20318208242717542,
+      "text_loss_change": 0.19914445751591733
+    },
+    "prune_text_coupled": {
+      "answer": "140",
+      "correct": true,
+      "mean_orig_text_loss": 0.004037624911258095,
+      "mean_pruned_text_loss": 0.21585131946362948,
+      "text_loss_change": 0.2118136945523714
+    },
+    "prune_random": {
+      "answer": "140",
+      "correct": true,
+      "mean_orig_text_loss": 0.004037624911258095,
+      "mean_pruned_text_loss": 0.009199443616365132,
+      "text_loss_change": 0.005161818705107037
+    }
+  },
+  {
+    "problem_idx": 945,
+    "true_answer": "17",
+    "baseline_answer": "17",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 234,
+    "n_pruned": 117,
+    "position_overlap": 78,
+    "answer_coupling_stats": {
+      "mean": 0.0009116728906519711,
+      "std": 0.006029451731592417,
+      "max": 0.08901214599609375
+    },
+    "text_coupling_stats": {
+      "mean": 0.002392728812992573,
+      "std": 0.0035159902181476355,
+      "max": 0.0348835289478302
+    },
+    "no_pruning": {
+      "answer": "17",
+      "correct": true,
+      "mean_orig_text_loss": 0.0727700057782625,
+      "mean_pruned_text_loss": 0.07280867978146202,
+      "text_loss_change": 3.867400319952641e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "17",
+      "correct": true,
+      "mean_orig_text_loss": 0.0727700057782625,
+      "mean_pruned_text_loss": 1.1598419390226666,
+      "text_loss_change": 1.087071933244404
+    },
+    "prune_text_coupled": {
+      "answer": "17",
+      "correct": true,
+      "mean_orig_text_loss": 0.0727700057782625,
+      "mean_pruned_text_loss": 0.786079908672132,
+      "text_loss_change": 0.7133099028938694
+    },
+    "prune_random": {
+      "answer": "17",
+      "correct": true,
+      "mean_orig_text_loss": 0.0727700057782625,
+      "mean_pruned_text_loss": 0.36418218361703975,
+      "text_loss_change": 0.29141217783877726
+    }
+  },
+  {
+    "problem_idx": 238,
+    "true_answer": "68",
+    "baseline_answer": "68",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 101,
+    "n_pruned": 50,
+    "position_overlap": 31,
+    "answer_coupling_stats": {
+      "mean": 0.0019459930481389165,
+      "std": 0.008926364593207836,
+      "max": 0.0884246826171875
+    },
+    "text_coupling_stats": {
+      "mean": 0.0044896663166582584,
+      "std": 0.004638427868485451,
+      "max": 0.028851747512817383
+    },
+    "no_pruning": {
+      "answer": "68",
+      "correct": true,
+      "mean_orig_text_loss": 0.018014129839445416,
+      "mean_pruned_text_loss": 0.018160462379455566,
+      "text_loss_change": 0.0001463325400101502
+    },
+    "prune_answer_coupled": {
+      "answer": "68",
+      "correct": true,
+      "mean_orig_text_loss": 0.018014129839445416,
+      "mean_pruned_text_loss": 0.5392195049085116,
+      "text_loss_change": 0.5212053750690662
+    },
+    "prune_text_coupled": {
+      "answer": "68",
+      "correct": true,
+      "mean_orig_text_loss": 0.018014129839445416,
+      "mean_pruned_text_loss": 0.7824737147281045,
+      "text_loss_change": 0.7644595848886591
+    },
+    "prune_random": {
+      "answer": "68",
+      "correct": true,
+      "mean_orig_text_loss": 0.018014129839445416,
+      "mean_pruned_text_loss": 0.298662919747202,
+      "text_loss_change": 0.2806487899077566
+    }
+  },
+  {
+    "problem_idx": 730,
+    "true_answer": "8",
+    "baseline_answer": "8",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 89,
+    "n_pruned": 44,
+    "position_overlap": 31,
+    "answer_coupling_stats": {
+      "mean": 0.002157781273126602,
+      "std": 0.00947709009051323,
+      "max": 0.08881378173828125
+    },
+    "text_coupling_stats": {
+      "mean": 0.004559820983558893,
+      "std": 0.004362917970865965,
+      "max": 0.02561253122985363
+    },
+    "no_pruning": {
+      "answer": "8",
+      "correct": true,
+      "mean_orig_text_loss": 0.015467248464885511,
+      "mean_pruned_text_loss": 0.015501756417123895,
+      "text_loss_change": 3.4507952238383224e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "8",
+      "correct": true,
+      "mean_orig_text_loss": 0.015467248464885511,
+      "mean_pruned_text_loss": 0.7833297378138492,
+      "text_loss_change": 0.7678624893489636
+    },
+    "prune_text_coupled": {
+      "answer": "8",
+      "correct": true,
+      "mean_orig_text_loss": 0.015467248464885511,
+      "mean_pruned_text_loss": 0.9051025415721693,
+      "text_loss_change": 0.8896352931072837
+    },
+    "prune_random": {
+      "answer": "8",
+      "correct": true,
+      "mean_orig_text_loss": 0.015467248464885511,
+      "mean_pruned_text_loss": 0.144037033382215,
+      "text_loss_change": 0.12856978491732948
+    }
+  },
+  {
+    "problem_idx": 55,
+    "true_answer": "14",
+    "baseline_answer": "14",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 57,
+    "n_pruned": 28,
+    "position_overlap": 15,
+    "answer_coupling_stats": {
+      "mean": 0.003010300686582923,
+      "std": 0.011258287355303764,
+      "max": 0.08509445190429688
+    },
+    "text_coupling_stats": {
+      "mean": 0.005765177775174379,
+      "std": 0.004813135135918856,
+      "max": 0.025013700127601624
+    },
+    "no_pruning": {
+      "answer": "14",
+      "correct": true,
+      "mean_orig_text_loss": 0.07257335436971564,
+      "mean_pruned_text_loss": 0.07268068037535015,
+      "text_loss_change": 0.00010732600563451156
+    },
+    "prune_answer_coupled": {
+      "answer": "14",
+      "correct": true,
+      "mean_orig_text_loss": 0.07257335436971564,
+      "mean_pruned_text_loss": 0.43770891114285115,
+      "text_loss_change": 0.36513555677313553
+    },
+    "prune_text_coupled": {
+      "answer": "14",
+      "correct": true,
+      "mean_orig_text_loss": 0.07257335436971564,
+      "mean_pruned_text_loss": 0.8178771546012477,
+      "text_loss_change": 0.745303800231532
+    },
+    "prune_random": {
+      "answer": "14",
+      "correct": true,
+      "mean_orig_text_loss": 0.07257335436971564,
+      "mean_pruned_text_loss": 0.8937757077970003,
+      "text_loss_change": 0.8212023534272846
+    }
+  },
+  {
+    "problem_idx": 772,
+    "true_answer": "50",
+    "baseline_answer": "50",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 176,
+    "n_pruned": 88,
+    "position_overlap": 62,
+    "answer_coupling_stats": {
+      "mean": 0.0011462842812761664,
+      "std": 0.006950584705919027,
+      "max": 0.09090042114257812
+    },
+    "text_coupling_stats": {
+      "mean": 0.0030954964458942413,
+      "std": 0.00397853460162878,
+      "max": 0.032233238220214844
+    },
+    "no_pruning": {
+      "answer": "50",
+      "correct": true,
+      "mean_orig_text_loss": 0.03907198654977899,
+      "mean_pruned_text_loss": 0.03907197400143272,
+      "text_loss_change": -1.2548346271790134e-08
+    },
+    "prune_answer_coupled": {
+      "answer": "50",
+      "correct": true,
+      "mean_orig_text_loss": 0.03907198654977899,
+      "mean_pruned_text_loss": 0.8533033320778295,
+      "text_loss_change": 0.8142313455280505
+    },
+    "prune_text_coupled": {
+      "answer": "50",
+      "correct": true,
+      "mean_orig_text_loss": 0.03907198654977899,
+      "mean_pruned_text_loss": 0.5974373127284803,
+      "text_loss_change": 0.5583653261787014
+    },
+    "prune_random": {
+      "answer": "50",
+      "correct": true,
+      "mean_orig_text_loss": 0.03907198654977899,
+      "mean_pruned_text_loss": 0.26357448728461014,
+      "text_loss_change": 0.22450250073483113
+    }
+  },
+  {
+    "problem_idx": 176,
+    "true_answer": "100",
+    "baseline_answer": "100",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 77,
+    "n_pruned": 38,
+    "position_overlap": 28,
+    "answer_coupling_stats": {
+      "mean": 0.0025492224376648664,
+      "std": 0.0106433667242527,
+      "max": 0.09268951416015625
+    },
+    "text_coupling_stats": {
+      "mean": 0.005148773081600666,
+      "std": 0.0038905467372387648,
+      "max": 0.019237974658608437
+    },
+    "no_pruning": {
+      "answer": "100",
+      "correct": true,
+      "mean_orig_text_loss": 0.004578740973221629,
+      "mean_pruned_text_loss": 0.004549572342320492,
+      "text_loss_change": -2.9168630901136444e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "100",
+      "correct": true,
+      "mean_orig_text_loss": 0.004578740973221629,
+      "mean_pruned_text_loss": 0.49579066979257685,
+      "text_loss_change": 0.4912119288193552
+    },
+    "prune_text_coupled": {
+      "answer": "100",
+      "correct": true,
+      "mean_orig_text_loss": 0.004578740973221629,
+      "mean_pruned_text_loss": 0.320701423444246,
+      "text_loss_change": 0.3161226824710244
+    },
+    "prune_random": {
+      "answer": "100",
+      "correct": true,
+      "mean_orig_text_loss": 0.004578740973221629,
+      "mean_pruned_text_loss": 1.556093366522538,
+      "text_loss_change": 1.5515146255493164
+    }
+  },
+  {
+    "problem_idx": 15,
+    "true_answer": "125",
+    "baseline_answer": "125",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 140,
+    "n_pruned": 70,
+    "position_overlap": 48,
+    "answer_coupling_stats": {
+      "mean": 0.00160582410171628,
+      "std": 0.007044960744678974,
+      "max": 0.07922744750976562
+    },
+    "text_coupling_stats": {
+      "mean": 0.003297740127891302,
+      "std": 0.0031106402166187763,
+      "max": 0.022704262286424637
+    },
+    "no_pruning": {
+      "answer": "125",
+      "correct": true,
+      "mean_orig_text_loss": 0.2091317804236161,
+      "mean_pruned_text_loss": 0.2091708685222425,
+      "text_loss_change": 3.9088098626405277e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "125",
+      "correct": true,
+      "mean_orig_text_loss": 0.2091317804236161,
+      "mean_pruned_text_loss": 0.555106050089786,
+      "text_loss_change": 0.34597426966616984
+    },
+    "prune_text_coupled": {
+      "answer": "125",
+      "correct": true,
+      "mean_orig_text_loss": 0.2091317804236161,
+      "mean_pruned_text_loss": 0.6006790525034854,
+      "text_loss_change": 0.3915472720798693
+    },
+    "prune_random": {
+      "answer": "125",
+      "correct": true,
+      "mean_orig_text_loss": 0.2091317804236161,
+      "mean_pruned_text_loss": 0.43315438847792775,
+      "text_loss_change": 0.22402260805431165
+    }
+  },
+  {
+    "problem_idx": 66,
+    "true_answer": "48",
+    "baseline_answer": "48",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 119,
+    "n_pruned": 59,
+    "position_overlap": 42,
+    "answer_coupling_stats": {
+      "mean": 0.0017467951402068138,
+      "std": 0.008094125427305698,
+      "max": 0.0865478515625
+    },
+    "text_coupling_stats": {
+      "mean": 0.004269625060260296,
+      "std": 0.004486307967454195,
+      "max": 0.03346296027302742
+    },
+    "no_pruning": {
+      "answer": "48",
+      "correct": true,
+      "mean_orig_text_loss": 0.059156179428100586,
+      "mean_pruned_text_loss": 0.05881934416921515,
+      "text_loss_change": -0.00033683525888543453
+    },
+    "prune_answer_coupled": {
+      "answer": "48",
+      "correct": true,
+      "mean_orig_text_loss": 0.059156179428100586,
+      "mean_pruned_text_loss": 0.36832491975081594,
+      "text_loss_change": 0.30916874032271535
+    },
+    "prune_text_coupled": {
+      "answer": "48",
+      "correct": true,
+      "mean_orig_text_loss": 0.059156179428100586,
+      "mean_pruned_text_loss": 0.6039202087803891,
+      "text_loss_change": 0.5447640293522885
+    },
+    "prune_random": {
+      "answer": "48",
+      "correct": true,
+      "mean_orig_text_loss": 0.059156179428100586,
+      "mean_pruned_text_loss": 0.1344037746128283,
+      "text_loss_change": 0.0752475951847277
+    }
+  },
+  {
+    "problem_idx": 479,
+    "true_answer": "15400",
+    "baseline_answer": "15400",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 191,
+    "n_pruned": 95,
+    "position_overlap": 64,
+    "answer_coupling_stats": {
+      "mean": 0.0010470855049788952,
+      "std": 0.006853894330561161,
+      "max": 0.093048095703125
+    },
+    "text_coupling_stats": {
+      "mean": 0.003201213898137212,
+      "std": 0.004135848022997379,
+      "max": 0.03237085044384003
+    },
+    "no_pruning": {
+      "answer": "15400",
+      "correct": true,
+      "mean_orig_text_loss": 0.0021147978933233965,
+      "mean_pruned_text_loss": 0.0021781293969405325,
+      "text_loss_change": 6.333150361713608e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "15400",
+      "correct": true,
+      "mean_orig_text_loss": 0.0021147978933233965,
+      "mean_pruned_text_loss": 0.3113750658537212,
+      "text_loss_change": 0.3092602679603978
+    },
+    "prune_text_coupled": {
+      "answer": "15400",
+      "correct": true,
+      "mean_orig_text_loss": 0.0021147978933233965,
+      "mean_pruned_text_loss": 1.1160071021632145,
+      "text_loss_change": 1.1138923042698912
+    },
+    "prune_random": {
+      "answer": "15400",
+      "correct": true,
+      "mean_orig_text_loss": 0.0021147978933233965,
+      "mean_pruned_text_loss": 0.4377607232645938,
+      "text_loss_change": 0.4356459253712704
+    }
+  },
+  {
+    "problem_idx": 896,
+    "true_answer": "250",
+    "baseline_answer": "250",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 120,
+    "n_pruned": 60,
+    "position_overlap": 46,
+    "answer_coupling_stats": {
+      "mean": 0.0014624953037127852,
+      "std": 0.007590776309370995,
+      "max": 0.08219146728515625
+    },
+    "text_coupling_stats": {
+      "mean": 0.0046385168097913265,
+      "std": 0.0050948746502399445,
+      "max": 0.03187108039855957
+    },
+    "no_pruning": {
+      "answer": "250",
+      "correct": true,
+      "mean_orig_text_loss": 0.049596824144062246,
+      "mean_pruned_text_loss": 0.050036486826444924,
+      "text_loss_change": 0.0004396626823826785
+    },
+    "prune_answer_coupled": {
+      "answer": "250",
+      "correct": true,
+      "mean_orig_text_loss": 0.049596824144062246,
+      "mean_pruned_text_loss": 0.2652482923708464,
+      "text_loss_change": 0.21565146822678416
+    },
+    "prune_text_coupled": {
+      "answer": "250",
+      "correct": true,
+      "mean_orig_text_loss": 0.049596824144062246,
+      "mean_pruned_text_loss": 0.33429632061406184,
+      "text_loss_change": 0.2846994964699996
+    },
+    "prune_random": {
+      "answer": "250",
+      "correct": true,
+      "mean_orig_text_loss": 0.049596824144062246,
+      "mean_pruned_text_loss": 0.3144221996006213,
+      "text_loss_change": 0.26482537545655904
+    }
+  },
+  {
+    "problem_idx": 1122,
+    "true_answer": "18",
+    "baseline_answer": "22",
+    "baseline_correct": false,
+    "skipped": true
+  },
+  {
+    "problem_idx": 1005,
+    "true_answer": "1490",
+    "baseline_answer": "1490",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 164,
+    "n_pruned": 82,
+    "position_overlap": 55,
+    "answer_coupling_stats": {
+      "mean": 0.0011893947375938296,
+      "std": 0.006829391699284315,
+      "max": 0.08428955078125
+    },
+    "text_coupling_stats": {
+      "mean": 0.0033474124502390623,
+      "std": 0.004302150569856167,
+      "max": 0.031497880816459656
+    },
+    "no_pruning": {
+      "answer": "1490",
+      "correct": true,
+      "mean_orig_text_loss": 0.009984330127113744,
+      "mean_pruned_text_loss": 0.01024993469840602,
+      "text_loss_change": 0.0002656045712922748
+    },
+    "prune_answer_coupled": {
+      "answer": "1490",
+      "correct": true,
+      "mean_orig_text_loss": 0.009984330127113744,
+      "mean_pruned_text_loss": 0.48246308376914576,
+      "text_loss_change": 0.472478753642032
+    },
+    "prune_text_coupled": {
+      "answer": "1490",
+      "correct": true,
+      "mean_orig_text_loss": 0.009984330127113744,
+      "mean_pruned_text_loss": 0.31375829797042043,
+      "text_loss_change": 0.3037739678433067
+    },
+    "prune_random": {
+      "answer": "1490",
+      "correct": true,
+      "mean_orig_text_loss": 0.009984330127113744,
+      "mean_pruned_text_loss": 0.354235473432039,
+      "text_loss_change": 0.34425114330492523
+    }
+  },
+  {
+    "problem_idx": 480,
+    "true_answer": "11",
+    "baseline_answer": "11",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 88,
+    "n_pruned": 44,
+    "position_overlap": 30,
+    "answer_coupling_stats": {
+      "mean": 0.002146732760593295,
+      "std": 0.00922241248190403,
+      "max": 0.08562469482421875
+    },
+    "text_coupling_stats": {
+      "mean": 0.004584253765642643,
+      "std": 0.003842125413939357,
+      "max": 0.020090434700250626
+    },
+    "no_pruning": {
+      "answer": "11",
+      "correct": true,
+      "mean_orig_text_loss": 0.03900087507147538,
+      "mean_pruned_text_loss": 0.0388204110296149,
+      "text_loss_change": -0.0001804640418604786
+    },
+    "prune_answer_coupled": {
+      "answer": "11",
+      "correct": true,
+      "mean_orig_text_loss": 0.03900087507147538,
+      "mean_pruned_text_loss": 0.7488494672273335,
+      "text_loss_change": 0.709848592155858
+    },
+    "prune_text_coupled": {
+      "answer": "11",
+      "correct": true,
+      "mean_orig_text_loss": 0.03900087507147538,
+      "mean_pruned_text_loss": 0.20586638701589485,
+      "text_loss_change": 0.16686551194441948
+    },
+    "prune_random": {
+      "answer": "11",
+      "correct": true,
+      "mean_orig_text_loss": 0.03900087507147538,
+      "mean_pruned_text_loss": 0.08387777052427593,
+      "text_loss_change": 0.044876895452800554
+    }
+  },
+  {
+    "problem_idx": 187,
+    "true_answer": "106",
+    "baseline_answer": "106",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 91,
+    "n_pruned": 45,
+    "position_overlap": 31,
+    "answer_coupling_stats": {
+      "mean": 0.0021581647451967,
+      "std": 0.008839997462928295,
+      "max": 0.08118820190429688
+    },
+    "text_coupling_stats": {
+      "mean": 0.005043089389801025,
+      "std": 0.0053562200628221035,
+      "max": 0.03608405590057373
+    },
+    "no_pruning": {
+      "answer": "106",
+      "correct": true,
+      "mean_orig_text_loss": 0.003853189317803634,
+      "mean_pruned_text_loss": 0.003927218286614669,
+      "text_loss_change": 7.402896881103516e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "106",
+      "correct": true,
+      "mean_orig_text_loss": 0.003853189317803634,
+      "mean_pruned_text_loss": 0.39690372190977397,
+      "text_loss_change": 0.3930505325919703
+    },
+    "prune_text_coupled": {
+      "answer": "106",
+      "correct": true,
+      "mean_orig_text_loss": 0.003853189317803634,
+      "mean_pruned_text_loss": 0.2581382801658229,
+      "text_loss_change": 0.25428509084801926
+    },
+    "prune_random": {
+      "answer": "106",
+      "correct": true,
+      "mean_orig_text_loss": 0.003853189317803634,
+      "mean_pruned_text_loss": 0.05082055769468609,
+      "text_loss_change": 0.04696736837688245
+    }
+  },
+  {
+    "problem_idx": 275,
+    "true_answer": "138",
+    "baseline_answer": "138",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 215,
+    "n_pruned": 107,
+    "position_overlap": 79,
+    "answer_coupling_stats": {
+      "mean": 0.0008541104616597295,
+      "std": 0.005613613873720169,
+      "max": 0.08065414428710938
+    },
+    "text_coupling_stats": {
+      "mean": 0.002464492339640856,
+      "std": 0.00321203307248652,
+      "max": 0.02979956939816475
+    },
+    "no_pruning": {
+      "answer": "138",
+      "correct": true,
+      "mean_orig_text_loss": 0.0041672995215968085,
+      "mean_pruned_text_loss": 0.004070382369192023,
+      "text_loss_change": -9.691715240478516e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "138",
+      "correct": true,
+      "mean_orig_text_loss": 0.0041672995215968085,
+      "mean_pruned_text_loss": 0.8332449511477822,
+      "text_loss_change": 0.8290776516261854
+    },
+    "prune_text_coupled": {
+      "answer": "138",
+      "correct": true,
+      "mean_orig_text_loss": 0.0041672995215968085,
+      "mean_pruned_text_loss": 0.3974473099959524,
+      "text_loss_change": 0.39328001047435557
+    },
+    "prune_random": {
+      "answer": "138",
+      "correct": true,
+      "mean_orig_text_loss": 0.0041672995215968085,
+      "mean_pruned_text_loss": 0.02560331946925113,
+      "text_loss_change": 0.021436019947654324
+    }
+  },
+  {
+    "problem_idx": 868,
+    "true_answer": "15",
+    "baseline_answer": "15",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 111,
+    "n_pruned": 55,
+    "position_overlap": 36,
+    "answer_coupling_stats": {
+      "mean": 0.0016951970756053925,
+      "std": 0.010129290632903576,
+      "max": 0.1060028076171875
+    },
+    "text_coupling_stats": {
+      "mean": 0.004697264172136784,
+      "std": 0.005759720224887133,
+      "max": 0.042199451476335526
+    },
+    "no_pruning": {
+      "answer": "15",
+      "correct": true,
+      "mean_orig_text_loss": 0.02585153203261526,
+      "mean_pruned_text_loss": 0.025803089141845703,
+      "text_loss_change": -4.8442890769558045e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "15",
+      "correct": true,
+      "mean_orig_text_loss": 0.02585153203261526,
+      "mean_pruned_text_loss": 0.5005347226795397,
+      "text_loss_change": 0.47468319064692444
+    },
+    "prune_text_coupled": {
+      "answer": "15",
+      "correct": true,
+      "mean_orig_text_loss": 0.02585153203261526,
+      "mean_pruned_text_loss": 0.7484415581351832,
+      "text_loss_change": 0.722590026102568
+    },
+    "prune_random": {
+      "answer": "15",
+      "correct": true,
+      "mean_orig_text_loss": 0.02585153203261526,
+      "mean_pruned_text_loss": 0.34238447013654205,
+      "text_loss_change": 0.3165329381039268
+    }
+  },
+  {
+    "problem_idx": 921,
+    "true_answer": "4",
+    "baseline_answer": "4",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 90,
+    "n_pruned": 45,
+    "position_overlap": 27,
+    "answer_coupling_stats": {
+      "mean": 0.0022406780626624823,
+      "std": 0.00962748471647501,
+      "max": 0.09000396728515625
+    },
+    "text_coupling_stats": {
+      "mean": 0.004626125562936068,
+      "std": 0.004170108120888472,
+      "max": 0.019629240036010742
+    },
+    "no_pruning": {
+      "answer": "4",
+      "correct": true,
+      "mean_orig_text_loss": 0.016873190277501157,
+      "mean_pruned_text_loss": 0.017186208775168972,
+      "text_loss_change": 0.0003130184976678149
+    },
+    "prune_answer_coupled": {
+      "answer": "4",
+      "correct": true,
+      "mean_orig_text_loss": 0.016873190277501157,
+      "mean_pruned_text_loss": 0.19856297342400803,
+      "text_loss_change": 0.18168978314650686
+    },
+    "prune_text_coupled": {
+      "answer": "4",
+      "correct": true,
+      "mean_orig_text_loss": 0.016873190277501157,
+      "mean_pruned_text_loss": 0.15390706062316895,
+      "text_loss_change": 0.13703387034566777
+    },
+    "prune_random": {
+      "answer": "4",
+      "correct": true,
+      "mean_orig_text_loss": 0.016873190277501157,
+      "mean_pruned_text_loss": 0.038047501915379575,
+      "text_loss_change": 0.021174311637878418
+    }
+  },
+  {
+    "problem_idx": 562,
+    "true_answer": "82",
+    "baseline_answer": "82",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 84,
+    "n_pruned": 42,
+    "position_overlap": 30,
+    "answer_coupling_stats": {
+      "mean": 0.002168112201616168,
+      "std": 0.009407447651028633,
+      "max": 0.0855712890625
+    },
+    "text_coupling_stats": {
+      "mean": 0.004683112725615501,
+      "std": 0.004129528533667326,
+      "max": 0.025523871183395386
+    },
+    "no_pruning": {
+      "answer": "82",
+      "correct": true,
+      "mean_orig_text_loss": 0.002663154351083856,
+      "mean_pruned_text_loss": 0.002638277254606548,
+      "text_loss_change": -2.4877096477307886e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "82",
+      "correct": true,
+      "mean_orig_text_loss": 0.002663154351083856,
+      "mean_pruned_text_loss": 0.04124542913938824,
+      "text_loss_change": 0.03858227478830438
+    },
+    "prune_text_coupled": {
+      "answer": "82",
+      "correct": true,
+      "mean_orig_text_loss": 0.002663154351083856,
+      "mean_pruned_text_loss": 0.02914306364561382,
+      "text_loss_change": 0.026479909294529962
+    },
+    "prune_random": {
+      "answer": "82",
+      "correct": true,
+      "mean_orig_text_loss": 0.002663154351083856,
+      "mean_pruned_text_loss": 0.04298683216697291,
+      "text_loss_change": 0.04032367781588905
+    }
+  },
+  {
+    "problem_idx": 1082,
+    "true_answer": "2",
+    "baseline_answer": "2",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 79,
+    "n_pruned": 39,
+    "position_overlap": 24,
+    "answer_coupling_stats": {
+      "mean": 0.0023272973485291004,
+      "std": 0.009895287454128265,
+      "max": 0.087249755859375
+    },
+    "text_coupling_stats": {
+      "mean": 0.004624277353286743,
+      "std": 0.0034098858013749123,
+      "max": 0.01900692842900753
+    },
+    "no_pruning": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.014490014628360146,
+      "mean_pruned_text_loss": 0.014350326437699167,
+      "text_loss_change": -0.00013968819066097898
+    },
+    "prune_answer_coupled": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.014490014628360146,
+      "mean_pruned_text_loss": 0.6955960926256681,
+      "text_loss_change": 0.6811060779973079
+    },
+    "prune_text_coupled": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.014490014628360146,
+      "mean_pruned_text_loss": 0.4151009007504112,
+      "text_loss_change": 0.40061088612205104
+    },
+    "prune_random": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.014490014628360146,
+      "mean_pruned_text_loss": 0.4802730961849815,
+      "text_loss_change": 0.46578308155662135
+    }
+  },
+  {
+    "problem_idx": 172,
+    "true_answer": "51",
+    "baseline_answer": "51",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 153,
+    "n_pruned": 76,
+    "position_overlap": 51,
+    "answer_coupling_stats": {
+      "mean": 0.0012910016812384129,
+      "std": 0.006865896284580231,
+      "max": 0.082916259765625
+    },
+    "text_coupling_stats": {
+      "mean": 0.003073028987273574,
+      "std": 0.0036003468558192253,
+      "max": 0.02445971965789795
+    },
+    "no_pruning": {
+      "answer": "51",
+      "correct": true,
+      "mean_orig_text_loss": 0.025712835161309493,
+      "mean_pruned_text_loss": 0.025731990211888364,
+      "text_loss_change": 1.915505057887082e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "51",
+      "correct": true,
+      "mean_orig_text_loss": 0.025712835161309493,
+      "mean_pruned_text_loss": 0.503749646638569,
+      "text_loss_change": 0.4780368114772595
+    },
+    "prune_text_coupled": {
+      "answer": "51",
+      "correct": true,
+      "mean_orig_text_loss": 0.025712835161309493,
+      "mean_pruned_text_loss": 0.7369727084511205,
+      "text_loss_change": 0.711259873289811
+    },
+    "prune_random": {
+      "answer": "51",
+      "correct": true,
+      "mean_orig_text_loss": 0.025712835161309493,
+      "mean_pruned_text_loss": 0.06578713341763145,
+      "text_loss_change": 0.04007429825632196
+    }
+  },
+  {
+    "problem_idx": 770,
+    "true_answer": "4",
+    "baseline_answer": "3",
+    "baseline_correct": false,
+    "skipped": true
+  },
+  {
+    "problem_idx": 1191,
+    "true_answer": "100",
+    "baseline_answer": "100",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 124,
+    "n_pruned": 62,
+    "position_overlap": 47,
+    "answer_coupling_stats": {
+      "mean": 0.0015951641835272312,
+      "std": 0.007922608405351639,
+      "max": 0.08696746826171875
+    },
+    "text_coupling_stats": {
+      "mean": 0.0041657546535134315,
+      "std": 0.005632546730339527,
+      "max": 0.04957455396652222
+    },
+    "no_pruning": {
+      "answer": "100",
+      "correct": true,
+      "mean_orig_text_loss": 0.0037458131187840514,
+      "mean_pruned_text_loss": 0.00374423202715422,
+      "text_loss_change": -1.5810916298313916e-06
+    },
+    "prune_answer_coupled": {
+      "answer": "100",
+      "correct": true,
+      "mean_orig_text_loss": 0.0037458131187840514,
+      "mean_pruned_text_loss": 0.9099554890080502,
+      "text_loss_change": 0.9062096758892662
+    },
+    "prune_text_coupled": {
+      "answer": "100",
+      "correct": true,
+      "mean_orig_text_loss": 0.0037458131187840514,
+      "mean_pruned_text_loss": 0.7978483563975284,
+      "text_loss_change": 0.7941025432787443
+    },
+    "prune_random": {
+      "answer": "100",
+      "correct": true,
+      "mean_orig_text_loss": 0.0037458131187840514,
+      "mean_pruned_text_loss": 0.020701960513466282,
+      "text_loss_change": 0.01695614739468223
+    }
+  },
+  {
+    "problem_idx": 413,
+    "true_answer": "25",
+    "baseline_answer": "25",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 144,
+    "n_pruned": 72,
+    "position_overlap": 48,
+    "answer_coupling_stats": {
+      "mean": 0.0012977999867871404,
+      "std": 0.007807348854839802,
+      "max": 0.09323883056640625
+    },
+    "text_coupling_stats": {
+      "mean": 0.0034902815241366625,
+      "std": 0.003655647626146674,
+      "max": 0.024358883500099182
+    },
+    "no_pruning": {
+      "answer": "25",
+      "correct": true,
+      "mean_orig_text_loss": 0.002600707505878649,
+      "mean_pruned_text_loss": 0.0025916915190847298,
+      "text_loss_change": -9.015986793919385e-06
+    },
+    "prune_answer_coupled": {
+      "answer": "25",
+      "correct": true,
+      "mean_orig_text_loss": 0.002600707505878649,
+      "mean_pruned_text_loss": 0.12768674524206863,
+      "text_loss_change": 0.12508603773618998
+    },
+    "prune_text_coupled": {
+      "answer": "25",
+      "correct": true,
+      "mean_orig_text_loss": 0.002600707505878649,
+      "mean_pruned_text_loss": 0.7330014580174496,
+      "text_loss_change": 0.730400750511571
+    },
+    "prune_random": {
+      "answer": "25",
+      "correct": true,
+      "mean_orig_text_loss": 0.002600707505878649,
+      "mean_pruned_text_loss": 0.13634916355735377,
+      "text_loss_change": 0.13374845605147512
+    }
+  },
+  {
+    "problem_idx": 537,
+    "true_answer": "188",
+    "baseline_answer": "188",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 103,
+    "n_pruned": 51,
+    "position_overlap": 31,
+    "answer_coupling_stats": {
+      "mean": 0.001872727763839066,
+      "std": 0.008945796638727188,
+      "max": 0.089691162109375
+    },
+    "text_coupling_stats": {
+      "mean": 0.004566210322082043,
+      "std": 0.004253892693668604,
+      "max": 0.026882577687501907
+    },
+    "no_pruning": {
+      "answer": "188",
+      "correct": true,
+      "mean_orig_text_loss": 0.005175088581285979,
+      "mean_pruned_text_loss": 0.005048118139568128,
+      "text_loss_change": -0.00012697044171785122
+    },
+    "prune_answer_coupled": {
+      "answer": "188",
+      "correct": true,
+      "mean_orig_text_loss": 0.005175088581285979,
+      "mean_pruned_text_loss": 1.3178869548596834,
+      "text_loss_change": 1.3127118662783974
+    },
+    "prune_text_coupled": {
+      "answer": "188",
+      "correct": true,
+      "mean_orig_text_loss": 0.005175088581285979,
+      "mean_pruned_text_loss": 1.0629472230610095,
+      "text_loss_change": 1.0577721344797235
+    },
+    "prune_random": {
+      "answer": "188",
+      "correct": true,
+      "mean_orig_text_loss": 0.005175088581285979,
+      "mean_pruned_text_loss": 0.007948511525204307,
+      "text_loss_change": 0.0027734229439183283
+    }
+  },
+  {
+    "problem_idx": 1154,
+    "true_answer": "30",
+    "baseline_answer": "30",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 96,
+    "n_pruned": 48,
+    "position_overlap": 30,
+    "answer_coupling_stats": {
+      "mean": 0.0020118169486522675,
+      "std": 0.00928860530257225,
+      "max": 0.089813232421875
+    },
+    "text_coupling_stats": {
+      "mean": 0.004481382668018341,
+      "std": 0.004032199736684561,
+      "max": 0.024386800825595856
+    },
+    "no_pruning": {
+      "answer": "30",
+      "correct": true,
+      "mean_orig_text_loss": 0.01587533950805664,
+      "mean_pruned_text_loss": 0.015875082266958135,
+      "text_loss_change": -2.5724109850577825e-07
+    },
+    "prune_answer_coupled": {
+      "answer": "30",
+      "correct": true,
+      "mean_orig_text_loss": 0.01587533950805664,
+      "mean_pruned_text_loss": 0.3447928616875096,
+      "text_loss_change": 0.32891752217945297
+    },
+    "prune_text_coupled": {
+      "answer": "30",
+      "correct": true,
+      "mean_orig_text_loss": 0.01587533950805664,
+      "mean_pruned_text_loss": 0.30258516261452123,
+      "text_loss_change": 0.2867098231064646
+    },
+    "prune_random": {
+      "answer": "30",
+      "correct": true,
+      "mean_orig_text_loss": 0.01587533950805664,
+      "mean_pruned_text_loss": 0.01847713872006065,
+      "text_loss_change": 0.00260179921200401
+    }
+  },
+  {
+    "problem_idx": 1308,
+    "true_answer": "30",
+    "baseline_answer": "30",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 51,
+    "n_pruned": 25,
+    "position_overlap": 17,
+    "answer_coupling_stats": {
+      "mean": 0.003740990534424782,
+      "std": 0.013267013244330883,
+      "max": 0.0944976806640625
+    },
+    "text_coupling_stats": {
+      "mean": 0.007024399004876614,
+      "std": 0.005396105349063873,
+      "max": 0.029431939125061035
+    },
+    "no_pruning": {
+      "answer": "30",
+      "correct": true,
+      "mean_orig_text_loss": 0.0019571530191521895,
+      "mean_pruned_text_loss": 0.001955521734137284,
+      "text_loss_change": -1.6312850149055418e-06
+    },
+    "prune_answer_coupled": {
+      "answer": "30",
+      "correct": true,
+      "mean_orig_text_loss": 0.0019571530191521895,
+      "mean_pruned_text_loss": 0.10200619697570801,
+      "text_loss_change": 0.10004904395655582
+    },
+    "prune_text_coupled": {
+      "answer": "30",
+      "correct": true,
+      "mean_orig_text_loss": 0.0019571530191521895,
+      "mean_pruned_text_loss": 0.05891266622041401,
+      "text_loss_change": 0.05695551320126182
+    },
+    "prune_random": {
+      "answer": "30",
+      "correct": true,
+      "mean_orig_text_loss": 0.0019571530191521895,
+      "mean_pruned_text_loss": 0.003458957923086066,
+      "text_loss_change": 0.0015018049039338763
+    }
+  },
+  {
+    "problem_idx": 454,
+    "true_answer": "150",
+    "baseline_answer": "240",
+    "baseline_correct": false,
+    "skipped": true
+  },
+  {
+    "problem_idx": 280,
+    "true_answer": "7",
+    "baseline_answer": "7",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 81,
+    "n_pruned": 40,
+    "position_overlap": 29,
+    "answer_coupling_stats": {
+      "mean": 0.0024447948671877384,
+      "std": 0.010509840212762356,
+      "max": 0.092864990234375
+    },
+    "text_coupling_stats": {
+      "mean": 0.005366738885641098,
+      "std": 0.004381041042506695,
+      "max": 0.01925802230834961
+    },
+    "no_pruning": {
+      "answer": "7",
+      "correct": true,
+      "mean_orig_text_loss": 0.019367349775213944,
+      "mean_pruned_text_loss": 0.01929091779809249,
+      "text_loss_change": -7.6431977121455e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "7",
+      "correct": true,
+      "mean_orig_text_loss": 0.019367349775213944,
+      "mean_pruned_text_loss": 0.28754888082805435,
+      "text_loss_change": 0.2681815310528404
+    },
+    "prune_text_coupled": {
+      "answer": "7",
+      "correct": true,
+      "mean_orig_text_loss": 0.019367349775213944,
+      "mean_pruned_text_loss": 0.18339684135035464,
+      "text_loss_change": 0.16402949157514068
+    },
+    "prune_random": {
+      "answer": "7",
+      "correct": true,
+      "mean_orig_text_loss": 0.019367349775213944,
+      "mean_pruned_text_loss": 0.06501985223669755,
+      "text_loss_change": 0.04565250246148361
+    }
+  },
+  {
+    "problem_idx": 177,
+    "true_answer": "350",
+    "baseline_answer": "350",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 319,
+    "n_pruned": 159,
+    "position_overlap": 108,
+    "answer_coupling_stats": {
+      "mean": 0.0006022262969054282,
+      "std": 0.004769445862621069,
+      "max": 0.08352279663085938
+    },
+    "text_coupling_stats": {
+      "mean": 0.0018938533030450344,
+      "std": 0.0020708611700683832,
+      "max": 0.013817407190799713
+    },
+    "no_pruning": {
+      "answer": "350",
+      "correct": true,
+      "mean_orig_text_loss": 0.047485062950535825,
+      "mean_pruned_text_loss": 0.04750161421926398,
+      "text_loss_change": 1.6551268728154378e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "350",
+      "correct": true,
+      "mean_orig_text_loss": 0.047485062950535825,
+      "mean_pruned_text_loss": 0.46107756464104904,
+      "text_loss_change": 0.4135925016905132
+    },
+    "prune_text_coupled": {
+      "answer": "350",
+      "correct": true,
+      "mean_orig_text_loss": 0.047485062950535825,
+      "mean_pruned_text_loss": 1.4481548949291831,
+      "text_loss_change": 1.4006698319786473
+    },
+    "prune_random": {
+      "answer": "350",
+      "correct": true,
+      "mean_orig_text_loss": 0.047485062950535825,
+      "mean_pruned_text_loss": 0.08541064513357062,
+      "text_loss_change": 0.037925582183034795
+    }
+  },
+  {
+    "problem_idx": 923,
+    "true_answer": "2",
+    "baseline_answer": "2",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 373,
+    "n_pruned": 186,
+    "position_overlap": 128,
+    "answer_coupling_stats": {
+      "mean": 0.0005779176717624068,
+      "std": 0.004517752211540937,
+      "max": 0.08521652221679688
+    },
+    "text_coupling_stats": {
+      "mean": 0.0015178776811808348,
+      "std": 0.0018178131431341171,
+      "max": 0.015457123517990112
+    },
+    "no_pruning": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.002821853286341617,
+      "mean_pruned_text_loss": 0.0028127369127775494,
+      "text_loss_change": -9.116373564067685e-06
+    },
+    "prune_answer_coupled": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.002821853286341617,
+      "mean_pruned_text_loss": 0.420111104061729,
+      "text_loss_change": 0.4172892507753874
+    },
+    "prune_text_coupled": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.002821853286341617,
+      "mean_pruned_text_loss": 0.5277572431062397,
+      "text_loss_change": 0.5249353898198981
+    },
+    "prune_random": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.002821853286341617,
+      "mean_pruned_text_loss": 0.07829176124773528,
+      "text_loss_change": 0.07546990796139366
+    }
+  },
+  {
+    "problem_idx": 677,
+    "true_answer": "36",
+    "baseline_answer": "36",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 65,
+    "n_pruned": 32,
+    "position_overlap": 17,
+    "answer_coupling_stats": {
+      "mean": 0.0027239422779530287,
+      "std": 0.011057243682444096,
+      "max": 0.08919525146484375
+    },
+    "text_coupling_stats": {
+      "mean": 0.005791078321635723,
+      "std": 0.004477331414818764,
+      "max": 0.023538704961538315
+    },
+    "no_pruning": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.00621116788763749,
+      "mean_pruned_text_loss": 0.006186453919661672,
+      "text_loss_change": -2.4713967975817548e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.00621116788763749,
+      "mean_pruned_text_loss": 0.083501608748185,
+      "text_loss_change": 0.07729044086054751
+    },
+    "prune_text_coupled": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.00621116788763749,
+      "mean_pruned_text_loss": 0.19399272140703702,
+      "text_loss_change": 0.18778155351939954
+    },
+    "prune_random": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.00621116788763749,
+      "mean_pruned_text_loss": 0.06939453200290077,
+      "text_loss_change": 0.06318336411526328
+    }
+  },
+  {
+    "problem_idx": 1176,
+    "true_answer": "2",
+    "baseline_answer": "2",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 205,
+    "n_pruned": 102,
+    "position_overlap": 68,
+    "answer_coupling_stats": {
+      "mean": 0.0011523215798661113,
+      "std": 0.005716482177376747,
+      "max": 0.07703399658203125
+    },
+    "text_coupling_stats": {
+      "mean": 0.0023674131371080875,
+      "std": 0.0026086242869496346,
+      "max": 0.02204151265323162
+    },
+    "no_pruning": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.1900585638849359,
+      "mean_pruned_text_loss": 0.19064071931337057,
+      "text_loss_change": 0.0005821554284346775
+    },
+    "prune_answer_coupled": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.1900585638849359,
+      "mean_pruned_text_loss": 1.2237662265175266,
+      "text_loss_change": 1.0337076626325907
+    },
+    "prune_text_coupled": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.1900585638849359,
+      "mean_pruned_text_loss": 1.1998387386924343,
+      "text_loss_change": 1.0097801748074984
+    },
+    "prune_random": {
+      "answer": "2",
+      "correct": true,
+      "mean_orig_text_loss": 0.1900585638849359,
+      "mean_pruned_text_loss": 0.2637308020340769,
+      "text_loss_change": 0.073672238149141
+    }
+  },
+  {
+    "problem_idx": 21,
+    "true_answer": "14",
+    "baseline_answer": "14",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 113,
+    "n_pruned": 56,
+    "position_overlap": 37,
+    "answer_coupling_stats": {
+      "mean": 0.001874291687272489,
+      "std": 0.00896774884313345,
+      "max": 0.09384918212890625
+    },
+    "text_coupling_stats": {
+      "mean": 0.003936056047677994,
+      "std": 0.004215880762785673,
+      "max": 0.024739455431699753
+    },
+    "no_pruning": {
+      "answer": "14",
+      "correct": true,
+      "mean_orig_text_loss": 0.019255863992791427,
+      "mean_pruned_text_loss": 0.019724645112690172,
+      "text_loss_change": 0.00046878111989874516
+    },
+    "prune_answer_coupled": {
+      "answer": "14",
+      "correct": true,
+      "mean_orig_text_loss": 0.019255863992791427,
+      "mean_pruned_text_loss": 0.019302550115083392,
+      "text_loss_change": 4.668612229196539e-05
+    },
+    "prune_text_coupled": {
+      "answer": "14",
+      "correct": true,
+      "mean_orig_text_loss": 0.019255863992791427,
+      "mean_pruned_text_loss": 0.16528136479227165,
+      "text_loss_change": 0.14602550079948023
+    },
+    "prune_random": {
+      "answer": "14",
+      "correct": true,
+      "mean_orig_text_loss": 0.019255863992791427,
+      "mean_pruned_text_loss": 0.019378141353004856,
+      "text_loss_change": 0.00012227736021342903
+    }
+  },
+  {
+    "problem_idx": 970,
+    "true_answer": "33",
+    "baseline_answer": "33",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 52,
+    "n_pruned": 26,
+    "position_overlap": 17,
+    "answer_coupling_stats": {
+      "mean": 0.003568714950233698,
+      "std": 0.013155167922377586,
+      "max": 0.09520721435546875
+    },
+    "text_coupling_stats": {
+      "mean": 0.006783812306821346,
+      "std": 0.004919779021292925,
+      "max": 0.02671864628791809
+    },
+    "no_pruning": {
+      "answer": "33",
+      "correct": true,
+      "mean_orig_text_loss": 0.005735723595870168,
+      "mean_pruned_text_loss": 0.005609537425794099,
+      "text_loss_change": -0.00012618617007606903
+    },
+    "prune_answer_coupled": {
+      "answer": "33",
+      "correct": true,
+      "mean_orig_text_loss": 0.005735723595870168,
+      "mean_pruned_text_loss": 0.06311371451929997,
+      "text_loss_change": 0.057377990923429795
+    },
+    "prune_text_coupled": {
+      "answer": "33",
+      "correct": true,
+      "mean_orig_text_loss": 0.005735723595870168,
+      "mean_pruned_text_loss": 0.07025209853523656,
+      "text_loss_change": 0.06451637493936639
+    },
+    "prune_random": {
+      "answer": "33",
+      "correct": true,
+      "mean_orig_text_loss": 0.005735723595870168,
+      "mean_pruned_text_loss": 0.29048668710809006,
+      "text_loss_change": 0.2847509635122199
+    }
+  },
+  {
+    "problem_idx": 356,
+    "true_answer": "21",
+    "baseline_answer": "21",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 147,
+    "n_pruned": 73,
+    "position_overlap": 54,
+    "answer_coupling_stats": {
+      "mean": 0.0013469158438965678,
+      "std": 0.007906152866780758,
+      "max": 0.09497833251953125
+    },
+    "text_coupling_stats": {
+      "mean": 0.0036853228230029345,
+      "std": 0.004380019381642342,
+      "max": 0.03891491889953613
+    },
+    "no_pruning": {
+      "answer": "21",
+      "correct": true,
+      "mean_orig_text_loss": 0.006608046983417712,
+      "mean_pruned_text_loss": 0.006719055928682026,
+      "text_loss_change": 0.00011100894526431399
+    },
+    "prune_answer_coupled": {
+      "answer": "21",
+      "correct": true,
+      "mean_orig_text_loss": 0.006608046983417712,
+      "mean_pruned_text_loss": 0.18721985189538254,
+      "text_loss_change": 0.18061180491196482
+    },
+    "prune_text_coupled": {
+      "answer": "21",
+      "correct": true,
+      "mean_orig_text_loss": 0.006608046983417712,
+      "mean_pruned_text_loss": 0.43173827623066147,
+      "text_loss_change": 0.42513022924724375
+    },
+    "prune_random": {
+      "answer": "21",
+      "correct": true,
+      "mean_orig_text_loss": 0.006608046983417712,
+      "mean_pruned_text_loss": 0.5386961824015567,
+      "text_loss_change": 0.532088135418139
+    }
+  },
+  {
+    "problem_idx": 100,
+    "true_answer": "175",
+    "baseline_answer": "175",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 165,
+    "n_pruned": 82,
+    "position_overlap": 56,
+    "answer_coupling_stats": {
+      "mean": 0.0011656411224976182,
+      "std": 0.006770012900233269,
+      "max": 0.08554840087890625
+    },
+    "text_coupling_stats": {
+      "mean": 0.0031481764744967222,
+      "std": 0.0036443143617361784,
+      "max": 0.024826813489198685
+    },
+    "no_pruning": {
+      "answer": "175",
+      "correct": true,
+      "mean_orig_text_loss": 0.07182293816616661,
+      "mean_pruned_text_loss": 0.07159164077357243,
+      "text_loss_change": -0.0002312973925941847
+    },
+    "prune_answer_coupled": {
+      "answer": "175",
+      "correct": true,
+      "mean_orig_text_loss": 0.07182293816616661,
+      "mean_pruned_text_loss": 1.432615179764597,
+      "text_loss_change": 1.3607922415984304
+    },
+    "prune_text_coupled": {
+      "answer": "175",
+      "correct": true,
+      "mean_orig_text_loss": 0.07182293816616661,
+      "mean_pruned_text_loss": 1.5512110057630037,
+      "text_loss_change": 1.4793880675968372
+    },
+    "prune_random": {
+      "answer": "175",
+      "correct": true,
+      "mean_orig_text_loss": 0.07182293816616661,
+      "mean_pruned_text_loss": 0.8786309392828691,
+      "text_loss_change": 0.8068080011167025
+    }
+  },
+  {
+    "problem_idx": 132,
+    "true_answer": "60",
+    "baseline_answer": "60",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 139,
+    "n_pruned": 69,
+    "position_overlap": 50,
+    "answer_coupling_stats": {
+      "mean": 0.0013877530582249165,
+      "std": 0.007106205448508263,
+      "max": 0.0819854736328125
+    },
+    "text_coupling_stats": {
+      "mean": 0.0034399658907204866,
+      "std": 0.003470370778813958,
+      "max": 0.025277774780988693
+    },
+    "no_pruning": {
+      "answer": "60",
+      "correct": true,
+      "mean_orig_text_loss": 0.014492982312252647,
+      "mean_pruned_text_loss": 0.014148392175373278,
+      "text_loss_change": -0.00034459013687936947
+    },
+    "prune_answer_coupled": {
+      "answer": "60",
+      "correct": true,
+      "mean_orig_text_loss": 0.014492982312252647,
+      "mean_pruned_text_loss": 0.7455029487609863,
+      "text_loss_change": 0.7310099664487337
+    },
+    "prune_text_coupled": {
+      "answer": "60",
+      "correct": true,
+      "mean_orig_text_loss": 0.014492982312252647,
+      "mean_pruned_text_loss": 0.7925788477847451,
+      "text_loss_change": 0.7780858654724925
+    },
+    "prune_random": {
+      "answer": "60",
+      "correct": true,
+      "mean_orig_text_loss": 0.014492982312252647,
+      "mean_pruned_text_loss": 0.4726889133453369,
+      "text_loss_change": 0.45819593103308426
+    }
+  },
+  {
+    "problem_idx": 364,
+    "true_answer": "49",
+    "baseline_answer": "49",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 82,
+    "n_pruned": 41,
+    "position_overlap": 32,
+    "answer_coupling_stats": {
+      "mean": 0.002427688566967845,
+      "std": 0.009806027635931969,
+      "max": 0.08791351318359375
+    },
+    "text_coupling_stats": {
+      "mean": 0.004845402669161558,
+      "std": 0.00370015949010849,
+      "max": 0.019001007080078125
+    },
+    "no_pruning": {
+      "answer": "49",
+      "correct": true,
+      "mean_orig_text_loss": 0.05362724003038908,
+      "mean_pruned_text_loss": 0.05467699703417326,
+      "text_loss_change": 0.0010497570037841797
+    },
+    "prune_answer_coupled": {
+      "answer": "49",
+      "correct": true,
+      "mean_orig_text_loss": 0.05362724003038908,
+      "mean_pruned_text_loss": 0.5976940330706144,
+      "text_loss_change": 0.5440667930402253
+    },
+    "prune_text_coupled": {
+      "answer": "49",
+      "correct": true,
+      "mean_orig_text_loss": 0.05362724003038908,
+      "mean_pruned_text_loss": 0.5927045219822934,
+      "text_loss_change": 0.5390772819519043
+    },
+    "prune_random": {
+      "answer": "49",
+      "correct": true,
+      "mean_orig_text_loss": 0.05362724003038908,
+      "mean_pruned_text_loss": 0.2616484039708188,
+      "text_loss_change": 0.20802116394042972
+    }
+  },
+  {
+    "problem_idx": 969,
+    "true_answer": "1800",
+    "baseline_answer": "1800",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 152,
+    "n_pruned": 76,
+    "position_overlap": 53,
+    "answer_coupling_stats": {
+      "mean": 0.00128270429559052,
+      "std": 0.0070096636191010475,
+      "max": 0.08524322509765625
+    },
+    "text_coupling_stats": {
+      "mean": 0.003637065179646015,
+      "std": 0.003568774787709117,
+      "max": 0.020307272672653198
+    },
+    "no_pruning": {
+      "answer": "1800",
+      "correct": true,
+      "mean_orig_text_loss": 0.04076724930813438,
+      "mean_pruned_text_loss": 0.0413551832500257,
+      "text_loss_change": 0.0005879339418913207
+    },
+    "prune_answer_coupled": {
+      "answer": "1800",
+      "correct": true,
+      "mean_orig_text_loss": 0.04076724930813438,
+      "mean_pruned_text_loss": 0.650036799280267,
+      "text_loss_change": 0.6092695499721327
+    },
+    "prune_text_coupled": {
+      "answer": "1800",
+      "correct": true,
+      "mean_orig_text_loss": 0.04076724930813438,
+      "mean_pruned_text_loss": 0.8005779793387965,
+      "text_loss_change": 0.7598107300306621
+    },
+    "prune_random": {
+      "answer": "1800",
+      "correct": true,
+      "mean_orig_text_loss": 0.04076724930813438,
+      "mean_pruned_text_loss": 0.854206919670105,
+      "text_loss_change": 0.8134396703619706
+    }
+  },
+  {
+    "problem_idx": 1273,
+    "true_answer": "27",
+    "baseline_answer": "27",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 84,
+    "n_pruned": 42,
+    "position_overlap": 29,
+    "answer_coupling_stats": {
+      "mean": 0.0023048471193760633,
+      "std": 0.010313319973647594,
+      "max": 0.09410858154296875
+    },
+    "text_coupling_stats": {
+      "mean": 0.004423471633344889,
+      "std": 0.003958606626838446,
+      "max": 0.022203339263796806
+    },
+    "no_pruning": {
+      "answer": "27",
+      "correct": true,
+      "mean_orig_text_loss": 0.001913453403272127,
+      "mean_pruned_text_loss": 0.001912706776669151,
+      "text_loss_change": -7.466266029759229e-07
+    },
+    "prune_answer_coupled": {
+      "answer": "27",
+      "correct": true,
+      "mean_orig_text_loss": 0.001913453403272127,
+      "mean_pruned_text_loss": 0.11502058255045038,
+      "text_loss_change": 0.11310712914717824
+    },
+    "prune_text_coupled": {
+      "answer": "27",
+      "correct": true,
+      "mean_orig_text_loss": 0.001913453403272127,
+      "mean_pruned_text_loss": 0.20529561921169884,
+      "text_loss_change": 0.20338216580842672
+    },
+    "prune_random": {
+      "answer": "27",
+      "correct": true,
+      "mean_orig_text_loss": 0.001913453403272127,
+      "mean_pruned_text_loss": 0.029371876465646846,
+      "text_loss_change": 0.02745842306237472
+    }
+  },
+  {
+    "problem_idx": 143,
+    "true_answer": "16",
+    "baseline_answer": "",
+    "baseline_correct": false,
+    "skipped": true
+  },
+  {
+    "problem_idx": 442,
+    "true_answer": "49",
+    "baseline_answer": "49",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 110,
+    "n_pruned": 55,
+    "position_overlap": 37,
+    "answer_coupling_stats": {
+      "mean": 0.001732364296913147,
+      "std": 0.008656138554215431,
+      "max": 0.08951568603515625
+    },
+    "text_coupling_stats": {
+      "mean": 0.00404982129111886,
+      "std": 0.004075762815773487,
+      "max": 0.02465909719467163
+    },
+    "no_pruning": {
+      "answer": "49",
+      "correct": true,
+      "mean_orig_text_loss": 0.0013612885224191767,
+      "mean_pruned_text_loss": 0.0013566268117804277,
+      "text_loss_change": -4.661710638749006e-06
+    },
+    "prune_answer_coupled": {
+      "answer": "49",
+      "correct": true,
+      "mean_orig_text_loss": 0.0013612885224191767,
+      "mean_pruned_text_loss": 0.637778639793396,
+      "text_loss_change": 0.6364173512709769
+    },
+    "prune_text_coupled": {
+      "answer": "49",
+      "correct": true,
+      "mean_orig_text_loss": 0.0013612885224191767,
+      "mean_pruned_text_loss": 0.6878170088717812,
+      "text_loss_change": 0.6864557203493621
+    },
+    "prune_random": {
+      "answer": "49",
+      "correct": true,
+      "mean_orig_text_loss": 0.0013612885224191767,
+      "mean_pruned_text_loss": 0.023851884038824784,
+      "text_loss_change": 0.022490595516405608
+    }
+  },
+  {
+    "problem_idx": 464,
+    "true_answer": "6",
+    "baseline_answer": "6",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 130,
+    "n_pruned": 65,
+    "position_overlap": 44,
+    "answer_coupling_stats": {
+      "mean": 0.001573620131239295,
+      "std": 0.008409061469137669,
+      "max": 0.0951385498046875
+    },
+    "text_coupling_stats": {
+      "mean": 0.003664779243990779,
+      "std": 0.003444652073085308,
+      "max": 0.019309043884277344
+    },
+    "no_pruning": {
+      "answer": "6",
+      "correct": true,
+      "mean_orig_text_loss": 0.0345738875238519,
+      "mean_pruned_text_loss": 0.034579496634633916,
+      "text_loss_change": 5.609110782019144e-06
+    },
+    "prune_answer_coupled": {
+      "answer": "6",
+      "correct": true,
+      "mean_orig_text_loss": 0.0345738875238519,
+      "mean_pruned_text_loss": 0.39474394446925115,
+      "text_loss_change": 0.3601700569453993
+    },
+    "prune_text_coupled": {
+      "answer": "6",
+      "correct": true,
+      "mean_orig_text_loss": 0.0345738875238519,
+      "mean_pruned_text_loss": 0.546715962259393,
+      "text_loss_change": 0.5121420747355411
+    },
+    "prune_random": {
+      "answer": "6",
+      "correct": true,
+      "mean_orig_text_loss": 0.0345738875238519,
+      "mean_pruned_text_loss": 0.08175656670018246,
+      "text_loss_change": 0.04718267917633056
+    }
+  },
+  {
+    "problem_idx": 1089,
+    "true_answer": "32",
+    "baseline_answer": "10.67",
+    "baseline_correct": false,
+    "skipped": true
+  },
+  {
+    "problem_idx": 259,
+    "true_answer": "168",
+    "baseline_answer": "168",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 190,
+    "n_pruned": 95,
+    "position_overlap": 67,
+    "answer_coupling_stats": {
+      "mean": 0.0011637381976470351,
+      "std": 0.006016347091645002,
+      "max": 0.07926177978515625
+    },
+    "text_coupling_stats": {
+      "mean": 0.0029000001959502697,
+      "std": 0.003407913027331233,
+      "max": 0.028507601469755173
+    },
+    "no_pruning": {
+      "answer": "168",
+      "correct": true,
+      "mean_orig_text_loss": 0.007570825125041761,
+      "mean_pruned_text_loss": 0.007572356023286518,
+      "text_loss_change": 1.5308982447576752e-06
+    },
+    "prune_answer_coupled": {
+      "answer": "168",
+      "correct": true,
+      "mean_orig_text_loss": 0.007570825125041761,
+      "mean_pruned_text_loss": 1.3608563824703819,
+      "text_loss_change": 1.3532855573453402
+    },
+    "prune_text_coupled": {
+      "answer": "168",
+      "correct": true,
+      "mean_orig_text_loss": 0.007570825125041761,
+      "mean_pruned_text_loss": 1.352103785464638,
+      "text_loss_change": 1.3445329603395964
+    },
+    "prune_random": {
+      "answer": "168",
+      "correct": true,
+      "mean_orig_text_loss": 0.007570825125041761,
+      "mean_pruned_text_loss": 0.21115402171486303,
+      "text_loss_change": 0.20358319658982127
+    }
+  },
+  {
+    "problem_idx": 90,
+    "true_answer": "225",
+    "baseline_answer": "225",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 155,
+    "n_pruned": 77,
+    "position_overlap": 52,
+    "answer_coupling_stats": {
+      "mean": 0.001315463799983263,
+      "std": 0.006932528223842382,
+      "max": 0.08419418334960938
+    },
+    "text_coupling_stats": {
+      "mean": 0.0029443472158163786,
+      "std": 0.002686774590983987,
+      "max": 0.015556037425994873
+    },
+    "no_pruning": {
+      "answer": "225",
+      "correct": true,
+      "mean_orig_text_loss": 0.03818577841708535,
+      "mean_pruned_text_loss": 0.0384530644667776,
+      "text_loss_change": 0.00026728604969224884
+    },
+    "prune_answer_coupled": {
+      "answer": "225",
+      "correct": true,
+      "mean_orig_text_loss": 0.03818577841708535,
+      "mean_pruned_text_loss": 0.7864900827407837,
+      "text_loss_change": 0.7483043043236983
+    },
+    "prune_text_coupled": {
+      "answer": "225",
+      "correct": true,
+      "mean_orig_text_loss": 0.03818577841708535,
+      "mean_pruned_text_loss": 1.176910676454243,
+      "text_loss_change": 1.1387248980371576
+    },
+    "prune_random": {
+      "answer": "225",
+      "correct": true,
+      "mean_orig_text_loss": 0.03818577841708535,
+      "mean_pruned_text_loss": 0.040348523541500696,
+      "text_loss_change": 0.0021627451244153467
+    }
+  },
+  {
+    "problem_idx": 998,
+    "true_answer": "50",
+    "baseline_answer": "50",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 128,
+    "n_pruned": 64,
+    "position_overlap": 46,
+    "answer_coupling_stats": {
+      "mean": 0.0016715333331376314,
+      "std": 0.009362863376736641,
+      "max": 0.10375213623046875
+    },
+    "text_coupling_stats": {
+      "mean": 0.00382893905043602,
+      "std": 0.004255784675478935,
+      "max": 0.026804745197296143
+    },
+    "no_pruning": {
+      "answer": "50",
+      "correct": true,
+      "mean_orig_text_loss": 0.0018936772095529658,
+      "mean_pruned_text_loss": 0.0019013505232961553,
+      "text_loss_change": 7.673313743189556e-06
+    },
+    "prune_answer_coupled": {
+      "answer": "50",
+      "correct": true,
+      "mean_orig_text_loss": 0.0018936772095529658,
+      "mean_pruned_text_loss": 0.04880972285019724,
+      "text_loss_change": 0.04691604564064427
+    },
+    "prune_text_coupled": {
+      "answer": "50",
+      "correct": true,
+      "mean_orig_text_loss": 0.0018936772095529658,
+      "mean_pruned_text_loss": 0.17729722826104416,
+      "text_loss_change": 0.1754035510514912
+    },
+    "prune_random": {
+      "answer": "50",
+      "correct": true,
+      "mean_orig_text_loss": 0.0018936772095529658,
+      "mean_pruned_text_loss": 0.286317925704153,
+      "text_loss_change": 0.2844242484946
+    }
+  },
+  {
+    "problem_idx": 989,
+    "true_answer": "45",
+    "baseline_answer": "10",
+    "baseline_correct": false,
+    "skipped": true
+  },
+  {
+    "problem_idx": 22,
+    "true_answer": "7",
+    "baseline_answer": "7",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 70,
+    "n_pruned": 35,
+    "position_overlap": 28,
+    "answer_coupling_stats": {
+      "mean": 0.00280875526368618,
+      "std": 0.010807810351252556,
+      "max": 0.08931732177734375
+    },
+    "text_coupling_stats": {
+      "mean": 0.00510152755305171,
+      "std": 0.004038463346660137,
+      "max": 0.01696455106139183
+    },
+    "no_pruning": {
+      "answer": "7",
+      "correct": true,
+      "mean_orig_text_loss": 0.01686264339246248,
+      "mean_pruned_text_loss": 0.017117243064077275,
+      "text_loss_change": 0.0002545996716147962
+    },
+    "prune_answer_coupled": {
+      "answer": "7",
+      "correct": true,
+      "mean_orig_text_loss": 0.01686264339246248,
+      "mean_pruned_text_loss": 0.5573700352718955,
+      "text_loss_change": 0.5405073918794331
+    },
+    "prune_text_coupled": {
+      "answer": "7",
+      "correct": true,
+      "mean_orig_text_loss": 0.01686264339246248,
+      "mean_pruned_text_loss": 0.3004987177095915,
+      "text_loss_change": 0.28363607431712906
+    },
+    "prune_random": {
+      "answer": "7",
+      "correct": true,
+      "mean_orig_text_loss": 0.01686264339246248,
+      "mean_pruned_text_loss": 0.10404680904589202,
+      "text_loss_change": 0.08718416565342954
+    }
+  },
+  {
+    "problem_idx": 586,
+    "true_answer": "800",
+    "baseline_answer": "800",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 148,
+    "n_pruned": 74,
+    "position_overlap": 52,
+    "answer_coupling_stats": {
+      "mean": 0.001301014912314713,
+      "std": 0.008278957568109035,
+      "max": 0.0994720458984375
+    },
+    "text_coupling_stats": {
+      "mean": 0.0036204166244715452,
+      "std": 0.004196606110781431,
+      "max": 0.02892802655696869
+    },
+    "no_pruning": {
+      "answer": "800",
+      "correct": true,
+      "mean_orig_text_loss": 0.02028884385761462,
+      "mean_pruned_text_loss": 0.020079612731933594,
+      "text_loss_change": -0.0002092311256810253
+    },
+    "prune_answer_coupled": {
+      "answer": "800",
+      "correct": true,
+      "mean_orig_text_loss": 0.02028884385761462,
+      "mean_pruned_text_loss": 0.9534404152318051,
+      "text_loss_change": 0.9331515713741905
+    },
+    "prune_text_coupled": {
+      "answer": "800",
+      "correct": true,
+      "mean_orig_text_loss": 0.02028884385761462,
+      "mean_pruned_text_loss": 1.0579959656062878,
+      "text_loss_change": 1.0377071217486733
+    },
+    "prune_random": {
+      "answer": "800",
+      "correct": true,
+      "mean_orig_text_loss": 0.02028884385761462,
+      "mean_pruned_text_loss": 0.1380579346104672,
+      "text_loss_change": 0.11776909075285258
+    }
+  },
+  {
+    "problem_idx": 756,
+    "true_answer": "22",
+    "baseline_answer": "22",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 110,
+    "n_pruned": 55,
+    "position_overlap": 41,
+    "answer_coupling_stats": {
+      "mean": 0.0018659994238987565,
+      "std": 0.008315523155033588,
+      "max": 0.08530426025390625
+    },
+    "text_coupling_stats": {
+      "mean": 0.004540718626230955,
+      "std": 0.005075247958302498,
+      "max": 0.0332384929060936
+    },
+    "no_pruning": {
+      "answer": "22",
+      "correct": true,
+      "mean_orig_text_loss": 0.0410470586074026,
+      "mean_pruned_text_loss": 0.041067161058124746,
+      "text_loss_change": 2.0102450722148113e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "22",
+      "correct": true,
+      "mean_orig_text_loss": 0.0410470586074026,
+      "mean_pruned_text_loss": 0.4043093857012297,
+      "text_loss_change": 0.3632623270938271
+    },
+    "prune_text_coupled": {
+      "answer": "22",
+      "correct": true,
+      "mean_orig_text_loss": 0.0410470586074026,
+      "mean_pruned_text_loss": 0.07503416036304675,
+      "text_loss_change": 0.03398710175564415
+    },
+    "prune_random": {
+      "answer": "22",
+      "correct": true,
+      "mean_orig_text_loss": 0.0410470586074026,
+      "mean_pruned_text_loss": 0.04851919726321572,
+      "text_loss_change": 0.007472138655813122
+    }
+  },
+  {
+    "problem_idx": 1261,
+    "true_answer": "235",
+    "baseline_answer": "235",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 156,
+    "n_pruned": 78,
+    "position_overlap": 57,
+    "answer_coupling_stats": {
+      "mean": 0.0012912513921037316,
+      "std": 0.007327624596655369,
+      "max": 0.09085845947265625
+    },
+    "text_coupling_stats": {
+      "mean": 0.00326070305891335,
+      "std": 0.003562809666618705,
+      "max": 0.03247956559062004
+    },
+    "no_pruning": {
+      "answer": "235",
+      "correct": true,
+      "mean_orig_text_loss": 0.012395356830797698,
+      "mean_pruned_text_loss": 0.0124195186715377,
+      "text_loss_change": 2.4161840740001897e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "235",
+      "correct": true,
+      "mean_orig_text_loss": 0.012395356830797698,
+      "mean_pruned_text_loss": 1.289290754418624,
+      "text_loss_change": 1.2768953975878263
+    },
+    "prune_text_coupled": {
+      "answer": "235",
+      "correct": true,
+      "mean_orig_text_loss": 0.012395356830797698,
+      "mean_pruned_text_loss": 1.019839042111447,
+      "text_loss_change": 1.0074436852806492
+    },
+    "prune_random": {
+      "answer": "235",
+      "correct": true,
+      "mean_orig_text_loss": 0.012395356830797698,
+      "mean_pruned_text_loss": 0.05944285894695081,
+      "text_loss_change": 0.04704750211615311
+    }
+  },
+  {
+    "problem_idx": 296,
+    "true_answer": "3",
+    "baseline_answer": "3",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 159,
+    "n_pruned": 79,
+    "position_overlap": 59,
+    "answer_coupling_stats": {
+      "mean": 0.0012857760302722454,
+      "std": 0.006945652887225151,
+      "max": 0.085693359375
+    },
+    "text_coupling_stats": {
+      "mean": 0.003214204451069236,
+      "std": 0.0031237571965903044,
+      "max": 0.019606655463576317
+    },
+    "no_pruning": {
+      "answer": "3",
+      "correct": true,
+      "mean_orig_text_loss": 0.0071288347244262695,
+      "mean_pruned_text_loss": 0.007200178347135845,
+      "text_loss_change": 7.13436227095755e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "3",
+      "correct": true,
+      "mean_orig_text_loss": 0.0071288347244262695,
+      "mean_pruned_text_loss": 1.0171904312936884,
+      "text_loss_change": 1.010061596569262
+    },
+    "prune_text_coupled": {
+      "answer": "3",
+      "correct": true,
+      "mean_orig_text_loss": 0.0071288347244262695,
+      "mean_pruned_text_loss": 0.9083039133172286,
+      "text_loss_change": 0.9011750785928023
+    },
+    "prune_random": {
+      "answer": "3",
+      "correct": true,
+      "mean_orig_text_loss": 0.0071288347244262695,
+      "mean_pruned_text_loss": 0.38130855560302734,
+      "text_loss_change": 0.3741797208786011
+    }
+  },
+  {
+    "problem_idx": 383,
+    "true_answer": "2",
+    "baseline_answer": "4.50",
+    "baseline_correct": false,
+    "skipped": true
+  },
+  {
+    "problem_idx": 709,
+    "true_answer": "3000",
+    "baseline_answer": "3000",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 191,
+    "n_pruned": 95,
+    "position_overlap": 66,
+    "answer_coupling_stats": {
+      "mean": 0.0009773351484909654,
+      "std": 0.00639226334169507,
+      "max": 0.08690643310546875
+    },
+    "text_coupling_stats": {
+      "mean": 0.0027761359233409166,
+      "std": 0.0032475211191922426,
+      "max": 0.03017967939376831
+    },
+    "no_pruning": {
+      "answer": "3000",
+      "correct": true,
+      "mean_orig_text_loss": 0.03963626058478104,
+      "mean_pruned_text_loss": 0.039604914815802326,
+      "text_loss_change": -3.1345768978716104e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "3000",
+      "correct": true,
+      "mean_orig_text_loss": 0.03963626058478104,
+      "mean_pruned_text_loss": 0.7828656309529355,
+      "text_loss_change": 0.7432293703681544
+    },
+    "prune_text_coupled": {
+      "answer": "3000",
+      "correct": true,
+      "mean_orig_text_loss": 0.03963626058478104,
+      "mean_pruned_text_loss": 0.66228145047238,
+      "text_loss_change": 0.6226451898875989
+    },
+    "prune_random": {
+      "answer": "3000",
+      "correct": true,
+      "mean_orig_text_loss": 0.03963626058478104,
+      "mean_pruned_text_loss": 0.23111319541931152,
+      "text_loss_change": 0.1914769348345305
+    }
+  },
+  {
+    "problem_idx": 1069,
+    "true_answer": "300",
+    "baseline_answer": "300",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 96,
+    "n_pruned": 48,
+    "position_overlap": 34,
+    "answer_coupling_stats": {
+      "mean": 0.001910500694066286,
+      "std": 0.009062394499778748,
+      "max": 0.08754730224609375
+    },
+    "text_coupling_stats": {
+      "mean": 0.004609331954270601,
+      "std": 0.004995452705770731,
+      "max": 0.02768683433532715
+    },
+    "no_pruning": {
+      "answer": "300",
+      "correct": true,
+      "mean_orig_text_loss": 0.012976157037835372,
+      "mean_pruned_text_loss": 0.013061278744747764,
+      "text_loss_change": 8.512170691239197e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "300",
+      "correct": true,
+      "mean_orig_text_loss": 0.012976157037835372,
+      "mean_pruned_text_loss": 0.04801406358417712,
+      "text_loss_change": 0.03503790654634174
+    },
+    "prune_text_coupled": {
+      "answer": "300",
+      "correct": true,
+      "mean_orig_text_loss": 0.012976157037835372,
+      "mean_pruned_text_loss": 0.14782917499542236,
+      "text_loss_change": 0.134853017957587
+    },
+    "prune_random": {
+      "answer": "300",
+      "correct": true,
+      "mean_orig_text_loss": 0.012976157037835372,
+      "mean_pruned_text_loss": 0.03252558959157843,
+      "text_loss_change": 0.01954943255374306
+    }
+  },
+  {
+    "problem_idx": 1141,
+    "true_answer": "20",
+    "baseline_answer": "20",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 174,
+    "n_pruned": 87,
+    "position_overlap": 61,
+    "answer_coupling_stats": {
+      "mean": 0.0011525427689775825,
+      "std": 0.006184594705700874,
+      "max": 0.07922744750976562
+    },
+    "text_coupling_stats": {
+      "mean": 0.002957238582894206,
+      "std": 0.0035583488643169403,
+      "max": 0.03129112720489502
+    },
+    "no_pruning": {
+      "answer": "20",
+      "correct": true,
+      "mean_orig_text_loss": 0.03760847292448345,
+      "mean_pruned_text_loss": 0.03770496970728824,
+      "text_loss_change": 9.649678280478774e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "20",
+      "correct": true,
+      "mean_orig_text_loss": 0.03760847292448345,
+      "mean_pruned_text_loss": 0.18928446895197817,
+      "text_loss_change": 0.1516759960274947
+    },
+    "prune_text_coupled": {
+      "answer": "20",
+      "correct": true,
+      "mean_orig_text_loss": 0.03760847292448345,
+      "mean_pruned_text_loss": 0.872830027028134,
+      "text_loss_change": 0.8352215541036505
+    },
+    "prune_random": {
+      "answer": "20",
+      "correct": true,
+      "mean_orig_text_loss": 0.03760847292448345,
+      "mean_pruned_text_loss": 1.3461506178504543,
+      "text_loss_change": 1.3085421449259709
+    }
+  },
+  {
+    "problem_idx": 179,
+    "true_answer": "130",
+    "baseline_answer": "130",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 88,
+    "n_pruned": 44,
+    "position_overlap": 30,
+    "answer_coupling_stats": {
+      "mean": 0.0021160035394132137,
+      "std": 0.008811590261757374,
+      "max": 0.08136367797851562
+    },
+    "text_coupling_stats": {
+      "mean": 0.0047030760906636715,
+      "std": 0.0035931365564465523,
+      "max": 0.017071247100830078
+    },
+    "no_pruning": {
+      "answer": "130",
+      "correct": true,
+      "mean_orig_text_loss": 0.04671423686178107,
+      "mean_pruned_text_loss": 0.046609928733424136,
+      "text_loss_change": -0.0001043081283569336
+    },
+    "prune_answer_coupled": {
+      "answer": "130",
+      "correct": true,
+      "mean_orig_text_loss": 0.04671423686178107,
+      "mean_pruned_text_loss": 0.3453394237317537,
+      "text_loss_change": 0.29862518686997264
+    },
+    "prune_text_coupled": {
+      "answer": "130",
+      "correct": true,
+      "mean_orig_text_loss": 0.04671423686178107,
+      "mean_pruned_text_loss": 0.1911447424637644,
+      "text_loss_change": 0.14443050560198334
+    },
+    "prune_random": {
+      "answer": "130",
+      "correct": true,
+      "mean_orig_text_loss": 0.04671423686178107,
+      "mean_pruned_text_loss": 0.13946309215144106,
+      "text_loss_change": 0.09274885528966
+    }
+  },
+  {
+    "problem_idx": 731,
+    "true_answer": "1",
+    "baseline_answer": "1",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 148,
+    "n_pruned": 74,
+    "position_overlap": 55,
+    "answer_coupling_stats": {
+      "mean": 0.0013238911051303148,
+      "std": 0.0071592614986002445,
+      "max": 0.08538818359375
+    },
+    "text_coupling_stats": {
+      "mean": 0.0030559024307876825,
+      "std": 0.0029869908466935158,
+      "max": 0.019679486751556396
+    },
+    "no_pruning": {
+      "answer": "1",
+      "correct": true,
+      "mean_orig_text_loss": 0.03974184237028423,
+      "mean_pruned_text_loss": 0.03979352273439106,
+      "text_loss_change": 5.1680364106826415e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "1",
+      "correct": true,
+      "mean_orig_text_loss": 0.03974184237028423,
+      "mean_pruned_text_loss": 0.5290451049804688,
+      "text_loss_change": 0.48930326261018453
+    },
+    "prune_text_coupled": {
+      "answer": "1",
+      "correct": true,
+      "mean_orig_text_loss": 0.03974184237028423,
+      "mean_pruned_text_loss": 0.4838507238187288,
+      "text_loss_change": 0.44410888144844457
+    },
+    "prune_random": {
+      "answer": "1",
+      "correct": true,
+      "mean_orig_text_loss": 0.03974184237028423,
+      "mean_pruned_text_loss": 0.1608741597125405,
+      "text_loss_change": 0.12113231734225625
+    }
+  },
+  {
+    "problem_idx": 1241,
+    "true_answer": "8",
+    "baseline_answer": "8",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 171,
+    "n_pruned": 85,
+    "position_overlap": 61,
+    "answer_coupling_stats": {
+      "mean": 0.0012138455640524626,
+      "std": 0.00712696323171258,
+      "max": 0.09139251708984375
+    },
+    "text_coupling_stats": {
+      "mean": 0.003224340733140707,
+      "std": 0.0034958799369633198,
+      "max": 0.01987302303314209
+    },
+    "no_pruning": {
+      "answer": "8",
+      "correct": true,
+      "mean_orig_text_loss": 0.007359504699707031,
+      "mean_pruned_text_loss": 0.007359536070572703,
+      "text_loss_change": 3.137086567166908e-08
+    },
+    "prune_answer_coupled": {
+      "answer": "8",
+      "correct": true,
+      "mean_orig_text_loss": 0.007359504699707031,
+      "mean_pruned_text_loss": 0.7573677426890323,
+      "text_loss_change": 0.7500082379893253
+    },
+    "prune_text_coupled": {
+      "answer": "8",
+      "correct": true,
+      "mean_orig_text_loss": 0.007359504699707031,
+      "mean_pruned_text_loss": 0.49563594240891307,
+      "text_loss_change": 0.48827643770920603
+    },
+    "prune_random": {
+      "answer": "8",
+      "correct": true,
+      "mean_orig_text_loss": 0.007359504699707031,
+      "mean_pruned_text_loss": 0.05636977521996749,
+      "text_loss_change": 0.04901027052026046
+    }
+  },
+  {
+    "problem_idx": 371,
+    "true_answer": "50",
+    "baseline_answer": "50",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 126,
+    "n_pruned": 63,
+    "position_overlap": 46,
+    "answer_coupling_stats": {
+      "mean": 0.0015735944034531713,
+      "std": 0.007336512207984924,
+      "max": 0.08101654052734375
+    },
+    "text_coupling_stats": {
+      "mean": 0.003334777196869254,
+      "std": 0.002989428583532572,
+      "max": 0.017392218112945557
+    },
+    "no_pruning": {
+      "answer": "50",
+      "correct": true,
+      "mean_orig_text_loss": 0.026599633066277755,
+      "mean_pruned_text_loss": 0.02674833096955952,
+      "text_loss_change": 0.00014869790328176508
+    },
+    "prune_answer_coupled": {
+      "answer": "50",
+      "correct": true,
+      "mean_orig_text_loss": 0.026599633066277755,
+      "mean_pruned_text_loss": 0.5377974761159796,
+      "text_loss_change": 0.5111978430497018
+    },
+    "prune_text_coupled": {
+      "answer": "50",
+      "correct": true,
+      "mean_orig_text_loss": 0.026599633066277755,
+      "mean_pruned_text_loss": 1.0817057082527561,
+      "text_loss_change": 1.0551060751864785
+    },
+    "prune_random": {
+      "answer": "50",
+      "correct": true,
+      "mean_orig_text_loss": 0.026599633066277755,
+      "mean_pruned_text_loss": 0.9503681283248099,
+      "text_loss_change": 0.9237684952585321
+    }
+  },
+  {
+    "problem_idx": 107,
+    "true_answer": "3",
+    "baseline_answer": "3",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 224,
+    "n_pruned": 112,
+    "position_overlap": 76,
+    "answer_coupling_stats": {
+      "mean": 0.0009291938622482121,
+      "std": 0.0057540046982467175,
+      "max": 0.08418655395507812
+    },
+    "text_coupling_stats": {
+      "mean": 0.002460784511640668,
+      "std": 0.0027658354956656694,
+      "max": 0.01962963677942753
+    },
+    "no_pruning": {
+      "answer": "3",
+      "correct": true,
+      "mean_orig_text_loss": 0.04421945622092799,
+      "mean_pruned_text_loss": 0.04422470770384136,
+      "text_loss_change": 5.2514829133737395e-06
+    },
+    "prune_answer_coupled": {
+      "answer": "3",
+      "correct": true,
+      "mean_orig_text_loss": 0.04421945622092799,
+      "mean_pruned_text_loss": 0.6760435606303968,
+      "text_loss_change": 0.6318241044094688
+    },
+    "prune_text_coupled": {
+      "answer": "3",
+      "correct": true,
+      "mean_orig_text_loss": 0.04421945622092799,
+      "mean_pruned_text_loss": 0.786393542038767,
+      "text_loss_change": 0.742174085817839
+    },
+    "prune_random": {
+      "answer": "3",
+      "correct": true,
+      "mean_orig_text_loss": 0.04421945622092799,
+      "mean_pruned_text_loss": 0.07504372847707648,
+      "text_loss_change": 0.03082427225614849
+    }
+  },
+  {
+    "problem_idx": 1115,
+    "true_answer": "5",
+    "baseline_answer": "6",
+    "baseline_correct": false,
+    "skipped": true
+  },
+  {
+    "problem_idx": 851,
+    "true_answer": "110",
+    "baseline_answer": "110",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 85,
+    "n_pruned": 42,
+    "position_overlap": 28,
+    "answer_coupling_stats": {
+      "mean": 0.002229757606983185,
+      "std": 0.010074043646454811,
+      "max": 0.09214401245117188
+    },
+    "text_coupling_stats": {
+      "mean": 0.005382567644119263,
+      "std": 0.005646508187055588,
+      "max": 0.03512498736381531
+    },
+    "no_pruning": {
+      "answer": "110",
+      "correct": true,
+      "mean_orig_text_loss": 0.06706392137627852,
+      "mean_pruned_text_loss": 0.06719617467177541,
+      "text_loss_change": 0.0001322532954968897
+    },
+    "prune_answer_coupled": {
+      "answer": "110",
+      "correct": true,
+      "mean_orig_text_loss": 0.06706392137627852,
+      "mean_pruned_text_loss": 0.23693692056756271,
+      "text_loss_change": 0.16987299919128418
+    },
+    "prune_text_coupled": {
+      "answer": "110",
+      "correct": true,
+      "mean_orig_text_loss": 0.06706392137627852,
+      "mean_pruned_text_loss": 0.28396277678640264,
+      "text_loss_change": 0.2168988554101241
+    },
+    "prune_random": {
+      "answer": "110",
+      "correct": true,
+      "mean_orig_text_loss": 0.06706392137627852,
+      "mean_pruned_text_loss": 0.1201151734904239,
+      "text_loss_change": 0.05305125211414538
+    }
+  },
+  {
+    "problem_idx": 303,
+    "true_answer": "1300",
+    "baseline_answer": "1300",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 138,
+    "n_pruned": 69,
+    "position_overlap": 49,
+    "answer_coupling_stats": {
+      "mean": 0.0013722865842282772,
+      "std": 0.00759591581299901,
+      "max": 0.08782958984375
+    },
+    "text_coupling_stats": {
+      "mean": 0.0035197967663407326,
+      "std": 0.0037383988965302706,
+      "max": 0.020151376724243164
+    },
+    "no_pruning": {
+      "answer": "1300",
+      "correct": true,
+      "mean_orig_text_loss": 0.04669192590211567,
+      "mean_pruned_text_loss": 0.046743261186700115,
+      "text_loss_change": 5.133528458444586e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "1300",
+      "correct": true,
+      "mean_orig_text_loss": 0.04669192590211567,
+      "mean_pruned_text_loss": 0.6092343706833688,
+      "text_loss_change": 0.5625424447812531
+    },
+    "prune_text_coupled": {
+      "answer": "1300",
+      "correct": true,
+      "mean_orig_text_loss": 0.04669192590211567,
+      "mean_pruned_text_loss": 0.7671441718151695,
+      "text_loss_change": 0.7204522459130538
+    },
+    "prune_random": {
+      "answer": "1300",
+      "correct": true,
+      "mean_orig_text_loss": 0.04669192590211567,
+      "mean_pruned_text_loss": 1.057630413456967,
+      "text_loss_change": 1.0109384875548513
+    }
+  },
+  {
+    "problem_idx": 535,
+    "true_answer": "16",
+    "baseline_answer": "16",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 61,
+    "n_pruned": 30,
+    "position_overlap": 18,
+    "answer_coupling_stats": {
+      "mean": 0.003148772055283189,
+      "std": 0.012683889828622341,
+      "max": 0.09912109375
+    },
+    "text_coupling_stats": {
+      "mean": 0.006216419395059347,
+      "std": 0.005641693715006113,
+      "max": 0.035598814487457275
+    },
+    "no_pruning": {
+      "answer": "16",
+      "correct": true,
+      "mean_orig_text_loss": 0.037699417064064426,
+      "mean_pruned_text_loss": 0.03749809139653256,
+      "text_loss_change": -0.00020132566753186532
+    },
+    "prune_answer_coupled": {
+      "answer": "16",
+      "correct": true,
+      "mean_orig_text_loss": 0.037699417064064426,
+      "mean_pruned_text_loss": 0.7037839387592516,
+      "text_loss_change": 0.6660845216951872
+    },
+    "prune_text_coupled": {
+      "answer": "16",
+      "correct": true,
+      "mean_orig_text_loss": 0.037699417064064426,
+      "mean_pruned_text_loss": 0.07524271387802928,
+      "text_loss_change": 0.03754329681396485
+    },
+    "prune_random": {
+      "answer": "16",
+      "correct": true,
+      "mean_orig_text_loss": 0.037699417064064426,
+      "mean_pruned_text_loss": 0.09060524011913099,
+      "text_loss_change": 0.05290582305506656
+    }
+  },
+  {
+    "problem_idx": 544,
+    "true_answer": "80",
+    "baseline_answer": "80",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 110,
+    "n_pruned": 55,
+    "position_overlap": 36,
+    "answer_coupling_stats": {
+      "mean": 0.001975931227207184,
+      "std": 0.007943357340991497,
+      "max": 0.08153152465820312
+    },
+    "text_coupling_stats": {
+      "mean": 0.00442328117787838,
+      "std": 0.004063999280333519,
+      "max": 0.026589959859848022
+    },
+    "no_pruning": {
+      "answer": "80",
+      "correct": true,
+      "mean_orig_text_loss": 0.020845990431936162,
+      "mean_pruned_text_loss": 0.020841385188855623,
+      "text_loss_change": -4.605243080539612e-06
+    },
+    "prune_answer_coupled": {
+      "answer": "80",
+      "correct": true,
+      "mean_orig_text_loss": 0.020845990431936162,
+      "mean_pruned_text_loss": 0.591156520341572,
+      "text_loss_change": 0.5703105299096358
+    },
+    "prune_text_coupled": {
+      "answer": "80",
+      "correct": true,
+      "mean_orig_text_loss": 0.020845990431936162,
+      "mean_pruned_text_loss": 0.548886920276441,
+      "text_loss_change": 0.5280409298445049
+    },
+    "prune_random": {
+      "answer": "80",
+      "correct": true,
+      "mean_orig_text_loss": 0.020845990431936162,
+      "mean_pruned_text_loss": 0.11186814935583818,
+      "text_loss_change": 0.09102215892390202
+    }
+  },
+  {
+    "problem_idx": 374,
+    "true_answer": "45",
+    "baseline_answer": "45",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 142,
+    "n_pruned": 71,
+    "position_overlap": 46,
+    "answer_coupling_stats": {
+      "mean": 0.0013179124798625708,
+      "std": 0.007418951019644737,
+      "max": 0.08734512329101562
+    },
+    "text_coupling_stats": {
+      "mean": 0.003262452781200409,
+      "std": 0.0028949182014912367,
+      "max": 0.018038708716630936
+    },
+    "no_pruning": {
+      "answer": "45",
+      "correct": true,
+      "mean_orig_text_loss": 0.0016380862185829564,
+      "mean_pruned_text_loss": 0.0016355451784635846,
+      "text_loss_change": -2.541040119371802e-06
+    },
+    "prune_answer_coupled": {
+      "answer": "45",
+      "correct": true,
+      "mean_orig_text_loss": 0.0016380862185829564,
+      "mean_pruned_text_loss": 0.849410985645495,
+      "text_loss_change": 0.847772899426912
+    },
+    "prune_text_coupled": {
+      "answer": "45",
+      "correct": true,
+      "mean_orig_text_loss": 0.0016380862185829564,
+      "mean_pruned_text_loss": 0.40830904559085246,
+      "text_loss_change": 0.4066709593722695
+    },
+    "prune_random": {
+      "answer": "45",
+      "correct": true,
+      "mean_orig_text_loss": 0.0016380862185829564,
+      "mean_pruned_text_loss": 0.04068182016673841,
+      "text_loss_change": 0.039043733948155454
+    }
+  },
+  {
+    "problem_idx": 387,
+    "true_answer": "36",
+    "baseline_answer": "36",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 77,
+    "n_pruned": 38,
+    "position_overlap": 26,
+    "answer_coupling_stats": {
+      "mean": 0.0024470898788422346,
+      "std": 0.010102943517267704,
+      "max": 0.08772659301757812
+    },
+    "text_coupling_stats": {
+      "mean": 0.0057569947093725204,
+      "std": 0.005141912493854761,
+      "max": 0.03557789325714111
+    },
+    "no_pruning": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.002729371974342748,
+      "mean_pruned_text_loss": 0.002729202571668123,
+      "text_loss_change": -1.6940267462493136e-07
+    },
+    "prune_answer_coupled": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.002729371974342748,
+      "mean_pruned_text_loss": 0.16165358141848915,
+      "text_loss_change": 0.1589242094441464
+    },
+    "prune_text_coupled": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.002729371974342748,
+      "mean_pruned_text_loss": 0.08020732904735364,
+      "text_loss_change": 0.07747795707301089
+    },
+    "prune_random": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.002729371974342748,
+      "mean_pruned_text_loss": 0.32061820281179326,
+      "text_loss_change": 0.3178888308374505
+    }
+  },
+  {
+    "problem_idx": 434,
+    "true_answer": "5",
+    "baseline_answer": "5",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 196,
+    "n_pruned": 98,
+    "position_overlap": 66,
+    "answer_coupling_stats": {
+      "mean": 0.0010541604133322835,
+      "std": 0.006859141867607832,
+      "max": 0.0935516357421875
+    },
+    "text_coupling_stats": {
+      "mean": 0.0028790521901100874,
+      "std": 0.0031438772566616535,
+      "max": 0.02135753631591797
+    },
+    "no_pruning": {
+      "answer": "5",
+      "correct": true,
+      "mean_orig_text_loss": 0.00560965663508365,
+      "mean_pruned_text_loss": 0.005628234461734169,
+      "text_loss_change": 1.8577826650519394e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "5",
+      "correct": true,
+      "mean_orig_text_loss": 0.00560965663508365,
+      "mean_pruned_text_loss": 0.43868248086226613,
+      "text_loss_change": 0.43307282422718246
+    },
+    "prune_text_coupled": {
+      "answer": "5",
+      "correct": true,
+      "mean_orig_text_loss": 0.00560965663508365,
+      "mean_pruned_text_loss": 0.27326301524513646,
+      "text_loss_change": 0.2676533586100528
+    },
+    "prune_random": {
+      "answer": "5",
+      "correct": true,
+      "mean_orig_text_loss": 0.00560965663508365,
+      "mean_pruned_text_loss": 0.028127268741005344,
+      "text_loss_change": 0.022517612105921694
+    }
+  },
+  {
+    "problem_idx": 706,
+    "true_answer": "9",
+    "baseline_answer": "9",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 161,
+    "n_pruned": 80,
+    "position_overlap": 54,
+    "answer_coupling_stats": {
+      "mean": 0.001206098822876811,
+      "std": 0.006644957233220339,
+      "max": 0.082061767578125
+    },
+    "text_coupling_stats": {
+      "mean": 0.0032240923028439283,
+      "std": 0.003212386043742299,
+      "max": 0.020381618291139603
+    },
+    "no_pruning": {
+      "answer": "9",
+      "correct": true,
+      "mean_orig_text_loss": 0.055109268740603796,
+      "mean_pruned_text_loss": 0.05502222713671232,
+      "text_loss_change": -8.704160389147453e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "9",
+      "correct": true,
+      "mean_orig_text_loss": 0.055109268740603796,
+      "mean_pruned_text_loss": 0.9502230380710802,
+      "text_loss_change": 0.8951137693304764
+    },
+    "prune_text_coupled": {
+      "answer": "9",
+      "correct": true,
+      "mean_orig_text_loss": 0.055109268740603796,
+      "mean_pruned_text_loss": 0.915172344759891,
+      "text_loss_change": 0.8600630760192871
+    },
+    "prune_random": {
+      "answer": "9",
+      "correct": true,
+      "mean_orig_text_loss": 0.055109268740603796,
+      "mean_pruned_text_loss": 0.18525367034109017,
+      "text_loss_change": 0.13014440160048638
+    }
+  },
+  {
+    "problem_idx": 347,
+    "true_answer": "36",
+    "baseline_answer": "36",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 98,
+    "n_pruned": 49,
+    "position_overlap": 38,
+    "answer_coupling_stats": {
+      "mean": 0.0020621607545763254,
+      "std": 0.008853606879711151,
+      "max": 0.08526992797851562
+    },
+    "text_coupling_stats": {
+      "mean": 0.004740599077194929,
+      "std": 0.004936921875923872,
+      "max": 0.03955462574958801
+    },
+    "no_pruning": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.024248675296181126,
+      "mean_pruned_text_loss": 0.02380002172369706,
+      "text_loss_change": -0.00044865357248406387
+    },
+    "prune_answer_coupled": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.024248675296181126,
+      "mean_pruned_text_loss": 0.5310458321320383,
+      "text_loss_change": 0.5067971568358571
+    },
+    "prune_text_coupled": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.024248675296181126,
+      "mean_pruned_text_loss": 0.385406726285031,
+      "text_loss_change": 0.36115805098884984
+    },
+    "prune_random": {
+      "answer": "36",
+      "correct": true,
+      "mean_orig_text_loss": 0.024248675296181126,
+      "mean_pruned_text_loss": 0.2721682535974603,
+      "text_loss_change": 0.24791957830127914
+    }
+  },
+  {
+    "problem_idx": 811,
+    "true_answer": "60",
+    "baseline_answer": "60",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 126,
+    "n_pruned": 63,
+    "position_overlap": 46,
+    "answer_coupling_stats": {
+      "mean": 0.0016574400942772627,
+      "std": 0.008331293240189552,
+      "max": 0.09194183349609375
+    },
+    "text_coupling_stats": {
+      "mean": 0.0036671049892902374,
+      "std": 0.0033995527774095535,
+      "max": 0.022562820464372635
+    },
+    "no_pruning": {
+      "answer": "60",
+      "correct": true,
+      "mean_orig_text_loss": 0.07157490127965023,
+      "mean_pruned_text_loss": 0.07148497983029015,
+      "text_loss_change": -8.992144936008362e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "60",
+      "correct": true,
+      "mean_orig_text_loss": 0.07157490127965023,
+      "mean_pruned_text_loss": 0.15446022937172338,
+      "text_loss_change": 0.08288532809207315
+    },
+    "prune_text_coupled": {
+      "answer": "60",
+      "correct": true,
+      "mean_orig_text_loss": 0.07157490127965023,
+      "mean_pruned_text_loss": 0.2565618502466302,
+      "text_loss_change": 0.18498694896697998
+    },
+    "prune_random": {
+      "answer": "60",
+      "correct": true,
+      "mean_orig_text_loss": 0.07157490127965023,
+      "mean_pruned_text_loss": 0.06314040485181306,
+      "text_loss_change": -0.008434496427837168
+    }
+  },
+  {
+    "problem_idx": 35,
+    "true_answer": "9",
+    "baseline_answer": "9",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 104,
+    "n_pruned": 52,
+    "position_overlap": 36,
+    "answer_coupling_stats": {
+      "mean": 0.0019035644363611937,
+      "std": 0.008743781596422195,
+      "max": 0.087921142578125
+    },
+    "text_coupling_stats": {
+      "mean": 0.004155028145760298,
+      "std": 0.003495562355965376,
+      "max": 0.018127858638763428
+    },
+    "no_pruning": {
+      "answer": "9",
+      "correct": true,
+      "mean_orig_text_loss": 0.021865807081523695,
+      "mean_pruned_text_loss": 0.021807695689954255,
+      "text_loss_change": -5.8111391569439647e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "9",
+      "correct": true,
+      "mean_orig_text_loss": 0.021865807081523695,
+      "mean_pruned_text_loss": 0.9559091768766704,
+      "text_loss_change": 0.9340433697951467
+    },
+    "prune_text_coupled": {
+      "answer": "9",
+      "correct": true,
+      "mean_orig_text_loss": 0.021865807081523695,
+      "mean_pruned_text_loss": 0.9835238519467806,
+      "text_loss_change": 0.9616580448652569
+    },
+    "prune_random": {
+      "answer": "9",
+      "correct": true,
+      "mean_orig_text_loss": 0.021865807081523695,
+      "mean_pruned_text_loss": 0.09942912428002608,
+      "text_loss_change": 0.07756331719850239
+    }
+  }
+]

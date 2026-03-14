@@ -1,0 +1,146 @@
+[
+  {
+    "problem_idx": 588,
+    "true_answer": "52",
+    "baseline_answer": "52",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 101,
+    "n_pruned": 50,
+    "position_overlap": 29,
+    "answer_coupling_stats": {
+      "mean": 0.0020424628164619207,
+      "std": 0.008908070623874664,
+      "max": 0.08765411376953125
+    },
+    "text_coupling_stats": {
+      "mean": 0.0043282900005578995,
+      "std": 0.0040069161914289,
+      "max": 0.024764856323599815
+    },
+    "no_pruning": {
+      "answer": "52",
+      "correct": true,
+      "mean_orig_text_loss": 0.052287785630477104,
+      "mean_pruned_text_loss": 0.052274772995396665,
+      "text_loss_change": -1.3012635080439372e-05
+    },
+    "prune_answer_coupled": {
+      "answer": "52",
+      "correct": true,
+      "mean_orig_text_loss": 0.052287785630477104,
+      "mean_pruned_text_loss": 0.8746734920300936,
+      "text_loss_change": 0.8223857063996165
+    },
+    "prune_text_coupled": {
+      "answer": "52",
+      "correct": true,
+      "mean_orig_text_loss": 0.052287785630477104,
+      "mean_pruned_text_loss": 0.4651037203638177,
+      "text_loss_change": 0.4128159347333406
+    },
+    "prune_random": {
+      "answer": "52",
+      "correct": true,
+      "mean_orig_text_loss": 0.052287785630477104,
+      "mean_pruned_text_loss": 0.5801354897649664,
+      "text_loss_change": 0.5278477041344893
+    }
+  },
+  {
+    "problem_idx": 1214,
+    "true_answer": "5",
+    "baseline_answer": "5",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 59,
+    "n_pruned": 29,
+    "position_overlap": 21,
+    "answer_coupling_stats": {
+      "mean": 0.0031775194220244884,
+      "std": 0.011035725474357605,
+      "max": 0.08285903930664062
+    },
+    "text_coupling_stats": {
+      "mean": 0.0053831953555345535,
+      "std": 0.003475444857031107,
+      "max": 0.017049631103873253
+    },
+    "no_pruning": {
+      "answer": "5",
+      "correct": true,
+      "mean_orig_text_loss": 0.08085877016970985,
+      "mean_pruned_text_loss": 0.0799250602722168,
+      "text_loss_change": -0.0009337098974930569
+    },
+    "prune_answer_coupled": {
+      "answer": "5",
+      "correct": true,
+      "mean_orig_text_loss": 0.08085877016970985,
+      "mean_pruned_text_loss": 0.471025592402408,
+      "text_loss_change": 0.39016682223269816
+    },
+    "prune_text_coupled": {
+      "answer": "5",
+      "correct": true,
+      "mean_orig_text_loss": 0.08085877016970985,
+      "mean_pruned_text_loss": 0.195310304039403,
+      "text_loss_change": 0.11445153386969315
+    },
+    "prune_random": {
+      "answer": "5",
+      "correct": true,
+      "mean_orig_text_loss": 0.08085877016970985,
+      "mean_pruned_text_loss": 0.16325762397364565,
+      "text_loss_change": 0.0823988538039358
+    }
+  },
+  {
+    "problem_idx": 57,
+    "true_answer": "83",
+    "baseline_answer": "83",
+    "baseline_correct": true,
+    "skipped": false,
+    "reasoning_len": 76,
+    "n_pruned": 38,
+    "position_overlap": 27,
+    "answer_coupling_stats": {
+      "mean": 0.00227941176854074,
+      "std": 0.011027046479284763,
+      "max": 0.09605026245117188
+    },
+    "text_coupling_stats": {
+      "mean": 0.0054643466137349606,
+      "std": 0.006019772030413151,
+      "max": 0.043273236602544785
+    },
+    "no_pruning": {
+      "answer": "83",
+      "correct": true,
+      "mean_orig_text_loss": 0.0369770840594643,
+      "mean_pruned_text_loss": 0.037100879769576225,
+      "text_loss_change": 0.00012379571011192358
+    },
+    "prune_answer_coupled": {
+      "answer": "83",
+      "correct": true,
+      "mean_orig_text_loss": 0.0369770840594643,
+      "mean_pruned_text_loss": 0.08881211280822754,
+      "text_loss_change": 0.05183502874876324
+    },
+    "prune_text_coupled": {
+      "answer": "83",
+      "correct": true,
+      "mean_orig_text_loss": 0.0369770840594643,
+      "mean_pruned_text_loss": 0.1258579178860313,
+      "text_loss_change": 0.08888083382656699
+    },
+    "prune_random": {
+      "answer": "83",
+      "correct": true,
+      "mean_orig_text_loss": 0.0369770840594643,
+      "mean_pruned_text_loss": 0.1366482973098755,
+      "text_loss_change": 0.09967121325041119
+    }
+  }
+]

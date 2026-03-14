@@ -1,0 +1,51 @@
+{
+  "experiment": "exp_002_double_dissociation",
+  "model": "Qwen/Qwen3-4B-Base",
+  "num_problems": 3,
+  "num_attempted": 3,
+  "num_valid": 3,
+  "baseline_accuracy": 1.0,
+  "prune_fraction": 0.5,
+  "conditions": {
+    "no_pruning": {
+      "accuracy": 1.0,
+      "correct": 3,
+      "total": 3,
+      "errors": 0,
+      "mean_text_loss_change": -0.0002743089408205242,
+      "std_text_loss_change": 0.0004696000760037252
+    },
+    "prune_answer_coupled": {
+      "accuracy": 1.0,
+      "correct": 3,
+      "total": 3,
+      "errors": 0,
+      "mean_text_loss_change": 0.421462519127026,
+      "std_text_loss_change": 0.3153534019584203
+    },
+    "prune_text_coupled": {
+      "accuracy": 1.0,
+      "correct": 3,
+      "total": 3,
+      "errors": 0,
+      "mean_text_loss_change": 0.20538276747653358,
+      "std_text_loss_change": 0.14704841455297807
+    },
+    "prune_random": {
+      "accuracy": 1.0,
+      "correct": 3,
+      "total": 3,
+      "errors": 0,
+      "mean_text_loss_change": 0.23663925706294542,
+      "std_text_loss_change": 0.20603616726936916
+    }
+  },
+  "double_dissociation": {
+    "accuracy_dissociation": false,
+    "text_dissociation": false,
+    "full_dissociation": false,
+    "accuracy_effect_size": 0.0,
+    "text_loss_effect_size": -0.2160797516504924
+  },
+  "elapsed_seconds": 19.685582160949707
+}
