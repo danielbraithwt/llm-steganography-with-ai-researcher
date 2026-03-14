@@ -1,28 +1,29 @@
 {
-  "cycle": 25,
-  "timestamp": "2026-03-14T21:30:00Z",
+  "cycle": 26,
+  "timestamp": "2026-03-14T22:00:00Z",
   "type": "experiment",
-  "experiment": "exp_025_magnitude_dose_response",
-  "model": "meta-llama/Llama-3.1-8B-Instruct",
-  "n_problems": 54,
-  "key_finding": "MAGNITUDE IMMUNITY IS DOSE-SPECIFIC, NOT ABSOLUTE. K-mag gradual: 96->94->80->72% over sigma=1-5 (analog). V-mag gradual: 100->98->89->65% over sigma=1-10. V more robust than K at ALL doses (gap widens 3.7pp->16.7pp). SURPRISE: KV-combined is SUPERADDITIVE — at sigma=2, K=94% V=98% but KV=43% (7.9x worse than independent). Text preserved at ALL doses (98.5% even at KV sigma=5 with 3.7% accuracy).",
-  "evidence_impact": "Partially vindicates skeptic: immunities are dose-specific. But the K-V SEPARATION is confirmed at all doses — V always more robust than K. Superadditive KV interaction is new mechanistic finding: simultaneous routing+throughput failure. Gradual Llama degradation (vs Qwen cliff) is clearest evidence for analog vs digital encoding. V-mag immunity revised from 'absolute' to 'moderate perturbation only' (129/129 at sigma<=1, but 65% at sigma=10).",
-  "next_planned": "Priority: (1) Qwen V-mag extreme dose-response (sigma=2-10) to test if V gradual degradation is cross-model. (2) Superadditivity test on Qwen (KV sigma=0.3 below K's cliff). (3) Third model family replication. (4) K-only PGD. (5) Mechanism of superadditivity (attention pattern analysis).",
+  "experiment": "exp_026_qwen_dose_response",
+  "model": "Qwen/Qwen3-4B-Base",
+  "n_problems": 20,
+  "key_finding": "V-MAGNITUDE SHOWS CLIFF ON QWEN AT sigma=3-5 (100/100 at sigma<=3, then 50% at sigma=5, 20% at sigma=10). Digital encoding extends to BOTH K and V on Qwen (K cliff at sigma=0.3-1, V cliff at sigma=3-5). Superadditivity WEAK on Qwen (1.1-2.0x) vs Llama's 7.9-16.8x — staggered cliffs prevent cascading failure. V-mag sigma=1 immunity now 149/149 cross-model.",
+  "evidence_impact": "Completes the cross-model dose-response characterization. Digital/analog distinction applies to BOTH K and V components, not just K. Superadditivity is encoding-strategy-specific: overlapping gradual degradation (Llama) creates cascading failure, staggered cliffs (Qwen) don't. V more robust than K confirmed at ALL doses on BOTH models.",
+  "next_planned": "Priority: (1) V-mag cliff resolution on Qwen (sigma=4 to characterize cliff precisely). (2) Mechanism: WHY is V cliff at 5-10x higher sigma than K? Attention norm analysis. (3) Third model family for dose-response. (4) K-only PGD (exploit K-direction null space directly). (5) Practical implications: test if AC-aware compression preserves V-norms and K-directions.",
   "figures": [
-    "results/exp_025/k_magnitude_dose_response.png",
-    "results/exp_025/v_magnitude_dose_response.png",
-    "results/exp_025/kv_combined_dose_response.png",
-    "results/exp_025/all_conditions_bar.png"
+    "results/exp_026/v_magnitude_dose_response.png",
+    "results/exp_026/k_magnitude_dose_response.png",
+    "results/exp_026/kv_superadditivity.png",
+    "results/exp_026/cross_model_kv_comparison.png",
+    "results/exp_026/all_conditions_bar.png"
   ],
   "progress": {
-    "null_space_existence": {"status": "strong (Qwen PGD-validated). Mechanism: likely K-direction space", "bar": 4},
+    "null_space_existence": {"status": "strong (Qwen PGD-validated). Mechanism: K-direction space", "bar": 4},
     "spatial_structure": {"status": "DECISIVELY DISCONFIRMED on spatial selectivity", "bar": 1},
     "positional_dissociation": {"status": "STRONG: universal across models. Late positions carry answer info via K-routing", "bar": 5},
-    "geometric_dissociation": {"status": "K-V direction dissociation CROSS-MODEL REPLICATED. Magnitude immunity REVISED: dose-specific, V>K at all doses", "bar": 5},
+    "geometric_dissociation": {"status": "K-V dissociation CROSS-MODEL REPLICATED. K cliff (sigma 0.3-1) and V cliff (sigma 3-5) on Qwen. Gradual K/V on Llama", "bar": 5},
     "natural_usage": {"status": "H2O/TC protection via position. R-KV shows removing redundant tokens IMPROVES reasoning", "bar": 3},
-    "cross_model_replication": {"status": "K-V direction on 2 families. Dose-response on Llama (gradual=analog). Need Qwen dose-response + 3rd family", "bar": 5},
-    "encoding_strategy": {"status": "Digital (Qwen: K-mag cliff at sigma 0.5-1) vs distributed (Llama: K-mag gradual over sigma 1-5). V-mag gradual on both. KV superadditive on Llama", "bar": 5},
-    "superadditive_interaction": {"status": "NEW: KV-combined 7.9x-16.8x worse than independent at sigma 2-5. Cascading routing+throughput failure", "bar": 4},
+    "cross_model_replication": {"status": "COMPLETE dose-response on 2 families. V-mag immunity 149/149. K-V direction ratio 3.6-3.7x. Need 3rd family", "bar": 5},
+    "encoding_strategy": {"status": "Digital (Qwen: K+V cliffs) vs analog (Llama: K+V gradual). Digital/analog applies to BOTH K and V. V threshold 5-10x higher than K on Qwen", "bar": 5},
+    "superadditive_interaction": {"status": "Llama-specific (7.9-16.8x). Weak on Qwen (1.1-2.0x). Explained by staggered vs overlapping degradation windows", "bar": 5},
     "literature_convergence": {"status": "5+ independent groups converge. K-V dissociation is novel contribution beyond existing literature", "bar": 5}
   }
 }
