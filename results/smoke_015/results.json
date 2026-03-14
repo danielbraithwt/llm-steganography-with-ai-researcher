@@ -1,0 +1,107 @@
+{
+  "model": "Qwen/Qwen3-4B",
+  "n_total": 6,
+  "n_valid": 5,
+  "baseline_accuracy": 83.33333333333333,
+  "noise_scales": [
+    0.01,
+    1.0
+  ],
+  "noise_fractions": [
+    0.03
+  ],
+  "pipeline": "truncate_at_####_lookback_20_additive_noise",
+  "destruction": {
+    "selac": {
+      "0.03_0.01": {
+        "correct": 4,
+        "total": 5,
+        "accuracy": 80.0
+      },
+      "0.03_1.0": {
+        "correct": 4,
+        "total": 5,
+        "accuracy": 80.0
+      }
+    },
+    "seltc": {
+      "0.03_0.01": {
+        "correct": 4,
+        "total": 5,
+        "accuracy": 80.0
+      },
+      "0.03_1.0": {
+        "correct": 3,
+        "total": 5,
+        "accuracy": 60.0
+      }
+    },
+    "random": {
+      "0.03_0.01": {
+        "correct": 4,
+        "total": 5,
+        "accuracy": 80.0
+      },
+      "0.03_1.0": {
+        "correct": 2,
+        "total": 5,
+        "accuracy": 40.0
+      }
+    }
+  },
+  "protection": {
+    "ac": {
+      "0.03_0.01": {
+        "correct": 4,
+        "total": 5,
+        "accuracy": 80.0
+      },
+      "0.03_1.0": {
+        "correct": 0,
+        "total": 5,
+        "accuracy": 0.0
+      }
+    },
+    "h2o": {
+      "0.03_0.01": {
+        "correct": 4,
+        "total": 5,
+        "accuracy": 80.0
+      },
+      "0.03_1.0": {
+        "correct": 4,
+        "total": 5,
+        "accuracy": 80.0
+      }
+    },
+    "tc": {
+      "0.03_0.01": {
+        "correct": 4,
+        "total": 5,
+        "accuracy": 80.0
+      },
+      "0.03_1.0": {
+        "correct": 4,
+        "total": 5,
+        "accuracy": 80.0
+      }
+    },
+    "random": {
+      "0.03_0.01": {
+        "correct": 4,
+        "total": 5,
+        "accuracy": 80.0
+      },
+      "0.03_1.0": {
+        "correct": 3,
+        "total": 5,
+        "accuracy": 60.0
+      }
+    }
+  },
+  "dissociation": {
+    "destruction_gap_0.03_0.01": 0.0,
+    "destruction_gap_0.03_1.0": -20.0
+  },
+  "elapsed_seconds": 85.73241925239563
+}

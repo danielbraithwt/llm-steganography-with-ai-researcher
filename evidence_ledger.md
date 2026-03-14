@@ -1,21 +1,22 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-14 (cycle 15, exp_014)
-Cycles completed: 15
+Last updated: 2026-03-14 (cycle 16, exp_015)
+Cycles completed: 16
 
-### Hypothesis Status: PARTIALLY SUPPORTED — hidden channel confirmed on Qwen-Base; encoding is TRAINING-dependent, not just architecture-dependent; instruction tuning creates ultra-fragile KV coupling
+### Hypothesis Status: PARTIALLY SUPPORTED — hidden channel confirmed on Qwen-Base; instruction tuning REVERSES the spatial structure (TC becomes critical, AC becomes dispensable)
 
 The KV cache carries a functionally separable hidden channel on Qwen-Base (PGD null space at 377x,
 spatial structure rho=0.78, SNR cliff at 14 dB). On Llama-Instruct, the encoding is distributed/analog
-(no PGD null space, no SNR cliff, position dominates). **NEW (Exp 014): Qwen3-4B-Instruct — same
-architecture as Qwen3-4B-Base — shows a THIRD encoding pattern: ultra-fragile coupling where
-norm-matched noise at even 1% of positions destroys accuracy to ~0% regardless of strategy.** This
-means the encoding difference is NOT purely architectural — instruction tuning fundamentally changes
-KV cache fragility. Three distinct encoding regimes now identified:
-- **Qwen-Base**: concentrated/digital — tolerates selective noise, shows dissociation, PGD works
-- **Llama-Instruct**: distributed/analog — strategy-dependent, TC/H2O protect, position dominates
-- **Qwen-Instruct**: ultra-fragile — no strategy preserves accuracy at norm-matched noise, 90% baseline → 0-4% under any 1% perturbation
+(no PGD null space, no SNR cliff, position dominates). **NEW (Exp 015): Qwen3-4B-Instruct shows
+a REVERSED dissociation — destroying TC-selective positions crashes accuracy (-47pp gap) while
+destroying AC-selective positions has NO effect. H2O/TC protection is PERFECT (maintains 70% baseline
+at all noise fractions). Sharp cliff between 0.3x and 1.0x additive noise. Exp_014's "ultra-fragile"
+finding was a PIPELINE BUG (generating from after the answer, not before it).** Three distinct
+encoding patterns now characterized:
+- **Qwen-Base**: concentrated/digital — positive dissociation (+24pp), AC-selective critical, PGD works
+- **Llama-Instruct**: distributed/analog — positive dissociation (+24pp), position dominates, TC best protection
+- **Qwen-Instruct**: reversed — NEGATIVE dissociation (-47pp), TC-selective critical, H2O/TC perfect protection. Instruction tuning eliminates the hidden channel and makes answer computation flow through text-coupled positions
 
 ### Evidence Overview
 | Claim | Status | Strength | Key Experiments | Notes |
@@ -51,11 +52,14 @@ KV cache fragility. Three distinct encoding regimes now identified:
 | **Position in causal chain dominates on Llama** | **established** | **strong** | **Exp 013** | **Position-score rho: H2O=-0.56, AC=+0.37, TC=+0.44. Strategies that noise early positions fail; strategies that noise late positions succeed. Position is the dominant factor for answer accuracy on Llama** |
 | **TC (text-coupling) is best protection metric** | **established** | **moderate** | **Exp 013** | **TC_protect > H2O_protect at all noise fractions (72% vs 68% at 3%, 36% vs 20% at 5%). Irony: text-coupling best preserves ANSWER accuracy on Llama — consistent with distributed encoding** |
 | **AC/SEL spatial structure is Qwen-specific** | **supported** | **strong** | **Exp 008, 012, 013** | **PGD rho=0.78 on Qwen; PGD fails on Llama. AC/SEL protection fails on Llama. The "answer-coupled positions" concept has causal validity only on Qwen with its concentrated encoding** |
-| **Instruction tuning creates ultra-fragile KV encoding** | **established** | **strong** | **Exp 014** | **Qwen3-4B-Instruct: 90% baseline → 0-4% accuracy under ANY strategy at 1% norm-matched noise. Same architecture as Base model (36L, 8KV heads). NO strategy preserves accuracy. Noise tolerance eliminated by fine-tuning** |
-| **Encoding is TRAINING-dependent, not just architecture-dependent** | **established** | **strong** | **Exp 014** | **Qwen-Base=concentrated/tolerant. Qwen-Instruct=ultra-fragile. Same architecture, different training → different encoding. The Base/Instruct axis is at least as important as the Qwen/Llama axis** |
-| **Three distinct encoding regimes exist** | **established** | **strong** | **Exp 004, 007, 013, 014** | **Base-concentrated (Qwen-Base: dissociation works), Instruct-distributed (Llama: strategy-dependent), Instruct-ultrafragile (Qwen-Instruct: nothing works). Training determines regime** |
-| **Dissociation effect does NOT replicate on Qwen-Instruct** | **established** | **strong negative** | **Exp 014** | **SelTC-SelAC gap: -3.7 to +7.4pp (noise, not signal). Vs Qwen-Base +23.5pp, Llama +23.8pp. Ultra-fragile encoding eliminates the dissociation** |
+| ~~Instruction tuning creates ultra-fragile KV encoding~~ | **DISCONFIRMED (pipeline bug)** | **invalidated** | **Exp 014 (buggy), Exp 015 (corrected)** | **Exp_014 had a pipeline bug: generated from AFTER the answer (model produced new questions → 0% accuracy). Exp_015 with corrected pipeline shows 70% baseline maintained at all scales ≤0.3x. NOT ultra-fragile** |
+| **Encoding is TRAINING-dependent, not just architecture-dependent** | **established** | **strong** | **Exp 014, Exp 015** | **Qwen-Base=concentrated (positive dissociation +24pp). Qwen-Instruct=REVERSED dissociation (-47pp). Same architecture, different training → different encoding. Instruction tuning reverses which positions are critical** |
+| **Three distinct encoding regimes exist (REVISED)** | **established** | **strong** | **Exp 004, 007, 013, 015** | **Concentrated (Qwen-Base: +24pp, AC critical), Distributed (Llama: +24pp, position dominates), Reversed (Qwen-Instruct: -47pp, TC critical). Training determines regime** |
+| **Dissociation is REVERSED on Qwen-Instruct** | **established** | **strong** | **Exp 015** | **SelTC destruction crashes accuracy (-47pp gap at 3%/1.0x). SelAC destruction has NO effect (stays at 70%). Opposite sign from Qwen-Base (+24pp) and Llama (+24pp). Instruction tuning makes TC-selective positions critical and AC-selective dispensable** |
 | **TC sign reversal: Qwen-Instruct vs Llama** | **established** | **moderate** | **Exp 014 vs Exp 013** | **Position vs TC: Qwen-Instruct rho=-0.44 (early=high TC), Llama rho=+0.44 (late=high TC). Fundamentally different attention patterns** |
+| **H2O/TC protection is PERFECT on Qwen-Instruct** | **established** | **strong** | **Exp 015** | **H2O and TC maintain 70% (=baseline) at ALL noise fractions (1-5%) at 1.0x scale. AC protection FAILS (30% at 3%). Ranking: H2O = TC >> Random > AC** |
+| **Sharp noise cliff at 0.3x-1.0x on Qwen-Instruct** | **established** | **strong** | **Exp 015** | **Zero degradation at scales ≤0.3x (all strategies=70%). Dramatic effects only at 1.0x. Cliff is between 0.3x and 1.0x additive noise (≈0-10 dB per position)** |
+| **Exp_014 pipeline bug invalidates "ultra-fragile" finding** | **methodological** | **critical** | **Exp 015** | **Exp_014 teacher-forced FULL trace including "#### answer", then generated from beyond — model started new questions. Fixed in exp_015: truncate at "####", lookback re-computation. The "ultra-fragile" regime does not exist** |
 
 ### Open Questions
 1. ~~Why does 50% position pruning not affect accuracy?~~ **ANSWERED (Exp 004): zeroing is the wrong method.**
@@ -73,7 +77,7 @@ KV cache fragility. Three distinct encoding regimes now identified:
 13. **NEW:** Is the digital vs distributed encoding difference related to model size (4B vs 8B) or architecture (Qwen vs Llama)?
 14. **NEW:** Would a TARGETED PGD attack (maximize probability of specific wrong answer) succeed on Llama where untargeted divergence fails?
 15. **NEW:** Would reasoning-only or full-sequence PGD attacks succeed on Llama? Prompt-only attacks may be too constrained for distributed encoding.
-16. ~~**NEW:** Is the null space failure on Llama due to instruction tuning (format robustness) or architecture? Test PGD on Qwen-Instruct to separate these factors.~~ **PARTIALLY ANSWERED (Exp 014): Instruction tuning on Qwen creates ultra-fragile encoding where even 1% norm-matched noise destroys accuracy. PGD would likely fail too — but the mechanism is different from Llama (ultra-fragile vs distributed). Training is a major factor, not just architecture.**
+16. ~~**NEW:** Is the null space failure on Llama due to instruction tuning (format robustness) or architecture? Test PGD on Qwen-Instruct to separate these factors.~~ **PARTIALLY ANSWERED (Exp 014, revised Exp 015): Instruction tuning on Qwen REVERSES the dissociation (TC becomes critical, AC dispensable). Training is a major factor. PGD on Qwen-Instruct would likely fail because AC-selective positions are dispensable. The mechanism is different from Llama (reversed channel vs distributed encoding).**
 17. ~~**NEW (Exp 009):** Why does Qwen show only 20% baseline accuracy with eager attention? Is this a model loading issue or a generation configuration problem? Need to verify Qwen layer sensitivity with higher n.~~ **ANSWERED (Exp 014): Qwen3-4B-Instruct (same architecture, eager attention) achieves 90% accuracy. The low Base accuracy is a Base model limitation, not an eager attention issue.**
 18. **NEW (Exp 009):** Why is layer 0 specifically critical for Qwen? Is this about initial representation quality or attention pattern bootstrapping?
 19. **NEW (Exp 009):** Would multi-layer ablation (2-3 layers simultaneously) break Llama's layer redundancy? The residual stream may have limits.
@@ -90,15 +94,20 @@ KV cache fragility. Three distinct encoding regimes now identified:
 30. ~~**NEW (Exp 012):** Why does raw AC score fail as a protection metric when selectivity-based destruction works?~~ **ANSWERED (Exp 013): Both raw AC and selectivity fail as protection metrics. The success of destruction tests (exp_004/005) reflects hub destruction effects, not channel-specific importance. Position in causal chain is the dominant factor.**
 31. ~~**NEW (Exp 012):** Would selectivity-based protection outperform H2O?~~ **ANSWERED (Exp 013): NO. SEL ≈ AC ≈ Random << TC ≈ H2O. Selectivity does not rescue the framework.**
 32. ~~**NEW (Exp 012):** Is the AC-protection failure a positional confound?~~ **ANSWERED (Exp 013): YES. Position-AC rho=+0.37 (late=high AC). AC-protect noises early positions (mean 0.38). Position-H2O rho=-0.56. H2O protects early positions. Position in causal chain dominates accuracy.**
-33. ~~**NEW (Exp 012):** Does AC-protection work on Qwen (where PGD validates AC)? Exp 012/013 only tested Llama (Qwen n=2).~~ **ANSWERED (Exp 014): NOT TESTABLE at norm-matched noise. Qwen3-4B-Instruct shows 0% accuracy under all strategies (ultra-fragile). AC-protection cannot be evaluated because the model doesn't survive any noise. Lower noise scales needed.**
+33. ~~**NEW (Exp 012):** Does AC-protection work on Qwen (where PGD validates AC)? Exp 012/013 only tested Llama (Qwen n=2).~~ **ANSWERED (Exp 015): AC-protection FAILS on Qwen-Instruct (30% at 3%/1.0x vs 70% baseline). H2O/TC maintain perfect baseline. AC is dispensable on Qwen-Instruct (reversed dissociation). Still untested on Qwen-Base (n=4 too small).**
 34. **NEW (Exp 013):** Does position-controlled analysis (within position quartiles) show any value from AC or selectivity beyond positional information? Exp 013 found position dominates, but didn't control for it.
 35. **NEW (Exp 013):** Why does TC (text-coupling) outperform H2O for answer accuracy? Both protect positions with high subsequent-token attention, but TC is slightly better. Is TC capturing semantic importance beyond positional priority?
 36. **NEW (Exp 013):** Can TC-aware compression outperform H2O on actual KV cache eviction benchmarks (not just noise injection)?
-37. **NEW (Exp 014):** Would LOWER noise scales (0.1x or 0.01x norm) reveal strategy-dependent effects on Qwen3-4B-Instruct? The ultra-fragility may be a scale artifact — the model may tolerate weaker noise and show spatial structure at smaller perturbation.
+37. ~~**NEW (Exp 014):** Would LOWER noise scales (0.1x or 0.01x norm) reveal strategy-dependent effects on Qwen3-4B-Instruct?~~ **ANSWERED (Exp 015): YES — but at scales ≤0.3x, there is NO effect at all (all strategies = baseline 70%). Strategy-dependent effects only emerge at 1.0x scale, and the dissociation is REVERSED (-47pp). The "ultra-fragility" was a pipeline bug, not a real finding.**
 38. **NEW (Exp 014):** Does Llama-3.1-8B-Base show the same encoding as Llama-Instruct? This would complete the 2x2 comparison (Qwen/Llama × Base/Instruct) and determine if instruction tuning universally increases fragility.
 39. **NEW (Exp 014):** Why does Position vs TC have OPPOSITE sign on Qwen-Instruct (-0.44) vs Llama-Instruct (+0.44)? This suggests fundamentally different attention patterns — does Qwen frontload computation while Llama distributes it?
-40. **NEW (Exp 014):** Does the SNR cliff shift upward on Qwen3-4B-Instruct? If the cliff moves from ~14 dB (Base) to >20 dB (Instruct), it would explain why norm-matched noise (0 dB per position) destroys everything. A uniform noise sweep at high SNR (20-30 dB) would test this.
-41. **NEW (Exp 014):** Is the ultra-fragile encoding specific to the Qwen3 instruction tuning procedure, or universal? Testing on Qwen2.5-3B-Instruct or Mistral-7B-Instruct would clarify.
+40. ~~**NEW (Exp 014):** Does the SNR cliff shift upward on Qwen3-4B-Instruct?~~ **ANSWERED (Exp 015): The cliff is between 0.3x and 1.0x additive noise per position (≈0-10 dB). Zero effect at ≤0.3x, dramatic effects at 1.0x. This is an additive noise cliff, not directly comparable to exp_003's uniform replacement noise cliff at 14 dB. Finer sweep (0.4x-0.8x) would locate it precisely.**
+41. ~~**NEW (Exp 014):** Is the ultra-fragile encoding specific to the Qwen3 instruction tuning procedure, or universal?~~ **REVISED (Exp 015): The "ultra-fragile" finding was a pipeline bug. Qwen-Instruct is NOT ultra-fragile — it shows a reversed dissociation with a sharp cliff. The question should now be: does the REVERSED dissociation pattern replicate on other instruct models?**
+42. **NEW (Exp 015):** Where exactly is the noise cliff on Qwen-Instruct? Between 0.3x and 1.0x additive noise. A finer sweep (0.4x, 0.5x, 0.6x, 0.8x) would locate it precisely.
+43. **NEW (Exp 015):** Why is the dissociation REVERSED on Qwen-Instruct? Does instruction tuning reorganize computation so answers flow through text-coupled positions (making the model "faithful"), or is this a positional confound (TC correlates with early positions)?
+44. **NEW (Exp 015):** Does Llama-Instruct also show reversed dissociation under additive noise at appropriate scales? Exp_004/005 used replacement noise. Additive noise might reveal different patterns.
+45. **NEW (Exp 015):** Does the reversed dissociation replicate on other instruct-tuned models (Qwen2.5-Instruct, Mistral-Instruct)? Would determine if reversal is a universal instruction-tuning effect or Qwen-specific.
+46. **NEW (Exp 015):** Is the 70% pipeline baseline a ceiling artifact? 9/30 problems consistently fail via KV cache generation even without noise. Would improving the pipeline (longer lookback, better truncation) change the results?
 
 ### Confirmed Findings
 - LLM output distributions have ~4-5 bits/token unused capacity (Exp 1)
@@ -118,9 +127,12 @@ KV cache fragility. Three distinct encoding regimes now identified:
 - **Selectivity (AC-TC rank) fails as a protection metric on Llama** — SEL ≈ AC ≈ Random. TC > H2O >> Random ≈ AC ≈ SEL. The selectivity framework does not identify causally important positions on Llama (Exp 013)
 - **Position in the causal chain dominates answer accuracy on Llama** — Position vs H2O rho=-0.56, Position vs AC rho=+0.37. Strategies noising early positions fail; strategies noising late positions succeed. Position is the primary factor (Exp 013)
 - **TC (text-coupling) is the best protection metric on Llama** — TC_protect > H2O_protect at 3% (72% vs 68%) and 5% (36% vs 20%). Text-coupling best preserves answer accuracy because answer computation flows through the full causal chain (distributed encoding) (Exp 013)
-- **Instruction tuning creates ultra-fragile KV encoding on Qwen** — Qwen3-4B-Instruct (same architecture as Base) shows 90% baseline accuracy but 0-4% under ANY strategy at 1% norm-matched noise. NO strategy preserves accuracy. Training fundamentally changes KV cache fragility (Exp 014)
-- **Encoding is training-dependent, not just architecture-dependent** — Qwen-Base (concentrated/tolerant), Qwen-Instruct (ultra-fragile), Llama-Instruct (distributed/strategy-dependent) are three distinct regimes. Same architecture + different training = different encoding (Exp 014)
+- ~~Instruction tuning creates ultra-fragile KV encoding on Qwen~~ — **DISCONFIRMED by Exp 015: pipeline bug in Exp 014.** Qwen-Instruct is NOT ultra-fragile; it shows a reversed dissociation with a sharp cliff between 0.3x-1.0x
+- **Encoding is training-dependent, not just architecture-dependent** — Qwen-Base (concentrated, +24pp dissociation), Qwen-Instruct (reversed, -47pp dissociation), Llama-Instruct (distributed, +24pp, position-dominated). Same architecture + different training = different encoding (Exp 014, 015)
 - **Qwen3-4B-Base low accuracy is a Base model limitation, not eager attention** — Instruct version achieves 90% with same eager attention setup. The Base model simply underperforms at 8-shot GSM8K (Exp 014)
+- **Qwen-Instruct shows REVERSED dissociation (-47pp)** — Destroying TC-selective positions crashes accuracy (70%→23% at 3%/1.0x), while destroying AC-selective positions has NO effect. Opposite from Qwen-Base and Llama. Instruction tuning makes text-coupled positions critical for answer computation (Exp 015)
+- **H2O/TC protection is PERFECT on Qwen-Instruct** — H2O and TC maintain 70% baseline at ALL noise fractions (1-5%) at 1.0x scale, while AC protection fails (30% at 3%). H2O = TC >> Random > AC (Exp 015)
+- **Sharp additive noise cliff between 0.3x and 1.0x on Qwen-Instruct** — Zero degradation at all scales ≤0.3x. Dramatic strategy-dependent effects only at 1.0x. The cliff is sharper than predicted (Exp 015)
 
 ### Disconfirmed or Revised
 - **Position-level functional separation via zeroing** (Exp 002): Zeroing is too weak. Methodological limitation, not evidence against spatial structure.
@@ -132,8 +144,9 @@ KV cache fragility. Three distinct encoding regimes now identified:
 - **AC-aware compression would outperform H2O** (Exp 012): DISCONFIRMED. AC-protection performs no better than random on Llama. H2O-protection outperforms AC-protection by 24-48pp in the informative noise range (1-5%). Raw answer-token attention does not identify causally important positions for answer accuracy.
 - **Selectivity (AC-TC rank) as a protection metric** (Exp 013): DISCONFIRMED. Selectivity performs no better than raw AC and both ≈ random. The selectivity framework does NOT rescue the AC/TC protection approach on Llama. TC > H2O >> Random ≈ AC ≈ SEL.
 - **"Answer-coupled positions" are causally distinct on Llama** (Exp 012, 013): DISCONFIRMED. The ~24pp destruction dissociation (exp_004/005) reflects hub destruction effects and positional confounds, not genuine channel separation. Position in the causal chain is the dominant factor. The spatial structure claim is valid only on Qwen (PGD rho=0.78).
-- **Concentrated encoding survives instruction tuning** (Exp 014): DISCONFIRMED. Qwen3-4B-Instruct shows zero noise tolerance, not the concentrated-but-tolerant pattern of Qwen3-4B-Base. Instruction tuning eliminates the dissociation effect and creates ultra-fragile coupling. Scenario A (concentrated, like Base) was predicted most likely but all pre-registered predictions were strongly disconfirmed.
-- **Encoding difference is purely architectural (Qwen vs Llama)** (Exp 014): REVISED. Same Qwen architecture shows different encoding under Base vs Instruct training. The Base/Instruct axis is at least as important as the Qwen/Llama axis. Need Llama-Base to complete the 2x2 comparison.
+- **Concentrated encoding survives instruction tuning** (Exp 014, 015): DISCONFIRMED. Qwen3-4B-Instruct shows REVERSED dissociation (-47pp), not the concentrated +24pp pattern of Qwen3-4B-Base. Instruction tuning flips which positions are critical (TC becomes critical, AC becomes dispensable). Note: Exp 014's "ultra-fragile" finding was itself a pipeline bug — the real pattern is reversed, not fragile.
+- **Encoding difference is purely architectural (Qwen vs Llama)** (Exp 014, 015): REVISED. Same Qwen architecture shows different encoding under Base vs Instruct training. The Base/Instruct axis is at least as important as the Qwen/Llama axis. Need Llama-Base to complete the 2x2 comparison.
+- **Exp 014's "ultra-fragile encoding" finding** (Exp 015): DISCONFIRMED — PIPELINE BUG. Exp 014 teacher-forced the full trace including "#### answer", then generated from beyond the answer. The model started new questions instead of regenerating answers → 0% accuracy everywhere. Fixed pipeline in exp 015 shows Qwen-Instruct is not ultra-fragile at all.
 
 ---
 
@@ -276,16 +289,23 @@ See `literature_notes/cycle_010_*.md` for detailed paper summaries
 - Evidential strength: strong (decisive negative result with clean mechanistic explanation)
 - See `experiment_log/exp_013.md`, `results/exp_013/`
 
-### Exp 014 (Cycle 15) — SURPRISING ULTRA-FRAGILE ENCODING
+### Exp 014 (Cycle 15) — **INVALIDATED BY PIPELINE BUG**
 **Qwen3-4B (Instruct) Encoding Strategy — Base vs Instruct Control**
 - Model: Qwen/Qwen3-4B (instruct), n=27 valid problems (90% baseline)
-- **Ultra-fragile encoding:** 90% baseline → 0-4% under ANY strategy at 1% norm-matched noise
-- **No dissociation:** SelTC-SelAC gap = -3.7 to +7.4pp (noise, all at floor)
-- **No protection strategy works:** AC=0%, H2O=4%, TC=0%, Random=11% at 1% noise
-- **All pre-registered predictions strongly disconfirmed** — result matches none of three scenarios (A: concentrated, B: distributed, C: intermediate)
-- **Training-dependent encoding:** Same architecture as Qwen3-4B-Base but completely different encoding. Base=concentrated/tolerant, Instruct=ultra-fragile
-- **Resolved Open Q17, Q28:** Low Qwen-Base accuracy was a Base model limitation (Instruct gets 90% with same eager attention)
-- **Position vs TC sign reversal:** Qwen-Instruct rho=-0.44 vs Llama rho=+0.44 (opposite attention patterns)
-- **Confound:** Norm-matched noise may be too strong for this model; lower scales might reveal spatial structure
-- Evidential strength: strong (unexpected negative result; large n=27; clean architecture control)
+- **⚠️ PIPELINE BUG:** Teacher-forced FULL trace including "#### answer", then generated from beyond the answer. Model produced new questions ("Q: ...") instead of regenerating the answer → 0% accuracy under all conditions
+- Original "ultra-fragile encoding" finding was entirely an artifact of this bug
+- **Still valid findings:** Position vs TC sign reversal (rho=-0.44 vs Llama +0.44), baseline accuracy (90%), eager attention works on Instruct
+- Evidential strength: **invalidated** for main claims (ultra-fragility, no dissociation, no protection)
 - See `experiment_log/exp_014.md`, `results/exp_014/`
+
+### Exp 015 (Cycle 16) — REVERSED DISSOCIATION (corrects Exp 014)
+**Qwen3-4B-Instruct Noise Scale Sweep (pipeline-corrected)**
+- Model: Qwen/Qwen3-4B (instruct), n=30 problems (70% pipeline baseline, 86% direct generation)
+- **REVERSED dissociation:** SelTC destruction crashes accuracy (-47pp at 3%/1.0x), SelAC has NO effect. Opposite sign from Qwen-Base (+24pp) and Llama (+24pp)
+- **Perfect H2O/TC protection:** Both maintain 70% baseline at ALL noise fractions (1-5%) at 1.0x
+- **AC protection FAILS:** 30% at 3%/1.0x (vs 70% baseline). Ranking: H2O = TC >> Random > AC
+- **Sharp cliff at 0.3x-1.0x:** Zero degradation at scales ≤0.3x. Dramatic effects only at 1.0x
+- **Pipeline fix:** Truncate trace at "####" (teacher-force reasoning only), lookback re-computation (20 tokens), generate answer from end of reasoning
+- **Answered Q37, Q40, Q41:** Ultra-fragility was a pipeline bug. Cliff is at 0.3x-1.0x additive noise. Reversed dissociation is a novel fourth pattern
+- Evidential strength: strong (n=30, corrects pipeline bug, large effect size, clean results)
+- See `experiment_log/exp_015.md`, `results/exp_015/`
