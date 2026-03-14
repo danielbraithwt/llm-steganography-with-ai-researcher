@@ -1,0 +1,970 @@
+{
+  "experiment": "exp_011_h2o_overlap",
+  "elapsed_seconds": 173.27548694610596,
+  "models": {
+    "Qwen3-4B-Base": {
+      "model": "Qwen/Qwen3-4B-Base",
+      "model_short": "Qwen3-4B-Base",
+      "n_valid": 4,
+      "n_positions": 356,
+      "pooled_correlations": {
+        "h2o_vs_ac": {
+          "spearman_rho": 0.0034531069118664795,
+          "spearman_p": 0.9482343953876518,
+          "pearson_r": -0.150526762008667,
+          "pearson_p": 0.004421939607709646
+        },
+        "h2o_vs_tc": {
+          "spearman_rho": 0.03838954199691473,
+          "spearman_p": 0.4702629890928454,
+          "pearson_r": -0.06024693325161934,
+          "pearson_p": 0.25689128041267395
+        },
+        "h2o_vs_selectivity": {
+          "spearman_rho": -0.022420780415218798,
+          "spearman_p": 0.67331725241032,
+          "pearson_r": -0.07797506945233407,
+          "pearson_p": 0.14202470430542274
+        },
+        "ac_vs_tc": {
+          "spearman_rho": 0.6351961306479603,
+          "spearman_p": 1.2847607593462065e-41,
+          "pearson_r": 0.021387599408626556,
+          "pearson_p": 0.6875612735748291
+        }
+      },
+      "per_problem_correlations": {
+        "h2o_vs_ac": {
+          "mean_rho": -0.023304770759650068,
+          "std_rho": 0.08794863642015104,
+          "median_rho": -0.026850603565565137,
+          "min_rho": -0.13535943892460553,
+          "max_rho": 0.09584156301713553,
+          "n": 4
+        },
+        "h2o_vs_tc": {
+          "mean_rho": 0.05930704267476452,
+          "std_rho": 0.015719570107799306,
+          "median_rho": 0.06042620891822548,
+          "min_rho": 0.037591416217370416,
+          "max_rho": 0.07878433664523671,
+          "n": 4
+        },
+        "h2o_vs_selectivity": {
+          "mean_rho": -0.042730440962290096,
+          "std_rho": 0.11968024968714606,
+          "median_rho": -0.07007370788695849,
+          "min_rho": -0.17188367858528253,
+          "max_rho": 0.14110933051003913,
+          "n": 4
+        },
+        "ac_vs_tc": {
+          "mean_rho": 0.5990032103402807,
+          "std_rho": 0.10702538439411216,
+          "median_rho": 0.5636861200874244,
+          "min_rho": 0.49616956077630237,
+          "max_rho": 0.7724710404099717,
+          "n": 4
+        }
+      },
+      "mean_overlaps": {
+        "0.1": {
+          "h2o_ac_jaccard_mean": 0.084508547008547,
+          "h2o_tc_jaccard_mean": 0.0734920634920635,
+          "h2o_sel_jaccard_mean": 0.01,
+          "h2o_retains_ac_selective_mean": 0.3470467032967033,
+          "h2o_retains_tc_selective_mean": 0.5524725274725275
+        },
+        "0.2": {
+          "h2o_ac_jaccard_mean": 0.17162177805216855,
+          "h2o_tc_jaccard_mean": 0.13319349097381133,
+          "h2o_sel_jaccard_mean": 0.11722074468085107,
+          "h2o_retains_ac_selective_mean": 0.44452900041135335,
+          "h2o_retains_tc_selective_mean": 0.5084224598930481
+        },
+        "0.3": {
+          "h2o_ac_jaccard_mean": 0.18573941909539737,
+          "h2o_tc_jaccard_mean": 0.20316180235535075,
+          "h2o_sel_jaccard_mean": 0.17701827190408156,
+          "h2o_retains_ac_selective_mean": 0.41997016197783454,
+          "h2o_retains_tc_selective_mean": 0.5492983146435831
+        },
+        "0.4": {
+          "h2o_ac_jaccard_mean": 0.2458133971291866,
+          "h2o_tc_jaccard_mean": 0.2531902035448135,
+          "h2o_sel_jaccard_mean": 0.21859206766389977,
+          "h2o_retains_ac_selective_mean": 0.42038143016403884,
+          "h2o_retains_tc_selective_mean": 0.5567984551680204
+        },
+        "0.5": {
+          "h2o_ac_jaccard_mean": 0.2924133544353629,
+          "h2o_tc_jaccard_mean": 0.3486656200941915,
+          "h2o_sel_jaccard_mean": 0.3096810689112899,
+          "h2o_retains_ac_selective_mean": 0.43628780475422946,
+          "h2o_retains_tc_selective_mean": 0.5455635335626261
+        },
+        "0.6": {
+          "h2o_ac_jaccard_mean": 0.39481863166073694,
+          "h2o_tc_jaccard_mean": 0.4416319304379006,
+          "h2o_sel_jaccard_mean": 0.4206676192744304,
+          "h2o_retains_ac_selective_mean": 0.4626711680444249,
+          "h2o_retains_tc_selective_mean": 0.5222638654755144
+        },
+        "0.7": {
+          "h2o_ac_jaccard_mean": 0.519530324567638,
+          "h2o_tc_jaccard_mean": 0.549893678516867,
+          "h2o_sel_jaccard_mean": 0.5408873729032904,
+          "h2o_retains_ac_selective_mean": 0.4575123820703738,
+          "h2o_retains_tc_selective_mean": 0.5296105461422476
+        },
+        "0.8": {
+          "h2o_ac_jaccard_mean": 0.6494801123393616,
+          "h2o_tc_jaccard_mean": 0.6893212336760723,
+          "h2o_sel_jaccard_mean": 0.670500207398274,
+          "h2o_retains_ac_selective_mean": 0.4628079864041106,
+          "h2o_retains_tc_selective_mean": 0.5235440455914635
+        },
+        "0.9": {
+          "h2o_ac_jaccard_mean": 0.8153893746906452,
+          "h2o_tc_jaccard_mean": 0.8268934757612849,
+          "h2o_sel_jaccard_mean": 0.8304363536682616,
+          "h2o_retains_ac_selective_mean": 0.4690441320824832,
+          "h2o_retains_tc_selective_mean": 0.5167036303751849
+        }
+      },
+      "quartile_data": [
+        {
+          "quartile": "Q1 (lowest H2O)",
+          "n": 89,
+          "mean_h2o": 0.10673117637634277,
+          "mean_ac": 0.005417144391685724,
+          "mean_tc": 0.00578502519056201,
+          "mean_selectivity": 0.024633979063616702
+        },
+        {
+          "quartile": "Q2",
+          "n": 89,
+          "mean_h2o": 0.20707175135612488,
+          "mean_ac": 0.0008473017951473594,
+          "mean_tc": 0.00395802641287446,
+          "mean_selectivity": 0.009352617447195235
+        },
+        {
+          "quartile": "Q3",
+          "n": 89,
+          "mean_h2o": 0.3021541237831116,
+          "mean_ac": 0.001260044751688838,
+          "mean_tc": 0.0035665675532072783,
+          "mean_selectivity": -0.00981049477246382
+        },
+        {
+          "quartile": "Q4 (highest H2O)",
+          "n": 89,
+          "mean_h2o": 0.5103491544723511,
+          "mean_ac": 0.001857031718827784,
+          "mean_tc": 0.00462275929749012,
+          "mean_selectivity": -0.024176101738348107
+        }
+      ],
+      "per_problem_summary": [
+        {
+          "ds_idx": 1214,
+          "reasoning_len": 59,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": -0.13535943892460553,
+              "spearman_p": 0.3066940295415799,
+              "pearson_r": -0.15756146609783173,
+              "pearson_p": 0.23333217203617096
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.07878433664523671,
+              "spearman_p": 0.5530947243673946,
+              "pearson_r": 0.04564337804913521,
+              "pearson_p": 0.7313948273658752
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.17188367858528253,
+              "spearman_p": 0.1930095687915005,
+              "pearson_r": -0.2363425735647741,
+              "pearson_p": 0.07151938802015054
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.5272355347749855,
+              "spearman_p": 1.7839094037731547e-05,
+              "pearson_r": -0.03640766814351082,
+              "pearson_p": 0.7842689156532288
+            }
+          }
+        },
+        {
+          "ds_idx": 608,
+          "reasoning_len": 131,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.09584156301713553,
+              "spearman_p": 0.2761748755214131,
+              "pearson_r": -0.13757535815238953,
+              "pearson_p": 0.11711665987968445
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.037591416217370416,
+              "spearman_p": 0.6699034326199654,
+              "pearson_r": -0.11906885355710983,
+              "pearson_p": 0.17555516958236694
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": 0.14110933051003913,
+              "spearman_p": 0.10791274334369845,
+              "pearson_r": 0.036646498691885174,
+              "pearson_p": 0.6777334413942236
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.7724710404099717,
+              "spearman_p": 3.2955615888337926e-27,
+              "pearson_r": 0.15480145812034607,
+              "pearson_p": 0.07748626172542572
+            }
+          }
+        },
+        {
+          "ds_idx": 672,
+          "reasoning_len": 77,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.018770702981229292,
+              "spearman_p": 0.8712803387798982,
+              "pearson_r": -0.15449504554271698,
+              "pearson_p": 0.17973072826862335
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.05221094694778906,
+              "spearman_p": 0.6520159740936226,
+              "pearson_r": -0.04765297472476959,
+              "pearson_p": 0.6806710958480835
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.0184960004690062,
+              "spearman_p": 0.8731483561506779,
+              "pearson_r": -0.04560481762774371,
+              "pearson_p": 0.6936990452525369
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.6001367053998633,
+              "spearman_p": 7.994165238405847e-09,
+              "pearson_r": -0.04639476537704468,
+              "pearson_p": 0.6886631846427917
+            }
+          }
+        },
+        {
+          "ds_idx": 730,
+          "reasoning_len": 89,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": -0.07247191011235957,
+              "spearman_p": 0.4997254655550608,
+              "pearson_r": -0.1652183085680008,
+              "pearson_p": 0.12179405242204666
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.0686414708886619,
+              "spearman_p": 0.5227171883924232,
+              "pearson_r": 0.01960296928882599,
+              "pearson_p": 0.8553177714347839
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.12165141530491079,
+              "spearman_p": 0.256100133139367,
+              "pearson_r": -0.1429354056350725,
+              "pearson_p": 0.18146428093023487
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.49616956077630237,
+              "spearman_p": 7.629269198572021e-07,
+              "pearson_r": -0.05989450961351395,
+              "pearson_p": 0.5771467089653015
+            }
+          }
+        }
+      ]
+    },
+    "Llama-3.1-8B-Instruct": {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "model_short": "Llama-3.1-8B-Instruct",
+      "n_valid": 17,
+      "n_positions": 1258,
+      "pooled_correlations": {
+        "h2o_vs_ac": {
+          "spearman_rho": 0.11038086186488734,
+          "spearman_p": 8.740869633714603e-05,
+          "pearson_r": -0.17178724706172943,
+          "pearson_p": 8.646106608445336e-10
+        },
+        "h2o_vs_tc": {
+          "spearman_rho": 0.169338341578622,
+          "spearman_p": 1.5046042722526253e-09,
+          "pearson_r": 0.0061950101517140865,
+          "pearson_p": 0.8262510895729065
+        },
+        "h2o_vs_selectivity": {
+          "spearman_rho": -0.05305883595246502,
+          "spearman_p": 0.05992283013464152,
+          "pearson_r": -0.06928001890834717,
+          "pearson_p": 0.01398085427180529
+        },
+        "ac_vs_tc": {
+          "spearman_rho": 0.6371665266659694,
+          "spearman_p": 3.119819803001887e-144,
+          "pearson_r": 0.024483542889356613,
+          "pearson_p": 0.3855821490287781
+        }
+      },
+      "per_problem_correlations": {
+        "h2o_vs_ac": {
+          "mean_rho": 0.16876086994556025,
+          "std_rho": 0.07757546088230123,
+          "median_rho": 0.1617455492835432,
+          "min_rho": 0.06176381757777106,
+          "max_rho": 0.3280684104627767,
+          "n": 17
+        },
+        "h2o_vs_tc": {
+          "mean_rho": 0.24712507394743946,
+          "std_rho": 0.07110278671627575,
+          "median_rho": 0.23769989150431625,
+          "min_rho": 0.1149356972141782,
+          "max_rho": 0.412020905923345,
+          "n": 17
+        },
+        "h2o_vs_selectivity": {
+          "mean_rho": -0.07232690684449863,
+          "std_rho": 0.1079489272487133,
+          "median_rho": -0.07151231427503382,
+          "min_rho": -0.29756825899431144,
+          "max_rho": 0.10009348752473013,
+          "n": 17
+        },
+        "ac_vs_tc": {
+          "mean_rho": 0.5942693683436562,
+          "std_rho": 0.0922108022551893,
+          "median_rho": 0.6085939377078616,
+          "min_rho": 0.3224346076458752,
+          "max_rho": 0.7079365079365081,
+          "n": 17
+        }
+      },
+      "mean_overlaps": {
+        "0.1": {
+          "h2o_ac_jaccard_mean": 0.11263328175092881,
+          "h2o_tc_jaccard_mean": 0.03618304033528947,
+          "h2o_sel_jaccard_mean": 0.007985094490284802,
+          "h2o_retains_ac_selective_mean": 0.44149265766912826,
+          "h2o_retains_tc_selective_mean": 0.5269947372888549
+        },
+        "0.2": {
+          "h2o_ac_jaccard_mean": 0.14403278386983717,
+          "h2o_tc_jaccard_mean": 0.12777152680033285,
+          "h2o_sel_jaccard_mean": 0.06948903381787286,
+          "h2o_retains_ac_selective_mean": 0.4099607317694425,
+          "h2o_retains_tc_selective_mean": 0.5674902486227144
+        },
+        "0.3": {
+          "h2o_ac_jaccard_mean": 0.20912501364595826,
+          "h2o_tc_jaccard_mean": 0.19812137956723508,
+          "h2o_sel_jaccard_mean": 0.16459081254621108,
+          "h2o_retains_ac_selective_mean": 0.4030823635447209,
+          "h2o_retains_tc_selective_mean": 0.5712057864979049
+        },
+        "0.4": {
+          "h2o_ac_jaccard_mean": 0.2903536168543486,
+          "h2o_tc_jaccard_mean": 0.316038442853744,
+          "h2o_sel_jaccard_mean": 0.23361384574546362,
+          "h2o_retains_ac_selective_mean": 0.389356668295114,
+          "h2o_retains_tc_selective_mean": 0.58252634380293
+        },
+        "0.5": {
+          "h2o_ac_jaccard_mean": 0.38990990686325566,
+          "h2o_tc_jaccard_mean": 0.41852675890745206,
+          "h2o_sel_jaccard_mean": 0.2946886273968213,
+          "h2o_retains_ac_selective_mean": 0.39705686697856724,
+          "h2o_retains_tc_selective_mean": 0.5744864956292325
+        },
+        "0.6": {
+          "h2o_ac_jaccard_mean": 0.49918586609892657,
+          "h2o_tc_jaccard_mean": 0.5289883159983523,
+          "h2o_sel_jaccard_mean": 0.3748235245225744,
+          "h2o_retains_ac_selective_mean": 0.40342615219493033,
+          "h2o_retains_tc_selective_mean": 0.5673077799685335
+        },
+        "0.7": {
+          "h2o_ac_jaccard_mean": 0.6214643226227963,
+          "h2o_tc_jaccard_mean": 0.6308271637972677,
+          "h2o_sel_jaccard_mean": 0.5013017567392135,
+          "h2o_retains_ac_selective_mean": 0.4186694798553048,
+          "h2o_retains_tc_selective_mean": 0.5528428104859991
+        },
+        "0.8": {
+          "h2o_ac_jaccard_mean": 0.7286445093807887,
+          "h2o_tc_jaccard_mean": 0.738687585284039,
+          "h2o_sel_jaccard_mean": 0.6539132289604781,
+          "h2o_retains_ac_selective_mean": 0.42431119505598935,
+          "h2o_retains_tc_selective_mean": 0.5422865079142114
+        },
+        "0.9": {
+          "h2o_ac_jaccard_mean": 0.8177288263701312,
+          "h2o_tc_jaccard_mean": 0.8412421307691444,
+          "h2o_sel_jaccard_mean": 0.8127214159584168,
+          "h2o_retains_ac_selective_mean": 0.4226708311644096,
+          "h2o_retains_tc_selective_mean": 0.5464899044165802
+        }
+      },
+      "quartile_data": [
+        {
+          "quartile": "Q1 (lowest H2O)",
+          "n": 315,
+          "mean_h2o": 0.06824953109025955,
+          "mean_ac": 0.006622126791626215,
+          "mean_tc": 0.006304117850959301,
+          "mean_selectivity": 0.023785725904110107
+        },
+        {
+          "quartile": "Q2",
+          "n": 314,
+          "mean_h2o": 0.14986705780029297,
+          "mean_ac": 0.0008843863615766168,
+          "mean_tc": 0.004561067558825016,
+          "mean_selectivity": 0.0015882503007762462
+        },
+        {
+          "quartile": "Q3",
+          "n": 314,
+          "mean_h2o": 0.22239044308662415,
+          "mean_ac": 0.001116719446144998,
+          "mean_tc": 0.005376444663852453,
+          "mean_selectivity": -0.007310077227844825
+        },
+        {
+          "quartile": "Q4 (highest H2O)",
+          "n": 315,
+          "mean_h2o": 0.36538809537887573,
+          "mean_ac": 0.002202024217694998,
+          "mean_tc": 0.005705611314624548,
+          "mean_selectivity": -0.018082063506968733
+        }
+      ],
+      "per_problem_summary": [
+        {
+          "ds_idx": 1214,
+          "reasoning_len": 91,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.15981844242713808,
+              "spearman_p": 0.1302187239270291,
+              "pearson_r": -0.13692480325698853,
+              "pearson_p": 0.19558684527873993
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.1889472845994585,
+              "spearman_p": 0.07285790884112088,
+              "pearson_r": 0.017162570729851723,
+              "pearson_p": 0.871724009513855
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.0294269902151485,
+              "spearman_p": 0.7818607449441226,
+              "pearson_r": -0.03748310692189907,
+              "pearson_p": 0.7242780408782317
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.6598502946329033,
+              "spearman_p": 1.1297415688492955e-12,
+              "pearson_r": -0.04538555443286896,
+              "pearson_p": 0.6692436933517456
+            }
+          }
+        },
+        {
+          "ds_idx": 57,
+          "reasoning_len": 58,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.2216924543972439,
+              "spearman_p": 0.09442801508316237,
+              "pearson_r": -0.18635056912899017,
+              "pearson_p": 0.16133004426956177
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.2816143221877019,
+              "spearman_p": 0.03222781915849643,
+              "pearson_r": 0.09410343319177628,
+              "pearson_p": 0.48228567838668823
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.02678324904385715,
+              "spearman_p": 0.8418164146687864,
+              "pearson_r": -0.11152212023455334,
+              "pearson_p": 0.40459508751702056
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.6749207911655235,
+              "spearman_p": 6.246648292145585e-09,
+              "pearson_r": -0.000990609871223569,
+              "pearson_p": 0.9941115379333496
+            }
+          }
+        },
+        {
+          "ds_idx": 1252,
+          "reasoning_len": 86,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.08101325534223311,
+              "spearman_p": 0.4583827636222517,
+              "pearson_r": -0.1798744648694992,
+              "pearson_p": 0.09747415035963058
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.23769989150431625,
+              "spearman_p": 0.027540448302809075,
+              "pearson_r": -0.022005196660757065,
+              "pearson_p": 0.8406156897544861
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.15847433178160544,
+              "spearman_p": 0.14501918867709743,
+              "pearson_r": -0.15745683420510934,
+              "pearson_p": 0.14765168335795445
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.5971885466295579,
+              "spearman_p": 1.2851290144826109e-09,
+              "pearson_r": 0.08904830366373062,
+              "pearson_p": 0.41487932205200195
+            }
+          }
+        },
+        {
+          "ds_idx": 618,
+          "reasoning_len": 153,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.250546151474944,
+              "spearman_p": 0.001786248232398736,
+              "pearson_r": -0.10948072373867035,
+              "pearson_p": 0.17793208360671997
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.1694711377373916,
+              "spearman_p": 0.03624000065117216,
+              "pearson_r": -0.06553815305233002,
+              "pearson_p": 0.42088887095451355
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": 0.10009348752473013,
+              "spearman_p": 0.21831209587560266,
+              "pearson_r": 0.07132545045853195,
+              "pearson_p": 0.38096018814259436
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.5643520566121184,
+              "spearman_p": 3.0290216750925154e-14,
+              "pearson_r": 0.041793640702962875,
+              "pearson_p": 0.6079913377761841
+            }
+          }
+        },
+        {
+          "ds_idx": 599,
+          "reasoning_len": 71,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.3280684104627767,
+              "spearman_p": 0.00522155704096609,
+              "pearson_r": -0.22427605092525482,
+              "pearson_p": 0.060071371495723724
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.21545942320590203,
+              "spearman_p": 0.07114870244180696,
+              "pearson_r": 0.15732088685035706,
+              "pearson_p": 0.19010941684246063
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": 0.0987087050606684,
+              "spearman_p": 0.41280135533316537,
+              "pearson_r": 0.0777004459060104,
+              "pearson_p": 0.5195305596231659
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.3224346076458752,
+              "spearman_p": 0.006100839203792726,
+              "pearson_r": 0.12559816241264343,
+              "pearson_p": 0.29664090275764465
+            }
+          }
+        },
+        {
+          "ds_idx": 289,
+          "reasoning_len": 80,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.31783872480075015,
+              "spearman_p": 0.004066022395304966,
+              "pearson_r": -0.06018293648958206,
+              "pearson_p": 0.5959028005599976
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.32144866385372717,
+              "spearman_p": 0.0036437611124946244,
+              "pearson_r": 0.19995324313640594,
+              "pearson_p": 0.07535562664270401
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": 0.012964634554318361,
+              "spearman_p": 0.9091276366350081,
+              "pearson_r": -0.0075119746934815546,
+              "pearson_p": 0.9472722538924621
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.6448429442100329,
+              "spearman_p": 1.0788766160849857e-10,
+              "pearson_r": -0.03477538377046585,
+              "pearson_p": 0.7594236135482788
+            }
+          }
+        },
+        {
+          "ds_idx": 608,
+          "reasoning_len": 102,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.08568229752729699,
+              "spearman_p": 0.39185405075456353,
+              "pearson_r": -0.1558520644903183,
+              "pearson_p": 0.11776962131261826
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.2729699012162781,
+              "spearman_p": 0.005506495299960656,
+              "pearson_r": -0.010782439261674881,
+              "pearson_p": 0.9143457412719727
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.21846311322148307,
+              "spearman_p": 0.027391385678805957,
+              "pearson_r": -0.18541070496463039,
+              "pearson_p": 0.0620848540896438
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.6891281361145823,
+              "spearman_p": 1.1753461628293121e-15,
+              "pearson_r": 0.0518447645008564,
+              "pearson_p": 0.6048064827919006
+            }
+          }
+        },
+        {
+          "ds_idx": 400,
+          "reasoning_len": 43,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.23648444578677139,
+              "spearman_p": 0.12681448338480109,
+              "pearson_r": -0.21303188800811768,
+              "pearson_p": 0.17019319534301758
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.31244337058290544,
+              "spearman_p": 0.04136650943986376,
+              "pearson_r": 0.249644935131073,
+              "pearson_p": 0.10642512887716293
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.02826910123966807,
+              "spearman_p": 0.8571946915561128,
+              "pearson_r": -0.07777557007268578,
+              "pearson_p": 0.620083438185991
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.561763817577771,
+              "spearman_p": 8.866163950115438e-05,
+              "pearson_r": -0.12365403771400452,
+              "pearson_p": 0.4295284152030945
+            }
+          }
+        },
+        {
+          "ds_idx": 237,
+          "reasoning_len": 52,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.10364552206949544,
+              "spearman_p": 0.4646553509549603,
+              "pearson_r": -0.25299569964408875,
+              "pearson_p": 0.07035873830318451
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.19550926321181591,
+              "spearman_p": 0.16482920209179103,
+              "pearson_r": 0.04020832106471062,
+              "pearson_p": 0.7771672010421753
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.10272832307873436,
+              "spearman_p": 0.4686377230127531,
+              "pearson_r": -0.10928451386382985,
+              "pearson_p": 0.44057715527419805
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.5271920088790233,
+              "spearman_p": 5.9321975168792115e-05,
+              "pearson_r": -0.06350666284561157,
+              "pearson_p": 0.6546785235404968
+            }
+          }
+        },
+        {
+          "ds_idx": 616,
+          "reasoning_len": 78,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.16324182146966956,
+              "spearman_p": 0.1532818226905194,
+              "pearson_r": -0.1736278533935547,
+              "pearson_p": 0.128447026014328
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.1149356972141782,
+              "spearman_p": 0.31633324948588404,
+              "pearson_r": -0.0049418010748922825,
+              "pearson_p": 0.9657489061355591
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": 0.07511921369478101,
+              "spearman_p": 0.5133384889612108,
+              "pearson_r": 0.02221906376662655,
+              "pearson_p": 0.8468892217938815
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.6085939377078616,
+              "spearman_p": 3.4007833935816324e-09,
+              "pearson_r": -0.0810818001627922,
+              "pearson_p": 0.4803769886493683
+            }
+          }
+        },
+        {
+          "ds_idx": 463,
+          "reasoning_len": 43,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.06176381757777106,
+              "spearman_p": 0.6939842481132965,
+              "pearson_r": -0.2336171269416809,
+              "pearson_p": 0.13162139058113098
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.17456961643008156,
+              "spearman_p": 0.26287517370367786,
+              "pearson_r": 0.19772320985794067,
+              "pearson_p": 0.20374909043312073
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.07151231427503382,
+              "spearman_p": 0.6486031287177779,
+              "pearson_r": -0.13192649014558236,
+              "pearson_p": 0.39905915022116545
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.47976442162488675,
+              "spearman_p": 0.0011320542812911854,
+              "pearson_r": -0.024714451283216476,
+              "pearson_p": 0.8749989867210388
+            }
+          }
+        },
+        {
+          "ds_idx": 222,
+          "reasoning_len": 55,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.1257575757575758,
+              "spearman_p": 0.3602648292884002,
+              "pearson_r": -0.2017810046672821,
+              "pearson_p": 0.13958993554115295
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.27727272727272734,
+              "spearman_p": 0.04041781536152965,
+              "pearson_r": 0.018787093460559845,
+              "pearson_p": 0.8917098641395569
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.16282931410356086,
+              "spearman_p": 0.23491828167298412,
+              "pearson_r": -0.20193153587716228,
+              "pearson_p": 0.13928871294091716
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.7079365079365081,
+              "spearman_p": 1.4992146313015104e-09,
+              "pearson_r": 0.039632249623537064,
+              "pearson_p": 0.7738962769508362
+            }
+          }
+        },
+        {
+          "ds_idx": 238,
+          "reasoning_len": 74,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.08392447241762309,
+              "spearman_p": 0.4771398132407377,
+              "pearson_r": -0.21663568913936615,
+              "pearson_p": 0.06374970823526382
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.19155868196964082,
+              "spearman_p": 0.1020541669524581,
+              "pearson_r": -0.058201711624860764,
+              "pearson_p": 0.622320830821991
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.12630253873218186,
+              "spearman_p": 0.2835855677357646,
+              "pearson_r": -0.09460546759956565,
+              "pearson_p": 0.4226846264818676
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.6186597556460569,
+              "spearman_p": 4.247756237902942e-09,
+              "pearson_r": 0.06125130504369736,
+              "pearson_p": 0.6041650772094727
+            }
+          }
+        },
+        {
+          "ds_idx": 730,
+          "reasoning_len": 66,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.1791671015551613,
+              "spearman_p": 0.15002985523018889,
+              "pearson_r": -0.151350200176239,
+              "pearson_p": 0.22509734332561493
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.3277528441707547,
+              "spearman_p": 0.007221696058770515,
+              "pearson_r": 0.14554959535598755,
+              "pearson_p": 0.2435823380947113
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.15292423172277442,
+              "spearman_p": 0.22025500268207665,
+              "pearson_r": -0.18291445523193403,
+              "pearson_p": 0.1415494334778481
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.6991128274710366,
+              "spearman_p": 6.637394375918759e-11,
+              "pearson_r": -0.03610876947641373,
+              "pearson_p": 0.7734709978103638
+            }
+          }
+        },
+        {
+          "ds_idx": 55,
+          "reasoning_len": 41,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.17160278745644603,
+              "spearman_p": 0.2833626076261401,
+              "pearson_r": -0.2040991336107254,
+              "pearson_p": 0.20055212080478668
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.412020905923345,
+              "spearman_p": 0.007435380550177751,
+              "pearson_r": 0.2638281583786011,
+              "pearson_p": 0.09556229412555695
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.29756825899431144,
+              "spearman_p": 0.05882556375016892,
+              "pearson_r": -0.24159216360910787,
+              "pearson_p": 0.12807247053129256
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.5611498257839722,
+              "spearman_p": 0.00013527018820310994,
+              "pearson_r": -0.100020632147789,
+              "pearson_p": 0.5338090062141418
+            }
+          }
+        },
+        {
+          "ds_idx": 772,
+          "reasoning_len": 117,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.13694195926808436,
+              "spearman_p": 0.14094105685565259,
+              "pearson_r": -0.10569693893194199,
+              "pearson_p": 0.2567139267921448
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.27123889163632003,
+              "spearman_p": 0.0030958246933484638,
+              "pearson_r": -0.03062870353460312,
+              "pearson_p": 0.7430479526519775
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.1262853429683943,
+              "spearman_p": 0.17485832613017938,
+              "pearson_r": -0.15731406054608485,
+              "pearson_p": 0.09028307063774862
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.6309775360038363,
+              "spearman_p": 2.4349180938832856e-14,
+              "pearson_r": 0.07004918903112411,
+              "pearson_p": 0.45296263694763184
+            }
+          }
+        },
+        {
+          "ds_idx": 176,
+          "reasoning_len": 48,
+          "correlations": {
+            "h2o_vs_ac": {
+              "spearman_rho": 0.1617455492835432,
+              "spearman_p": 0.27206539691153586,
+              "pearson_r": -0.17544881999492645,
+              "pearson_p": 0.23295465111732483
+            },
+            "h2o_vs_tc": {
+              "spearman_rho": 0.23621363438992615,
+              "spearman_p": 0.10601577471392994,
+              "pearson_r": 0.1293923556804657,
+              "pearson_p": 0.38074779510498047
+            },
+            "h2o_vs_selectivity": {
+              "spearman_rho": -0.014876347814221421,
+              "spearman_p": 0.9200624596180017,
+              "pearson_r": -0.05843576724532879,
+              "pearson_p": 0.6931968351115608
+            },
+            "ac_vs_tc": {
+              "spearman_rho": 0.554711246200608,
+              "spearman_p": 4.289206209707119e-05,
+              "pearson_r": -0.13023099303245544,
+              "pearson_p": 0.37764212489128113
+            }
+          }
+        }
+      ]
+    }
+  }
+}

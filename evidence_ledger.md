@@ -1,18 +1,18 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-14 (cycle 10, literature scan)
-Cycles completed: 10
+Last updated: 2026-03-14 (cycle 11, H2O overlap experiment)
+Cycles completed: 11
 
-### Hypothesis Status: REFRAMED — "causal bypass" and "latent reasoning" literature independently validates core claim; architecture-specific encoding now understood as GQA/MHA effect
+### Hypothesis Status: REFRAMED — hidden channel confirmed but NOT captured by standard KV compression; GQA/MHA explanation invalidated (both models use GQA)
 
 The KV cache carries a functionally separable hidden channel that encodes answer-relevant
-information independent of the visible reasoning tokens. Literature scan (cycle 10) reveals
-strong convergent evidence from independent research groups: "causal bypass" (CMI metric),
-KV cache steering, Coconut/latent reasoning, and CoT unfaithfulness "in the wild" all
-support the core hypothesis from different angles. The Qwen-specific findings (SNR cliff,
-PGD null space) are now plausibly explained by GQA vs MHA architecture differences rather
-than falsifying the general hypothesis.
+information independent of the visible reasoning tokens. Exp 011 reveals that H2O heavy-hitter
+positions (used by practical KV compression) do NOT overlap with answer-coupled positions
+(rho=0.004-0.11). H2O preferentially retains text-coupled positions (57% TC vs 40% AC).
+This means standard KV compression may actively harm the hidden channel while preserving text
+coherence. **Important correction:** Qwen3-4B-Base also uses GQA (8 KV heads), NOT MHA.
+The GQA-vs-MHA hypothesis for architecture differences is therefore INVALIDATED.
 
 ### Evidence Overview
 | Claim | Status | Strength | Key Experiments | Notes |
@@ -37,8 +37,10 @@ than falsifying the general hypothesis.
 | **Encoding distinction is position-level, not layer-level** | **supported** | **moderate** | **Exp 004, 005, 009** | **Position ablation shows clear effects (24pp dissociation). Layer ablation shows near-zero effects on both models. Residual stream provides layer-level redundancy** |
 | **Causal bypass validates hidden channel (literature)** | **supported** | **strong (independent)** | **Lit scan cycle 10** | **CMI metric shows bypass regimes where CoT text has zero causal influence on answer. Tested on 11 models including Qwen3-4B. Independent convergent evidence (Sathyanarayanan et al., 2026)** |
 | **KV cache carries manipulable semantic information (literature)** | **supported** | **strong (independent)** | **Lit scan cycle 10** | **KV cache steering induces reasoning styles via one-shot KV modification (Belitsky et al., 2025). Proves separable channels from constructive direction (vs our adversarial direction)** |
-| **GQA vs MHA plausibly explains Qwen/Llama encoding difference (literature)** | **hypothesis** | **weak (theoretical)** | **Lit scan cycle 10** | **GQA sharing (Llama: 8 KV→32 query) creates redundancy (noise robustness) but reduces null space dimensionality (PGD failure). Needs experimental validation** |
+| **GQA vs MHA plausibly explains Qwen/Llama encoding difference (literature)** | **INVALIDATED** | **disconfirmed** | **Lit scan cycle 10, Exp 011** | **Both Qwen3-4B and Llama-3.1-8B use GQA with 8 KV heads. Architecture difference is NOT MHA vs GQA. Original hypothesis was based on incorrect assumption that Qwen uses MHA** |
 | **Text bottleneck framing is mainstream (literature)** | **supported** | **moderate** | **Lit scan cycle 10** | **Coconut, Quiet-STaR, latent reasoning survey all frame text as bottleneck. Coconut shows reasoning IMPROVES when text constraint removed. Our work provides mechanistic KV-level evidence** |
+| **H2O heavy-hitters ≠ answer-coupled positions** | **established** | **moderate** | **Exp 011** | **H2O vs AC rho=0.004 (Qwen), 0.11 (Llama). H2O retains 57% TC-selective vs 40% AC-selective. Positions with highest cumulative attention are NOT the answer-relevant ones. Replicated on both models** |
+| **KV compression may harm hidden channel** | **supported** | **moderate** | **Exp 011** | **H2O preferentially evicts answer-coupled positions (Q1 has highest AC). Standard compression preserves text coherence but may degrade answer computation. Suggests AC-aware compression could improve accuracy** |
 
 ### Open Questions
 1. ~~Why does 50% position pruning not affect accuracy?~~ **ANSWERED (Exp 004): zeroing is the wrong method.**
@@ -51,7 +53,7 @@ than falsifying the general hypothesis.
 8. ~~**NEW:** Why is Llama so much MORE fragile than Qwen under random noise?~~ **PARTIALLY ANSWERED (Exp 007): Llama is fragile to POSITION-SELECTIVE destruction (exp_005) but ROBUST to UNIFORM noise (exp_007). Information is distributed across all positions (analog), so destroying any subset is devastating, but uniform noise averages out. Remaining question: does GQA (8 KV heads shared across 32 query heads) provide inherent noise robustness?**
 9. ~~Replicate the adversarial null space experiment (Exp 4) on Llama — does the PGD-discovered null space also exist?~~ **ANSWERED (Exp 008): NO in the strong sense. PGD can change answer-region predictions while preserving text (partial null space), but cannot redirect to a valid alternative answer. 0% success rate vs Qwen's 100%. Perturbation norm 0.8x vs Qwen's 377x.**
 10. **NEW:** Does the ~24pp dissociation effect hold on a third model family (e.g., Qwen3-8B)?
-11. **NEW:** Does GQA (vs MHA) explain Llama's noise robustness? Test SNR cliff on a GQA variant of Qwen or MHA variant of Llama.
+11. ~~**NEW:** Does GQA (vs MHA) explain Llama's noise robustness?~~ **INVALIDATED (Exp 011): Both models use GQA (8 KV heads). The difference is NOT GQA vs MHA.**
 12. **NEW:** What happens between SNR 0 and 5 dB on Llama? Need finer sampling (1, 2, 3, 4 dB) to characterize the transition.
 13. **NEW:** Is the digital vs distributed encoding difference related to model size (4B vs 8B) or architecture (Qwen vs Llama)?
 14. **NEW:** Would a TARGETED PGD attack (maximize probability of specific wrong answer) succeed on Llama where untargeted divergence fails?
@@ -60,11 +62,15 @@ than falsifying the general hypothesis.
 17. **NEW (Exp 009):** Why does Qwen show only 20% baseline accuracy with eager attention? Is this a model loading issue or a generation configuration problem? Need to verify Qwen layer sensitivity with higher n.
 18. **NEW (Exp 009):** Why is layer 0 specifically critical for Qwen? Is this about initial representation quality or attention pattern bootstrapping?
 19. **NEW (Exp 009):** Would multi-layer ablation (2-3 layers simultaneously) break Llama's layer redundancy? The residual stream may have limits.
-20. **NEW (Lit scan, cycle 10):** Do H2O "heavy-hitter" positions correlate with our answer-coupled positions? If so, KV compression methods already implicitly preserve the hidden channel.
+20. ~~**NEW (Lit scan, cycle 10):** Do H2O "heavy-hitter" positions correlate with our answer-coupled positions?~~ **ANSWERED (Exp 011): NO. H2O vs AC rho=0.004 (Qwen), 0.11 (Llama). H2O preferentially retains TC-selective positions (57%) over AC-selective (40%). Standard compression does NOT preserve the hidden channel.**
 21. **NEW (Lit scan, cycle 10):** Can we apply the CMI (CoT Mediation Index) from causal bypass research to quantify text-coupling vs answer-coupling at specific positions?
 22. **NEW (Lit scan, cycle 10):** Does KV cache steering (Belitsky et al. 2025) change the AC/TC spatial structure? If steering vectors modify the hidden channel, this would demonstrate bidirectional manipulability.
 23. **NEW (Lit scan, cycle 10):** Is token importance temporally dynamic during CoT (Lethe finding)? Our static AC/TC classification may miss important temporal effects. Track per-step attention evolution.
-24. **NEW (Lit scan, cycle 10):** Does GQA's KV head sharing ratio (Llama: 4:1) quantitatively predict the null space dimensionality reduction? The 0.8x perturbation norm (Llama) vs 377x (Qwen) might scale with KV head count.
+24. ~~**NEW (Lit scan, cycle 10):** Does GQA's KV head sharing ratio quantitatively predict the null space dimensionality reduction?~~ **INVALIDATED (Exp 011): Both models use identical GQA ratio (8 KV heads, 32 query heads). The Qwen/Llama difference is NOT explained by GQA/MHA.**
+25. **NEW (Exp 011):** Would AC-aware KV compression (retain positions with highest answer-token attention) outperform H2O (cumulative attention) for answer accuracy? Exp 011 shows H2O evicts answer-relevant positions.
+26. **NEW (Exp 011):** What explains the Qwen/Llama encoding difference if NOT GQA vs MHA? Both use 8 KV heads. Candidates: model size (4B vs 8B), training data/procedure, depth (36 vs 32 layers), hidden dimension, or instruction tuning.
+27. **NEW (Exp 011):** Is the H2O-AC dissociation driven by position (early vs late in sequence) or by genuine functional differentiation? Need position-controlled analysis.
+28. **NEW (Exp 011):** Why does Qwen3-4B-Base with eager attention produce only 16-20% baseline accuracy? This limits all Qwen experiments to n=4.
 
 ### Confirmed Findings
 - LLM output distributions have ~4-5 bits/token unused capacity (Exp 1)
@@ -79,12 +85,16 @@ than falsifying the general hypothesis.
 - **Adversarial null space (PGD) is Qwen-specific in the strong sense** — Llama shows 0% attack success vs Qwen's 100%. PGD can change distributions but not redirect to valid alternative answers on Llama (Exp 008)
 - **Single-layer KV destruction is tolerated by both architectures** — Llama: 93-100% accuracy for all 32 layers. Qwen: 100% for 35/36 layers (except L0=25%, but n=4). Residual stream provides massive layer-level redundancy (Exp 009)
 - **The digital/distributed encoding distinction operates at position-level and noise-level, NOT at layer-level** — both models show high layer redundancy, though Qwen is slightly more layer-concentrated (std ratio=7.64) (Exp 009)
+- **H2O heavy-hitter positions do NOT correspond to answer-coupled positions** — H2O vs AC Spearman rho = 0.004 (Qwen), 0.11 (Llama). H2O retains 57% TC-selective vs 40% AC-selective positions. Standard KV compression preferentially evicts answer-relevant positions (Exp 011)
+- **Both Qwen3-4B-Base and Llama-3.1-8B use GQA with 8 KV heads** — the GQA-vs-MHA hypothesis is invalidated. Architecture differences must stem from other factors (Exp 011)
 
 ### Disconfirmed or Revised
 - **Position-level functional separation via zeroing** (Exp 002): Zeroing is too weak. Methodological limitation, not evidence against spatial structure.
 - **Full double dissociation** (Exp 004, 005): Text loss dissociation is reversed on BOTH models. AC positions are hubs important for everything. The "hidden channel" is not cleanly separable at the position level — but noise-based ablation still reveals differential answer importance.
 - **Llama's text-resistance = stronger hidden channel** (Exp 005): Llama shows the SAME dissociation effect size as Qwen (~24pp), not larger. Its text-resistance (Exp 6) comes from different computation, not from different spatial structure of the hidden channel.
 - **SNR cliff is a general property of transformer KV caches** (Exp 007): The sharp cliff at ~14 dB is Qwen-specific. Llama shows no cliff — 100% accuracy at 5 dB (noise at 56% of signal). The "digital-like fragility" interpretation applies only to Qwen's architecture.
+- **GQA vs MHA explains Qwen/Llama encoding differences** (Exp 011): INVALIDATED. Both Qwen3-4B-Base and Llama-3.1-8B use GQA with 8 KV heads. The architecture difference must stem from other factors (model size, training, depth, instruction tuning).
+- **H2O heavy-hitters = AC positions ("AC are hubs → H2O keeps them")** (Exp 011): DISCONFIRMED. H2O vs AC rho ≈ 0. H2O measures "popularity" (cumulative attention), which is different from "answer-relevance" (answer-token attention). These are orthogonal importance dimensions.
 
 ---
 
@@ -190,3 +200,14 @@ than falsifying the general hypothesis.
 - Our unique contribution remains the MECHANISTIC evidence (spatial structure, adversarial perturbation) at the KV cache level
 
 See `literature_notes/cycle_010_*.md` for detailed paper summaries
+
+### Exp 011 (Cycle 11) — SURPRISING NEGATIVE RESULT
+**H2O Heavy-Hitter vs Answer-Coupled Position Overlap**
+- Models: Qwen3-4B-Base (n=4), Llama-3.1-8B-Instruct (n=17)
+- **H2O heavy-hitters do NOT overlap with AC positions:** rho=0.004 (Qwen), 0.11 (Llama)
+- **H2O preferentially retains TC-selective positions** (57% TC vs 40% AC at 50% retention)
+- **Quartile analysis:** positions with lowest H2O (would be evicted) have HIGHEST AC scores
+- **GQA discovery:** Qwen3-4B-Base also uses GQA (8 KV heads) — invalidates GQA-vs-MHA hypothesis
+- **All pre-registered predictions disconfirmed** — H2O importance is orthogonal to AC/TC
+- Evidential strength: moderate (surprising negative result with practical implications)
+- See `experiment_log/exp_011.md`, `results/exp_011/`

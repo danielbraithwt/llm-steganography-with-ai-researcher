@@ -1,23 +1,30 @@
 {
-  "cycle": 10,
-  "timestamp": "2026-03-14T12:00:00Z",
-  "type": "literature_scan",
+  "cycle": 11,
+  "timestamp": "2026-03-14T14:00:00Z",
+  "type": "experiment",
+  "template": "custom (exp_011_h2o_overlap.py)",
   "parameters": {
-    "topics": ["KV cache compression", "CoT faithfulness", "latent reasoning", "adversarial KV perturbation", "GQA vs MHA", "residual stream redundancy"],
-    "papers_found": 13,
-    "papers_deeply_read": 10,
-    "literature_notes_written": 6
+    "models": ["Qwen3-4B-Base", "Llama-3.1-8B-Instruct"],
+    "n_problems": 25,
+    "retention_rates": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
+    "attention_layers_ac": [-1, -2, -3, -4]
   },
-  "prediction_outcome": "n/a (literature scan)",
-  "key_finding": "Strong independent convergent evidence for hidden channel hypothesis from 5+ research groups. 'Causal bypass' (CMI metric) shows bypass regimes where CoT has zero causal influence. KV cache steering proves separable channels constructively. GQA vs MHA plausibly explains Qwen/Llama encoding difference. Hypothesis upgraded from WEAKENING to REFRAMED.",
-  "evidence_impact": "Core hypothesis STRENGTHENED by independent literature. Architecture-specific findings (SNR cliff, PGD) reframed as GQA/MHA effect, not falsification. Text bottleneck framing now mainstream in latent reasoning community.",
-  "next_planned": "GQA mechanism test (compare MHA vs GQA models), H2O heavy-hitter overlap with AC positions, or temporal AC/TC dynamics study",
-  "figures": [],
+  "prediction_outcome": "all_disconfirmed",
+  "key_finding": "H2O heavy-hitters do NOT overlap with answer-coupled positions (rho=0.004-0.11). H2O compression preferentially retains TC-selective (57%) over AC-selective (40%) positions. Standard KV compression may actively harm the hidden channel. Also: Qwen3-4B uses GQA (8 KV heads), invalidating GQA-vs-MHA hypothesis.",
+  "evidence_impact": "Natural usage gap partially addressed — but in the NEGATIVE direction. H2O does not implicitly preserve the hidden channel. New practical implication: AC-aware compression could outperform standard methods. GQA/MHA hypothesis invalidated.",
+  "next_planned": "AC-aware compression ablation test (retain AC positions vs H2O positions and measure accuracy difference) or investigate what actually explains Qwen/Llama encoding differences if not GQA",
+  "figures": [
+    "results/exp_011/correlation_distributions.png",
+    "results/exp_011/overlap_curves.png",
+    "results/exp_011/h2o_retention_composition.png",
+    "results/exp_011/quartile_analysis.png",
+    "results/exp_011/pooled_correlation_summary.png"
+  ],
   "progress": {
     "null_space_existence": {"status": "strong (Qwen) / partial (Llama)", "bar": 4},
-    "spatial_structure": {"status": "strong", "bar": 4},
-    "natural_usage": {"status": "partial — literature connects to KV compression", "bar": 2},
-    "cross_model_replication": {"status": "dissociation replicated; architecture differences explained", "bar": 3},
-    "literature_grounding": {"status": "strong — independent convergent evidence", "bar": 4}
+    "spatial_structure": {"status": "strong — now shown to be distinct from H2O importance", "bar": 4},
+    "natural_usage": {"status": "negative — H2O does NOT preserve hidden channel", "bar": 2},
+    "cross_model_replication": {"status": "dissociation replicated; H2O pattern replicated", "bar": 3},
+    "literature_grounding": {"status": "strong — GQA hypothesis invalidated by discovery", "bar": 3}
   }
 }
