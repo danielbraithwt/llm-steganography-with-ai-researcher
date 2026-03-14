@@ -30,7 +30,7 @@ from datasets import load_dataset
 
 # ── Config ──────────────────────────────────────────────────────────────
 MODEL_NAME = "Qwen/Qwen3-4B-Base"
-NUM_PROBLEMS = 40
+NUM_PROBLEMS = 200
 MAX_GEN_TOKENS = 512
 MAX_SEQ_LEN = 1536
 NOISE_FRACTIONS = [0.05, 0.10]
@@ -78,10 +78,13 @@ def normalize_answer(ans):
 
 @torch.no_grad()
 def generate_trace(model, tokenizer, prompt, max_tokens=MAX_GEN_TOKENS):
+    """Generate CoT trace. Returns (text, prompt_ids_tensor, reasoning_ids_tensor)."""
     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+    prompt_ids = inputs.input_ids
     generated_ids = []
     past_kv = None
     current_input = inputs.input_ids
+    truncated = False
 
     for step in range(max_tokens):
         if past_kv is not None:
@@ -103,14 +106,24 @@ def generate_trace(model, tokenizer, prompt, max_tokens=MAX_GEN_TOKENS):
         if "\nQ:" in current_text or "\n\nQ:" in current_text:
             idx = current_text.find("\nQ:")
             if idx > 0:
-                generated_ids = tokenizer.encode(current_text[:idx], add_special_tokens=False)
+                truncated_text = current_text[:idx]
+                generated_ids = tokenizer.encode(truncated_text, add_special_tokens=False)
+                truncated = True
             break
         current_input = next_token
 
     text = tokenizer.decode(generated_ids, skip_special_tokens=True)
+
+    # If we truncated, re-encode to get clean IDs
+    # Otherwise, use the original generated IDs directly
+    if truncated:
+        reasoning_ids = torch.tensor([generated_ids], device=model.device)
+    else:
+        reasoning_ids = torch.tensor([generated_ids], device=model.device)
+
     del past_kv, outputs
     gc.collect(); torch.cuda.empty_cache()
-    return text
+    return text, prompt_ids, reasoning_ids
 
 
 @torch.no_grad()
@@ -215,6 +228,7 @@ def evaluate_condition(model, tokenizer, prompt_cache, reasoning_tokens,
 
     text_correct = 0
     text_total = 0
+    last_logits = None
 
     for i in range(reasoning_len):
         token = reasoning_tokens[:, i:i+1]
@@ -244,17 +258,16 @@ def evaluate_condition(model, tokenizer, prompt_cache, reasoning_tokens,
                 text_correct += 1
             text_total += 1
 
+        last_logits = out.logits
         del out
 
     text_accuracy = text_correct / text_total if text_total > 0 else 0.0
 
-    # Generate answer
-    last_tok = reasoning_tokens[:, -1:]
-    gen_out = model(input_ids=last_tok, past_key_values=cache, use_cache=True)
-    gen_cache = gen_out.past_key_values
-    next_tok = gen_out.logits[:, -1, :].argmax(dim=-1, keepdim=True)
+    # Generate answer from the last reasoning token's logits (cache already has it)
+    next_tok = last_logits[:, -1, :].argmax(dim=-1, keepdim=True)
     generated = [next_tok[0, 0].item()]
-    del gen_out
+    gen_cache = cache
+    del last_logits
 
     for _ in range(80):
         g = model(input_ids=next_tok, past_key_values=gen_cache, use_cache=True)
@@ -265,8 +278,12 @@ def evaluate_condition(model, tokenizer, prompt_cache, reasoning_tokens,
         if tid == tokenizer.eos_token_id:
             break
         decoded = tokenizer.decode(generated, skip_special_tokens=True)
-        if "####" in decoded and re.search(r'\d+', decoded.split("####")[-1]):
-            break
+        if "####" in decoded:
+            after = decoded.split("####")[-1]
+            if re.search(r'\d[\d,]*\.?\d*\s*\n', after):
+                break
+            if re.search(r'\d[\d,]*\.?\d*\s+\S', after):
+                break
         if "\nQ:" in decoded:
             break
         del g
@@ -346,8 +363,10 @@ def generate_figures(results, results_dir):
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    strategies = ['selac', 'seltc', 'random', 'q3_selac', 'q3_seltc', 'q4_selac', 'q4_seltc']
-    labels = ['SelAC', 'SelTC', 'Random', 'Q3+AC', 'Q3+TC', 'Q4+AC', 'Q4+TC']
+    strategies = ['selac', 'seltc', 'random', 'pos_early', 'pos_late',
+                   'q3_selac', 'q3_seltc', 'q4_selac', 'q4_seltc']
+    labels = ['SelAC', 'SelTC', 'Random', 'PosEarly', 'PosLate',
+              'Q3+AC', 'Q3+TC', 'Q4+AC', 'Q4+TC']
     colors_acc = '#e74c3c'
     colors_txt = '#3498db'
 
@@ -449,13 +468,14 @@ def main():
     random.shuffle(indices)
     indices = indices[:NUM_PROBLEMS]
 
-    strategies = ['selac', 'seltc', 'random', 'q3_selac', 'q3_seltc', 'q4_selac', 'q4_seltc']
+    strategies = ['selac', 'seltc', 'random', 'pos_early', 'pos_late',
+                   'q3_selac', 'q3_seltc', 'q4_selac', 'q4_seltc']
     results = []
     n_valid = 0
 
     for pi, ds_idx in enumerate(indices):
         elapsed = time.time() - t0
-        if elapsed > 1400:
+        if elapsed > 1600:
             print(f"\n⏰ Time limit at problem {pi}/{len(indices)}")
             break
 
@@ -466,37 +486,59 @@ def main():
         print(f"\nProblem {pi+1}/{len(indices)} (idx={ds_idx}), "
               f"true={true_answer}, t={elapsed:.0f}s")
 
-        trace = generate_trace(model, tokenizer, prompt)
+        trace, prompt_ids, reasoning_ids = generate_trace(model, tokenizer, prompt)
         gen_answer = normalize_answer(extract_answer(trace)) if extract_answer(trace) else ""
         if gen_answer != true_answer:
             print(f"  WRONG: {gen_answer}")
             continue
         n_valid += 1
 
-        full_text = prompt + trace
-        full_ids = tokenizer(full_text, return_tensors="pt").input_ids.to(model.device)
-        prompt_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(model.device)
+        # Split reasoning IDs: truncate BEFORE "####" (token 820) so model must generate answer
+        # Find #### token directly in IDs to avoid decode/re-encode tokenization mismatch
+        HASH4_TOKEN = 820  # "####" in Qwen tokenizer
+        ids_list = reasoning_ids[0].tolist()
+        hash_pos = None
+        for hi, tid in enumerate(ids_list):
+            if tid == HASH4_TOKEN:
+                hash_pos = hi
+                break
+        if hash_pos is None or hash_pos < 10:
+            print(f"  Skip: no #### token in reasoning IDs")
+            continue
+        reasoning_ids_truncated = reasoning_ids[:, :hash_pos]
+
+        # Use original token IDs to avoid tokenization mismatch
+        # full_ids = prompt + full reasoning (including answer) — for AC/TC score computation
+        full_ids = torch.cat([prompt_ids, reasoning_ids], dim=1)
         prompt_len = prompt_ids.shape[1]
-        reasoning_len = full_ids.shape[1] - prompt_len
+        reasoning_len_full = reasoning_ids.shape[1]
+        # reasoning_ids_truncated = just the reasoning steps (before ####) — for teacher-forcing
+        reasoning_len = reasoning_ids_truncated.shape[1]
 
         if reasoning_len < 20 or full_ids.shape[1] > MAX_SEQ_LEN:
             print(f"  Skip: R={reasoning_len}, total={full_ids.shape[1]}")
             continue
 
-        # Compute AC and TC scores
-        print(f"  R={reasoning_len} tokens. Computing scores...")
+        # Compute AC and TC scores using full trace (including answer region)
+        # so that AC scores reflect answer-token attention
+        print(f"  R_full={reasoning_len_full}, R_trunc={reasoning_len} tokens. Computing scores...")
         ac_scores = compute_ac_scores(model, full_ids, prompt_len, reasoning_len, num_layers)
         tc_scores = compute_tc_scores_fast(model, full_ids, prompt_len, reasoning_len, num_layers)
 
         # Build prompt cache (shared across conditions)
         prompt_cache = build_prompt_cache(model, prompt_ids, num_layers)
 
-        # Clean text accuracy baseline
+        # Clean text accuracy baseline (teacher-force reasoning, generate answer)
         clean_eval = evaluate_condition(
-            model, tokenizer, prompt_cache, full_ids[:, prompt_len:prompt_len+reasoning_len],
+            model, tokenizer, prompt_cache, reasoning_ids_truncated,
             [], prompt_len, num_layers, true_answer)
         clean_text_acc = clean_eval['text_accuracy']
-        print(f"  Clean: acc={'✓' if clean_eval['correct'] else '✗'}, text={clean_text_acc:.1%}")
+        print(f"  Clean: acc={'✓' if clean_eval['correct'] else '✗'}, text={clean_text_acc:.1%}, "
+              f"ans='{clean_eval['answer']}'")
+
+        if not clean_eval['correct']:
+            print(f"  Skip: clean evaluation gives wrong answer (teacher-forcing divergence)")
+            continue
 
         # Rebuild prompt cache (was consumed)
         prompt_cache = build_prompt_cache(model, prompt_ids, num_layers)
@@ -510,7 +552,7 @@ def main():
             'evaluations': {},
         }
 
-        reasoning_tokens = full_ids[:, prompt_len:prompt_len + reasoning_len]
+        reasoning_tokens = reasoning_ids_truncated
 
         for nf in NOISE_FRACTIONS:
             for strat in strategies:
@@ -539,7 +581,7 @@ def main():
                 }
 
         results.append(problem_result)
-        del full_ids, prompt_ids, reasoning_tokens, prompt_cache
+        del full_ids, prompt_ids, reasoning_tokens, reasoning_ids, reasoning_ids_truncated, prompt_cache
         gc.collect(); torch.cuda.empty_cache()
 
     # ── Summary ──
