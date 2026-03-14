@@ -1,10 +1,10 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-14 (cycle 5)
-Cycles completed: 5
+Last updated: 2026-03-14 (cycle 8)
+Cycles completed: 8
 
-### Hypothesis Status: INVESTIGATING — moderate support, first cross-model replication achieved
+### Hypothesis Status: INVESTIGATING — moderate support, key mechanistic claim (SNR cliff) does NOT generalize
 
 The KV cache carries a functionally separable hidden channel that encodes answer-relevant
 information independent of the visible reasoning tokens.
@@ -14,7 +14,7 @@ information independent of the visible reasoning tokens.
 |-------|--------|----------|-----------------|-------|
 | Unused output capacity | established | strong | Exp 1 (research_spec) | 4-5 bits/token unused |
 | CoT narrows distribution | established | strong | Exp 2 (research_spec) | 3x entropy reduction, median near zero |
-| KV cache fragility (SNR cliff) | supported | moderate | Exp 3 (research_spec) | 14dB cliff, Qwen only — needs replication |
+| KV cache fragility (SNR cliff) | **Qwen-specific, NOT general** | moderate negative | Exp 3, **Exp 007** | Qwen: cliff at 14 dB; Llama: 100% at 5 dB, no cliff |
 | Adversarial null space exists | supported | strong | Exp 4 (research_spec) | 377x signal norm, Qwen only |
 | Null space has spatial structure | **partially supported** | moderate | Exp 5, Exp 002, Exp 004 | PGD rho=0.78; zeroing shows nothing; noise shows accuracy dissociation |
 | Cross-model text-dependence variation | supported | moderate | Exp 6 (research_spec) | Qwen 94% compliant, Llama ~30% |
@@ -23,18 +23,23 @@ information independent of the visible reasoning tokens.
 | **Noise >> zeroing for ablation** | **established** | **strong** | **Exp 004, Exp 005** | **Confirmed on both Qwen and Llama** |
 | **AC positions are general hubs** | **established** | **moderate** | **Exp 004, Exp 005** | **AC ablation hurts text MORE than TC on both models** |
 | **Dissociation is architecture-general** | **supported** | **strong** | **Exp 005** | **Effect size nearly identical across Qwen and Llama** |
+| **SNR robustness is architecture-SPECIFIC** | **established** | **strong** | **Exp 003, Exp 007** | **Qwen: digital cliff at 14 dB. Llama: robust to 5 dB, no cliff** |
+| **Encoding strategy differs: digital (Qwen) vs distributed (Llama)** | **supported** | **moderate** | **Exp 005, Exp 007** | **Llama: position-sensitive, noise-robust. Qwen: position-tolerant, noise-fragile** |
 
 ### Open Questions
 1. ~~Why does 50% position pruning not affect accuracy?~~ **ANSWERED (Exp 004): zeroing is the wrong method.**
-2. Does the SNR cliff replicate on Llama-3.1-8B? (Not yet tested — exp_005 tested ablation, not SNR sweep)
+2. ~~Does the SNR cliff replicate on Llama-3.1-8B?~~ **ANSWERED (Exp 007): NO. Llama shows 100% accuracy at all SNR ≥5 dB. The cliff is Qwen-specific.**
 3. ~~At what pruning fraction does accuracy break, and does it break differently for AC vs TC positions?~~ **ANSWERED: Under noise, AC breaks faster than TC on both models.**
 4. ~~Would noise injection at classified positions reveal the dissociation?~~ **ANSWERED: Yes.**
 5. **Are AC-selective positions genuinely "answer-specific" or just "generally important hubs"?** **ANSWERED (Exp 004+005): Hubs. AC ablation hurts text MORE on both models. But TC-selective noise preserves answer accuracy, so the separation is real — it's just that AC positions are important for everything, not selectively for answers.**
 6. Would a more surgical noise intervention (partial noise, not full replacement) reveal finer-grained separation?
 7. ~~Does the accuracy dissociation replicate on Llama-3.1-8B?~~ **ANSWERED (Exp 005): YES, +23.8pp at 5% noise (vs Qwen's +23.5pp)**
-8. **NEW:** Why is Llama so much MORE fragile than Qwen under random noise? (5% random noise: Llama 5% acc vs Qwen 56%). Does this relate to Llama's text-resistance from Exp 6?
+8. ~~**NEW:** Why is Llama so much MORE fragile than Qwen under random noise?~~ **PARTIALLY ANSWERED (Exp 007): Llama is fragile to POSITION-SELECTIVE destruction (exp_005) but ROBUST to UNIFORM noise (exp_007). Information is distributed across all positions (analog), so destroying any subset is devastating, but uniform noise averages out. Remaining question: does GQA (8 KV heads shared across 32 query heads) provide inherent noise robustness?**
 9. **NEW:** Replicate the adversarial null space experiment (Exp 4) on Llama — does the PGD-discovered null space also exist?
 10. **NEW:** Does the ~24pp dissociation effect hold on a third model family (e.g., Qwen3-8B)?
+11. **NEW:** Does GQA (vs MHA) explain Llama's noise robustness? Test SNR cliff on a GQA variant of Qwen or MHA variant of Llama.
+12. **NEW:** What happens between SNR 0 and 5 dB on Llama? Need finer sampling (1, 2, 3, 4 dB) to characterize the transition.
+13. **NEW:** Is the digital vs distributed encoding difference related to model size (4B vs 8B) or architecture (Qwen vs Llama)?
 
 ### Confirmed Findings
 - LLM output distributions have ~4-5 bits/token unused capacity (Exp 1)
@@ -44,11 +49,14 @@ information independent of the visible reasoning tokens.
 - **The ~24pp accuracy dissociation is architecture-general** — nearly identical effect on Qwen3-4B-Base (+23.5pp) and Llama-3.1-8B-Instruct (+23.8pp) (Exp 005)
 - **AC-selective positions are hubs, not channel-specific** — they carry more information for both answer and text (Exp 004, 005)
 - **Random noise is more destructive than targeted noise** — at 5%, random (5% acc) < SelAC (19%) < SelTC (43%) on Llama, confirming channel separation (Exp 005)
+- **SNR cliff is Qwen-specific, NOT architecture-general** — Llama shows 100% accuracy at all SNR ≥5 dB, no cliff in the 5-25 dB range where Qwen collapses (Exp 007)
+- **Models use different encoding strategies:** Qwen: digital/concentrated (fragile to uniform noise, SNR cliff at 14 dB). Llama: distributed/analog (robust to uniform noise, fragile to position ablation) (Exp 005+007)
 
 ### Disconfirmed or Revised
 - **Position-level functional separation via zeroing** (Exp 002): Zeroing is too weak. Methodological limitation, not evidence against spatial structure.
 - **Full double dissociation** (Exp 004, 005): Text loss dissociation is reversed on BOTH models. AC positions are hubs important for everything. The "hidden channel" is not cleanly separable at the position level — but noise-based ablation still reveals differential answer importance.
 - **Llama's text-resistance = stronger hidden channel** (Exp 005): Llama shows the SAME dissociation effect size as Qwen (~24pp), not larger. Its text-resistance (Exp 6) comes from different computation, not from different spatial structure of the hidden channel.
+- **SNR cliff is a general property of transformer KV caches** (Exp 007): The sharp cliff at ~14 dB is Qwen-specific. Llama shows no cliff — 100% accuracy at 5 dB (noise at 56% of signal). The "digital-like fragility" interpretation applies only to Qwen's architecture.
 
 ---
 
@@ -89,3 +97,19 @@ information independent of the visible reasoning tokens.
 - **Llama more fragile under random noise** — 5% random → 5% acc (vs Qwen's 56%)
 - Evidential strength: strong (cross-model replication with quantitatively identical effect)
 - See `experiment_log/exp_005.md`, `results/exp_005/`
+
+### Exp 006 (Cycle 6) — FAILED
+**SNR Cliff Replication on Llama-3.1-8B (first attempt)**
+- `DynamicCache` object is not subscriptable — all problems errored at all SNR levels
+- Root cause: transformers 5.3.0 changed DynamicCache API (no `key_cache`/`value_cache` attributes)
+- See `experiment_log/exp_006.md`
+
+### Exp 007 (Cycles 7-8) — NEGATIVE REPLICATION (important finding)
+**SNR Cliff Replication on Llama-3.1-8B**
+- Model: meta-llama/Llama-3.1-8B-Instruct, n=21 valid problems, 15 SNR levels
+- **SNR cliff does NOT replicate:** Llama shows 100% accuracy at all SNR ≥5 dB
+- **Collapse only at extreme noise:** 0% accuracy at SNR 0 dB (noise = signal)
+- **Qwen cliff at 14 dB is architecture-specific**, not a general transformer property
+- **Digital (Qwen) vs distributed (Llama) encoding:** reconciles with exp_005 position sensitivity
+- Evidential strength: strong (clear negative replication; qualitative difference, not marginal)
+- See `experiment_log/exp_007.md`, `results/exp_007/`

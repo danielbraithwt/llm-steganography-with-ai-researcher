@@ -2,15 +2,16 @@
 """
 Experiment 007: SNR Cliff Replication on Llama-3.1-8B (retry of exp_006)
 
-Exp_006 failed: 'DynamicCache' object is not subscriptable on every problem.
-Root cause: exp_006 created new DynamicCache objects and passed them to the
-model without attn_implementation="eager". Exp_005 (which works) uses eager.
+Exp_006 and original exp_007 failed: 'DynamicCache' object is not subscriptable.
+Root cause: transformers 5.3.0 changed DynamicCache API. key_cache/value_cache
+attributes no longer exist. Access is via past_kv.layers[i].keys/.values.
 
-Fixes in this version:
-1. attn_implementation="eager" (proven to work with Llama in exp_005)
-2. Tuple-of-tuples for truncated KV cache (avoids DynamicCache creation)
-3. In-place KV cache modification with restore from cloned clean tensors
-4. Smoke test before full run to catch bugs early
+Fixes in this version (cycle 8):
+1. attn_implementation="eager" (required for KV cache manipulation)
+2. DynamicCache API: past_kv.layers[i].keys/values instead of key_cache/value_cache
+3. DynamicCache() + .update() for truncated cache instead of tuple-of-tuples
+4. In-place KV cache modification with restore from cloned clean tensors
+5. Smoke test before full run to catch bugs early
 
 Tests whether the sharp KV cache SNR cliff (~14 dB on Qwen, 3 dB transition
 window) replicates on Llama-3.1-8B.
@@ -25,7 +26,7 @@ import re
 
 import numpy as np
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, DynamicCache
 from datasets import load_dataset
 
 # ── Config ──────────────────────────────────────────────────────────────
@@ -145,6 +146,26 @@ def generate_trace(model, tokenizer, prompt, max_tokens=MAX_GEN_TOKENS):
     return generated_text
 
 
+CHUNK_SIZE = 128  # Process this many tokens at a time to avoid OOM with eager attention
+
+
+@torch.no_grad()
+def teacher_force_chunked(model, input_ids, chunk_size=CHUNK_SIZE):
+    """Teacher-force a sequence in chunks to avoid OOM from large attention matrices."""
+    seq_len = input_ids.shape[1]
+    past_kv = None
+    for start in range(0, seq_len, chunk_size):
+        end = min(start + chunk_size, seq_len)
+        chunk = input_ids[:, start:end]
+        if past_kv is not None:
+            outputs = model(input_ids=chunk, past_key_values=past_kv, use_cache=True)
+        else:
+            outputs = model(input_ids=chunk, use_cache=True)
+        past_kv = outputs.past_key_values
+        del outputs
+    return past_kv
+
+
 @torch.no_grad()
 def evaluate_at_snr(model, past_kv, num_layers, input_ids, prompt_len, seq_len,
                     true_answer, snr_db, tokenizer, clean_keys, clean_values):
@@ -154,21 +175,21 @@ def evaluate_at_snr(model, past_kv, num_layers, input_ids, prompt_len, seq_len,
     Strategy:
     1. Restore clean KV cache from saved clones
     2. Add calibrated Gaussian noise to reasoning KV entries in-place
-    3. Build truncated cache as tuple-of-tuples (avoids DynamicCache bugs)
+    3. Build truncated DynamicCache for lookback context
     4. Re-process lookback tokens with noised context -> token accuracy
     5. Continue generating freely -> answer accuracy
     """
-    # Step 1: Restore clean cache
+    # Step 1: Restore clean cache (transformers 5.3.0 API: .layers[i].keys/.values)
     for layer_idx in range(num_layers):
-        past_kv.key_cache[layer_idx].copy_(clean_keys[layer_idx])
-        past_kv.value_cache[layer_idx].copy_(clean_values[layer_idx])
+        past_kv.layers[layer_idx].keys.copy_(clean_keys[layer_idx])
+        past_kv.layers[layer_idx].values.copy_(clean_values[layer_idx])
 
     # Step 2: Add noise to reasoning positions (prompt_len to seq_len)
     noise_ratio = 10.0 ** (-snr_db / 20.0)
 
     for layer_idx in range(num_layers):
-        k = past_kv.key_cache[layer_idx]
-        v = past_kv.value_cache[layer_idx]
+        k = past_kv.layers[layer_idx].keys
+        v = past_kv.layers[layer_idx].values
 
         rk = k[:, :, prompt_len:seq_len, :]
         rv = v[:, :, prompt_len:seq_len, :]
@@ -185,16 +206,17 @@ def evaluate_at_snr(model, past_kv, num_layers, input_ids, prompt_len, seq_len,
         rk.add_(kn * k_scale)
         rv.add_(vn * v_scale)
 
-    # Step 3: Build truncated cache as tuple-of-tuples (legacy format)
-    # The model auto-converts this to DynamicCache internally
+    # Step 3: Build truncated DynamicCache
     lookback = min(LOOKBACK, seq_len - prompt_len)
     lookback_start = max(prompt_len, seq_len - lookback)
 
-    trunc_kv = tuple(
-        (past_kv.key_cache[i][:, :, :lookback_start, :].clone(),
-         past_kv.value_cache[i][:, :, :lookback_start, :].clone())
-        for i in range(num_layers)
-    )
+    trunc_kv = DynamicCache()
+    for i in range(num_layers):
+        trunc_kv.update(
+            past_kv.layers[i].keys[:, :, :lookback_start, :].clone(),
+            past_kv.layers[i].values[:, :, :lookback_start, :].clone(),
+            i,
+        )
 
     # Step 4: Re-process lookback tokens with noised context
     lookback_tokens = input_ids[:, lookback_start:seq_len]
@@ -272,7 +294,7 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True)
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_NAME,
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto",
         trust_remote_code=True,
         attn_implementation="eager",  # Required for DynamicCache compatibility
@@ -377,26 +399,26 @@ def main():
     pd0 = problems_data[0]
     full_text = pd0["prompt"] + pd0["reasoning_text"]
     inputs = tokenizer(full_text, return_tensors="pt").to(model.device)
-    outputs = model(**inputs, use_cache=True)
-    past_kv = outputs.past_key_values
+    past_kv = teacher_force_chunked(model, inputs.input_ids)
     print(f"  KV cache type: {type(past_kv).__name__}")
-    print(f"  Has key_cache: {hasattr(past_kv, 'key_cache')}")
-    print(f"  Num layers in cache: {len(past_kv.key_cache)}")
-    print(f"  Key shape (layer 0): {past_kv.key_cache[0].shape}")
+    print(f"  Num layers in cache: {len(past_kv.layers)}")
+    print(f"  Key shape (layer 0): {past_kv.layers[0].keys.shape}")
 
-    # Test tuple-of-tuples truncation
-    test_trunc = tuple(
-        (past_kv.key_cache[i][:, :, :pd0["prompt_len"], :].clone(),
-         past_kv.value_cache[i][:, :, :pd0["prompt_len"], :].clone())
-        for i in range(num_layers)
-    )
+    # Test DynamicCache truncation
+    test_trunc = DynamicCache()
+    for i in range(num_layers):
+        test_trunc.update(
+            past_kv.layers[i].keys[:, :, :pd0["prompt_len"], :].clone(),
+            past_kv.layers[i].values[:, :, :pd0["prompt_len"], :].clone(),
+            i,
+        )
     test_tokens = inputs.input_ids[:, pd0["prompt_len"]:pd0["seq_len"]]
     test_out = model(input_ids=test_tokens, past_key_values=test_trunc, use_cache=True)
-    print(f"  Tuple-of-tuples truncation: OK (logits shape: {test_out.logits.shape})")
+    print(f"  DynamicCache truncation: OK (logits shape: {test_out.logits.shape})")
 
     # Test full evaluate_at_snr
-    clean_keys = [past_kv.key_cache[i].clone() for i in range(num_layers)]
-    clean_values = [past_kv.value_cache[i].clone() for i in range(num_layers)]
+    clean_keys = [past_kv.layers[i].keys.clone() for i in range(num_layers)]
+    clean_values = [past_kv.layers[i].values.clone() for i in range(num_layers)]
     test_result = evaluate_at_snr(
         model, past_kv, num_layers, inputs.input_ids,
         pd0["prompt_len"], pd0["seq_len"], pd0["true_answer"],
@@ -407,7 +429,7 @@ def main():
           f"answer='{test_result['generated_answer']}'")
     print("  Smoke test PASSED!")
 
-    del outputs, past_kv, test_trunc, test_out, clean_keys, clean_values
+    del past_kv, test_trunc, test_out, clean_keys, clean_values
     gc.collect()
     torch.cuda.empty_cache()
 
@@ -424,14 +446,12 @@ def main():
         full_text = pd["prompt"] + pd["reasoning_text"]
         inputs = tokenizer(full_text, return_tensors="pt").to(model.device)
 
-        # Teacher-force once to build clean KV cache
-        outputs = model(**inputs, use_cache=True)
-        past_kv = outputs.past_key_values
-        del outputs
+        # Teacher-force in chunks to build clean KV cache (avoids OOM)
+        past_kv = teacher_force_chunked(model, inputs.input_ids)
 
         # Save clean cache tensors
-        clean_keys = [past_kv.key_cache[i].clone() for i in range(num_layers)]
-        clean_values = [past_kv.value_cache[i].clone() for i in range(num_layers)]
+        clean_keys = [past_kv.layers[i].keys.clone() for i in range(num_layers)]
+        clean_values = [past_kv.layers[i].values.clone() for i in range(num_layers)]
 
         # Evaluate at each SNR level
         for snr_db in SNR_LEVELS_DB:
