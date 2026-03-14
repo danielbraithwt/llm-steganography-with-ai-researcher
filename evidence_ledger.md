@@ -1,10 +1,10 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-14 (cycle 8)
+Last updated: 2026-03-14 (cycle 8, exp_008)
 Cycles completed: 8
 
-### Hypothesis Status: INVESTIGATING — moderate support, key mechanistic claim (SNR cliff) does NOT generalize
+### Hypothesis Status: WEAKENING — key mechanistic claims (SNR cliff, adversarial null space) are Qwen-specific
 
 The KV cache carries a functionally separable hidden channel that encodes answer-relevant
 information independent of the visible reasoning tokens.
@@ -15,7 +15,7 @@ information independent of the visible reasoning tokens.
 | Unused output capacity | established | strong | Exp 1 (research_spec) | 4-5 bits/token unused |
 | CoT narrows distribution | established | strong | Exp 2 (research_spec) | 3x entropy reduction, median near zero |
 | KV cache fragility (SNR cliff) | **Qwen-specific, NOT general** | moderate negative | Exp 3, **Exp 007** | Qwen: cliff at 14 dB; Llama: 100% at 5 dB, no cliff |
-| Adversarial null space exists | supported | strong | Exp 4 (research_spec) | 377x signal norm, Qwen only |
+| Adversarial null space exists | **Qwen-specific, NOT general** | **moderate negative** | Exp 4, **Exp 008** | Qwen: 377x, 100% success. **Llama: 0.8x, 0% success — produces garbage not valid answers** |
 | Null space has spatial structure | **partially supported** | moderate | Exp 5, Exp 002, Exp 004 | PGD rho=0.78; zeroing shows nothing; noise shows accuracy dissociation |
 | Cross-model text-dependence variation | supported | moderate | Exp 6 (research_spec) | Qwen 94% compliant, Llama ~30% |
 | Functional separability via zeroing | **disconfirmed** | moderate negative | Exp 002, Exp 004, **Exp 005** | Zeroing even 99% of positions → 86-100% accuracy on both models |
@@ -25,6 +25,8 @@ information independent of the visible reasoning tokens.
 | **Dissociation is architecture-general** | **supported** | **strong** | **Exp 005** | **Effect size nearly identical across Qwen and Llama** |
 | **SNR robustness is architecture-SPECIFIC** | **established** | **strong** | **Exp 003, Exp 007** | **Qwen: digital cliff at 14 dB. Llama: robust to 5 dB, no cliff** |
 | **Encoding strategy differs: digital (Qwen) vs distributed (Llama)** | **supported** | **moderate** | **Exp 005, Exp 007** | **Llama: position-sensitive, noise-robust. Qwen: position-tolerant, noise-fragile** |
+| **PGD null space is Qwen-specific** | **established** | **strong** | **Exp 4, Exp 008** | **Qwen: 100% success, 377x norm, valid answers. Llama: 0% success, 0.8x norm, garbage output** |
+| **Partial null space exists on Llama** | **supported** | **weak** | **Exp 008** | **PGD CAN change answer-region predictions (0% match) while preserving text (94%), but produces incoherent output not valid answers** |
 
 ### Open Questions
 1. ~~Why does 50% position pruning not affect accuracy?~~ **ANSWERED (Exp 004): zeroing is the wrong method.**
@@ -35,11 +37,14 @@ information independent of the visible reasoning tokens.
 6. Would a more surgical noise intervention (partial noise, not full replacement) reveal finer-grained separation?
 7. ~~Does the accuracy dissociation replicate on Llama-3.1-8B?~~ **ANSWERED (Exp 005): YES, +23.8pp at 5% noise (vs Qwen's +23.5pp)**
 8. ~~**NEW:** Why is Llama so much MORE fragile than Qwen under random noise?~~ **PARTIALLY ANSWERED (Exp 007): Llama is fragile to POSITION-SELECTIVE destruction (exp_005) but ROBUST to UNIFORM noise (exp_007). Information is distributed across all positions (analog), so destroying any subset is devastating, but uniform noise averages out. Remaining question: does GQA (8 KV heads shared across 32 query heads) provide inherent noise robustness?**
-9. **NEW:** Replicate the adversarial null space experiment (Exp 4) on Llama — does the PGD-discovered null space also exist?
+9. ~~Replicate the adversarial null space experiment (Exp 4) on Llama — does the PGD-discovered null space also exist?~~ **ANSWERED (Exp 008): NO in the strong sense. PGD can change answer-region predictions while preserving text (partial null space), but cannot redirect to a valid alternative answer. 0% success rate vs Qwen's 100%. Perturbation norm 0.8x vs Qwen's 377x.**
 10. **NEW:** Does the ~24pp dissociation effect hold on a third model family (e.g., Qwen3-8B)?
 11. **NEW:** Does GQA (vs MHA) explain Llama's noise robustness? Test SNR cliff on a GQA variant of Qwen or MHA variant of Llama.
 12. **NEW:** What happens between SNR 0 and 5 dB on Llama? Need finer sampling (1, 2, 3, 4 dB) to characterize the transition.
 13. **NEW:** Is the digital vs distributed encoding difference related to model size (4B vs 8B) or architecture (Qwen vs Llama)?
+14. **NEW:** Would a TARGETED PGD attack (maximize probability of specific wrong answer) succeed on Llama where untargeted divergence fails?
+15. **NEW:** Would reasoning-only or full-sequence PGD attacks succeed on Llama? Prompt-only attacks may be too constrained for distributed encoding.
+16. **NEW:** Is the null space failure on Llama due to instruction tuning (format robustness) or architecture? Test PGD on Qwen-Instruct to separate these factors.
 
 ### Confirmed Findings
 - LLM output distributions have ~4-5 bits/token unused capacity (Exp 1)
@@ -51,6 +56,7 @@ information independent of the visible reasoning tokens.
 - **Random noise is more destructive than targeted noise** — at 5%, random (5% acc) < SelAC (19%) < SelTC (43%) on Llama, confirming channel separation (Exp 005)
 - **SNR cliff is Qwen-specific, NOT architecture-general** — Llama shows 100% accuracy at all SNR ≥5 dB, no cliff in the 5-25 dB range where Qwen collapses (Exp 007)
 - **Models use different encoding strategies:** Qwen: digital/concentrated (fragile to uniform noise, SNR cliff at 14 dB). Llama: distributed/analog (robust to uniform noise, fragile to position ablation) (Exp 005+007)
+- **Adversarial null space (PGD) is Qwen-specific in the strong sense** — Llama shows 0% attack success vs Qwen's 100%. PGD can change distributions but not redirect to valid alternative answers on Llama (Exp 008)
 
 ### Disconfirmed or Revised
 - **Position-level functional separation via zeroing** (Exp 002): Zeroing is too weak. Methodological limitation, not evidence against spatial structure.
