@@ -1,22 +1,22 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-14 (cycle 16, exp_015)
-Cycles completed: 16
+Last updated: 2026-03-14 (cycle 17, exp_016)
+Cycles completed: 17
 
-### Hypothesis Status: PARTIALLY SUPPORTED — hidden channel confirmed on Qwen-Base; instruction tuning REVERSES the spatial structure (TC becomes critical, AC becomes dispensable)
+### Hypothesis Status: PARTIALLY SUPPORTED — hidden channel confirmed on Qwen-Base via PGD; selectivity-based destruction dissociations on ALL models are predominantly positional confounds
 
 The KV cache carries a functionally separable hidden channel on Qwen-Base (PGD null space at 377x,
 spatial structure rho=0.78, SNR cliff at 14 dB). On Llama-Instruct, the encoding is distributed/analog
-(no PGD null space, no SNR cliff, position dominates). **NEW (Exp 015): Qwen3-4B-Instruct shows
-a REVERSED dissociation — destroying TC-selective positions crashes accuracy (-47pp gap) while
-destroying AC-selective positions has NO effect. H2O/TC protection is PERFECT (maintains 70% baseline
-at all noise fractions). Sharp cliff between 0.3x and 1.0x additive noise. Exp_014's "ultra-fragile"
-finding was a PIPELINE BUG (generating from after the answer, not before it).** Three distinct
-encoding patterns now characterized:
-- **Qwen-Base**: concentrated/digital — positive dissociation (+24pp), AC-selective critical, PGD works
-- **Llama-Instruct**: distributed/analog — positive dissociation (+24pp), position dominates, TC best protection
-- **Qwen-Instruct**: reversed — NEGATIVE dissociation (-47pp), TC-selective critical, H2O/TC perfect protection. Instruction tuning eliminates the hidden channel and makes answer computation flow through text-coupled positions
+(no PGD null space, no SNR cliff, position dominates). **REVISED (Exp 016): The "reversed dissociation"
+on Qwen-Instruct (-38.5pp unconstrained) is PREDOMINANTLY A POSITIONAL CONFOUND. SelTC targets early
+positions (mean 0.242), SelAC targets late positions (mean 0.991). POS_EARLY=19.2% vs POS_LATE=65.4%
+(+46pp gap). Within-early-half gap collapses to +3.8pp. This mirrors exp_013's finding on Llama: the
+selectivity-based destruction framework is confounded with position on ALL tested models.** Only PGD on
+Qwen-Base provides genuinely position-independent spatial structure evidence.
+- **Qwen-Base**: concentrated/digital — PGD rho=0.78 (genuine spatial structure), SNR cliff at 14 dB
+- **Llama-Instruct**: distributed/analog — position dominates, TC best protection, no PGD null space
+- **Qwen-Instruct**: early-position-critical — H2O/TC protection works because they noise late positions. "Reversed dissociation" is a positional confound, not a genuine instruction-tuning channel reversal
 
 ### Evidence Overview
 | Claim | Status | Strength | Key Experiments | Notes |
@@ -54,10 +54,11 @@ encoding patterns now characterized:
 | **AC/SEL spatial structure is Qwen-specific** | **supported** | **strong** | **Exp 008, 012, 013** | **PGD rho=0.78 on Qwen; PGD fails on Llama. AC/SEL protection fails on Llama. The "answer-coupled positions" concept has causal validity only on Qwen with its concentrated encoding** |
 | ~~Instruction tuning creates ultra-fragile KV encoding~~ | **DISCONFIRMED (pipeline bug)** | **invalidated** | **Exp 014 (buggy), Exp 015 (corrected)** | **Exp_014 had a pipeline bug: generated from AFTER the answer (model produced new questions → 0% accuracy). Exp_015 with corrected pipeline shows 70% baseline maintained at all scales ≤0.3x. NOT ultra-fragile** |
 | **Encoding is TRAINING-dependent, not just architecture-dependent** | **established** | **strong** | **Exp 014, Exp 015** | **Qwen-Base=concentrated (positive dissociation +24pp). Qwen-Instruct=REVERSED dissociation (-47pp). Same architecture, different training → different encoding. Instruction tuning reverses which positions are critical** |
-| **Three distinct encoding regimes exist (REVISED)** | **established** | **strong** | **Exp 004, 007, 013, 015** | **Concentrated (Qwen-Base: +24pp, AC critical), Distributed (Llama: +24pp, position dominates), Reversed (Qwen-Instruct: -47pp, TC critical). Training determines regime** |
-| **Dissociation is REVERSED on Qwen-Instruct** | **established** | **strong** | **Exp 015** | **SelTC destruction crashes accuracy (-47pp gap at 3%/1.0x). SelAC destruction has NO effect (stays at 70%). Opposite sign from Qwen-Base (+24pp) and Llama (+24pp). Instruction tuning makes TC-selective positions critical and AC-selective dispensable** |
+| **Three distinct encoding regimes exist (RE-REVISED)** | **partially revised** | **moderate** | **Exp 004, 007, 013, 015, 016** | **Concentrated (Qwen-Base: PGD-validated). Distributed (Llama: position dominates). Qwen-Instruct: early-position-critical (not "reversed" — positional confound). The "three regimes" claim for destruction dissociation reduces to: position matters on all models, PGD works only on Qwen-Base** |
+| ~~Dissociation is REVERSED on Qwen-Instruct~~ | **REVISED: predominantly positional confound** | **strong (confound)** | **Exp 015, Exp 016** | **Unconstrained gap replicates (-38.5pp), but POS_EARLY=19.2% vs POS_LATE=65.4% (+46pp). SelTC targets pos 0.242 (early), SelAC targets pos 0.991 (late). Within-early-half gap collapses to +3.8pp. NOT a genuine instruction-tuning channel reversal** |
 | **TC sign reversal: Qwen-Instruct vs Llama** | **established** | **moderate** | **Exp 014 vs Exp 013** | **Position vs TC: Qwen-Instruct rho=-0.44 (early=high TC), Llama rho=+0.44 (late=high TC). Fundamentally different attention patterns** |
-| **H2O/TC protection is PERFECT on Qwen-Instruct** | **established** | **strong** | **Exp 015** | **H2O and TC maintain 70% (=baseline) at ALL noise fractions (1-5%) at 1.0x scale. AC protection FAILS (30% at 3%). Ranking: H2O = TC >> Random > AC** |
+| **H2O/TC protection is PERFECT on Qwen-Instruct** | **established but positionally explained** | **moderate** | **Exp 015, Exp 016** | **H2O (pos 0.987) and TC (pos 0.946) noise late positions → 65.4% (baseline). AC (pos 0.351) noises early positions → 23.1%. Protection success is driven by WHICH POSITIONS get noised, not by metric-specific channel preservation** |
+| **Selectivity-based destruction is confounded with position on ALL models** | **established** | **strong** | **Exp 013, Exp 016** | **Llama: position dominates (rho=-0.56 pos-H2O). Qwen-Instruct: same pattern (SEL-pos rho=+0.65, TC-pos rho=-0.48). Within-half gaps collapse on both. Only PGD on Qwen-Base is position-independent** |
 | **Sharp noise cliff at 0.3x-1.0x on Qwen-Instruct** | **established** | **strong** | **Exp 015** | **Zero degradation at scales ≤0.3x (all strategies=70%). Dramatic effects only at 1.0x. Cliff is between 0.3x and 1.0x additive noise (≈0-10 dB per position)** |
 | **Exp_014 pipeline bug invalidates "ultra-fragile" finding** | **methodological** | **critical** | **Exp 015** | **Exp_014 teacher-forced FULL trace including "#### answer", then generated from beyond — model started new questions. Fixed in exp_015: truncate at "####", lookback re-computation. The "ultra-fragile" regime does not exist** |
 
@@ -104,10 +105,14 @@ encoding patterns now characterized:
 40. ~~**NEW (Exp 014):** Does the SNR cliff shift upward on Qwen3-4B-Instruct?~~ **ANSWERED (Exp 015): The cliff is between 0.3x and 1.0x additive noise per position (≈0-10 dB). Zero effect at ≤0.3x, dramatic effects at 1.0x. This is an additive noise cliff, not directly comparable to exp_003's uniform replacement noise cliff at 14 dB. Finer sweep (0.4x-0.8x) would locate it precisely.**
 41. ~~**NEW (Exp 014):** Is the ultra-fragile encoding specific to the Qwen3 instruction tuning procedure, or universal?~~ **REVISED (Exp 015): The "ultra-fragile" finding was a pipeline bug. Qwen-Instruct is NOT ultra-fragile — it shows a reversed dissociation with a sharp cliff. The question should now be: does the REVERSED dissociation pattern replicate on other instruct models?**
 42. **NEW (Exp 015):** Where exactly is the noise cliff on Qwen-Instruct? Between 0.3x and 1.0x additive noise. A finer sweep (0.4x, 0.5x, 0.6x, 0.8x) would locate it precisely.
-43. **NEW (Exp 015):** Why is the dissociation REVERSED on Qwen-Instruct? Does instruction tuning reorganize computation so answers flow through text-coupled positions (making the model "faithful"), or is this a positional confound (TC correlates with early positions)?
+43. ~~**NEW (Exp 015):** Why is the dissociation REVERSED on Qwen-Instruct?~~ **ANSWERED (Exp 016): It's a POSITIONAL CONFOUND. SelTC targets early positions (0.242), SelAC targets late positions (0.991). POS_EARLY (19.2%) vs POS_LATE (65.4%) accounts for the gap. Within-early-half gap collapses to +3.8pp. No genuine channel reversal.**
 44. **NEW (Exp 015):** Does Llama-Instruct also show reversed dissociation under additive noise at appropriate scales? Exp_004/005 used replacement noise. Additive noise might reveal different patterns.
 45. **NEW (Exp 015):** Does the reversed dissociation replicate on other instruct-tuned models (Qwen2.5-Instruct, Mistral-Instruct)? Would determine if reversal is a universal instruction-tuning effect or Qwen-specific.
 46. **NEW (Exp 015):** Is the 70% pipeline baseline a ceiling artifact? 9/30 problems consistently fail via KV cache generation even without noise. Would improving the pipeline (longer lookback, better truncation) change the results?
+47. **NEW (Exp 016):** Does PGD on Qwen-Base also show the positional confound? PGD is claimed to be position-independent (rho=0.78), but this was computed differently from the selectivity metric. Need to verify that PGD perturbation magnitude correlates with AC attention AFTER controlling for position.
+48. **NEW (Exp 016):** Why are early positions critical on BOTH Llama-Instruct and Qwen-Instruct? Is this a universal property of autoregressive computation (early tokens build the computational foundation) or specific to instruction-tuned models?
+49. **NEW (Exp 016):** Is the destruction dissociation on Qwen-Base ALSO a positional confound? Exp_004 found +23.5pp but never tested positional controls. Need POS_EARLY vs POS_LATE on Qwen-Base to determine if Qwen-Base is different from Llama/Qwen-Instruct, or if ALL destruction results are positional.
+50. **NEW (Exp 016):** Can we design a position-controlled selectivity test? E.g., within narrow position bands (quartiles), compare SelAC vs SelTC destruction. If the gap persists within strict position bins, the selectivity effect is genuine.
 
 ### Confirmed Findings
 - LLM output distributions have ~4-5 bits/token unused capacity (Exp 1)
@@ -130,9 +135,11 @@ encoding patterns now characterized:
 - ~~Instruction tuning creates ultra-fragile KV encoding on Qwen~~ — **DISCONFIRMED by Exp 015: pipeline bug in Exp 014.** Qwen-Instruct is NOT ultra-fragile; it shows a reversed dissociation with a sharp cliff between 0.3x-1.0x
 - **Encoding is training-dependent, not just architecture-dependent** — Qwen-Base (concentrated, +24pp dissociation), Qwen-Instruct (reversed, -47pp dissociation), Llama-Instruct (distributed, +24pp, position-dominated). Same architecture + different training = different encoding (Exp 014, 015)
 - **Qwen3-4B-Base low accuracy is a Base model limitation, not eager attention** — Instruct version achieves 90% with same eager attention setup. The Base model simply underperforms at 8-shot GSM8K (Exp 014)
-- **Qwen-Instruct shows REVERSED dissociation (-47pp)** — Destroying TC-selective positions crashes accuracy (70%→23% at 3%/1.0x), while destroying AC-selective positions has NO effect. Opposite from Qwen-Base and Llama. Instruction tuning makes text-coupled positions critical for answer computation (Exp 015)
-- **H2O/TC protection is PERFECT on Qwen-Instruct** — H2O and TC maintain 70% baseline at ALL noise fractions (1-5%) at 1.0x scale, while AC protection fails (30% at 3%). H2O = TC >> Random > AC (Exp 015)
+- ~~Qwen-Instruct shows REVERSED dissociation (-47pp)~~ — **REVISED (Exp 016): The -38.5pp gap is a POSITIONAL CONFOUND. SelTC targets early positions (0.242), SelAC targets late positions (0.991). POS_EARLY=19.2% vs POS_LATE=65.4% (+46pp). Within-early-half gap = +3.8pp (negligible). Not a genuine channel reversal.** (Exp 015, 016)
+- **H2O/TC protection works on Qwen-Instruct BECAUSE of position** — H2O (pos 0.987) and TC (pos 0.946) noise late/dispensable positions → maintain baseline. AC (pos 0.351) noises early/critical positions → fails. Protection success is positionally determined, not channel-specific (Exp 015, 016)
 - **Sharp additive noise cliff between 0.3x and 1.0x on Qwen-Instruct** — Zero degradation at all scales ≤0.3x. Dramatic strategy-dependent effects only at 1.0x. The cliff is sharper than predicted (Exp 015)
+- **Selectivity-based destruction is confounded with position on ALL tested instruct models** — Llama-Instruct (exp_013) and Qwen-Instruct (exp_016) both show: selectivity ↔ position correlation, within-half gaps collapse. The destruction dissociation framework does NOT provide genuine spatial structure evidence on instruct models. Only PGD on Qwen-Base is position-independent (Exp 013, 016)
+- **Early positions are critical on Qwen-Instruct** — POS_EARLY (19.2%) << POS_LATE (65.4%) at 3% noise. Same pattern as Llama-Instruct (exp_013). Autoregressive computation builds sequentially; early tokens carry the computational foundation (Exp 016)
 
 ### Disconfirmed or Revised
 - **Position-level functional separation via zeroing** (Exp 002): Zeroing is too weak. Methodological limitation, not evidence against spatial structure.
@@ -147,6 +154,8 @@ encoding patterns now characterized:
 - **Concentrated encoding survives instruction tuning** (Exp 014, 015): DISCONFIRMED. Qwen3-4B-Instruct shows REVERSED dissociation (-47pp), not the concentrated +24pp pattern of Qwen3-4B-Base. Instruction tuning flips which positions are critical (TC becomes critical, AC becomes dispensable). Note: Exp 014's "ultra-fragile" finding was itself a pipeline bug — the real pattern is reversed, not fragile.
 - **Encoding difference is purely architectural (Qwen vs Llama)** (Exp 014, 015): REVISED. Same Qwen architecture shows different encoding under Base vs Instruct training. The Base/Instruct axis is at least as important as the Qwen/Llama axis. Need Llama-Base to complete the 2x2 comparison.
 - **Exp 014's "ultra-fragile encoding" finding** (Exp 015): DISCONFIRMED — PIPELINE BUG. Exp 014 teacher-forced the full trace including "#### answer", then generated from beyond the answer. The model started new questions instead of regenerating answers → 0% accuracy everywhere. Fixed pipeline in exp 015 shows Qwen-Instruct is not ultra-fragile at all.
+- **"Reversed dissociation" on Qwen-Instruct is a genuine instruction-tuning effect** (Exp 016): DISCONFIRMED — POSITIONAL CONFOUND. SelTC targets early positions (0.242), SelAC targets late positions (0.991). POS_EARLY=19.2% vs POS_LATE=65.4% accounts for the gap. Within-early-half gap collapses to +3.8pp (vs unconstrained -38.5pp). The "three encoding regimes" framework needs revision: only PGD on Qwen-Base provides position-independent evidence.
+- **Selectivity-based destruction provides genuine spatial structure evidence** (Exp 013, 016): DISCONFIRMED on instruct models. Selectivity correlates with position (SEL-pos rho=+0.65 on Qwen-Instruct, similar on Llama). Within-half controls show gap collapse. The ~24pp "dissociation" on both Qwen-Base and Llama (exp_004/005) may ALSO be positional confounds — untested. **Critical re-evaluation needed: does exp_004/005's destruction dissociation survive positional controls on Qwen-Base?**
 
 ---
 
@@ -309,3 +318,17 @@ See `literature_notes/cycle_010_*.md` for detailed paper summaries
 - **Answered Q37, Q40, Q41:** Ultra-fragility was a pipeline bug. Cliff is at 0.3x-1.0x additive noise. Reversed dissociation is a novel fourth pattern
 - Evidential strength: strong (n=30, corrects pipeline bug, large effect size, clean results)
 - See `experiment_log/exp_015.md`, `results/exp_015/`
+
+### Exp 016 (Cycle 17) — POSITIONAL CONFOUND CONFIRMED
+**Positional Confound Analysis on Qwen3-4B-Instruct**
+- Model: Qwen/Qwen3-4B (instruct), n=26 problems (65% pipeline baseline, 85% direct generation)
+- **Position is the dominant driver:** POS_EARLY=19.2% vs POS_LATE=65.4% (+46pp gap at 3% noise)
+- **SelTC targets early positions (0.242), SelAC targets late positions (0.991)** — the -38.5pp "reversed dissociation" maps onto positional effects
+- **Within-early-half gap collapses to +3.8pp** (vs unconstrained -38.5pp) — selectivity adds negligible information beyond position
+- **Late-half gap persists (-38.5pp) but is NOT position-controlled** — Late+SelTC (pos 0.628) vs Late+SelAC (pos 0.991) still has massive positional confound
+- **Protection replicates:** H2O (pos 0.987) = TC (pos 0.946) = 65.4% >> AC (pos 0.351) = 23.1%. Positionally explained.
+- **Position-score correlations:** SEL-pos rho=+0.65, AC-pos rho=+0.38, TC-pos rho=-0.48, H2O-pos rho=-0.51
+- **Scenario A (positional confound) confirmed for 6/7 pre-registered criteria**
+- **MAJOR IMPLICATION:** Selectivity-based destruction dissociations on ALL instruct models are positional confounds. Only PGD on Qwen-Base provides genuine position-independent spatial structure evidence
+- Evidential strength: strong (clean confound resolution, replicates exp_013 pattern, n=26)
+- See `experiment_log/exp_016.md`, `results/exp_016/`
