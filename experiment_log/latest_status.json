@@ -1,28 +1,28 @@
 {
-  "cycle": 21,
+  "cycle": 23,
   "timestamp": "2026-03-14T23:59:00Z",
   "type": "experiment",
-  "experiment": "exp_021_double_dissociation",
+  "experiment": "exp_023_geometric_dissociation",
   "model": "Qwen/Qwen3-4B-Base",
-  "n_problems": 17,
-  "key_finding": "DECISIVE NULL RESULT: Gold-standard double dissociation finds ZERO selectivity effect within position bands. Within Q3: SelAC acc = SelTC acc = 23.5% (IDENTICAL). Within Q4: SelAC = SelTC = 17.6% (IDENTICAL). AC/TC selectivity adds zero explanatory power beyond position. Strong POSITIONAL dissociation discovered: late positions affect accuracy 59x more than text (64.7% acc drop vs 1.1% text drop at 5%). Confirms pre-registered Scenario B (55% confidence).",
-  "evidence_impact": "Decisively closes the spatial selectivity question. The selectivity framework (AC vs TC position classification) is uninformative for answer accuracy on Qwen-Base. Functional separability, if it exists, must be GEOMETRIC (direction vs magnitude in representation space) not SPATIAL (specific token positions). The positional dissociation (late=accuracy, early=everything) is the real finding — it suggests answer computation relies on late KV entries not needed for text prediction.",
-  "next_planned": "Priority experiments: (1) Direction-only vs magnitude-only KV perturbation at late positions — test geometric double dissociation (inspired by 2602.11169). (2) Cross-model replication of positional dissociation on Llama-3.1-8B and Qwen-Instruct. (3) Fine-grained position sweep (10 bins) to locate dissociation transition point.",
+  "n_problems": 24,
+  "key_finding": "K-V FUNCTIONAL DISSOCIATION: V-magnitude at late 5% has ZERO effect (24/24 correct). K-perturbation (any geometric component) devastating (75-83% acc drop). No direction-magnitude double dissociation — magnitude is MORE destructive than direction at matched energy (0% vs 29.2%). Answer computation depends on precise attention ROUTING (K vectors) not value THROUGHPUT (V magnitudes).",
+  "evidence_impact": "Identifies the MECHANISM of functional separability at late positions: K vectors (routing) carry critical answer info, V-magnitude is completely redundant. Closes the geometric separability hypothesis from 2602.11169 — the KV cache dissociation is K-vs-V, not direction-vs-magnitude. Opens new research direction: K-only PGD, K-V interaction effects, cross-model K-V replication.",
+  "next_planned": "Priority: (1) Cross-model replication of K-V dissociation on Llama-3.1-8B. (2) K-only vs V-only PGD to test if adversarial null space lives in K-space. (3) V-magnitude robustness at higher noise fractions (10%, 20%). (4) K-only magnitude dose-response to isolate cliff location.",
   "figures": [
-    "results/exp_019/position_vs_selectivity.png",
-    "results/exp_019/positional_dissociation.png",
-    "results/exp_019/within_quartile_null.png",
-    "results/exp_019/double_dissociation_5pct.png",
-    "results/exp_019/double_dissociation_10pct.png",
-    "results/exp_019/dissociation_scores.png"
+    "results/exp_022/dir_vs_mag_late.png",
+    "results/exp_022/magnitude_dose_response.png",
+    "results/exp_022/k_vs_v_decomposition.png",
+    "results/exp_022/position_x_geometry.png",
+    "results/exp_022/dissociation_map.png"
   ],
   "progress": {
-    "null_space_existence": {"status": "strong (PGD-validated on Qwen). Independent support from Reasoning Theater, KV steering", "bar": 4},
-    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED: gold-standard double dissociation shows ZERO selectivity effect within position bands. Functional separability is geometric, not spatial", "bar": 1},
-    "positional_dissociation": {"status": "NEW: late positions selectively carry answer info (59x ratio acc/text). Early positions are infrastructure. Strong finding replicated at 5% and 10% noise", "bar": 5},
+    "null_space_existence": {"status": "strong (PGD-validated on Qwen). Likely operates through K vectors", "bar": 4},
+    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED: gold-standard double dissociation shows ZERO selectivity effect", "bar": 1},
+    "positional_dissociation": {"status": "STRONG: late positions selectively carry answer info (59x ratio). Mechanism now identified as K-routing", "bar": 5},
+    "geometric_dissociation": {"status": "Dir-vs-mag: DISCONFIRMED. K-vs-V: ESTABLISHED (strong). V-mag at late=zero effect, K=devastating", "bar": 5},
     "natural_usage": {"status": "H2O/TC protection via position. R-KV shows removing redundant tokens IMPROVES reasoning", "bar": 3},
-    "cross_model_replication": {"status": "Position dominates ALL models. Positional dissociation untested on other models", "bar": 4},
-    "encoding_strategy": {"status": "Digital (Qwen) vs distributed (Llama). Geometric separation hypothesis needs testing", "bar": 5},
-    "literature_convergence": {"status": "5+ independent groups converge on 'text is lossy projection'. Our results consistent with geometric interpretation", "bar": 5}
+    "cross_model_replication": {"status": "K-V dissociation untested on other models. Position dominance replicated on all models", "bar": 4},
+    "encoding_strategy": {"status": "Digital (Qwen) vs distributed (Llama). K-V dissociation adds new dimension. Magnitude cliff at sigma 0.5-1.0", "bar": 5},
+    "literature_convergence": {"status": "5+ independent groups converge on 'text is lossy projection'. K-V dissociation is novel contribution", "bar": 5}
   }
 }

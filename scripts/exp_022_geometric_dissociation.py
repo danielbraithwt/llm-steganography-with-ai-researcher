@@ -205,8 +205,8 @@ def evaluate_condition(model, tokenizer, prompt_cache, reasoning_tokens,
     # Clone prompt cache
     cache = DynamicCache()
     for l in range(num_layers):
-        k = prompt_cache.key_cache[l].clone()
-        v = prompt_cache.value_cache[l].clone()
+        k = prompt_cache.layers[l].keys.clone()
+        v = prompt_cache.layers[l].values.clone()
         cache.update(k, v, l)
 
     text_correct = 0
@@ -226,27 +226,27 @@ def evaluate_condition(model, tokenizer, prompt_cache, reasoning_tokens,
         if i in noise_set:
             for l in range(num_layers):
                 pos = prompt_len + i
-                k_orig = cache.key_cache[l][:, :, pos:pos+1, :].clone()
-                v_orig = cache.value_cache[l][:, :, pos:pos+1, :].clone()
+                k_orig = cache.layers[l].keys[:, :, pos:pos+1, :].clone()
+                v_orig = cache.layers[l].values[:, :, pos:pos+1, :].clone()
 
                 # Perturb K
                 if perturb_component in ('kv', 'k'):
-                    k_slice = cache.key_cache[l][:, :, pos:pos+1, :]
+                    k_slice = cache.layers[l].keys[:, :, pos:pos+1, :]
                     if perturb_type == 'direction':
                         k_new = perturb_direction(k_slice)
                     else:
                         k_new = perturb_magnitude(k_slice, sigma=magnitude_sigma)
-                    cache.key_cache[l][:, :, pos:pos+1, :] = k_new
+                    cache.layers[l].keys[:, :, pos:pos+1, :] = k_new
                     perturb_l2_total += (k_new - k_orig).float().norm().item() ** 2
 
                 # Perturb V
                 if perturb_component in ('kv', 'v'):
-                    v_slice = cache.value_cache[l][:, :, pos:pos+1, :]
+                    v_slice = cache.layers[l].values[:, :, pos:pos+1, :]
                     if perturb_type == 'direction':
                         v_new = perturb_direction(v_slice)
                     else:
                         v_new = perturb_magnitude(v_slice, sigma=magnitude_sigma)
-                    cache.value_cache[l][:, :, pos:pos+1, :] = v_new
+                    cache.layers[l].values[:, :, pos:pos+1, :] = v_new
                     perturb_l2_total += (v_new - v_orig).float().norm().item() ** 2
 
                 perturb_count += 1
@@ -548,7 +548,7 @@ def main():
     print(f"Loading model {MODEL_NAME}...")
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True)
     model = AutoModelForCausalLM.from_pretrained(
-        MODEL_NAME, torch_dtype=torch.bfloat16, device_map="auto",
+        MODEL_NAME, dtype=torch.bfloat16, device_map="auto",
         trust_remote_code=True, attn_implementation="eager")
     model.eval()
     num_layers = model.config.num_hidden_layers
@@ -558,8 +558,8 @@ def main():
     test_input = tokenizer("test", return_tensors="pt").to(model.device)
     test_out = model(**test_input, use_cache=True)
     test_cache = test_out.past_key_values
-    assert hasattr(test_cache, 'key_cache'), "Cache must have key_cache attribute"
-    print(f"Cache access verified: key_cache[0].shape = {test_cache.key_cache[0].shape}")
+    assert hasattr(test_cache, 'layers'), "Cache must have layers attribute"
+    print(f"Cache access verified: layers[0].keys.shape = {test_cache.layers[0].keys.shape}")
     del test_input, test_out, test_cache
     gc.collect(); torch.cuda.empty_cache()
 

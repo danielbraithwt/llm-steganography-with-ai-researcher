@@ -1,0 +1,144 @@
+{
+  "experiment": "exp_022_geometric_dissociation",
+  "model": "Qwen/Qwen3-4B-Base",
+  "n_valid": 24,
+  "n_processed": 24,
+  "noise_fraction": 0.05,
+  "conditions": [
+    "dir_kv_late",
+    "mag_kv_05_late",
+    "mag_kv_10_late",
+    "mag_kv_14_late",
+    "dir_k_late",
+    "dir_v_late",
+    "mag_k_10_late",
+    "mag_v_10_late",
+    "dir_kv_mid",
+    "mag_kv_10_mid",
+    "dir_kv_early",
+    "mag_kv_10_early"
+  ],
+  "aggregated": {
+    "dir_kv_late": {
+      "n": 24,
+      "accuracy": 0.2916666666666667,
+      "text_accuracy": 0.9852776413587296,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 0.7083333333333333,
+      "text_drop": 0.014722358641270361,
+      "dissociation": 0.6936109746920629,
+      "rms_perturbation": 170.80246857104203
+    },
+    "mag_kv_05_late": {
+      "n": 24,
+      "accuracy": 0.4583333333333333,
+      "text_accuracy": 0.9932571312786833,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 0.5416666666666667,
+      "text_drop": 0.006742868721316686,
+      "dissociation": 0.53492379794535,
+      "rms_perturbation": 57.990282325645744
+    },
+    "mag_kv_10_late": {
+      "n": 24,
+      "accuracy": 0.0,
+      "text_accuracy": 0.9804666737162476,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 1.0,
+      "text_drop": 0.019533326283752372,
+      "dissociation": 0.9804666737162476,
+      "rms_perturbation": 107.18473661352357
+    },
+    "mag_kv_14_late": {
+      "n": 24,
+      "accuracy": 0.0,
+      "text_accuracy": 0.9743959148442413,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 1.0,
+      "text_drop": 0.025604085155758738,
+      "dissociation": 0.9743959148442413,
+      "rms_perturbation": 139.12967750104283
+    },
+    "dir_k_late": {
+      "n": 24,
+      "accuracy": 0.25,
+      "text_accuracy": 0.9847082872511722,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 0.75,
+      "text_drop": 0.01529171274882779,
+      "dissociation": 0.7347082872511722,
+      "rms_perturbation": 153.87871969769694
+    },
+    "dir_v_late": {
+      "n": 24,
+      "accuracy": 0.7916666666666666,
+      "text_accuracy": 0.9886334425838724,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 0.20833333333333337,
+      "text_drop": 0.011366557416127576,
+      "dissociation": 0.1969667759172058,
+      "rms_perturbation": 75.19694836582757
+    },
+    "mag_k_10_late": {
+      "n": 24,
+      "accuracy": 0.16666666666666666,
+      "text_accuracy": 0.9816129191099171,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 0.8333333333333334,
+      "text_drop": 0.018387080890082896,
+      "dissociation": 0.8149462524432505,
+      "rms_perturbation": 94.42767154239313
+    },
+    "mag_v_10_late": {
+      "n": 24,
+      "accuracy": 1.0,
+      "text_accuracy": 0.9995883655394525,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 0.0,
+      "text_drop": 0.0004116344605474831,
+      "dissociation": -0.0004116344605474831,
+      "rms_perturbation": 39.140637460773604
+    },
+    "dir_kv_mid": {
+      "n": 24,
+      "accuracy": 0.16666666666666666,
+      "text_accuracy": 0.6443416877933209,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 0.8333333333333334,
+      "text_drop": 0.3556583122066791,
+      "dissociation": 0.4776750211266543,
+      "rms_perturbation": 171.3227416896209
+    },
+    "mag_kv_10_mid": {
+      "n": 24,
+      "accuracy": 0.0,
+      "text_accuracy": 0.5557256449688811,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 1.0,
+      "text_drop": 0.4442743550311189,
+      "dissociation": 0.5557256449688811,
+      "rms_perturbation": 104.21212580507074
+    },
+    "dir_kv_early": {
+      "n": 24,
+      "accuracy": 0.16666666666666666,
+      "text_accuracy": 0.37186925903700335,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 0.8333333333333334,
+      "text_drop": 0.6281307409629966,
+      "dissociation": 0.20520259237033678,
+      "rms_perturbation": 171.54318477571482
+    },
+    "mag_kv_10_early": {
+      "n": 24,
+      "accuracy": 0.0,
+      "text_accuracy": 0.10548910327346318,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 1.0,
+      "text_drop": 0.8945108967265368,
+      "dissociation": 0.10548910327346317,
+      "rms_perturbation": 103.74391163172281
+    }
+  },
+  "elapsed_seconds": 1617.5709719657898
+}

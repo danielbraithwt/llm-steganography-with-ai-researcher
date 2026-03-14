@@ -1,0 +1,45 @@
+{
+  "experiment": "exp_022_geometric_dissociation",
+  "model": "Qwen/Qwen3-4B-Base",
+  "n_valid": 4,
+  "n_processed": 4,
+  "noise_fraction": 0.05,
+  "conditions": [
+    "dir_kv_late",
+    "mag_kv_10_late",
+    "mag_kv_14_late"
+  ],
+  "aggregated": {
+    "dir_kv_late": {
+      "n": 4,
+      "accuracy": 0.5,
+      "text_accuracy": 0.9843279110062998,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 0.5,
+      "text_drop": 0.015672088993700206,
+      "dissociation": 0.4843279110062998,
+      "rms_perturbation": 173.040817838057
+    },
+    "mag_kv_10_late": {
+      "n": 4,
+      "accuracy": 0.0,
+      "text_accuracy": 0.9783578846558387,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 1.0,
+      "text_drop": 0.021642115344161272,
+      "dissociation": 0.9783578846558387,
+      "rms_perturbation": 104.82354196061058
+    },
+    "mag_kv_14_late": {
+      "n": 4,
+      "accuracy": 0.0,
+      "text_accuracy": 0.9708685549318542,
+      "clean_text_accuracy": 1.0,
+      "accuracy_drop": 1.0,
+      "text_drop": 0.0291314450681458,
+      "dissociation": 0.9708685549318542,
+      "rms_perturbation": 134.44432055934695
+    }
+  },
+  "elapsed_seconds": 100.6191463470459
+}
