@@ -67,6 +67,7 @@ Once set up, you can steer the agent from your phone by messaging a Slack channe
 2. **Add Bot Token Scopes** under OAuth & Permissions:
    - `channels:history` (read messages)
    - `chat:write` (post status updates)
+   - `files:write` (upload figures and plots)
    - `channels:read` (list channels)
    - `users:read` (resolve user names in directives)
 3. **Install to your workspace** and copy the Bot User OAuth Token (`xoxb-...`)

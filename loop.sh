@@ -26,10 +26,13 @@ else
     echo "Warning: config.env not found — using defaults"
 fi
 
+mkdir -p experiment_log literature_notes results logs
+
 SLEEP_BETWEEN_CYCLES="${SLEEP_BETWEEN_CYCLES:-30}"
 MAX_TOTAL_HOURS="${MAX_TOTAL_HOURS:-48}"
 MAX_EXPERIMENT_MINUTES="${MAX_EXPERIMENT_MINUTES:-30}"
 DRY_RUN="${DRY_RUN:-false}"
+QUOTA_SLEEP="${QUOTA_SLEEP:-300}"  # Seconds to sleep when quota is hit (default 5min)
 
 # ── Parse arguments ─────────────────────────────────────────────────
 
@@ -158,13 +161,23 @@ while true; do
 
     CLAUDE_EXIT=0
     claude --print \
-        -p "You are an autonomous research agent. Read AGENT.md for your full instructions. This is cycle $CYCLE_NUM. Execute one complete research cycle. The experiment timeout is ${EXPERIMENT_TIMEOUT} seconds.${DRY_RUN_MSG}" \
+        --model claude-opus-4-6 \
+        --reasoning-effort high \
+        -p "You are an autonomous research agent. Read AGENT.md for your full instructions. This is cycle $CYCLE_NUM. LITERATURE_SCAN_EVERY=${LITERATURE_SCAN_EVERY:-10}. Execute one complete research cycle. The experiment timeout is ${EXPERIMENT_TIMEOUT} seconds.${DRY_RUN_MSG}" \
         --allowedTools "Bash(command:*)" "Read" "Write" "Edit" "WebSearch" "WebFetch" \
         --max-turns 50 \
         2>&1 | tee "logs/cycle_${CYCLE_NUM_PADDED}.log" || CLAUDE_EXIT=$?
 
-    # Step 2: Check result
-    if [ "$CLAUDE_EXIT" -ne 0 ]; then
+    # Step 2: Check result — detect quota/rate limit errors
+    LOG_FILE="logs/cycle_${CYCLE_NUM_PADDED}.log"
+    if grep -qi -E "rate.?limit|quota|too many requests|429|overloaded" "$LOG_FILE" 2>/dev/null; then
+        echo "Quota/rate limit detected — sleeping ${QUOTA_SLEEP}s before retrying..."
+        # Don't count quota hits as failures or increment cycle
+        CYCLES_RUN=$((CYCLES_RUN - 1))  # will be re-incremented below
+        sleep "$QUOTA_SLEEP" &
+        wait $! 2>/dev/null || true
+        continue
+    elif [ "$CLAUDE_EXIT" -ne 0 ]; then
         echo "Warning: Claude Code exited with code $CLAUDE_EXIT"
         CONSECUTIVE_FAILURES=$((CONSECUTIVE_FAILURES + 1))
     else

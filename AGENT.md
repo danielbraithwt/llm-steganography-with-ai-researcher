@@ -56,11 +56,21 @@ Write a brief (2-3 paragraph) situation assessment:
 - Enforce the time budget from config.env
 - Capture all outputs to `results/`
 
-### Step 5: Analyze
+### Step 5: Analyze & Visualize
 - Compare results to pre-registered predictions
 - Which prediction was closer? Be honest.
 - What is the effect size? Is it meaningful or marginal?
-- Generate any relevant plots
+- **Generate figures** using matplotlib/seaborn. Every experiment should produce
+  at least one figure. Save all figures to `results/exp_NNN/` as PNG files.
+  Good figures to create:
+  - Bar charts comparing predicted vs actual metrics
+  - Line plots for sweeps (e.g. accuracy vs epsilon)
+  - Heatmaps for layer-wise or position-wise results
+  - Scatter plots for correlations (e.g. attention vs coupling)
+  - Before/after comparisons for ablation experiments
+- Figures should be self-contained: include axis labels, titles, legends, and
+  a brief caption in the filename (e.g. `accuracy_vs_epsilon_sweep.png`)
+- Keep figures small (<1MB) so they can be committed to git and sent via Slack
 
 ### Step 6: Self-Review
 Before updating the evidence ledger, critique your own experiment:
@@ -88,6 +98,10 @@ Write a concise status update to `experiment_log/latest_status.json`:
   "key_finding": "Dissociation robust across perturbation budgets",
   "evidence_impact": "Strengthens spatial structure claim",
   "next_planned": "Layer ablation study",
+  "figures": [
+    "results/exp_014/accuracy_vs_epsilon_sweep.png",
+    "results/exp_014/coupling_heatmap.png"
+  ],
   "progress": {
     "null_space_existence": {"status": "strong", "bar": 4},
     "spatial_structure": {"status": "moderate", "bar": 3},
@@ -96,6 +110,10 @@ Write a concise status update to `experiment_log/latest_status.json`:
   }
 }
 ```
+
+The `figures` array should list paths to all figures generated this cycle.
+These will be uploaded to Slack alongside the status message so the researcher
+can review results visually from their phone.
 
 ### Step 9: Git Commit & Push (MANDATORY — do this LAST, every cycle)
 This step is NON-NEGOTIABLE. You must commit and push before the cycle ends.
