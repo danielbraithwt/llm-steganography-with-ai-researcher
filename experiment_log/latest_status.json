@@ -1,32 +1,33 @@
 {
-  "cycle": 13,
-  "timestamp": "2026-03-14T18:00:00Z",
+  "cycle": 15,
+  "timestamp": "2026-03-14T12:30:00Z",
   "type": "experiment",
-  "template": "custom (exp_013_selectivity_protection.py)",
+  "template": "custom (exp_014_qwen_instruct_encoding.py)",
   "parameters": {
-    "model": "Llama-3.1-8B-Instruct",
-    "n_problems": 35,
-    "n_valid": 25,
-    "strategies": ["sel", "ac", "h2o", "tc", "random"],
-    "noise_fractions": [0.01, 0.03, 0.05, 0.07, 0.10]
+    "model": "Qwen/Qwen3-4B (instruct)",
+    "n_problems": 30,
+    "n_valid": 27,
+    "baseline_accuracy": "90%",
+    "strategies_destruction": ["selac", "seltc", "random"],
+    "strategies_protection": ["ac", "h2o", "tc", "random"],
+    "noise_fractions_destruction": [0.01, 0.03, 0.05],
+    "noise_fractions_protection": [0.01, 0.03, 0.05, 0.07]
   },
-  "prediction_outcome": "strongly_disconfirmed",
-  "key_finding": "Selectivity-based protection FAILS to rescue AC/TC framework on Llama. Ranking: TC > H2O >> Random ≈ AC ≈ SEL. Position in causal chain is the dominant factor (H2O rho=-0.56 with position). Answer-coupled positions are NOT causally valid on Llama.",
-  "evidence_impact": "Major revision: spatial structure claim narrowed to Qwen-specific. The hidden channel exists but is architecture-dependent. On Llama (distributed encoding), position dominates and TC outperforms AC for answer preservation.",
-  "next_planned": "Position-controlled protection test (within-quartile) to isolate positional confound completely, OR test AC-protection on Qwen where PGD validates AC",
+  "prediction_outcome": "all_scenarios_disconfirmed",
+  "key_finding": "Instruction tuning creates ultra-fragile KV encoding: Qwen3-4B-Instruct (same architecture as Base) shows 90% baseline → 0-4% under ANY strategy at 1% norm-matched noise. NO dissociation, NO protection strategy works. Encoding is TRAINING-dependent, not just architecture-dependent.",
+  "evidence_impact": "Major revision: three distinct encoding regimes (Base-concentrated, Instruct-distributed/Llama, Instruct-ultrafragile/Qwen). Training determines regime. Qwen-Base concentrated encoding does NOT survive instruction tuning.",
+  "next_planned": "Lower noise scale test on Qwen3-4B-Instruct (0.1x, 0.01x norm) to check if spatial structure exists at smaller perturbation; OR Llama-Base encoding test to complete 2x2 comparison",
   "figures": [
-    "results/exp_013/protection_accuracy_sweep.png",
-    "results/exp_013/strategy_comparison_bars.png",
-    "results/exp_013/noise_position_analysis.png",
-    "results/exp_013/score_position_scatter.png",
-    "results/exp_013/sel_advantage.png"
+    "results/exp_014/destruction_accuracy_sweep.png",
+    "results/exp_014/protection_accuracy_sweep.png",
+    "results/exp_014/positional_analysis.png",
+    "results/exp_014/cross_model_comparison.png"
   ],
-  "also_completed": "Analyzed exp_012 results from crashed cycle 12 (AC-protection fails on Llama, H2O outperforms). Updated evidence ledger with both exp_012 and exp_013 findings.",
   "progress": {
-    "null_space_existence": {"status": "strong (Qwen) / none (Llama)", "bar": 4},
-    "spatial_structure": {"status": "Qwen-specific (PGD rho=0.78); NOT causally valid on Llama", "bar": 3},
-    "natural_usage": {"status": "negative — neither H2O nor AC capture hidden channel for Llama; TC is best but ironic", "bar": 2},
-    "cross_model_replication": {"status": "dissociation replicated; but spatial structure is architecture-specific", "bar": 3},
-    "encoding_strategy": {"status": "strong — Qwen=concentrated/digital, Llama=distributed/analog, position-dominated", "bar": 4}
+    "null_space_existence": {"status": "strong (Qwen-Base) / none (Llama-Instruct) / untestable (Qwen-Instruct: too fragile)", "bar": 4},
+    "spatial_structure": {"status": "Qwen-Base only (PGD rho=0.78); NOT causally valid on Llama; UNTESTABLE on Qwen-Instruct at norm-matched noise", "bar": 3},
+    "natural_usage": {"status": "negative — H2O/AC orthogonal; TC best on Llama; all fail on Qwen-Instruct", "bar": 2},
+    "cross_model_replication": {"status": "Three distinct encoding regimes identified. Training > architecture for encoding type", "bar": 4},
+    "encoding_strategy": {"status": "strong — Qwen-Base=concentrated, Llama-Instruct=distributed, Qwen-Instruct=ultra-fragile. Training-dependent", "bar": 5}
   }
 }

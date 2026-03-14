@@ -281,18 +281,20 @@ def build_kv_cache(model, tokenizer, prompt, trace_text):
 
 
 def clone_kv_cache(kv_cache):
-    """Deep copy of DynamicCache."""
+    """Deep copy of DynamicCache (compatible with transformers >=5.3)."""
     new_cache = DynamicCache()
-    for layer_idx in range(len(kv_cache)):
-        k, v = kv_cache[layer_idx]
-        new_cache.update(k.clone(), v.clone(), layer_idx)
+    for layer_idx in range(len(kv_cache.layers)):
+        layer = kv_cache.layers[layer_idx]
+        new_cache.update(layer.keys.clone(), layer.values.clone(), layer_idx)
     return new_cache
 
 
 def apply_noise_to_positions(kv_cache, positions, prompt_len, num_layers):
     """Apply norm-matched Gaussian noise to specified reasoning positions."""
     for layer_idx in range(num_layers):
-        k, v = kv_cache[layer_idx]
+        layer = kv_cache.layers[layer_idx]
+        k = layer.keys
+        v = layer.values
         for pos in positions:
             abs_pos = prompt_len + pos
             if abs_pos >= k.shape[2]:
@@ -310,49 +312,15 @@ def apply_noise_to_positions(kv_cache, positions, prompt_len, num_layers):
 
 
 @torch.no_grad()
-def generate_from_cache(model, tokenizer, kv_cache, seq_len, max_tokens=64):
-    """Generate answer tokens from a (possibly perturbed) KV cache."""
-    # Truncate cache to seq_len - 1, then re-process last token
-    all_k, all_v = [], []
-    for layer_idx in range(len(kv_cache)):
-        k, v = kv_cache[layer_idx]
-        all_k.append(k[:, :, :seq_len-1, :])
-        all_v.append(v[:, :, :seq_len-1, :])
-
-    trunc_cache = DynamicCache()
-    for layer_idx in range(len(all_k)):
-        trunc_cache.update(all_k[layer_idx], all_v[layer_idx], layer_idx)
-
-    # Get the last token from the original sequence
-    # We need to re-derive it. Use the last token ID from cache length.
-    # Actually, we need the input_ids. Let's use a workaround:
-    # The last token in the KV cache corresponds to position seq_len-1.
-    # We need to feed this token through the model with the truncated cache.
-    # But we don't have the token ID directly from the cache.
-    # Instead, we'll use the original approach: get logits from truncated cache + last token.
-
-    # Actually for the generation approach used in exp_004/005/012/013:
-    # 1. Clone KV cache (full sequence)
-    # 2. Apply noise
-    # 3. Truncate to N-1
-    # 4. Feed last token with truncated cache to get fresh logits
-    # 5. Generate from there
-
-    # The caller should pass the last_token_id
-    # For now, return the truncated cache for the caller to use
-    return trunc_cache
-
-
-@torch.no_grad()
 def run_noised_generation(model, tokenizer, kv_cache, seq_len, last_token_id, max_tokens=64):
     """Generate from a KV cache, starting from the last token position."""
     # Truncate to seq_len-1
     trunc_cache = DynamicCache()
-    for layer_idx in range(len(kv_cache)):
-        k, v = kv_cache[layer_idx]
+    for layer_idx in range(len(kv_cache.layers)):
+        layer = kv_cache.layers[layer_idx]
         trunc_cache.update(
-            k[:, :, :seq_len-1, :].clone(),
-            v[:, :, :seq_len-1, :].clone(),
+            layer.keys[:, :, :seq_len-1, :].clone(),
+            layer.values[:, :, :seq_len-1, :].clone(),
             layer_idx
         )
 
