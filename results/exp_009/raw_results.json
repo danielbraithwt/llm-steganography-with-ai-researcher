@@ -1,0 +1,3460 @@
+{
+  "Qwen3-4B": {
+    "baseline": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_0": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_1": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_2": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_3": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_4": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_5": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_6": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_7": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_8": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_9": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_10": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_11": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_12": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_13": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_14": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_15": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_16": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_17": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_18": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_19": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_20": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_21": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_22": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_23": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_24": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_25": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_26": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_27": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_28": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_29": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_30": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_31": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_32": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_33": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_34": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "layer_35": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": true,
+        "generated_answer": "2"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      }
+    ],
+    "all_layers": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 672,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": false,
+        "generated_answer": ""
+      }
+    ]
+  },
+  "Llama-3.1-8B": {
+    "baseline": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_0": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_1": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_2": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_3": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_4": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_5": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_6": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_7": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_8": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_9": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_10": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_11": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_12": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_13": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_14": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_15": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_16": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_17": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_18": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_19": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_20": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_21": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_22": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_23": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_24": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_25": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_26": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_27": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_28": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_29": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_30": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": true,
+        "generated_answer": "68"
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "layer_31": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": true,
+        "generated_answer": "5"
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": true,
+        "generated_answer": "83"
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": true,
+        "generated_answer": "70"
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": true,
+        "generated_answer": "36"
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": true,
+        "generated_answer": "16"
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": true,
+        "generated_answer": "48"
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": true,
+        "generated_answer": "90"
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": true,
+        "generated_answer": "10"
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": true,
+        "generated_answer": "18"
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": true,
+        "generated_answer": "140"
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": true,
+        "generated_answer": "8"
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": true,
+        "generated_answer": "14"
+      }
+    ],
+    "all_layers": [
+      {
+        "ds_idx": 1214,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 57,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 1252,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 618,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 599,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 289,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 608,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 400,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 237,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 616,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 463,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 222,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 238,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 730,
+        "answer_correct": false,
+        "generated_answer": ""
+      },
+      {
+        "ds_idx": 55,
+        "answer_correct": false,
+        "generated_answer": ""
+      }
+    ]
+  }
+}
