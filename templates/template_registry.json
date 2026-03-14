@@ -1,0 +1,96 @@
+{
+  "templates": [
+    {
+      "name": "pgd_attack",
+      "script": "templates/pgd_attack.py",
+      "description": "Run PGD adversarial perturbation on KV cache and measure answer flip rate, text coherence, and attention-perturbation correlations.",
+      "parameters": {
+        "epsilon": {"type": "float", "range": [0.001, 1.0], "description": "Perturbation budget (L2 norm)"},
+        "num_steps": {"type": "int", "range": [5, 100], "description": "PGD optimization steps"},
+        "target_positions": {"type": "string", "enum": ["all", "answer_coupled", "text_coupled", "random_subset"], "description": "Which KV cache positions to perturb"},
+        "layers": {"type": "list[int]", "description": "Which transformer layers to perturb"},
+        "model": {"type": "string", "enum": ["qwen3-4b-base", "llama-3.1-8b-base"], "description": "Model to attack"},
+        "num_problems": {"type": "int", "range": [50, 1319], "description": "Number of GSM8K problems to evaluate"}
+      },
+      "outputs": ["accuracy", "answer_flip_rate", "text_coherence", "answer_coupling_rho", "text_coupling_rho"],
+      "typical_runtime_minutes": 15,
+      "status": "placeholder"
+    },
+    {
+      "name": "attention_correlation",
+      "script": "templates/attention_correlation.py",
+      "description": "Analyze attention patterns to compute answer-coupling and text-coupling correlations at each position in the CoT trace.",
+      "parameters": {
+        "perturbation_type": {"type": "string", "enum": ["pgd", "gaussian_noise", "zero_ablation"], "description": "Type of perturbation to correlate with attention"},
+        "position_subset": {"type": "string", "enum": ["all", "computation_steps", "filler_tokens", "final_answer"], "description": "Which positions to analyze"},
+        "correlation_metric": {"type": "string", "enum": ["spearman", "pearson", "kendall"], "description": "Correlation metric"},
+        "model": {"type": "string", "enum": ["qwen3-4b-base", "llama-3.1-8b-base"]},
+        "num_problems": {"type": "int", "range": [50, 1319]}
+      },
+      "outputs": ["answer_coupling_rho", "text_coupling_rho", "p_values", "position_map"],
+      "typical_runtime_minutes": 20,
+      "status": "placeholder"
+    },
+    {
+      "name": "pruning_dissociation",
+      "script": "templates/pruning_dissociation.py",
+      "description": "Prune KV cache positions by type (answer-coupled vs text-scaffolding) and measure accuracy and text coherence of surviving generation. The double dissociation experiment.",
+      "parameters": {
+        "pruning_strategy": {"type": "string", "enum": ["answer_coupled", "text_scaffolding", "random", "top_attention", "bottom_attention"], "description": "Which positions to prune"},
+        "pruning_threshold": {"type": "float", "range": [0.0, 1.0], "description": "Fraction of positions to prune"},
+        "position_selection_method": {"type": "string", "enum": ["attention_based", "gradient_based", "correlation_based"], "description": "How to classify positions"},
+        "model": {"type": "string", "enum": ["qwen3-4b-base", "llama-3.1-8b-base"]},
+        "num_problems": {"type": "int", "range": [50, 1319]}
+      },
+      "outputs": ["accuracy_retained", "text_coherence_score", "positions_pruned_count", "surviving_text_sample"],
+      "typical_runtime_minutes": 20,
+      "status": "placeholder"
+    },
+    {
+      "name": "cross_model_transfer",
+      "script": "templates/cross_model_transfer.py",
+      "description": "Test whether perturbation patterns learned on one model transfer to another. Evidence that the hidden channel is a general phenomenon, not model-specific.",
+      "parameters": {
+        "source_model": {"type": "string", "enum": ["qwen3-4b-base", "llama-3.1-8b-base"]},
+        "target_model": {"type": "string", "enum": ["qwen3-4b-base", "llama-3.1-8b-base"]},
+        "transfer_type": {"type": "string", "enum": ["position_pattern", "layer_pattern", "perturbation_direction"], "description": "What aspect of the attack to transfer"},
+        "num_problems": {"type": "int", "range": [50, 1319]}
+      },
+      "outputs": ["source_accuracy", "target_accuracy", "transfer_success_rate"],
+      "typical_runtime_minutes": 25,
+      "status": "placeholder"
+    },
+    {
+      "name": "layer_ablation",
+      "script": "templates/layer_ablation.py",
+      "description": "Systematically perturb individual layers or layer ranges to localize where answer-relevant computation is concentrated.",
+      "parameters": {
+        "layer_selection": {"type": "string", "enum": ["individual", "range", "cumulative"], "description": "How to select layers for ablation"},
+        "layers": {"type": "list[int]", "description": "Specific layers to test"},
+        "perturbation_type": {"type": "string", "enum": ["pgd", "zero_ablation", "noise"], "description": "Type of perturbation"},
+        "epsilon": {"type": "float", "range": [0.001, 1.0]},
+        "model": {"type": "string", "enum": ["qwen3-4b-base", "llama-3.1-8b-base"]},
+        "num_problems": {"type": "int", "range": [50, 1319]}
+      },
+      "outputs": ["per_layer_accuracy", "per_layer_answer_coupling", "per_layer_text_coupling"],
+      "typical_runtime_minutes": 25,
+      "status": "placeholder"
+    },
+    {
+      "name": "null_space_characterization",
+      "script": "templates/null_space_characterization.py",
+      "description": "Measure the gap between isotropic noise and adversarial perturbation thresholds to characterize the null space size and structure.",
+      "parameters": {
+        "noise_type": {"type": "string", "enum": ["isotropic_gaussian", "uniform", "structured"], "description": "Type of random perturbation baseline"},
+        "epsilon_range": {"type": "list[float]", "description": "Range of perturbation budgets to sweep"},
+        "num_samples": {"type": "int", "range": [10, 100], "description": "Random perturbation samples per epsilon"},
+        "layers": {"type": "list[int]"},
+        "model": {"type": "string", "enum": ["qwen3-4b-base", "llama-3.1-8b-base"]},
+        "num_problems": {"type": "int", "range": [50, 1319]}
+      },
+      "outputs": ["noise_threshold", "adversarial_threshold", "null_space_gap", "per_epsilon_accuracy_curve"],
+      "typical_runtime_minutes": 20,
+      "status": "placeholder"
+    }
+  ]
+}
