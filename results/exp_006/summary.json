@@ -1,0 +1,63 @@
+{
+  "experiment": "exp_006_llama_snr_cliff",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "num_valid": 21,
+  "snr_levels_db": [
+    0,
+    5,
+    8,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    20,
+    25,
+    Infinity
+  ],
+  "results": {
+    "snr_inf": {
+      "answer_accuracy": 1.0,
+      "answer_correct": 21,
+      "answer_total": 21,
+      "token_accuracy_mean": 1.0,
+      "token_accuracy_std": 0.0,
+      "token_accuracies": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "cliff_analysis": {
+    "max_drop": 0.0,
+    "cliff_snr_lower": null,
+    "cliff_snr_upper": null,
+    "snr_90pct": null,
+    "snr_10pct": null,
+    "cliff_width_db": null
+  },
+  "elapsed_seconds": 115.44339776039124
+}

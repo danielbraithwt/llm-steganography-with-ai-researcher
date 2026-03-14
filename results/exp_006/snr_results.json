@@ -1,0 +1,1334 @@
+{
+  "snr_0": [
+    {
+      "ds_idx": 1214,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 57,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1252,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 618,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 599,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 289,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 608,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 400,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 237,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 616,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 463,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 222,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 238,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 730,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 55,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 772,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 176,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 896,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1122,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 480,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 187,
+      "error": "'DynamicCache' object is not subscriptable"
+    }
+  ],
+  "snr_5": [
+    {
+      "ds_idx": 1214,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 57,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1252,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 618,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 599,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 289,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 608,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 400,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 237,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 616,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 463,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 222,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 238,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 730,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 55,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 772,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 176,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 896,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1122,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 480,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 187,
+      "error": "'DynamicCache' object is not subscriptable"
+    }
+  ],
+  "snr_8": [
+    {
+      "ds_idx": 1214,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 57,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1252,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 618,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 599,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 289,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 608,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 400,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 237,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 616,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 463,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 222,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 238,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 730,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 55,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 772,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 176,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 896,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1122,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 480,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 187,
+      "error": "'DynamicCache' object is not subscriptable"
+    }
+  ],
+  "snr_10": [
+    {
+      "ds_idx": 1214,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 57,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1252,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 618,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 599,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 289,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 608,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 400,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 237,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 616,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 463,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 222,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 238,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 730,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 55,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 772,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 176,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 896,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1122,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 480,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 187,
+      "error": "'DynamicCache' object is not subscriptable"
+    }
+  ],
+  "snr_11": [
+    {
+      "ds_idx": 1214,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 57,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1252,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 618,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 599,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 289,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 608,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 400,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 237,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 616,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 463,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 222,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 238,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 730,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 55,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 772,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 176,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 896,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1122,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 480,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 187,
+      "error": "'DynamicCache' object is not subscriptable"
+    }
+  ],
+  "snr_12": [
+    {
+      "ds_idx": 1214,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 57,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1252,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 618,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 599,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 289,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 608,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 400,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 237,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 616,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 463,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 222,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 238,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 730,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 55,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 772,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 176,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 896,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1122,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 480,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 187,
+      "error": "'DynamicCache' object is not subscriptable"
+    }
+  ],
+  "snr_13": [
+    {
+      "ds_idx": 1214,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 57,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1252,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 618,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 599,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 289,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 608,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 400,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 237,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 616,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 463,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 222,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 238,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 730,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 55,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 772,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 176,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 896,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1122,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 480,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 187,
+      "error": "'DynamicCache' object is not subscriptable"
+    }
+  ],
+  "snr_14": [
+    {
+      "ds_idx": 1214,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 57,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1252,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 618,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 599,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 289,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 608,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 400,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 237,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 616,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 463,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 222,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 238,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 730,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 55,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 772,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 176,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 896,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1122,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 480,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 187,
+      "error": "'DynamicCache' object is not subscriptable"
+    }
+  ],
+  "snr_15": [
+    {
+      "ds_idx": 1214,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 57,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1252,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 618,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 599,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 289,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 608,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 400,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 237,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 616,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 463,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 222,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 238,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 730,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 55,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 772,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 176,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 896,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1122,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 480,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 187,
+      "error": "'DynamicCache' object is not subscriptable"
+    }
+  ],
+  "snr_16": [
+    {
+      "ds_idx": 1214,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 57,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1252,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 618,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 599,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 289,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 608,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 400,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 237,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 616,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 463,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 222,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 238,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 730,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 55,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 772,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 176,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 896,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1122,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 480,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 187,
+      "error": "'DynamicCache' object is not subscriptable"
+    }
+  ],
+  "snr_17": [
+    {
+      "ds_idx": 1214,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 57,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1252,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 618,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 599,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 289,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 608,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 400,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 237,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 616,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 463,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 222,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 238,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 730,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 55,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 772,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 176,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 896,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1122,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 480,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 187,
+      "error": "'DynamicCache' object is not subscriptable"
+    }
+  ],
+  "snr_18": [
+    {
+      "ds_idx": 1214,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 57,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1252,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 618,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 599,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 289,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 608,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 400,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 237,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 616,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 463,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 222,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 238,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 730,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 55,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 772,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 176,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 896,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1122,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 480,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 187,
+      "error": "'DynamicCache' object is not subscriptable"
+    }
+  ],
+  "snr_20": [
+    {
+      "ds_idx": 1214,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 57,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1252,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 618,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 599,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 289,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 608,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 400,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 237,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 616,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 463,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 222,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 238,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 730,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 55,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 772,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 176,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 896,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1122,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 480,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 187,
+      "error": "'DynamicCache' object is not subscriptable"
+    }
+  ],
+  "snr_25": [
+    {
+      "ds_idx": 1214,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 57,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1252,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 618,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 599,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 289,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 608,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 400,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 237,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 616,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 463,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 222,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 238,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 730,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 55,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 772,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 176,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 896,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 1122,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 480,
+      "error": "'DynamicCache' object is not subscriptable"
+    },
+    {
+      "ds_idx": 187,
+      "error": "'DynamicCache' object is not subscriptable"
+    }
+  ],
+  "snr_inf": [
+    {
+      "ds_idx": 1214,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "5"
+    },
+    {
+      "ds_idx": 57,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "83"
+    },
+    {
+      "ds_idx": 1252,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "70"
+    },
+    {
+      "ds_idx": 618,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "36"
+    },
+    {
+      "ds_idx": 599,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "48"
+    },
+    {
+      "ds_idx": 289,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "16"
+    },
+    {
+      "ds_idx": 608,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "8"
+    },
+    {
+      "ds_idx": 400,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "48"
+    },
+    {
+      "ds_idx": 237,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "90"
+    },
+    {
+      "ds_idx": 616,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "10"
+    },
+    {
+      "ds_idx": 463,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "18"
+    },
+    {
+      "ds_idx": 222,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "140"
+    },
+    {
+      "ds_idx": 238,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "68"
+    },
+    {
+      "ds_idx": 730,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "8"
+    },
+    {
+      "ds_idx": 55,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "14"
+    },
+    {
+      "ds_idx": 772,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "50"
+    },
+    {
+      "ds_idx": 176,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "100"
+    },
+    {
+      "ds_idx": 896,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "250"
+    },
+    {
+      "ds_idx": 1122,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "18"
+    },
+    {
+      "ds_idx": 480,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "11"
+    },
+    {
+      "ds_idx": 187,
+      "answer_correct": true,
+      "token_accuracy": 1.0,
+      "generated_answer": "106"
+    }
+  ]
+}
