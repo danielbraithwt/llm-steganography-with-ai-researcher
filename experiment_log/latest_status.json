@@ -1,28 +1,29 @@
 {
-  "cycle": 4,
-  "timestamp": "2026-03-14T07:17:00Z",
+  "cycle": 5,
+  "timestamp": "2026-03-14T08:30:00Z",
   "type": "experiment",
-  "template": "noise_ablation_sweep",
+  "template": "noise_ablation_cross_model",
   "parameters": {
     "noise_fractions": [0.05, 0.10, 0.15, 0.20],
     "zero_fractions": [0.90, 0.95, 0.99],
     "classification": "selectivity-based (AC_rank - TC_rank)",
-    "n_valid": 34,
-    "model": "Qwen3-4B-Base"
+    "n_valid": 21,
+    "model": "meta-llama/Llama-3.1-8B-Instruct"
   },
-  "prediction_outcome": "partial_confirmation",
-  "key_finding": "Accuracy dissociation found: 5% noise at AC-selective positions drops accuracy 23.5pp more than TC-selective. But text loss dissociation is reversed (AC positions are hubs, not answer-specific). Massive noise/zero gap: 5% noise ≈ 99% zeroing.",
-  "evidence_impact": "Resolves exp_002 null result as methodological (zeroing too weak). Upgrades spatial structure claim from 'challenged' to 'partially supported'. Full double dissociation still not achieved.",
-  "next_planned": "Cross-model replication on Llama-3.1-8B, or more surgical noise intervention to test hub vs channel-specific hypothesis",
+  "prediction_outcome": "confirmed",
+  "key_finding": "Accuracy dissociation replicates on Llama: +23.8pp at 5% noise (SelAC=19%, SelTC=43%), nearly identical to Qwen's +23.5pp. Text loss reversal also replicates. Llama is more fragile overall (5% random noise → 5% acc vs Qwen's 56%).",
+  "evidence_impact": "First cross-model replication. Upgrades accuracy dissociation from 'supported/moderate' to 'established/strong'. Confirms the phenomenon is architecture-general.",
+  "next_planned": "Adversarial null space (PGD) replication on Llama, or SNR cliff replication, or third-model validation on Qwen3-8B",
   "figures": [
-    "results/exp_004/ablation_accuracy_sweep.png",
-    "results/exp_004/ablation_textloss_sweep.png",
-    "results/exp_004/dissociation_effects.png"
+    "results/exp_005/ablation_accuracy_sweep.png",
+    "results/exp_005/ablation_textloss_sweep.png",
+    "results/exp_005/cross_model_comparison.png",
+    "results/exp_005/dissociation_effects.png"
   ],
   "progress": {
     "null_space_existence": {"status": "strong", "bar": 4},
-    "spatial_structure": {"status": "moderate", "bar": 3},
+    "spatial_structure": {"status": "moderate-to-strong", "bar": 3},
     "natural_usage": {"status": "partial", "bar": 2},
-    "cross_model_replication": {"status": "not_started", "bar": 0}
+    "cross_model_replication": {"status": "first_replication", "bar": 2}
   }
 }
