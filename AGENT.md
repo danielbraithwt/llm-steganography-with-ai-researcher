@@ -35,7 +35,11 @@ Write a brief (2-3 paragraph) situation assessment:
 - What is the single most valuable thing to investigate next?
 
 ### Step 3: Design (for experiments)
-- Select a template from `templates/template_registry.json`
+- Design the experiment you need. You may either:
+  - Use an existing template from `templates/` if one fits, OR
+  - **Write your own experiment script** in `scripts/` — you have full autonomy
+    to implement whatever analysis is needed. Write clean, self-contained Python
+    scripts. Save them to `scripts/exp_NNN_<description>.py`.
 - Choose parameters with a clear rationale
 - Write PRE-REGISTERED PREDICTIONS:
   - "If hypothesis is TRUE, I expect: [specific quantitative prediction]"
@@ -51,10 +55,49 @@ Write a brief (2-3 paragraph) situation assessment:
 - Write summaries to `literature_notes/` with citation info
 - Note any findings that support, challenge, or extend the current work
 
+### Step 3.5: Post Slack Progress Update
+After designing but before executing, post a brief update to Slack:
+```bash
+bash notifications/post_update.sh "Starting exp NNN: <one-line description>"
+```
+Use this throughout the cycle at key milestones (experiment starting, experiment
+finished, analysis complete, etc.) so the researcher can follow along in real time.
+
+### Step 3.75: Code Review (BEFORE running)
+Before executing any experiment, review your own code critically:
+- **Read the script back** and trace the logic end-to-end. Does it actually
+  test what you claim it tests?
+- **Check tensor shapes and indexing** — off-by-one errors, wrong dimensions,
+  broadcasting bugs. Print shapes at key points.
+- **Verify baselines/controls** — is there a clean control condition? Will you
+  be able to distinguish a real effect from a bug?
+- **Check for common confounds:**
+  - Are you comparing things that differ in more than one variable?
+  - Could the effect be an artifact of tokenization, padding, or sequence length?
+  - Are random seeds set for reproducibility?
+  - Is the metric actually measuring what you think it is?
+- **Run a small smoke test** (e.g. 2-3 problems) before the full run to catch
+  crashes and sanity-check outputs.
+
+If you find issues, fix them before proceeding. A buggy experiment wastes an
+entire cycle — it's always worth spending 5 minutes reviewing.
+
 ### Step 4: Execute
-- Run the experiment by invoking the template with chosen parameters
+- Run the experiment (either a template or your own script)
 - Enforce the time budget from config.env
 - Capture all outputs to `results/`
+
+### Step 4.5: Post-Experiment Sanity Checks
+Before analyzing results, verify the experiment ran correctly:
+- **Check for NaN/Inf** in outputs — these indicate bugs, not findings
+- **Verify sample counts** — did all problems run? Any silent failures?
+- **Spot-check individual examples** — pick 2-3 results and manually verify
+  they make sense (e.g. read the generated text, check the math, confirm
+  the metric calculation on one example by hand)
+- **Compare control condition to expected baseline** — if the control looks
+  wrong, the experiment is wrong
+- If anything looks off, diagnose the bug before proceeding. Do NOT analyze
+  buggy results — they will pollute the evidence ledger.
 
 ### Step 5: Analyze & Visualize
 - Compare results to pre-registered predictions
@@ -160,46 +203,40 @@ MUST be designed to challenge it. Look for:
 A finding is "established" only when demonstrated in >=2 independent conditions
 (different parameters, different model, different subset of data).
 
-## Template Interface
+## Experiment Implementation
 
-Templates are Python scripts in `templates/` registered in `template_registry.json`.
-Each template:
-- Accepts a JSON config on stdin or as a --config argument
-- Prints structured JSON results to stdout
-- Saves any artifacts (plots, tensors) to a specified output directory
-- Returns exit code 0 on success, non-zero on failure
-- Respects a --timeout flag for wall-clock budget
+You have full autonomy to write and run experiment code. You can:
+- Use existing templates in `templates/` if they fit your needs
+- Write new experiment scripts from scratch in `scripts/`
+- Install Python packages as needed (`pip install ...`)
+- Use any libraries available (torch, transformers, matplotlib, numpy, etc.)
 
-You invoke templates like:
-```bash
-python templates/pgd_attack.py --config '{"epsilon": 0.1, "layers": [16,17,18]}' \
-    --output-dir results/exp_014/ \
-    --timeout 1800
-```
-
-You MUST NOT modify template internals. You only choose which template to run
-and with what parameters. If you need a new experiment type, document the need
-in the experiment log and flag it for human attention.
+When writing experiment scripts:
+- Make them self-contained and reproducible
+- Save results as JSON to `results/exp_NNN/`
+- Generate figures and save as PNG to `results/exp_NNN/`
+- Print key metrics to stdout for the experiment log
+- Respect the experiment timeout budget
 
 ## Files You Read (but don't modify)
 - `AGENT.md` (this file)
 - `research_spec.md`
-- `templates/*.py`
 - `loop.sh`
 - `config.env`
 - `notifications/*`
 
-## Files You Update
+## Files You Create or Update
 - `evidence_ledger.md` — append entries, update summary header
 - `experiment_log/exp_NNN.md` — one file per experiment
 - `experiment_log/latest_status.json` — overwritten each cycle
 - `literature_notes/*.md` — add new literature summaries
 - `human_directives.md` — move acknowledged directives only
+- `scripts/*.py` — your experiment implementations
+- `results/exp_NNN/` — experiment outputs, figures, data
 
 ## Files You NEVER Modify
 - `AGENT.md` (this file)
 - `research_spec.md`
-- `templates/*.py`
 - `loop.sh`
 - `config.env`
 - `notifications/*`
