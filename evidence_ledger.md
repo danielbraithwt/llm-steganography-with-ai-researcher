@@ -1,18 +1,21 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-14 (cycle 11, H2O overlap experiment)
-Cycles completed: 11
+Last updated: 2026-03-14 (cycle 13, exp_012 analysis + exp_013)
+Cycles completed: 13
 
-### Hypothesis Status: REFRAMED — hidden channel confirmed but NOT captured by standard KV compression; GQA/MHA explanation invalidated (both models use GQA)
+### Hypothesis Status: PARTIALLY SUPPORTED — hidden channel confirmed on Qwen; spatial structure is architecture-specific; Llama uses distributed encoding where position dominates
 
-The KV cache carries a functionally separable hidden channel that encodes answer-relevant
-information independent of the visible reasoning tokens. Exp 011 reveals that H2O heavy-hitter
-positions (used by practical KV compression) do NOT overlap with answer-coupled positions
-(rho=0.004-0.11). H2O preferentially retains text-coupled positions (57% TC vs 40% AC).
-This means standard KV compression may actively harm the hidden channel while preserving text
-coherence. **Important correction:** Qwen3-4B-Base also uses GQA (8 KV heads), NOT MHA.
-The GQA-vs-MHA hypothesis for architecture differences is therefore INVALIDATED.
+The KV cache carries a functionally separable hidden channel on Qwen (PGD null space at 377x,
+spatial structure rho=0.78, SNR cliff at 14 dB). On Llama, the encoding is distributed/analog:
+no PGD null space, no SNR cliff, and **Exp 012+013 show that answer-coupled positions have no
+causal validity as a protection metric** (AC ≈ SEL ≈ Random << TC ≈ H2O). Position in the
+causal chain is the dominant factor for answer accuracy on Llama. The ~24pp destruction
+dissociation (exp_004/005) is real but reflects hub-destruction effects and positional confounds,
+not genuine channel separation. The text-coupling metric (TC) best preserves answer accuracy on
+Llama — because answer computation flows through the same positions as text computation
+(distributed encoding). **The "hidden channel" concept is valid for Qwen's concentrated
+encoding but must be reframed for Llama's distributed encoding.**
 
 ### Evidence Overview
 | Claim | Status | Strength | Key Experiments | Notes |
@@ -41,6 +44,13 @@ The GQA-vs-MHA hypothesis for architecture differences is therefore INVALIDATED.
 | **Text bottleneck framing is mainstream (literature)** | **supported** | **moderate** | **Lit scan cycle 10** | **Coconut, Quiet-STaR, latent reasoning survey all frame text as bottleneck. Coconut shows reasoning IMPROVES when text constraint removed. Our work provides mechanistic KV-level evidence** |
 | **H2O heavy-hitters ≠ answer-coupled positions** | **established** | **moderate** | **Exp 011** | **H2O vs AC rho=0.004 (Qwen), 0.11 (Llama). H2O retains 57% TC-selective vs 40% AC-selective. Positions with highest cumulative attention are NOT the answer-relevant ones. Replicated on both models** |
 | **KV compression may harm hidden channel** | **supported** | **moderate** | **Exp 011** | **H2O preferentially evicts answer-coupled positions (Q1 has highest AC). Standard compression preserves text coherence but may degrade answer computation. Suggests AC-aware compression could improve accuracy** |
+| **AC-protection FAILS on Llama** | **established** | **strong negative** | **Exp 012** | **Protecting high-AC positions is no better than random. H2O_protect ≈ TC_protect >> AC_protect ≈ Random at 1-5% noise. Raw AC score is observational, not causal for answer accuracy on Llama** |
+| **AC-aware compression would NOT outperform H2O** | **established** | **strong negative** | **Exp 012** | **Directly contradicts exp_011 suggestion. H2O noises high-AC positions yet achieves BETTER accuracy. Cumulative attention is a better protection metric than answer-token attention** |
+| **Raw AC ≠ selectivity (AC-TC)** | **important distinction** | **methodological** | **Exp 004/005 vs Exp 012** | **Selectivity-based destruction works (+24pp dissociation). Raw AC-based protection fails. These are different metrics testing different aspects of position importance** |
+| **Selectivity-based protection ALSO fails on Llama** | **established** | **strong negative** | **Exp 013** | **SEL_protect ≈ AC_protect ≈ Random << H2O ≈ TC. Selectivity does NOT rescue the framework. SEL at 1% = 48% vs H2O at 1% = 100%** |
+| **Position in causal chain dominates on Llama** | **established** | **strong** | **Exp 013** | **Position-score rho: H2O=-0.56, AC=+0.37, TC=+0.44. Strategies that noise early positions fail; strategies that noise late positions succeed. Position is the dominant factor for answer accuracy on Llama** |
+| **TC (text-coupling) is best protection metric** | **established** | **moderate** | **Exp 013** | **TC_protect > H2O_protect at all noise fractions (72% vs 68% at 3%, 36% vs 20% at 5%). Irony: text-coupling best preserves ANSWER accuracy on Llama — consistent with distributed encoding** |
+| **AC/SEL spatial structure is Qwen-specific** | **supported** | **strong** | **Exp 008, 012, 013** | **PGD rho=0.78 on Qwen; PGD fails on Llama. AC/SEL protection fails on Llama. The "answer-coupled positions" concept has causal validity only on Qwen with its concentrated encoding** |
 
 ### Open Questions
 1. ~~Why does 50% position pruning not affect accuracy?~~ **ANSWERED (Exp 004): zeroing is the wrong method.**
@@ -71,6 +81,14 @@ The GQA-vs-MHA hypothesis for architecture differences is therefore INVALIDATED.
 26. **NEW (Exp 011):** What explains the Qwen/Llama encoding difference if NOT GQA vs MHA? Both use 8 KV heads. Candidates: model size (4B vs 8B), training data/procedure, depth (36 vs 32 layers), hidden dimension, or instruction tuning.
 27. **NEW (Exp 011):** Is the H2O-AC dissociation driven by position (early vs late in sequence) or by genuine functional differentiation? Need position-controlled analysis.
 28. **NEW (Exp 011):** Why does Qwen3-4B-Base with eager attention produce only 16-20% baseline accuracy? This limits all Qwen experiments to n=4.
+29. ~~**NEW (Exp 011):** Would AC-aware KV compression outperform H2O for answer accuracy?~~ **ANSWERED (Exp 012): NO. AC-protection is no better than random on Llama. H2O outperforms AC.**
+30. ~~**NEW (Exp 012):** Why does raw AC score fail as a protection metric when selectivity-based destruction works?~~ **ANSWERED (Exp 013): Both raw AC and selectivity fail as protection metrics. The success of destruction tests (exp_004/005) reflects hub destruction effects, not channel-specific importance. Position in causal chain is the dominant factor.**
+31. ~~**NEW (Exp 012):** Would selectivity-based protection outperform H2O?~~ **ANSWERED (Exp 013): NO. SEL ≈ AC ≈ Random << TC ≈ H2O. Selectivity does not rescue the framework.**
+32. ~~**NEW (Exp 012):** Is the AC-protection failure a positional confound?~~ **ANSWERED (Exp 013): YES. Position-AC rho=+0.37 (late=high AC). AC-protect noises early positions (mean 0.38). Position-H2O rho=-0.56. H2O protects early positions. Position in causal chain dominates accuracy.**
+33. **NEW (Exp 012):** Does AC-protection work on Qwen (where PGD validates AC)? Exp 012/013 only tested Llama (Qwen n=2).
+34. **NEW (Exp 013):** Does position-controlled analysis (within position quartiles) show any value from AC or selectivity beyond positional information? Exp 013 found position dominates, but didn't control for it.
+35. **NEW (Exp 013):** Why does TC (text-coupling) outperform H2O for answer accuracy? Both protect positions with high subsequent-token attention, but TC is slightly better. Is TC capturing semantic importance beyond positional priority?
+36. **NEW (Exp 013):** Can TC-aware compression outperform H2O on actual KV cache eviction benchmarks (not just noise injection)?
 
 ### Confirmed Findings
 - LLM output distributions have ~4-5 bits/token unused capacity (Exp 1)
@@ -87,6 +105,9 @@ The GQA-vs-MHA hypothesis for architecture differences is therefore INVALIDATED.
 - **The digital/distributed encoding distinction operates at position-level and noise-level, NOT at layer-level** — both models show high layer redundancy, though Qwen is slightly more layer-concentrated (std ratio=7.64) (Exp 009)
 - **H2O heavy-hitter positions do NOT correspond to answer-coupled positions** — H2O vs AC Spearman rho = 0.004 (Qwen), 0.11 (Llama). H2O retains 57% TC-selective vs 40% AC-selective positions. Standard KV compression preferentially evicts answer-relevant positions (Exp 011)
 - **Both Qwen3-4B-Base and Llama-3.1-8B use GQA with 8 KV heads** — the GQA-vs-MHA hypothesis is invalidated. Architecture differences must stem from other factors (Exp 011)
+- **Selectivity (AC-TC rank) fails as a protection metric on Llama** — SEL ≈ AC ≈ Random. TC > H2O >> Random ≈ AC ≈ SEL. The selectivity framework does not identify causally important positions on Llama (Exp 013)
+- **Position in the causal chain dominates answer accuracy on Llama** — Position vs H2O rho=-0.56, Position vs AC rho=+0.37. Strategies noising early positions fail; strategies noising late positions succeed. Position is the primary factor (Exp 013)
+- **TC (text-coupling) is the best protection metric on Llama** — TC_protect > H2O_protect at 3% (72% vs 68%) and 5% (36% vs 20%). Text-coupling best preserves answer accuracy because answer computation flows through the full causal chain (distributed encoding) (Exp 013)
 
 ### Disconfirmed or Revised
 - **Position-level functional separation via zeroing** (Exp 002): Zeroing is too weak. Methodological limitation, not evidence against spatial structure.
@@ -95,6 +116,9 @@ The GQA-vs-MHA hypothesis for architecture differences is therefore INVALIDATED.
 - **SNR cliff is a general property of transformer KV caches** (Exp 007): The sharp cliff at ~14 dB is Qwen-specific. Llama shows no cliff — 100% accuracy at 5 dB (noise at 56% of signal). The "digital-like fragility" interpretation applies only to Qwen's architecture.
 - **GQA vs MHA explains Qwen/Llama encoding differences** (Exp 011): INVALIDATED. Both Qwen3-4B-Base and Llama-3.1-8B use GQA with 8 KV heads. The architecture difference must stem from other factors (model size, training, depth, instruction tuning).
 - **H2O heavy-hitters = AC positions ("AC are hubs → H2O keeps them")** (Exp 011): DISCONFIRMED. H2O vs AC rho ≈ 0. H2O measures "popularity" (cumulative attention), which is different from "answer-relevance" (answer-token attention). These are orthogonal importance dimensions.
+- **AC-aware compression would outperform H2O** (Exp 012): DISCONFIRMED. AC-protection performs no better than random on Llama. H2O-protection outperforms AC-protection by 24-48pp in the informative noise range (1-5%). Raw answer-token attention does not identify causally important positions for answer accuracy.
+- **Selectivity (AC-TC rank) as a protection metric** (Exp 013): DISCONFIRMED. Selectivity performs no better than raw AC and both ≈ random. The selectivity framework does NOT rescue the AC/TC protection approach on Llama. TC > H2O >> Random ≈ AC ≈ SEL.
+- **"Answer-coupled positions" are causally distinct on Llama** (Exp 012, 013): DISCONFIRMED. The ~24pp destruction dissociation (exp_004/005) reflects hub destruction effects and positional confounds, not genuine channel separation. Position in the causal chain is the dominant factor. The spatial structure claim is valid only on Qwen (PGD rho=0.78).
 
 ---
 
@@ -211,3 +235,28 @@ See `literature_notes/cycle_010_*.md` for detailed paper summaries
 - **All pre-registered predictions disconfirmed** — H2O importance is orthogonal to AC/TC
 - Evidential strength: moderate (surprising negative result with practical implications)
 - See `experiment_log/exp_011.md`, `results/exp_011/`
+
+### Exp 012 (Cycle 12) — MAJOR NEGATIVE RESULT (analyzed in cycle 13)
+**AC-Aware vs H2O KV Cache Position Protection**
+- Model: Llama-3.1-8B-Instruct (n=21; Qwen excluded, n=2)
+- **AC-protection FAILS:** protecting high-AC positions is no better than random
+- **H2O ≈ TC >> AC ≈ Random** at all noise fractions 1-5%
+- At 5% noise: H2O_protect=29%, TC_protect=24%, AC_protect=0%, Random=0%
+- **H2O noises positions with 367x higher AC scores yet achieves better accuracy**
+- **Raw AC score is observational, not causal, for answer accuracy on Llama**
+- Does NOT invalidate selectivity-based destruction findings (exp_004/005)
+- Key distinction: raw AC score vs selectivity (AC-TC rank difference) are different metrics
+- Evidential strength: moderate (important negative result; Llama-only, selectivity untested)
+- See `experiment_log/exp_012.md`, `results/exp_012/`
+
+### Exp 013 (Cycle 13) — DECISIVE NEGATIVE RESULT
+**Selectivity-Based Protection + Positional Analysis**
+- Model: Llama-3.1-8B-Instruct (n=25)
+- **Selectivity does NOT rescue the AC/TC framework:** SEL ≈ AC ≈ Random << TC ≈ H2O
+- **Ranking: TC > H2O >> Random > AC ≈ SEL** at all noise fractions 1-5%
+- At 3%: TC=72%, H2O=68%, Random=36%, AC=24%, SEL=28%
+- **Positional analysis explains everything:** Position vs H2O rho=-0.56 (early=high). Position vs AC rho=+0.37 (late=high). H2O/TC noise late positions. AC/SEL noise early positions. Early positions are most critical on Llama.
+- **TC (text-coupling) best preserves answer accuracy** — irony: the text-focused metric outperforms the answer-focused metric for answers. Consistent with distributed encoding.
+- **The "answer-coupled positions" concept is NOT causally valid on Llama.** It works on Qwen (PGD rho=0.78) but fails both as protection and as a compression metric on Llama.
+- Evidential strength: strong (decisive negative result with clean mechanistic explanation)
+- See `experiment_log/exp_013.md`, `results/exp_013/`

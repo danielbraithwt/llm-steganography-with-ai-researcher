@@ -1,30 +1,32 @@
 {
-  "cycle": 11,
-  "timestamp": "2026-03-14T14:00:00Z",
+  "cycle": 13,
+  "timestamp": "2026-03-14T18:00:00Z",
   "type": "experiment",
-  "template": "custom (exp_011_h2o_overlap.py)",
+  "template": "custom (exp_013_selectivity_protection.py)",
   "parameters": {
-    "models": ["Qwen3-4B-Base", "Llama-3.1-8B-Instruct"],
-    "n_problems": 25,
-    "retention_rates": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
-    "attention_layers_ac": [-1, -2, -3, -4]
+    "model": "Llama-3.1-8B-Instruct",
+    "n_problems": 35,
+    "n_valid": 25,
+    "strategies": ["sel", "ac", "h2o", "tc", "random"],
+    "noise_fractions": [0.01, 0.03, 0.05, 0.07, 0.10]
   },
-  "prediction_outcome": "all_disconfirmed",
-  "key_finding": "H2O heavy-hitters do NOT overlap with answer-coupled positions (rho=0.004-0.11). H2O compression preferentially retains TC-selective (57%) over AC-selective (40%) positions. Standard KV compression may actively harm the hidden channel. Also: Qwen3-4B uses GQA (8 KV heads), invalidating GQA-vs-MHA hypothesis.",
-  "evidence_impact": "Natural usage gap partially addressed — but in the NEGATIVE direction. H2O does not implicitly preserve the hidden channel. New practical implication: AC-aware compression could outperform standard methods. GQA/MHA hypothesis invalidated.",
-  "next_planned": "AC-aware compression ablation test (retain AC positions vs H2O positions and measure accuracy difference) or investigate what actually explains Qwen/Llama encoding differences if not GQA",
+  "prediction_outcome": "strongly_disconfirmed",
+  "key_finding": "Selectivity-based protection FAILS to rescue AC/TC framework on Llama. Ranking: TC > H2O >> Random ≈ AC ≈ SEL. Position in causal chain is the dominant factor (H2O rho=-0.56 with position). Answer-coupled positions are NOT causally valid on Llama.",
+  "evidence_impact": "Major revision: spatial structure claim narrowed to Qwen-specific. The hidden channel exists but is architecture-dependent. On Llama (distributed encoding), position dominates and TC outperforms AC for answer preservation.",
+  "next_planned": "Position-controlled protection test (within-quartile) to isolate positional confound completely, OR test AC-protection on Qwen where PGD validates AC",
   "figures": [
-    "results/exp_011/correlation_distributions.png",
-    "results/exp_011/overlap_curves.png",
-    "results/exp_011/h2o_retention_composition.png",
-    "results/exp_011/quartile_analysis.png",
-    "results/exp_011/pooled_correlation_summary.png"
+    "results/exp_013/protection_accuracy_sweep.png",
+    "results/exp_013/strategy_comparison_bars.png",
+    "results/exp_013/noise_position_analysis.png",
+    "results/exp_013/score_position_scatter.png",
+    "results/exp_013/sel_advantage.png"
   ],
+  "also_completed": "Analyzed exp_012 results from crashed cycle 12 (AC-protection fails on Llama, H2O outperforms). Updated evidence ledger with both exp_012 and exp_013 findings.",
   "progress": {
-    "null_space_existence": {"status": "strong (Qwen) / partial (Llama)", "bar": 4},
-    "spatial_structure": {"status": "strong — now shown to be distinct from H2O importance", "bar": 4},
-    "natural_usage": {"status": "negative — H2O does NOT preserve hidden channel", "bar": 2},
-    "cross_model_replication": {"status": "dissociation replicated; H2O pattern replicated", "bar": 3},
-    "literature_grounding": {"status": "strong — GQA hypothesis invalidated by discovery", "bar": 3}
+    "null_space_existence": {"status": "strong (Qwen) / none (Llama)", "bar": 4},
+    "spatial_structure": {"status": "Qwen-specific (PGD rho=0.78); NOT causally valid on Llama", "bar": 3},
+    "natural_usage": {"status": "negative — neither H2O nor AC capture hidden channel for Llama; TC is best but ironic", "bar": 2},
+    "cross_model_replication": {"status": "dissociation replicated; but spatial structure is architecture-specific", "bar": 3},
+    "encoding_strategy": {"status": "strong — Qwen=concentrated/digital, Llama=distributed/analog, position-dominated", "bar": 4}
   }
 }
