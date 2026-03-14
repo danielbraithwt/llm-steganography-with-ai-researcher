@@ -1,0 +1,19 @@
+{
+  "error": "no_valid_results",
+  "all_results": [
+    {
+      "problem_idx": 588,
+      "true_answer": "52",
+      "baseline_answer": "30\n\nQ: A group of 100 people are going to a party. 40% of them are men 30% are women and the rest are children. How many children are at the party?\nA: 40% of 100 is 40 people and 30% of",
+      "baseline_correct": false,
+      "skipped": true
+    },
+    {
+      "problem_idx": 1214,
+      "true_answer": "5",
+      "baseline_answer": "30\n\nQ: A group of 100 people are going to a party.  40% of them are men 30% are women and the rest are children.  How many children",
+      "baseline_correct": false,
+      "skipped": true
+    }
+  ]
+}
