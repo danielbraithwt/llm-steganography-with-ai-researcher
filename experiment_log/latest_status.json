@@ -1,29 +1,29 @@
 {
-  "cycle": 27,
-  "timestamp": "2026-03-14T23:30:00Z",
+  "cycle": 29,
+  "timestamp": "2026-03-14T22:15:00Z",
   "type": "experiment",
-  "experiment": "exp_027_snr_controlled_kv",
+  "experiment": "exp_028_position_kv_interaction",
   "model": "meta-llama/Llama-3.1-8B-Instruct",
-  "n_problems": 51,
-  "key_finding": "K-V DISSOCIATION SURVIVES ENERGY CONFOUND TEST. SNR-controlled noise (matched relative perturbation per head) confirms K genuinely more sensitive than V: avg gap=-21.6pp across 5 SNR levels. V=100% at SNR=-3dB while K=64.7%. The 6.5x energy mismatch (K-norms >> V-norms) is REAL but does NOT explain K>V. Direction replacement equivalent to ~-6dB additive noise. Text accuracy >=99% across all conditions.",
-  "evidence_impact": "Disconfirmatory challenge to central K-V finding SURVIVED. The routing > throughput interpretation is robust to the energy confound. Pre-registered Scenario A confirmed (40% confidence). The K-V direction dissociation is NOT an artifact of K having larger norms. New finding: direction replacement is more destructive than energy-matched additive noise because it completely destroys directional information.",
-  "next_planned": "Priority: (1) Replicate SNR-matched K>V on Qwen (confirm cross-model). (2) Fine-grained V breakpoint (-4 to -5 dB) to quantify V headroom. (3) Third model family for K-V dissociation. (4) K-only PGD (exploit K-direction null space). (5) Fixed-noise-std design to test per-head variability.",
+  "n_problems": 50,
+  "key_finding": "K > V IS UNIVERSAL ACROSS ALL POSITION BANDS. Disconfirmatory challenge SURVIVED. K-only at early 5%: 0% acc / 10.5% text (destroys everything). V-only at early 5%: 100% acc / 92.8% text (completely dispensable). V-K gap: early=+100pp, mid=+94pp, late=+66pp. Gap is LARGEST at infrastructure positions. V-only has ZERO answer effect at early/mid (100/100 correct). Energy ratio K/V = 6.4x is identical at all position bands — no confound.",
+  "evidence_impact": "Disconfirmatory challenge to K>V universality SURVIVED and STRENGTHENED the claim. The routing > throughput hierarchy extends to the entire KV cache. Position determines WHAT K routing controls (infrastructure vs answer-specific) but not WHETHER it matters. V content is dispensable at all positions for answer accuracy. This is the strongest confirmation of the K-V functional dissociation.",
+  "next_planned": "Priority: (1) Replicate position x K-V on Qwen (cross-model). (2) SNR-matched K>V on Qwen. (3) Third model family for K-V dissociation. (4) K-only PGD (exploit K-direction null space). (5) V-only at larger fractions (10-20%) at early positions.",
   "figures": [
-    "results/exp_027/kv_snr_matched_accuracy.png",
-    "results/exp_027/perturbation_energy_analysis.png",
-    "results/exp_027/kv_accuracy_gap.png",
-    "results/exp_027/text_accuracy_vs_snr.png",
-    "results/exp_027/all_conditions_bar.png"
+    "results/exp_028/position_kv_interaction.png",
+    "results/exp_028/kv_gap_by_position.png",
+    "results/exp_028/dissociation_map.png",
+    "results/exp_028/energy_by_position.png",
+    "results/exp_028/all_conditions_bar.png"
   ],
   "progress": {
     "null_space_existence": {"status": "strong (Qwen PGD-validated). Mechanism: K-direction space", "bar": 4},
     "spatial_structure": {"status": "DECISIVELY DISCONFIRMED on spatial selectivity", "bar": 1},
     "positional_dissociation": {"status": "STRONG: universal across models. Late positions carry answer info via K-routing", "bar": 5},
-    "geometric_dissociation": {"status": "K-V dissociation SURVIVES ENERGY CONFOUND. K>V at matched SNR (avg gap -21.6pp). Cross-model replicated, energy-artifact-tested", "bar": 5},
+    "geometric_dissociation": {"status": "K-V dissociation UNIVERSAL across ALL POSITIONS. K>V at early(+100pp), mid(+94pp), late(+66pp). Energy-confound-tested", "bar": 5},
     "natural_usage": {"status": "H2O/TC protection via position. R-KV shows removing redundant tokens IMPROVES reasoning", "bar": 3},
     "cross_model_replication": {"status": "COMPLETE dose-response on 2 families + energy confound test. V-mag immunity 149/149. K-V direction ratio 3.6-3.7x. Need 3rd family", "bar": 5},
-    "encoding_strategy": {"status": "Digital (Qwen: K+V cliffs) vs analog (Llama: K+V gradual). Energy confound tested on Llama — K>V persists at matched SNR", "bar": 5},
+    "encoding_strategy": {"status": "Digital (Qwen: K+V cliffs) vs analog (Llama: K+V gradual). Position x K-V interaction: K>V at ALL positions on Llama", "bar": 5},
     "superadditive_interaction": {"status": "Llama-specific (7.9-16.8x). Weak on Qwen (1.1-2.0x). Explained by staggered vs overlapping degradation windows", "bar": 5},
-    "literature_convergence": {"status": "5+ independent groups converge. K-V dissociation is novel contribution beyond existing literature. Now energy-confound-tested", "bar": 5}
+    "literature_convergence": {"status": "5+ independent groups converge. K-V dissociation is novel contribution beyond existing literature. Energy-confound and position-universality tested", "bar": 5}
   }
 }
