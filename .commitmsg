@@ -1,1 +1,7 @@
-cycle 026: Qwen V-mag dose-response, V cliff at sigma 3-5, digital encoding both K and V
+cycle 030: exp_029 qwen position kv replication
+
+K>V cross-model replicated at all positions on Qwen3-4B-Base (n=39).
+Early +66.7pp, mid +76.9pp, late +51.3pp. V-only=100% at early/mid.
+Unexpected: Qwen K-direction MORE robust than Llama.
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
