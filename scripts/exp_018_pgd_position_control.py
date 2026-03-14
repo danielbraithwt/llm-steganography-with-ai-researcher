@@ -33,7 +33,7 @@ from datasets import load_dataset
 
 # ── Config ──────────────────────────────────────────────────────────────
 MODEL_NAME = "Qwen/Qwen3-4B-Base"
-NUM_PROBLEMS = 25
+NUM_PROBLEMS = 50
 MAX_GEN_TOKENS = 512
 MAX_REASONING_TOKENS = 250
 MAX_SEQ_LEN = 1536
@@ -130,9 +130,9 @@ def generate_trace(model, tokenizer, prompt, max_tokens=MAX_GEN_TOKENS):
         current_text = tokenizer.decode(generated_ids, skip_special_tokens=True)
         if "####" in current_text:
             after = current_text.split("####")[-1]
-            if re.search(r'\d+', after):
+            if re.search(r'\d+\s*\n', after):
                 break
-        if "\nQ:" in current_text:
+        if "\nQ:" in current_text or "\n\nQ:" in current_text:
             idx = current_text.find("\nQ:")
             if idx > 0:
                 generated_ids = tokenizer.encode(
@@ -739,7 +739,7 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True)
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_NAME,
-        dtype=torch.float16,
+        torch_dtype=torch.float16,
         device_map="auto",
         trust_remote_code=True,
         attn_implementation="eager",
@@ -979,6 +979,18 @@ def main():
     all_attn = np.array([d['answer_attention'] for d in all_position_data])
     all_tc = np.array([d['text_coupling'] for d in all_position_data])
 
+    # Filter out zero-perturbation attacks (PGD failed to produce gradients)
+    nonzero_mask = all_pert > 1e-10
+    n_total_pos = len(all_pos)
+    n_nonzero = nonzero_mask.sum()
+    if n_nonzero < n_total_pos:
+        print(f"  Filtering: {n_total_pos - n_nonzero} zero-perturbation positions removed "
+              f"({n_nonzero}/{n_total_pos} remaining)")
+        all_pos = all_pos[nonzero_mask]
+        all_pert = all_pert[nonzero_mask]
+        all_attn = all_attn[nonzero_mask]
+        all_tc = all_tc[nonzero_mask]
+
     # ── Pooled bivariate correlations ──
     rho_pert_attn, p_pa = stats.spearmanr(all_pert, all_attn)
     rho_pert_tc, p_pt = stats.spearmanr(all_pert, all_tc)
@@ -1027,27 +1039,38 @@ def main():
         print(f"  Q{qi+1} (n={n_q}, pos {pos_range}): "
               f"rho={rho_q:.4f}" + (f" (p={p_q:.2e})" if not np.isnan(p_q) else ""))
 
-    # ── Per-attack statistics ──
-    per_attack_bivariate = [r['bivariate_rho_pert_attn'] for r in all_results]
-    per_attack_partial = [r['partial_rho_pert_attn_pos'] for r in all_results]
-    per_attack_pert_pos = [r['bivariate_rho_pert_pos'] for r in all_results]
-    per_attack_attn_pos = [r['bivariate_rho_attn_pos'] for r in all_results]
+    # ── Per-attack statistics (filter out NaN from zero-perturbation attacks) ──
+    per_attack_bivariate = [r['bivariate_rho_pert_attn'] for r in all_results
+                            if not np.isnan(r['bivariate_rho_pert_attn'])]
+    per_attack_partial = [r['partial_rho_pert_attn_pos'] for r in all_results
+                          if not np.isnan(r['partial_rho_pert_attn_pos'])]
+    per_attack_pert_pos = [r['bivariate_rho_pert_pos'] for r in all_results
+                           if not np.isnan(r['bivariate_rho_pert_pos'])]
+    per_attack_attn_pos = [r['bivariate_rho_attn_pos'] for r in all_results
+                           if not np.isnan(r['bivariate_rho_attn_pos'])]
+    n_valid_attacks = len(per_attack_bivariate)
+    n_zero_pert = n_evaluated - n_valid_attacks
+    print(f"\n  ({n_zero_pert} attacks had zero perturbation / NaN correlations — excluded from per-attack stats)")
 
-    print(f"\n--- Per-Attack Statistics ({n_evaluated} attacks) ---")
-    print(f"  Bivariate rho(pert,attn): "
-          f"mean={np.mean(per_attack_bivariate):.4f}, "
-          f"median={np.median(per_attack_bivariate):.4f}, "
-          f"range=[{np.min(per_attack_bivariate):.4f}, {np.max(per_attack_bivariate):.4f}]")
-    print(f"  Partial rho(pert,attn|pos): "
-          f"mean={np.mean(per_attack_partial):.4f}, "
-          f"median={np.median(per_attack_partial):.4f}, "
-          f"range=[{np.min(per_attack_partial):.4f}, {np.max(per_attack_partial):.4f}]")
-    print(f"  rho(pert,pos): "
-          f"mean={np.mean(per_attack_pert_pos):.4f}, "
-          f"median={np.median(per_attack_pert_pos):.4f}")
-    print(f"  rho(attn,pos): "
-          f"mean={np.mean(per_attack_attn_pos):.4f}, "
-          f"median={np.median(per_attack_attn_pos):.4f}")
+    print(f"\n--- Per-Attack Statistics ({n_valid_attacks} valid attacks out of {n_evaluated}) ---")
+    if per_attack_bivariate:
+        print(f"  Bivariate rho(pert,attn): "
+              f"mean={np.mean(per_attack_bivariate):.4f}, "
+              f"median={np.median(per_attack_bivariate):.4f}, "
+              f"range=[{np.min(per_attack_bivariate):.4f}, {np.max(per_attack_bivariate):.4f}]")
+    if per_attack_partial:
+        print(f"  Partial rho(pert,attn|pos): "
+              f"mean={np.mean(per_attack_partial):.4f}, "
+              f"median={np.median(per_attack_partial):.4f}, "
+              f"range=[{np.min(per_attack_partial):.4f}, {np.max(per_attack_partial):.4f}]")
+    if per_attack_pert_pos:
+        print(f"  rho(pert,pos): "
+              f"mean={np.mean(per_attack_pert_pos):.4f}, "
+              f"median={np.median(per_attack_pert_pos):.4f}")
+    if per_attack_attn_pos:
+        print(f"  rho(attn,pos): "
+              f"mean={np.mean(per_attack_attn_pos):.4f}, "
+              f"median={np.median(per_attack_attn_pos):.4f}")
 
     # Attack success statistics
     n_success = sum(1 for r in all_results if r['attack_success'])
@@ -1113,25 +1136,27 @@ def main():
             "partial_rho_pert_tc_pos": float(partial_pert_tc),
         },
         "per_attack_stats": {
+            "n_valid_attacks": n_valid_attacks,
+            "n_zero_perturbation": n_zero_pert,
             "bivariate_rho_pert_attn": {
-                "mean": float(np.mean(per_attack_bivariate)),
-                "median": float(np.median(per_attack_bivariate)),
-                "min": float(np.min(per_attack_bivariate)),
-                "max": float(np.max(per_attack_bivariate)),
+                "mean": float(np.mean(per_attack_bivariate)) if per_attack_bivariate else None,
+                "median": float(np.median(per_attack_bivariate)) if per_attack_bivariate else None,
+                "min": float(np.min(per_attack_bivariate)) if per_attack_bivariate else None,
+                "max": float(np.max(per_attack_bivariate)) if per_attack_bivariate else None,
             },
             "partial_rho_pert_attn_pos": {
-                "mean": float(np.mean(per_attack_partial)),
-                "median": float(np.median(per_attack_partial)),
-                "min": float(np.min(per_attack_partial)),
-                "max": float(np.max(per_attack_partial)),
+                "mean": float(np.mean(per_attack_partial)) if per_attack_partial else None,
+                "median": float(np.median(per_attack_partial)) if per_attack_partial else None,
+                "min": float(np.min(per_attack_partial)) if per_attack_partial else None,
+                "max": float(np.max(per_attack_partial)) if per_attack_partial else None,
             },
             "rho_pert_pos": {
-                "mean": float(np.mean(per_attack_pert_pos)),
-                "median": float(np.median(per_attack_pert_pos)),
+                "mean": float(np.mean(per_attack_pert_pos)) if per_attack_pert_pos else None,
+                "median": float(np.median(per_attack_pert_pos)) if per_attack_pert_pos else None,
             },
             "rho_attn_pos": {
-                "mean": float(np.mean(per_attack_attn_pos)),
-                "median": float(np.median(per_attack_attn_pos)),
+                "mean": float(np.mean(per_attack_attn_pos)) if per_attack_attn_pos else None,
+                "median": float(np.median(per_attack_attn_pos)) if per_attack_attn_pos else None,
             },
         },
         "quartile_correlations": quartile_results,
