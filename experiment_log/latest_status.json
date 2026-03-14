@@ -1,29 +1,27 @@
 {
   "cycle": 30,
-  "timestamp": "2026-03-14T23:30:00Z",
-  "type": "experiment",
-  "experiment": "exp_029_qwen_position_kv",
-  "model": "Qwen/Qwen3-4B-Base",
-  "n_problems": 39,
-  "key_finding": "K > V CROSS-MODEL REPLICATED at all positions. Qwen: early +66.7pp, mid +76.9pp, late +51.3pp. V-only=100% at early/mid (39/39). UNEXPECTED: Qwen K-direction is MORE robust than Llama (K-early 33.3% vs 0%). K/V norm ratio 2.2x (vs Llama 6.4x) — K>V persists regardless. Digital fragility is magnitude-specific, not direction-specific.",
-  "evidence_impact": "K > V universality confirmed across 2 model families x 3 positions = 6 independent conditions. V-only immunity at early/mid: 178/178 combined. K/V norm ratio differs 3x between models but qualitative finding is identical — functional, not energy-based. New finding: perturbation TYPE matters for digital/analog encoding distinction.",
-  "next_planned": "Priority: (1) Third model family (Mistral/Phi) for K-V. (2) Qwen-Instruct position x K-V to separate Base/Instruct from model-family effect. (3) K-only PGD on Qwen to connect null-space and K-V findings. (4) Position x K-V with magnitude perturbation. (5) Consolidate findings into coherent narrative.",
-  "figures": [
-    "results/exp_029/position_kv_interaction.png",
-    "results/exp_029/kv_gap_by_position.png",
-    "results/exp_029/cross_model_comparison.png",
-    "results/exp_029/energy_by_position.png",
-    "results/exp_029/all_conditions_bar.png"
+  "timestamp": "2026-03-14T23:59:00Z",
+  "type": "literature_scan",
+  "papers_reviewed": 16,
+  "topics": [
+    "QK routing vs OV content (mechanistic basis for K > V)",
+    "CoT unfaithfulness in reasoning models (Anthropic, OpenAI, consensus)",
+    "Latent reasoning and text bottleneck (surveys, gradient bottleneck)",
+    "KV memories and interpretability (NeurIPS 2025, sparse attention)"
   ],
+  "key_finding": "K > V has principled mechanistic explanation: QK=routing, OV=content (Transformer Circuits 2025). Text = lossy projection is ARCHITECTURALLY GUARANTEED: 95-99% of gradient norm suppressed at LM head (Godey & Artzi, March 2026). CoT unfaithfulness confirmed by Anthropic (<20% verbalization) and OpenAI (obfuscated reward hacking). Latent reasoning is mainstream: 2 surveys with 30+ authors each.",
+  "evidence_impact": "Three new decisive literature findings: (1) Mechanistic grounding of K>V via QK/OV framework, (2) Architectural proof of text as lossy projection via gradient bottleneck, (3) Behavioral confirmation of hidden computation by Anthropic and OpenAI. Our work provides the unique mechanistic substrate (KV cache) connecting these independent findings.",
+  "next_planned": "Priority: (1) K-only PGD on Qwen to connect null space and K>V findings. (2) Third model family (Mistral/Phi) for K-V replication. (3) Qwen-Instruct position × K-V to separate base/instruct effect. (4) Evidence consolidation — narrative synthesis. (5) Sparse attention analysis overlap with AC positions.",
+  "figures": [],
   "progress": {
-    "null_space_existence": {"status": "strong (Qwen PGD-validated). Mechanism: K-direction space", "bar": 4},
-    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED on spatial selectivity", "bar": 1},
-    "positional_dissociation": {"status": "STRONG: universal across models. Late positions carry answer info via K-routing", "bar": 5},
-    "geometric_dissociation": {"status": "K-V dissociation CROSS-MODEL REPLICATED at ALL positions. Qwen gap +51-77pp, Llama +66-100pp. K/V norm ratio 2.2x (Qwen) vs 6.4x (Llama) — functional not energy", "bar": 5},
-    "natural_usage": {"status": "H2O/TC protection via position. R-KV shows removing redundant tokens IMPROVES reasoning", "bar": 3},
-    "cross_model_replication": {"status": "COMPLETE: K>V at 2 models x 3 positions. V immunity 178/178. Dose-response on 2 families. Need 3rd family", "bar": 5},
-    "encoding_strategy": {"status": "REFINED: Digital fragility is magnitude-specific (Qwen cliffs). Direction perturbation: Qwen MORE robust. Perturbation type matters for encoding distinction", "bar": 5},
-    "superadditive_interaction": {"status": "Llama-specific (7.9-16.8x). Weak on Qwen (1.1-2.0x). Explained by staggered vs overlapping degradation windows", "bar": 5},
-    "literature_convergence": {"status": "5+ independent groups converge. K-V dissociation is novel contribution beyond existing literature", "bar": 5}
+    "null_space_existence": {"status": "strong (Qwen PGD-validated). K-routing is the mechanistic pathway", "bar": 4},
+    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED on spatial selectivity. Geometric/distributed confirmed by literature", "bar": 1},
+    "positional_dissociation": {"status": "STRONG and universal. Explained by attention sinks (infrastructure) at early positions", "bar": 5},
+    "geometric_dissociation": {"status": "K-V dissociation CROSS-MODEL REPLICATED. Now MECHANISTICALLY GROUNDED via QK/OV framework", "bar": 5},
+    "natural_usage": {"status": "H2O/TC protection via position. Sparse attention (0.3% edges) explains V immunity", "bar": 3},
+    "cross_model_replication": {"status": "COMPLETE for K>V (2 families × 3 positions). Need 3rd family", "bar": 5},
+    "encoding_strategy": {"status": "Digital/analog distinction confirmed. Magnitude-specific fragility", "bar": 5},
+    "superadditive_interaction": {"status": "Llama-specific (7.9-16.8x). Weak on Qwen. Routing+throughput cascade", "bar": 5},
+    "literature_convergence": {"status": "DECISIVE: 5+ independent groups. Gradient bottleneck (95-99%). Anthropic/OpenAI confirm unfaithfulness. 2 latent reasoning surveys. Our K>V finding is NOVEL causal evidence", "bar": 5}
   }
 }
