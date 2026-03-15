@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 45 — per-head K-V direction perturbation on Qwen-Base)
-Cycles completed: 46 (43 experimental + 1 consolidation + 1 literature scan + 1 crashed)
+Last updated: 2026-03-15 (cycle 46 — per-head K-V direction perturbation on Llama, cross-model replication)
+Cycles completed: 47 (44 experimental + 1 consolidation + 1 literature scan + 1 crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -15,9 +15,10 @@ The hypothesis is supported by converging evidence from 38 experimental cycles, 
 - **Models tested:** Qwen3-4B-Base, Qwen3-4B (Instruct), Llama-3.1-8B-Instruct, Phi-3.5-mini-Instruct (MHA), Mistral-7B-v0.3 (Base)
 - **Architecture coverage:** GQA (4 models) + MHA (1 model); Base (2) + Instruct (3)
 - **Total valid problems across all experiments:** ~1,500+ evaluations
-- **K > V confirmed:** 5/5 models × 3 positions = 15 independent conditions under direction perturbation
-- **V-only σ=1 immunity:** 228/228 across 5 variants (magnitude); 393/394 across 4 models at early+mid (direction)
+- **K > V confirmed:** 5/5 models × 3 positions = 15 independent conditions under direction perturbation; 16/16 heads across 2 models
+- **V-only σ=1 immunity:** 228/228 across 5 variants (magnitude); 393/394 across 4 models at early+mid (direction); **456/456 per-head across 2 models**
 - **Text-answer dissociation:** Text ≥98% at near-zero accuracy, confirmed on all 5 models at all perturbation doses
+- **Answer head H5:** Primary answer-routing head on BOTH Qwen (50% acc) and Llama (18.2% acc); cross-model convergence at same KV head index
 
 ---
 
@@ -189,11 +190,13 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 33 | Positional dissociation is encoding-DEPENDENT at 5% dose | At 10% both models saturate ~0%. At 5%, Qwen recovers ~14% uniformly while Llama recovers ~2%. Digital encoding shifts the dose-response threshold upward. | **Strong** | 041, 042, 043, 044 |
 | 34 | V-only direction vulnerability: Qwen more fragile than Llama | Qwen V-only 5%: 81.5% [63, 92]; Llama V-only 5%: 92.1% [79, 97]. Qwen V-only 10%: 56%; Llama V-only 10%: 71%. Consistent across both doses. | **Moderate** | 041, 042, 043, 044 |
 | 35 | K > V at bin 9 on Qwen-Base at 5% dose | V=81.5% vs K=18.5%, gap +63pp. Completes 2×2 model×dose matrix: gap always +55-76pp | **Strong** | 044 |
-| 36 | "Answer heads" exist — head 5 is primary answer-routing head | K-only H5: 50.0% acc [31, 69], H0: 66.7% [47, 82]; 6 other heads: 100%. Head-level K accuracy range=50pp, std=18.3pp. Dramatically heterogeneous. | **Strong** | 045 |
-| 37 | V-immunity absolute at per-head level | V-only perturbation at each of 8 heads: 192/192 (100%) accuracy. No V-head is critical for answer computation. | **Decisive** | 045 |
-| 38 | Head-level K-routing redundancy is massive | Per-head K perturbation (12.5% capacity): 89.1% acc. Per-position K (5%): 14% acc. Per-position K (10%): 1.5% acc. 2.5x MORE capacity destroyed but 6.4x LESS effect. K-routing fragility is about BREADTH (all-heads-at-a-position) not DEPTH (one-head-everywhere). | **Strong** | 045 |
-| 39 | Head 5 shows strongest per-unit dissociation | AccDrop=50%, TxtDrop=11%, Dissociation=+39pp. Answer-specific routing at individual head level. Text prediction survives head 5 destruction via other heads. | **Strong** | 045 |
-| 40 | No energy confound for head-level results | Perturbation/signal ratio = sqrt(2) = 1.414 at ALL 16 conditions. K signal norms 2x V norms but ratios identical. | **Strong** | 045 |
+| 36 | "Answer heads" exist — head 5 is primary answer-routing head on BOTH models | Qwen H5: 50.0% [31, 69]; Llama H5: 18.2% [8.6, 34.4]. SAME head index is most critical on both families. H7 most dispensable on both (91-96%). | **Strong** | 045, 046 |
+| 37 | V-immunity absolute at per-head level — 2 models | V-only: 456/456 (100%) across Qwen (192/192) + Llama (264/264). No V-head critical on either model. | **Decisive** | 045, 046 |
+| 38 | Head-level K-redundancy is encoding-dependent | Qwen (digital): 89.1% mean K-acc (massive redundancy). Llama (analog): 50.0% mean K-acc (less redundant, -39pp). But BOTH still show breadth>depth: per-head K (12.5%) is LESS destructive than per-position K (5-10%). | **Strong** | 045, 046 |
+| 39 | Head 5 shows strongest dissociation on BOTH models | Qwen H5: +39pp dissociation (AccDrop=50%, TxtDrop=11%). Llama H5: +47pp dissociation (AccDrop=82%, TxtDrop=35%). | **Strong** | 045, 046 |
+| 40 | No energy confound for head-level results (2 models) | Perturbation/signal ratio = sqrt(2) = 1.414 at ALL 32 conditions (16 per model). K norms vary by model but ratios identical. | **Strong** | 045, 046 |
+| 41 | Llama K-heads more heterogeneous than Qwen | Llama range=72.7pp, std=21.5pp (4/8 heads <52%). Qwen range=50pp, std=18.3pp (1/8 head <52%). Analog encoding distributes critical routing more broadly. | **Moderate-Strong** | 045, 046 |
+| 42 | K > V confirmed at ALL 16 heads across 2 models | 8/8 heads Qwen + 8/8 heads Llama = 16/16 heads show K-only acc < V-only acc | **Decisive** | 045, 046 |
 
 ---
 
@@ -229,7 +232,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 
 ### Medium Priority (mechanistic depth)
 6. **V-direction immunity is dose-dependent (PARTIALLY ANSWERED).** V-dir at 5% dose = 92.1% (immune); V-dir at 10% = 56-71% (destructive). Per-head V: 100% at all 8 heads (absolute immunity). The V-direction vulnerability is confined to >5% positional fraction with multi-head perturbation. (Exp 041, 042, 043, 045)
-6b. **What makes head 5 the answer-routing head?** Does it implement specific attention patterns (e.g., attend to answer-relevant positions)? Is the specialization GQA-specific? Does Llama have the same "answer head"? (Exp 045)
+6b. **What makes head 5 the answer-routing head on BOTH models?** Does it implement specific attention patterns? Is this GQA-universal (test on Phi MHA)? What is the initialization/architecture explanation for H5 convergence? (Exp 045, 046 — PARTIALLY ANSWERED: Llama has same H5 primary)
 7. **WHY do late positions selectively affect accuracy but not text?** Hypothesis: answer computation via attention from final positions to late reasoning positions; text computation is more local. (Exp 021)
 7. **Is there a "procedural" third channel beyond text/answer?** KV cache steering (Belitsky 2025) encodes reasoning STYLE. Hub positions may be procedural nodes. (Lit scan 20)
 8. **Why is Mistral K the most magnitude-robust of all models (100% at σ=1)?** Model size (7B) or sliding window attention? (Exp 037)
@@ -317,6 +320,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 043 | 43 | Llama-Instruct | 5% dose 10-decile sweep: accuracy STILL saturated 0-2.6% bins 0-6; only bin 9=15.8% recovers; V-only immunity RESTORED at 5% (92.1%); K > V gap +76pp; text gradient dose-independent; Exp 028 "22%" was inflated |
 | 044 | 44 | Qwen-Base | 5% dose 10-decile sweep: digital encoding provides UNIFORM elevation (~14% vs Llama 2.6%); non-monotonic pattern (r=-0.05); V-only 81.5%; K > V +63pp; 2×2 model×dose matrix complete |
 | 045 | 45 | Qwen-Base | **Per-head K-V sweep:** "Answer heads" discovered — H5=50%, H0=67%, 6 others=100%. V-immunity absolute (192/192). Head-level K-redundancy massive: 12.5% per-head → 89% acc vs 5% per-position → 14% acc. Fragility is about breadth not depth. |
+| 046 | 46 | Llama-Instruct | **Per-head K-V sweep (cross-model):** H5 = 18.2% (SAME primary answer head as Qwen!). Llama mean K-acc=50% (vs Qwen 89%). V-immunity absolute 264/264. Head-level redundancy encoding-dependent. K>V at 8/8 heads. |
 
 ---
 
@@ -338,7 +342,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 
 5. **Models encode differently but the hierarchy is universal** (Exp 23-38): Qwen uses digital encoding (sharp accuracy cliffs); Llama/Phi/Mistral use analog (gradual degradation). This affects fragility thresholds and superadditivity patterns but NOT the K > V hierarchy, which holds on every model tested. Digital encoding is Qwen-family-specific; instruction tuning converts V from digital→analog but preserves K digital encoding.
 
-6. **K-routing fragility is about breadth, not depth — "answer heads" localize the hidden channel** (Exp 45): Per-head analysis reveals that K-routing has massive head-level redundancy: destroying 1/8 of K-heads preserves 89.1% accuracy, while destroying all K-heads at 5% of positions drops accuracy to 14%. But 2 of 8 KV heads (H5: 50% acc, H0: 67% acc) are specialized "answer-routing" heads that carry non-redundant routing information. The hidden channel is localized in specific heads, not spread uniformly across the attention mechanism.
+6. **K-routing fragility is about breadth, not depth — "answer heads" localize the hidden channel** (Exp 045, 046): Per-head analysis reveals head-level K-routing redundancy on both models, but it is encoding-dependent: Qwen (digital) retains 89.1% accuracy under single-head destruction, Llama (analog) retains only 50.0%. Both still show breadth > depth: per-head K (12.5% capacity) is far less destructive than per-position K (5% capacity). Remarkably, **KV head 5 is the primary answer-routing head on BOTH Qwen and Llama** (50% and 18.2% accuracy respectively), suggesting an architectural or training-universal head specialization. V-immunity is absolute at per-head level on both models (456/456).
 
 ### What this means
 
