@@ -1,0 +1,3 @@
+cycle 040: lit scan 4 - KV quantization confirms K>V, Reasoning Horizon, steganographic capabilities
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>

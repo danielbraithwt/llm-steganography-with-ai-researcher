@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 39 — evidence consolidation)
-Cycles completed: 39 (38 experimental + 1 consolidation)
+Last updated: 2026-03-15 (cycle 40 — literature scan #4)
+Cycles completed: 40 (38 experimental + 1 consolidation + 1 literature scan)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -126,20 +126,27 @@ The original claim that PGD perturbations concentrate at "answer-coupled positio
 The hidden channel EXISTS (PGD null space is real, K-specific, p=0.013) but its spatial structure is weak. It likely operates through distributed geometric properties (K-direction clusters) across many positions, not through concentrated perturbation at specific positions.
 
 ### 7. Literature Convergence
-**Status: Strong independent convergence from 5+ angles**
+**Status: Decisive independent convergence from 8+ angles across 4 literature scans (45+ papers)**
 
-Three literature scans (cycles 10, 20, 30) covering 35+ papers show the field converging on our core hypothesis:
+Four literature scans (cycles 10, 20, 30, 40) covering 45+ papers show the field converging on our core hypothesis from increasingly diverse angles:
 
 | Angle | Key evidence | Source |
 |-------|-------------|--------|
 | **Architectural** | 95-99% gradient norm suppressed by LM head — text is architecturally guaranteed lossy projection | Godey & Artzi, March 2026 |
 | **Behavioral** | Models decide answers internally 80% of tokens before visible CoT | "Reasoning Theater," Boppana et al., 2026 |
 | **Safety** | <20% verbalization of reasoning; obfuscated reward hacking under optimization | Anthropic (Chen 2025), OpenAI (Baker 2025) |
-| **Computational** | 2.7-5.5x compression with latent reasoning; filler tokens support reasoning | Latent-SFT (Deng 2025), Bharadwaj 2024 |
+| **Computational** | 3.1x compression matching explicit CoT (CODI, EMNLP 2025); filler tokens support reasoning | CODI (Shen 2025), Latent-SFT (Deng 2025), Bharadwaj 2024 |
 | **Mechanistic** | QK=routing, OV=content; KV memories ≈ SAE features; KV cache steering induces reasoning styles | McCormick 2025, Ye et al. NeurIPS 2025, Belitsky 2025 |
-| **Compression** | Phase transition at ~90% KV compression (independent SNR cliff discovery) | 2603.01426 |
+| **Compression** | Phase transition at ~90% KV compression; K more sensitive than V to quantization (AsymKV: V can be 1-bit) | 2603.01426, AsymKV (COLING 2025), PM-KVQ 2026 |
+| **Faithfulness decay** | Reasoning Horizon at 70-85% chain length; anti-faithful models (Gemma NLDD=-52.5%); natural unfaithfulness 0.04-13% | Ye et al. Feb 2026, Arcuschin et al. 2025 |
+| **Steganographic** | Nascent steganographic capabilities in frontier LLMs; RL enhances hidden encoding; collusion emerges from reward misspecification | Zolkowski et al. July 2025, Karpov et al. ICLR 2025, Mathew et al. ACL 2025 |
 
-Our unique contribution: **causal perturbation evidence** at the KV cache level identifying the K-routing channel as the mechanistic substrate of the hidden computation. The K > V hierarchy under perturbation is the first experimental validation of the theoretical routing > content framework.
+**New in cycle 40 (3 key convergences):**
+1. **K > V confirmed by quantization literature:** AsymKV (COLING 2025) independently discovers keys are more sensitive than values — V can be 1-bit quantized. Our perturbation-based finding now has engineering-independent confirmation.
+2. **Positional > content confirmed by compression literature:** "Where Matters More Than What" (Tian et al., March 2026) independently finds positional information dominates semantic content for KV importance — directly mirrors our Exp 021 finding.
+3. **Reasoning Horizon maps to our positional dissociation:** The 70-85% chain-length transition point (Ye et al., Feb 2026) corresponds to our finding that late positions carry answer-specific information.
+
+Our unique contribution: **causal perturbation evidence** at the KV cache level identifying the K-routing channel as the mechanistic substrate of the hidden computation. The K > V hierarchy under perturbation is the first experimental validation of the theoretical routing > content framework, now independently confirmed by the quantization/compression community.
 
 ---
 
@@ -165,9 +172,11 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 16 | Cross-model text-dependence variation | Qwen-8B 94% compliant, Llama ~30% | **Moderate** | Exp 6 (research_spec) |
 | 17 | Unused output capacity (4-5 bits/token) | Established | **Strong** | Exp 1 (research_spec) |
 | 18 | CoT narrows entropy 3x (median near zero) | Established | **Strong** | Exp 2 (research_spec) |
-| 19 | Text = lossy projection (literature consensus) | Mainstream (5+ convergent angles) | **Strong (independent)** | Lit scans 10, 20, 30 |
+| 19 | Text = lossy projection (literature consensus) | Mainstream (8+ convergent angles, 45+ papers) | **Decisive (independent)** | Lit scans 10, 20, 30, 40 |
 | 20 | K routing at early positions = general infrastructure | K-early destroys everything; V-early dispensable | **Strong** | 028, 029, 034, 038 |
 | 21 | Energy confound does NOT explain K > V | SNR-matched test: K still more sensitive | **Strong** | 027 |
+| 22 | K > V confirmed by quantization literature (independent) | AsymKV: V 1-bit quantizable; PM-KVQ: K needs more precision for long-CoT | **Strong (independent)** | Lit scan 40 |
+| 23 | Positional > content confirmed by compression literature (independent) | "Where > What" (Tian 2026): position dominates semantic content for KV importance | **Strong (independent)** | Lit scan 40 |
 
 ---
 
@@ -270,6 +279,12 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 036 | 36 | Qwen-Instruct | K=digital (preserved), V=analog (converted); MIXED encoding discovered |
 | 037 | 37 | Mistral-Base | Digital is QWEN-SPECIFIC (Mistral-Base fully analog); K ≈ V under magnitude |
 | 038 | 38 | Mistral-Base | K > V RESTORED under direction perturbation (+62-94pp); K ≈ V was magnitude-specific |
+
+### Evidence Consolidation & Literature Scans (Cycles 39-40)
+| Exp | Cycle | Type | Key Result |
+|-----|-------|------|------------|
+| — | 39 | Consolidation | Restructured 625→250 line ledger; 114→18 open questions; narrative synthesis |
+| — | 40 | **Lit scan #4** | K > V confirmed by quantization lit (AsymKV); Reasoning Horizon at 70-85% maps to positional dissociation; steganographic capabilities emerging; "Where > What" confirms position > content |
 
 ---
 

@@ -1,39 +1,33 @@
 {
-  "cycle": 39,
-  "timestamp": "2026-03-15T06:00:00Z",
-  "type": "evidence_consolidation",
-  "template": "Evidence consolidation — restructured 625-line ledger into clean 250-line synthesis",
+  "cycle": 40,
+  "timestamp": "2026-03-15T12:00:00Z",
+  "type": "literature_scan",
+  "template": "Literature scan #4 — 13 papers across 4 topics",
   "parameters": {
-    "original_ledger_lines": 625,
-    "original_ledger_tokens": 42794,
-    "consolidated_lines": "~250",
-    "open_questions_original": 114,
-    "open_questions_remaining": 18,
-    "disconfirmed_claims_documented": 12,
-    "established_findings_sections": 7,
-    "evidence_table_rows": 21,
-    "experiment_phases": 4,
-    "narrative_synthesis": true
+    "topics_searched": [
+      "KV cache K/V functional roles and perturbation",
+      "CoT faithfulness/unfaithfulness in reasoning models",
+      "KV cache compression and phase transitions",
+      "Latent reasoning and continuous thought",
+      "Hidden channels and steganography in LLMs"
+    ],
+    "papers_reviewed": 13,
+    "literature_notes_written": 4,
+    "new_evidence_table_entries": 2
   },
-  "prediction_outcome": "N/A (consolidation cycle)",
-  "key_finding": "Research program complete — all core questions from research_spec.md addressed. Ledger restructured from 625 messy lines to ~250 clean lines with narrative synthesis. 18 genuinely open questions identified from 114+ accumulated.",
-  "evidence_impact": "No new evidence — consolidation of existing findings into definitive form for review and potential write-up",
-  "next_planned": "Potential: (1) Write-up/technical report, (2) Targeted experiments on high-priority open questions (K-only PGD on MHA, positional dissociation replication on Llama), (3) TC-aware compression benchmark",
+  "prediction_outcome": "N/A (literature scan)",
+  "key_finding": "K > V independently confirmed by quantization literature (AsymKV: V can be 1-bit). Reasoning Horizon at 70-85% maps to our positional dissociation. 'Where Matters More Than What' confirms position > content. Steganographic capabilities nascent but growing in frontier LLMs.",
+  "evidence_impact": "Literature convergence upgraded to DECISIVE (8+ angles, 45+ papers). Two new independent confirmations added to evidence table (rows 22-23).",
+  "next_planned": "Potential: (1) Test K/V perturbation at Reasoning Horizon (70-85% chain position), (2) Write-up/technical report, (3) AsymKV-informed layer-wise precision experiments",
   "figures": [],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
     "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. Positional dissociation confirmed.", "bar": 1},
-    "positional_dissociation": {"status": "STRONG and universal. Late=answer (59x ratio), early=infrastructure.", "bar": 5},
-    "geometric_dissociation": {"status": "K > V UNIVERSAL under direction perturbation: 5/5 models, 15 independent conditions.", "bar": 5},
+    "positional_dissociation": {"status": "STRONG. Late=answer (59x ratio), early=infrastructure. Now independently confirmed by 'Where > What' (Tian 2026).", "bar": 5},
+    "geometric_dissociation": {"status": "K > V UNIVERSAL (5/5 models). Now independently confirmed by AsymKV quantization (COLING 2025).", "bar": 5},
     "natural_usage": {"status": "H2O/TC protection via position. TC best protection metric.", "bar": 3},
     "cross_model_replication": {"status": "COMPLETE: 4 families, 5 training variants, GQA + MHA, Base + Instruct.", "bar": 5},
-    "encoding_strategy": {"status": "COMPLETE TAXONOMY: Qwen-Base=DIGITAL, Qwen-Instruct=MIXED, Llama/Phi/Mistral=ANALOG. Digital=Qwen-specific.", "bar": 5},
-    "superadditive_interaction": {"status": "MECHANISM CONFIRMED: analog→strong superadditivity (K-V overlap), digital→weak (staggered cliffs).", "bar": 5},
-    "literature_convergence": {"status": "DECISIVE: 5+ independent angles (architecture, behavior, safety, computation, mechanistic).", "bar": 5},
-    "null_space_kv_unification": {"status": "ESTABLISHED: K-only 6/56 vs V-only 0/57 (p=0.013). V-only failure survives max-effort optimization.", "bar": 5},
-    "disruption_vs_redirection": {"status": "V=disruption only, K=redirection capable. Quality distinction holds.", "bar": 5},
-    "mha_vs_gqa": {"status": "K > V holds on MHA (Phi) identically to GQA. Confound eliminated.", "bar": 5},
-    "base_vs_instruct": {"status": "K > V holds on both. Digital V→analog conversion by instruction tuning. K digital preserved.", "bar": 5},
-    "k_v_universality": {"status": "RESOLVED: Universal under direction (5/5). 4/5 under magnitude (Mistral K≈V is magnitude-specific).", "bar": 5}
+    "encoding_strategy": {"status": "COMPLETE TAXONOMY: Qwen-Base=DIGITAL, Qwen-Instruct=MIXED, Llama/Phi/Mistral=ANALOG.", "bar": 5},
+    "literature_convergence": {"status": "DECISIVE: 8+ independent angles, 45+ papers across 4 scans. K > V and position > content independently confirmed.", "bar": 5}
   }
 }
