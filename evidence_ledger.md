@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 48 — Llama multi-head threshold: two-regime pattern is Qwen-specific)
-Cycles completed: 49 (46 experimental + 1 consolidation + 1 literature scan + 1 crashed)
+Last updated: 2026-03-15 (cycle 49 — H5 × position interaction: answer routing is position-independent)
+Cycles completed: 50 (47 experimental + 1 consolidation + 1 literature scan + 1 crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -20,6 +20,7 @@ The hypothesis is supported by converging evidence from 39 experimental cycles, 
 - **Text-answer dissociation:** Text ≥98% at near-zero accuracy, confirmed on all 5 models at all perturbation doses
 - **Answer head H5:** Primary answer-routing head on BOTH Qwen (50% acc) and Llama (18.2% acc); cross-model convergence at same KV head index
 - **Answer-head specialization (Qwen-specific):** H0+H5 at 25% capacity → 3.7% acc; dispensable pairs at 25% → 96-100% acc; +95.1pp gap (Qwen). Llama: best pair 16.2%, worst 0.0%, gap only +16.2pp. Two-regime pattern does NOT replicate on analog models.
+- **Head × position orthogonality:** H5 answer routing is position-independent (range=9.3pp, CIs overlap). H7=100% at all position bands. Head identity explains ~95% of variance.
 
 ---
 
@@ -207,6 +208,9 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 49 | Head-level redundancy is encoding-dependent at multi-head level | Qwen (digital): 2-head dispensable=98.8%, 4-head=22.2%. Llama (analog): 2-head best=16.2%, 4-head=2.7%. Digital encoding provides ~83pp more head-level redundancy. | **Strong** | 045, 046, 047, 048 |
 | 50 | Llama head-level redundancy collapses at 2/8 heads | 1-head mean=50.0% → 2-head best=16.2% (-33.8pp). Steepest transition in redundancy curve is 1→2 heads on Llama. | **Strong** | 046, 048 |
 | 51 | Critical pair still marginally more destructive on Llama | H3+H5=0.0% vs H0+H7=16.2%. Fisher exact p≈0.027. Per-problem: 6/37 differentiate, 0/37 reverse. But signal weak vs Qwen's 25/27. | **Moderate** | 048 |
+| 52 | H5 answer routing is position-independent | H5 accuracy: early=55.8%, mid=65.1%, late=65.1%. Range=9.3pp, CIs heavily overlapping. H7=100% at ALL positions. Head identity explains ~95% of variance; position band ~5%. | **Moderate** | 049 |
+| 53 | H7 dispensability is perfectly position-independent | H7=100% at early, mid, late, and all positions. 0/172 failures across all H7 conditions. | **Strong** | 049 |
+| 54 | Head and position mechanisms are orthogonal (not interacting) | H5 × position interaction = +9.3pp (below significance). Text gradient exists (early 90.3%, late 97.9%) but accuracy gradient is flat. | **Moderate** | 049 |
 
 ---
 
@@ -229,6 +233,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | Reasoning Horizon (70-85%) aligns with K-routing transition | Lit scan 40 (Ye et al. correlation) | Exp 041, 043 (linear gradient, no phase transition at both 5% and 10%) | Dissociation increases ~9pp/bin linearly; no sharp transition at 70-85% on Llama |
 | Exp 028 late accuracy gradient (22%) at 5% dose | Exp 028 (3 coarse bins) | Exp 043 (10 bins at 5%: late avg=8.8%, bin 9 only=15.8%) | Coarse binning inflated estimate; actual recovery concentrated at bin 9 only |
 | Two-regime redundancy curve is universal | Exp 047 (Qwen: +95.1pp gap, 25/27 concordance) | Exp 048 (Llama: +16.2pp gap, 6/37 concordance) | Qwen-specific; driven by digital encoding + binary head specialization. Analog models show near-complete collapse at 2+ heads |
+| H5 answer routing concentrates at late positions | Predicted from Phase 4+5 synthesis | Exp 049: H5 range=9.3pp across bands, CIs overlap | H5 operates uniformly across reasoning chain. Head and position are orthogonal mechanisms. |
 
 ---
 
@@ -255,7 +260,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 ### Lower Priority (extensions)
 13. Where exactly is the additive noise cliff on Qwen-Instruct? Between 0.3x and 1.0x. Finer sweep would locate it. (Exp 015)
 19. ~~Multi-head perturbation threshold~~ **ANSWERED (Exp 047):** Two-regime curve: dispensable pairs=96-100%, 4 dispensable=22.2%. Answer pair H0+H5=3.7%. Gap +95pp. Head identity > capacity fraction.
-20. **Head 5 × position interaction:** Is head 5's answer routing critical at early, mid, or late positions specifically? (Exp 045)
+20. ~~Head 5 × position interaction~~ **ANSWERED (Exp 049):** H5 answer routing is position-INDEPENDENT (range=9.3pp, CIs overlap). H5-early slightly (non-sig) more destructive than H5-late (55.8% vs 65.1%). Head and position are orthogonal mechanisms — H5 operates uniformly across the reasoning chain.
 21. **Why can't answer heads sustain computation alone?** Leave-only H0+H5 = 0%. What infrastructure do dispensable heads provide? (Exp 047)
 22. ~~Multi-head threshold on Llama~~ **ANSWERED (Exp 048):** Two-regime DOES NOT replicate. Best pair=16.2% (vs Qwen 98.8%). Head-level redundancy is near-zero on analog models. The two-regime pattern is Qwen-specific (digital encoding). (Exp 047, 048)
 14. Would targeted K-only PGD (maximize specific wrong answer) succeed at higher rates? (Exp 032)
@@ -336,6 +341,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 046 | 46 | Llama-Instruct | **Per-head K-V sweep (cross-model):** H5 = 18.2% (SAME primary answer head as Qwen!). Llama mean K-acc=50% (vs Qwen 89%). V-immunity absolute 264/264. Head-level redundancy encoding-dependent. K>V at 8/8 heads. |
 | 047 | 47 | Qwen-Base | **Multi-head threshold (DECISIVE):** H0+H5=3.7% vs dispensable pairs=96-100% (+95pp gap). Per-problem concordance 25/27. Disp4 at 50%=22.2% vs ans+disp=0%. Leave-only-answer=0%. Two-regime redundancy curve. |
 | 048 | 48 | Llama-Instruct | **Multi-head threshold (DISCONFIRMATORY):** Two-regime DOES NOT replicate. Best pair 16.2% (vs Qwen 98.8%). Gap +16.2pp (vs +95.1pp). 31/37 fail on both pairs. Head-level redundancy near-zero on analog model. |
+| 049 | 49 | Qwen-Base | **Head × position interaction:** H5 answer routing is POSITION-INDEPENDENT (range=9.3pp, CIs overlap). H7=100% at all positions. Head identity explains ~95% of variance. Text gradient exists within H5 (early 90.3%, late 97.9%) but accuracy flat. Head and position are orthogonal mechanisms. |
 
 ---
 
@@ -353,7 +359,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 
 3. **The answer channel lives in K-vectors (routing), not V-vectors (content)** (Exp 23-38, 45): This is our central mechanistic finding. K perturbation is devastating for accuracy; V perturbation at moderate levels has literally zero effect. This holds across all 5 models, 3 position bands, both perturbation types, and now at the individual head level (V-immunity: 192/192 across 8 heads). The K > V hierarchy reflects the fundamental QK-routing vs OV-content split in the attention mechanism. Crucially, K-routing fragility is about BREADTH, not DEPTH: destroying one K-head everywhere is well-tolerated (89.1% acc at 12.5% capacity) while destroying all K-heads at 5% of positions is devastating (14% acc). GQA provides 8 redundant routing channels at each position.
 
-4. **The hidden channel is distributed positionally but concentrated in specific heads** (Exp 13-21, 45): The original PGD spatial correlation (rho=0.78) was inflated by methodology. Actual rho=0.20. What IS spatially structured is the position gradient: early positions are computational infrastructure; late positions carry answer-specific information. At the head level, the hidden channel is CONCENTRATED: head 5 is the primary answer-routing head (50% acc under K-perturbation, +39pp dissociation), with head 0 as secondary (67% acc, +21pp dissociation). Six other heads are completely dispensable (100% acc).
+4. **The hidden channel is distributed positionally but concentrated in specific heads — and these are orthogonal** (Exp 13-21, 45, 49): The original PGD spatial correlation (rho=0.78) was inflated by methodology. Actual rho=0.20. What IS spatially structured is the position gradient: early positions are computational infrastructure; late positions carry answer-specific information. At the head level, the hidden channel is CONCENTRATED: head 5 is the primary answer-routing head (50% acc under K-perturbation, +39pp dissociation), with head 0 as secondary (67% acc, +21pp dissociation). Six other heads are completely dispensable (100% acc). **Crucially, head and position are orthogonal mechanisms** (Exp 049): H5's answer routing is position-independent (range=9.3pp across early/mid/late bands; CIs overlap). H5 operates uniformly across the reasoning chain. The answer channel is NOT a specific head×position circuit node — H5 carries critical routing at EVERY position.
 
 5. **Models encode differently but the hierarchy is universal** (Exp 23-38): Qwen uses digital encoding (sharp accuracy cliffs); Llama/Phi/Mistral use analog (gradual degradation). This affects fragility thresholds and superadditivity patterns but NOT the K > V hierarchy, which holds on every model tested. Digital encoding is Qwen-family-specific; instruction tuning converts V from digital→analog but preserves K digital encoding.
 
