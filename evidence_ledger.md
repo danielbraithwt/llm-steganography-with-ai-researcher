@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 52 — Exp 051: head×position interaction is ENCODING-DEPENDENT; H5 position-independent on Qwen, position-dependent on Llama)
-Cycles completed: 52 (48 experimental + 1 consolidation + 2 literature scans + 1 crashed)
+Last updated: 2026-03-15 (cycle 53 — Exp 052: early-position cascading is GENERAL on Llama; position-dependence scales perfectly with criticality r=-0.991)
+Cycles completed: 53 (49 experimental + 1 consolidation + 2 literature scans + 1 crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -21,6 +21,7 @@ The hypothesis is supported by converging evidence from 39 experimental cycles, 
 - **Answer head H5:** Primary answer-routing head on BOTH Qwen (50% acc) and Llama (18.2% acc); cross-model convergence at same KV head index
 - **Answer-head specialization (Qwen-specific):** H0+H5 at 25% capacity → 3.7% acc; dispensable pairs at 25% → 96-100% acc; +95.1pp gap (Qwen). Llama: best pair 16.2%, worst 0.0%, gap only +16.2pp. Two-regime pattern does NOT replicate on analog models.
 - **Head × position interaction is ENCODING-DEPENDENT:** Qwen H5 range=9.3pp (position-independent, Exp 049); Llama H5 range=50.8pp (position-DEPENDENT, Exp 051). Digital encoding → uniform H5; analog → early-concentrated H5.
+- **Early-position cascading is GENERAL on Llama (Exp 052):** All 4 tested heads show early>late gradient. Position-dependence scales perfectly with criticality: r=-0.991 (p=0.009). H3 range=49.1pp, H1 range=34.5pp. Early ≈ all for 3/4 heads. Cascading is architectural (analog encoding), not circuit-specific.
 
 ---
 
@@ -222,6 +223,9 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 59 | Llama H5 answer routing concentrates at EARLY positions | H5-early=18.6% = H5-all=18.6% (destroying first 33% at H5 ≡ destroying H5 everywhere). H5-late=69.5% (mostly tolerated). 30:0 per-problem concordance. | **Strong** | 051 |
 | 60 | Analog models show position-dependent head routing | Both H5 (range=50.8pp) and H7 (range=15.3pp) show position gradients on Llama. H7-early=81.4% vs H7-late=96.6%. Analog encoding distributes critical routing to early infrastructure positions. | **Strong** | 051 |
 | 61 | H5-early routing cascades through full sequence on Llama | H5-early (33% dose at 1 head) = H5-all (100% dose at 1 head) = 18.6%. Destroying early K-routing propagates downstream making mid+late perturbation redundant. | **Strong** | 051 |
+| 62 | Early-position cascading is GENERAL on Llama (not H5-specific) | ALL 4 tested heads show early>late gradient: H5 50.8pp, H3 49.1pp, H1 34.5pp, H7 15.3pp. Early ≈ all for 3/4 heads (H5 0pp, H1 3.6pp, H7 3.3pp; H3 borderline 5.5pp). Concordance decisive: H3 29:2, H1 20:1. | **Strong** | 051, 052 |
+| 63 | Position-dependence scales perfectly with head criticality | Pearson r=-0.991 (p=0.009), Spearman rho=-1.000. More critical heads show larger position ranges. Multiplicative interaction: range ≈ (1 - SH_acc) × ~55pp. 4-point spectrum across full head criticality range. | **Strong** | 051, 052 |
+| 64 | Cascading is architectural (analog encoding property), not circuit-specific | General cascading eliminates the H5-specific answer-routing explanation. Early positions carry K-routing infrastructure for ALL heads on Llama. Analog continuous routing has no error-correction — early perturbation shifts the full downstream trajectory. | **Strong** | 049, 051, 052 |
 
 ---
 
@@ -272,7 +276,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 ### Lower Priority (extensions)
 13. Where exactly is the additive noise cliff on Qwen-Instruct? Between 0.3x and 1.0x. Finer sweep would locate it. (Exp 015)
 19. ~~Multi-head perturbation threshold~~ **ANSWERED (Exp 047):** Two-regime curve: dispensable pairs=96-100%, 4 dispensable=22.2%. Answer pair H0+H5=3.7%. Gap +95pp. Head identity > capacity fraction.
-20. ~~Head 5 × position interaction~~ **ANSWERED (Exp 049+051):** H5 position-independence is Qwen-SPECIFIC (range=9.3pp). On Llama, H5 is strongly position-dependent (range=50.8pp): early=18.6%, late=69.5%. Head×position interaction is encoding-dependent. Digital → orthogonal; analog → coupled.
+20. ~~Head 5 × position interaction~~ **ANSWERED (Exp 049+051+052):** H5 position-independence is Qwen-SPECIFIC (range=9.3pp). On Llama, ALL heads are position-dependent with range scaling perfectly with criticality (r=-0.991). Early-position cascading is general, not H5-specific. Digital → orthogonal; analog → coupled.
 21. **Why can't answer heads sustain computation alone?** Leave-only H0+H5 = 0%. What infrastructure do dispensable heads provide? (Exp 047)
 22. ~~Multi-head threshold on Llama~~ **ANSWERED (Exp 048):** Two-regime DOES NOT replicate. Best pair=16.2% (vs Qwen 98.8%). Head-level redundancy is near-zero on analog models. The two-regime pattern is Qwen-specific (digital encoding). (Exp 047, 048)
 14. Would targeted K-only PGD (maximize specific wrong answer) succeed at higher rates? (Exp 032)
@@ -356,6 +360,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 049 | 49 | Qwen-Base | **Head × position interaction:** H5 answer routing is POSITION-INDEPENDENT (range=9.3pp, CIs overlap). H7=100% at all positions. Head identity explains ~95% of variance. Text gradient exists within H5 (early 90.3%, late 97.9%) but accuracy flat. Head and position are orthogonal mechanisms. |
 | — | 50 | **Lit scan #5** | K > V triple-confirmed (mathematical proof: K spectral norms > V); Qwen funnel vs LLaMA inverted funnel explains encoding taxonomy; head specialization <7% sparse (survey); HybridCoT NeurIPS 2025 (latent reasoning mainstream); hidden state distribution mismatch confirms lossy projection; KV cache attack surface (MTI, history swapping); METR: CoT informative for complex behaviors despite unfaithfulness |
 | 051 | 52 | Llama-Instruct | **Head × position interaction (DISCONFIRMATORY):** H5 position-independence DOES NOT replicate. Llama H5 range=50.8pp (vs Qwen 9.3pp). H5-early=18.6%=H5-all (early positions carry ALL critical routing). H5-late=69.5% (mostly tolerated). 30:0 concordance. Interaction +35.6pp. Head×position coupling is encoding-dependent. |
+| 052 | 53 | Llama-Instruct | **Cross-head cascading (CONFIRMATORY for general mechanism):** H3 range=49.1pp, H1 range=34.5pp. ALL 4 heads show early>late gradient. Criticality×range correlation r=-0.991 (p=0.009). Early≈all for 3/4 heads. Cascading is architectural, not H5-specific. |
 
 ---
 
@@ -373,7 +378,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 
 3. **The answer channel lives in K-vectors (routing), not V-vectors (content)** (Exp 23-38, 45): This is our central mechanistic finding. K perturbation is devastating for accuracy; V perturbation at moderate levels has literally zero effect. This holds across all 5 models, 3 position bands, both perturbation types, and now at the individual head level (V-immunity: 192/192 across 8 heads). The K > V hierarchy reflects the fundamental QK-routing vs OV-content split in the attention mechanism. Crucially, K-routing fragility is about BREADTH, not DEPTH: destroying one K-head everywhere is well-tolerated (89.1% acc at 12.5% capacity) while destroying all K-heads at 5% of positions is devastating (14% acc). GQA provides 8 redundant routing channels at each position.
 
-4. **The hidden channel is distributed positionally and concentrated in specific heads — but their interaction is encoding-dependent** (Exp 13-21, 45, 49, 51): The original PGD spatial correlation (rho=0.78) was inflated by methodology. Actual rho=0.20. What IS spatially structured is the position gradient: early positions are computational infrastructure; late positions carry answer-specific information. At the head level, the hidden channel is CONCENTRATED: head 5 is the primary answer-routing head on both models. **However, head × position interaction differs by encoding type** (Exp 049 vs 051): On Qwen (digital), H5's answer routing is position-independent (range=9.3pp) — discrete codewords function at any position. On Llama (analog), H5 is strongly position-dependent (range=50.8pp): early positions are catastrophic (H5-early=18.6% = H5-all) while late positions are mostly tolerated (H5-late=69.5%). Destroying H5 at just the first 33% of positions cascades through the full sequence on Llama. Digital encoding decouples head and position; analog encoding couples them.
+4. **The hidden channel is distributed positionally and concentrated in specific heads — but their interaction is encoding-dependent** (Exp 13-21, 45, 49, 51, 52): The original PGD spatial correlation (rho=0.78) was inflated by methodology. Actual rho=0.20. What IS spatially structured is the position gradient: early positions are computational infrastructure; late positions carry answer-specific information. At the head level, the hidden channel is CONCENTRATED: head 5 is the primary answer-routing head on both models. **However, head × position interaction differs by encoding type** (Exp 049 vs 051): On Qwen (digital), H5's answer routing is position-independent (range=9.3pp) — discrete codewords function at any position. On Llama (analog), ALL heads are strongly position-dependent, with position-dependence scaling perfectly with criticality (r=-0.991, p=0.009): H5 range=50.8pp, H3 range=49.1pp, H1 range=34.5pp, H7 range=15.3pp (Exp 052). Destroying K-routing at early positions cascades through the full sequence for 3/4 tested heads. **This cascading is architectural (general property of analog encoding), not circuit-specific (not unique to H5's answer routing)** — established by Exp 052 showing H3 and H1 follow the identical pattern. Digital encoding decouples head and position via error-correcting codewords; analog encoding couples them via continuous routing that propagates early perturbation downstream.
 
 5. **Models encode differently but the hierarchy is universal** (Exp 23-38): Qwen uses digital encoding (sharp accuracy cliffs); Llama/Phi/Mistral use analog (gradual degradation). This affects fragility thresholds and superadditivity patterns but NOT the K > V hierarchy, which holds on every model tested. Digital encoding is Qwen-family-specific; instruction tuning converts V from digital→analog but preserves K digital encoding.
 
