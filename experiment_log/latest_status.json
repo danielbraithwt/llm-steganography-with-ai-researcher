@@ -1,32 +1,26 @@
 {
-  "cycle": 58,
-  "timestamp": "2026-03-15T19:00:00Z",
+  "cycle": 59,
+  "timestamp": "2026-03-15T19:30:00Z",
   "type": "experiment",
-  "template": "sink_analysis_budget_sweep",
+  "template": "large_n_compression_replication",
   "parameters": {
     "models": ["Qwen/Qwen3-4B-Base", "meta-llama/Llama-3.1-8B-Instruct"],
-    "selections": ["true_h2o", "k_norm_h2o", "random", "recent", "sink_excluded_h2o", "late_layer_h2o"],
-    "methods": ["mask (true removal only)"],
-    "budgets": ["25%", "33%", "40%", "50%", "60%", "75%"],
-    "n_valid": {"Qwen": 15, "Llama": 17},
-    "conditions": 28,
-    "design": "6 budgets x 4 base selections + 2 modified selections x 2 budgets"
+    "strategies": ["recent", "k_norm", "random", "hybrid_50_50", "hybrid_70_30"],
+    "methods": ["mask (true removal)"],
+    "budget": "33%",
+    "n_valid": {"Qwen": 20, "Llama": 40},
+    "conditions": 5,
+    "design": "5 strategies at 33% budget under masking, chain-length analysis"
   },
-  "prediction_outcome": "Scenario B (distributed positional bias) best matches results. Early bias is structural, not sink-dominated. Sink fraction only 11-12% vs predicted >50% for Scenario A. Both partial fixes help but neither fully rescues true H2O.",
-  "key_finding": "True H2O selects early positions (Q1=39-40%, mean_pos=0.32) while K-norm selects middle-late (mean_pos=0.52-0.56). The bias extends far beyond attention sinks (only 11-12%). Budget crossover at 40% on Llama (true_h2o = k_norm = 76.5%). At 60%: true_h2o=100% vs k_norm=82.4%. Random > BOTH at 25-33% on Llama. Sink-excluded H2O +11.8pp on Llama; late-layer H2O +13.3pp on Qwen. 'Recent' 100% at ALL 6 budgets. Anti-correlation rho=-0.435 replicates.",
-  "evidence_impact": "Added findings #81-87. Answered open questions 5b (why anti-correlation) and 5c (crossover budget). Updated compression synthesis section.",
-  "next_planned": "Test combined K-norm + recency hybrid; investigate why random beats biased selection on Llama; cross-model position profiles on Phi/Mistral",
+  "prediction_outcome": "Scenario A confirmed — recent remains universal at n=40. Both hybrids also 100% but no improvement over recent. K-norm drops to 95% on Qwen (first failure ever).",
+  "key_finding": "Recent confirmed 40/40=100% on Llama [91.2%, 100%]. Pooled 134/134 across Exp 055-059 [97.3%, 100%]. Both hybrid strategies also 100% (60/60) but add no value over pure recent. K-norm drops to 95% on Qwen at n=20 — first failure detected. K-norm = random = 87.5% on Llama under masking. No chain-length effect detected on Qwen (limited range 73-189 tokens).",
+  "evidence_impact": "Added findings #88-92. 'Recent' universality now at decisive evidence level (pooled 134/134). K-norm 100% on Qwen myth busted. Hybrid strategies shown unnecessary.",
+  "next_planned": "Test recent on long-chain problems (>200 tokens); test at 20% budget; cross-task validation (non-GSM8K); per-problem concordance analysis",
   "figures": [
-    "results/exp_058/budget_crossover_Qwen.png",
-    "results/exp_058/budget_crossover_Llama.png",
-    "results/exp_058/position_profile_Qwen.png",
-    "results/exp_058/position_profile_Llama.png",
-    "results/exp_058/sink_dominance_Qwen.png",
-    "results/exp_058/sink_dominance_Llama.png",
-    "results/exp_058/mean_position_Qwen.png",
-    "results/exp_058/mean_position_Llama.png",
-    "results/exp_058/modified_h2o_Qwen.png",
-    "results/exp_058/modified_h2o_Llama.png"
+    "results/exp_059/overall_accuracy_Qwen3-4B-Base.png",
+    "results/exp_059/overall_accuracy_Llama-3.1-8B-Instruct.png",
+    "results/exp_059/chain_length_Qwen3-4B-Base.png",
+    "results/exp_059/cross_model_comparison.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
@@ -34,7 +28,7 @@
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
     "geometric_dissociation": {"status": "K > V UNIVERSAL at per-head level: 16/16 heads across 2 models.", "bar": 5},
     "head_level_analysis": {"status": "COMPLETE: Two-regime on Qwen (decisive), near-collapse on Llama.", "bar": 5},
-    "natural_usage": {"status": "ADVANCED: 4 eviction benchmarks complete. Position profiles mapped. True H2O = early-biased (Q1=40%); K-norm = late-biased. Crossover at 40% on Llama. Random > biased at low budgets. 'Recent' 100% at ALL 6 budgets. Sink-excluded & late-layer H2O partially rescue.", "bar": 5},
+    "natural_usage": {"status": "DECISIVE: 'Recent' 134/134 pooled [97.3%, 100%] across 5 experiments. Hybrid unnecessary. K-norm=95% Qwen (not 100%). K-norm=random under masking. Chain-length independent (limited range).", "bar": 5},
     "cross_model_replication": {"status": "COMPLETE: 4 families, 5 variants.", "bar": 5},
     "encoding_strategy": {"status": "COMPLETE TAXONOMY + compression + method implications.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 10+ angles, 60+ papers across 5 scans.", "bar": 5}

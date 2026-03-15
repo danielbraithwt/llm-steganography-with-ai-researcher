@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 58 — Exp 058: sink-dominance analysis + budget crossover — true H2O selects Q1 positions (39-40%); K-norm selects late positions; crossover at 40% budget on Llama; random > k_norm at low budgets; sink-excluded H2O partially rescues; "recent" 100% at ALL budgets)
-Cycles completed: 58 (54 experimental + 1 consolidation + 2 literature scans + 1 crashed)
+Last updated: 2026-03-15 (cycle 59 — Exp 059: large-N replication + hybrid strategy + chain-length — "recent" confirmed 40/40=100% on Llama [91.2, 100%]; pooled 134/134 across Exp 055-059; hybrid_50_50 and hybrid_70_30 also 100% but no improvement over recent; k_norm drops to 95% on Qwen (first failure ever); no chain-length effect detected)
+Cycles completed: 59 (55 experimental + 1 consolidation + 2 literature scans + 1 crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -249,6 +249,11 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 85 | Late-layer H2O partially rescues true H2O on Qwen (+13.3pp at 33%) | Qwen@33%: late_layer=53.3% vs true_h2o=40.0% (+13.3pp). Llama@33%: late_layer=70.6% = k_norm=70.6%. Both fixes at 50%: 86.7-94.1%. Neither fix reaches K-norm level on Qwen (100%). Late-layer attention focuses more on answer-relevant positions but still biased toward early positions. | **Moderate** | 058 |
 | 86 | "Recent" achieves 100% at ALL 6 budgets (25-75%) on BOTH models | Extended from 2 budgets (Exp 057) to 6 budgets. Recent=100% at 25%, 33%, 40%, 50%, 60%, 75% on both Qwen and Llama. No other strategy achieves this. Confirms recency is the dominant predictor of position importance for CoT reasoning. | **Strong** | 055, 056, 057, 058 |
 | 87 | Anti-correlation rho=-0.435 replicates on Llama; near-zero on Qwen (rho=0.001) | Llama: rho=-0.435±0.070 (n=17), confirming Exp 057 (rho=-0.431). Late-layer rho=-0.362 (less anti-correlated but still negative). Qwen: rho=0.001±0.113 (near zero, not anti-correlated). The anti-correlation is Llama-specific — on Qwen, K-norm and cumulative attention are orthogonal (independent). | **Strong** | 057, 058 |
+| 88 | "Recent" confirmed at n=40 on Llama: 100% [91.2%, 100%] | Largest-N eviction test in the program. 40/40 correct under masking at 33% budget. Pooled across Exp 055-059: **134/134 = 100% [97.3%, 100%]**. Effectively rules out true rate below 97%. CIs narrowed from [82.4%, 100%] at n=17 to [91.2%, 100%] at n=40. | **Decisive** | 055, 056, 057, 058, 059 |
+| 89 | Hybrid strategies (k_norm + recency) match recent but don't improve | hybrid_50_50 and hybrid_70_30 both 100% on Llama (n=40) and Qwen (n=20). Total: 60/60 across both models. Adding k_norm-selected positions to a recent core is harmless but unnecessary. The recent component (sinks + most recent) dominates. Practical implication: keep compression simple — sinks + recent. | **Strong** | 059 |
+| 90 | K-norm drops to 95% on Qwen at n=20 — first failure detected | K-norm was 100% in ALL prior experiments (n=15-25). At n=20 with different problem sample: 19/20 = 95% [76.4%, 99.1%]. Single failure at chain length 96 (short chain). The "100% k_norm on Qwen" was a small-sample artifact. True rate is ~95%, not 100%. | **Moderate** | 055, 056, 057, 058, 059 |
+| 91 | K-norm = random on Llama under masking replicates at n=40 | 87.5% = 87.5% (35/40 each). Replicates Exp 056 direction (mask_h2o = mask_random). Absolute accuracy higher (87.5% vs 66.7%) — attributed to different problem sample. Key finding: K-norm provides zero selection advantage over random when positions are truly removed from attention. | **Strong** | 056, 057, 059 |
+| 92 | No chain-length effect detected on eviction strategy effectiveness (Qwen) | K-norm failure at chain length 96 (SHORT). Random failures spread across [80, 96, 109, 189]. Point-biserial r_pb near zero (p>0.49). Chain length does NOT modulate strategy effectiveness within GSM8K range (73-189 tokens). Limited by absence of "long" (>200 token) chains. | **Weak-Moderate** | 059 |
 
 ---
 
