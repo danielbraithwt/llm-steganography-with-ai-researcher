@@ -1,0 +1,221 @@
+[
+  {
+    "ds_idx": 588,
+    "true_answer": "52",
+    "reasoning_len": 101,
+    "clean_text_acc": 1.0,
+    "clean_correct": true,
+    "evaluations": {
+      "answer_h05": {
+        "correct": false,
+        "answer": "222227777737755544054737431093814137201837146912697575305515898314714097148493824",
+        "text_accuracy": 0.36,
+        "perturb_rms": 50.87829819627968,
+        "signal_rms": 35.982435883401976,
+        "n_heads": 2
+      },
+      "disp_h12": {
+        "correct": true,
+        "answer": "52",
+        "text_accuracy": 0.95,
+        "perturb_rms": 55.610599269834715,
+        "signal_rms": 39.30485460416545,
+        "n_heads": 2
+      },
+      "disp_h34": {
+        "correct": true,
+        "answer": "52",
+        "text_accuracy": 0.98,
+        "perturb_rms": 55.839962943611496,
+        "signal_rms": 39.570386285966634,
+        "n_heads": 2
+      },
+      "disp_h67": {
+        "correct": true,
+        "answer": "52",
+        "text_accuracy": 0.9,
+        "perturb_rms": 54.87363180799757,
+        "signal_rms": 38.69409054251079,
+        "n_heads": 2
+      },
+      "disp4_h1234": {
+        "correct": true,
+        "answer": "52",
+        "text_accuracy": 0.78,
+        "perturb_rms": 55.8392340883849,
+        "signal_rms": 39.44616177620971,
+        "n_heads": 4
+      },
+      "ans_disp_h0125": {
+        "correct": false,
+        "answer": "755272777777777780898798220484216771031984913684374606001868864548241408",
+        "text_accuracy": 0.25,
+        "perturb_rms": 53.41466579275662,
+        "signal_rms": 37.8383409716165,
+        "n_heads": 4
+      },
+      "leave_ans_only": {
+        "correct": false,
+        "answer": "4",
+        "text_accuracy": 0.49,
+        "perturb_rms": 55.15519363657312,
+        "signal_rms": 38.969276911770145,
+        "n_heads": 6
+      },
+      "all8": {
+        "correct": false,
+        "answer": "55555",
+        "text_accuracy": 0.09,
+        "perturb_rms": 53.11051050939925,
+        "signal_rms": 37.592563741593125,
+        "n_heads": 8
+      }
+    }
+  },
+  {
+    "ds_idx": 1214,
+    "true_answer": "5",
+    "reasoning_len": 59,
+    "clean_text_acc": 1.0,
+    "clean_correct": true,
+    "evaluations": {
+      "answer_h05": {
+        "correct": false,
+        "answer": "",
+        "text_accuracy": 0.6206896551724138,
+        "perturb_rms": 48.6474289626648,
+        "signal_rms": 34.47040824177372,
+        "n_heads": 2
+      },
+      "disp_h12": {
+        "correct": true,
+        "answer": "5",
+        "text_accuracy": 0.9137931034482759,
+        "perturb_rms": 58.04355566011803,
+        "signal_rms": 40.90909482407376,
+        "n_heads": 2
+      },
+      "disp_h34": {
+        "correct": true,
+        "answer": "5",
+        "text_accuracy": 0.8620689655172413,
+        "perturb_rms": 56.729736375318865,
+        "signal_rms": 40.18388219038972,
+        "n_heads": 2
+      },
+      "disp_h67": {
+        "correct": true,
+        "answer": "5",
+        "text_accuracy": 0.9482758620689655,
+        "perturb_rms": 56.219797235576344,
+        "signal_rms": 39.90878147584183,
+        "n_heads": 2
+      },
+      "disp4_h1234": {
+        "correct": false,
+        "answer": "7",
+        "text_accuracy": 0.7241379310344828,
+        "perturb_rms": 57.59038592968141,
+        "signal_rms": 40.57076179507976,
+        "n_heads": 4
+      },
+      "ans_disp_h0125": {
+        "correct": false,
+        "answer": "2",
+        "text_accuracy": 0.5344827586206896,
+        "perturb_rms": 53.6037802663649,
+        "signal_rms": 37.85156421458785,
+        "n_heads": 4
+      },
+      "leave_ans_only": {
+        "correct": false,
+        "answer": "20",
+        "text_accuracy": 0.603448275862069,
+        "perturb_rms": 56.7985544535591,
+        "signal_rms": 40.17615489325196,
+        "n_heads": 6
+      },
+      "all8": {
+        "correct": false,
+        "answer": "222",
+        "text_accuracy": 0.1206896551724138,
+        "perturb_rms": 54.433559817623895,
+        "signal_rms": 38.53928632459957,
+        "n_heads": 8
+      }
+    }
+  },
+  {
+    "ds_idx": 57,
+    "true_answer": "83",
+    "reasoning_len": 76,
+    "clean_text_acc": 1.0,
+    "clean_correct": true,
+    "evaluations": {
+      "answer_h05": {
+        "correct": false,
+        "answer": "5055555",
+        "text_accuracy": 0.4,
+        "perturb_rms": 50.44294216518869,
+        "signal_rms": 35.56455324002453,
+        "n_heads": 2
+      },
+      "disp_h12": {
+        "correct": true,
+        "answer": "83",
+        "text_accuracy": 0.9066666666666666,
+        "perturb_rms": 56.65291301589885,
+        "signal_rms": 39.96290909759648,
+        "n_heads": 2
+      },
+      "disp_h34": {
+        "correct": true,
+        "answer": "83",
+        "text_accuracy": 0.9466666666666667,
+        "perturb_rms": 56.28940392842655,
+        "signal_rms": 39.83421359206919,
+        "n_heads": 2
+      },
+      "disp_h67": {
+        "correct": true,
+        "answer": "83",
+        "text_accuracy": 0.88,
+        "perturb_rms": 55.524559907211945,
+        "signal_rms": 39.24756609071448,
+        "n_heads": 2
+      },
+      "disp4_h1234": {
+        "correct": false,
+        "answer": "0",
+        "text_accuracy": 0.7066666666666667,
+        "perturb_rms": 56.359688604763576,
+        "signal_rms": 39.81617847568256,
+        "n_heads": 4
+      },
+      "ans_disp_h0125": {
+        "correct": false,
+        "answer": "5000000005000007255823255300532831027316015082047713095935150956931448832",
+        "text_accuracy": 0.22666666666666666,
+        "perturb_rms": 53.231936279539255,
+        "signal_rms": 37.745253747091176,
+        "n_heads": 4
+      },
+      "leave_ans_only": {
+        "correct": false,
+        "answer": "177777777777777777573687674335246457403928421431428444579872202667740425617408",
+        "text_accuracy": 0.36,
+        "perturb_rms": 55.87999875615224,
+        "signal_rms": 39.45309350993931,
+        "n_heads": 6
+      },
+      "all8": {
+        "correct": false,
+        "answer": "557557555577777621060627743285324709110003028059174287179776",
+        "text_accuracy": 0.06666666666666667,
+        "perturb_rms": 53.74370407497596,
+        "signal_rms": 38.00956807914656,
+        "n_heads": 8
+      }
+    }
+  }
+]

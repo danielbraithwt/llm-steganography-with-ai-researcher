@@ -1,36 +1,35 @@
 {
-  "cycle": 46,
-  "timestamp": "2026-03-15T21:30:00Z",
+  "cycle": 47,
+  "timestamp": "2026-03-15T22:30:00Z",
   "type": "experiment",
-  "template": "per-head K vs V direction perturbation — Llama-3.1-8B-Instruct (cross-model replication)",
+  "template": "multi-head K-direction perturbation threshold — Qwen3-4B-Base",
   "parameters": {
-    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "model": "Qwen/Qwen3-4B-Base",
     "perturbation_type": "direction (random replacement, norm-preserved)",
-    "perturbation_scope": "per-head (1 of 8 KV heads at ALL positions and ALL layers)",
+    "perturbation_scope": "multi-head K-only (2-8 heads at ALL positions and ALL layers)",
     "n_kv_heads": 8,
-    "n_valid": 33,
-    "conditions": ["head_k_0..7", "head_v_0..7"]
+    "n_valid": 27,
+    "conditions": ["answer_h05(2h)", "disp_h12(2h)", "disp_h34(2h)", "disp_h67(2h)", "disp4_h1234(4h)", "ans_disp_h0125(4h)", "leave_ans_only(6h)", "all8(8h)"]
   },
-  "prediction_outcome": "Hybrid A+C (35%+20% = 55% combined): answer heads exist AND less redundancy on analog model. H5 same index = unpredicted.",
-  "key_finding": "HEAD 5 is primary answer-routing head on BOTH Qwen and Llama (same KV head index!). Llama mean K-acc=50% vs Qwen 89% — head-level redundancy is encoding-dependent. V-immunity absolute: 264/264 (456/456 total). K>V at all 8/8 heads.",
-  "evidence_impact": "Major cross-model replication: answer heads confirmed on 2nd model family. H5 convergence across architectures suggests universal specialization. V-immunity now decisive at per-head level across 2 models. Head-level redundancy encoding-dependent adds to encoding taxonomy.",
-  "next_planned": "H5 x position interaction on Llama OR multi-head perturbation threshold OR H5 on Phi (MHA)",
+  "prediction_outcome": "Scenario A CONFIRMED but stronger than predicted. H0+H5=3.7% (predicted 25-50%). Gap +95.1pp (predicted ≥25pp). Scenarios B,C,D all DISCONFIRMED.",
+  "key_finding": "DECISIVE answer-head specialization: H0+H5 (25% cap) → 3.7% acc vs dispensable pairs (25%) → 96-100%. Gap +95.1pp. Per-problem concordance 25/27. At 50%: disp4=22.2% vs ans+disp=0%. Answer heads necessary but NOT sufficient (leave-only=0%).",
+  "evidence_impact": "Strongest functional dissociation in the program. Answer heads DECISIVELY confirmed as specialized answer-routing circuit. Head identity matters more than capacity fraction. Two-regime redundancy curve established.",
+  "next_planned": "Multi-head threshold on Llama OR H5 x position interaction OR H5 attention pattern analysis",
   "figures": [
-    "results/exp_046/per_head_kv_accuracy.png",
-    "results/exp_046/kv_gap_per_head.png",
-    "results/exp_046/head_importance_ranking.png",
-    "results/exp_046/dissociation_per_head.png",
-    "results/exp_046/signal_norms_per_head.png",
-    "results/exp_046/cross_model_comparison.png"
+    "results/exp_047/multi_head_threshold.png",
+    "results/exp_047/dose_matched_25pct.png",
+    "results/exp_047/dose_matched_50pct.png",
+    "results/exp_047/redundancy_curve.png",
+    "results/exp_047/dissociation_by_condition.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
-    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. Positional dissociation confirmed. HEAD-LEVEL CONCENTRATION discovered (H5 primary on BOTH models).", "bar": 4},
+    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. Positional dissociation confirmed. HEAD-LEVEL CONCENTRATION decisive (H0+H5 +95pp gap).", "bar": 5},
     "positional_dissociation": {"status": "Dose-saturated: 5% dose STILL saturates Llama accuracy. Text gradient dose-independent. Encoding-dependent at 5%.", "bar": 4},
     "geometric_dissociation": {"status": "K > V UNIVERSAL at per-head level: 16/16 heads across 2 models. V=456/456 absolute.", "bar": 5},
-    "head_level_analysis": {"status": "CROSS-MODEL: H5 primary on both Qwen+Llama. Redundancy encoding-dependent (89% vs 50%). V absolute 456/456.", "bar": 4},
+    "head_level_analysis": {"status": "DECISIVE: Answer-head specialization confirmed by multi-head dose-matched test (+95pp, 25/27 concordance). H0+H5 necessary but not sufficient.", "bar": 5},
     "natural_usage": {"status": "H2O/TC protection via position. TC best protection metric.", "bar": 3},
-    "cross_model_replication": {"status": "COMPLETE for all major findings: 4 families, 5 variants. Per-head now on 2 models.", "bar": 5},
+    "cross_model_replication": {"status": "COMPLETE for major findings: 4 families, 5 variants. Per-head on 2 models. Multi-head on 1 model (Qwen).", "bar": 5},
     "encoding_strategy": {"status": "COMPLETE TAXONOMY + head-level redundancy encoding-dependent confirmed.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 8+ angles, 45+ papers.", "bar": 5}
   }

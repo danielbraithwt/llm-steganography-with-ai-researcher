@@ -1,15 +1,15 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 46 — per-head K-V direction perturbation on Llama, cross-model replication)
-Cycles completed: 47 (44 experimental + 1 consolidation + 1 literature scan + 1 crashed)
+Last updated: 2026-03-15 (cycle 47 — multi-head K-direction perturbation threshold, decisive answer-head confirmation)
+Cycles completed: 48 (45 experimental + 1 consolidation + 1 literature scan + 1 crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
 
 ### Verdict: STRONGLY SUPPORTED — with important nuances
 
-The hypothesis is supported by converging evidence from 38 experimental cycles, 5 model variants across 4 families, and 3 independent literature scans covering 35+ papers. However, the original framing (spatial concentration at "answer-coupled positions") has been **decisively disconfirmed**. The hidden channel operates through **geometric/distributed mechanisms** (primarily K-routing vs V-content), not through spatially concentrated positions.
+The hypothesis is supported by converging evidence from 39 experimental cycles, 5 model variants across 4 families, and 4 independent literature scans covering 45+ papers. However, the original framing (spatial concentration at "answer-coupled positions") has been **decisively disconfirmed**. The hidden channel operates through **geometric/distributed mechanisms** (primarily K-routing vs V-content), localized in specific **answer heads** (H0+H5), not through spatially concentrated positions.
 
 ### Key Numbers
 - **Models tested:** Qwen3-4B-Base, Qwen3-4B (Instruct), Llama-3.1-8B-Instruct, Phi-3.5-mini-Instruct (MHA), Mistral-7B-v0.3 (Base)
@@ -19,6 +19,7 @@ The hypothesis is supported by converging evidence from 38 experimental cycles, 
 - **V-only σ=1 immunity:** 228/228 across 5 variants (magnitude); 393/394 across 4 models at early+mid (direction); **456/456 per-head across 2 models**
 - **Text-answer dissociation:** Text ≥98% at near-zero accuracy, confirmed on all 5 models at all perturbation doses
 - **Answer head H5:** Primary answer-routing head on BOTH Qwen (50% acc) and Llama (18.2% acc); cross-model convergence at same KV head index
+- **Answer-head specialization (DECISIVE):** H0+H5 at 25% capacity → 3.7% acc; dispensable pairs at 25% → 96-100% acc; +95.1pp gap, per-problem concordance 25/27
 
 ---
 
@@ -197,6 +198,11 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 40 | No energy confound for head-level results (2 models) | Perturbation/signal ratio = sqrt(2) = 1.414 at ALL 32 conditions (16 per model). K norms vary by model but ratios identical. | **Strong** | 045, 046 |
 | 41 | Llama K-heads more heterogeneous than Qwen | Llama range=72.7pp, std=21.5pp (4/8 heads <52%). Qwen range=50pp, std=18.3pp (1/8 head <52%). Analog encoding distributes critical routing more broadly. | **Moderate-Strong** | 045, 046 |
 | 42 | K > V confirmed at ALL 16 heads across 2 models | 8/8 heads Qwen + 8/8 heads Llama = 16/16 heads show K-only acc < V-only acc | **Decisive** | 045, 046 |
+| 43 | Answer-head specialization confirmed by dose-matched multi-head test | H0+H5 (25% cap): 3.7% acc vs dispensable pairs (25%): 96-100%. Gap +95.1pp. Per-problem concordance 25/27 (92.6%). Non-overlapping CIs. | **Decisive** | 047 |
+| 44 | Dispensable heads are genuinely redundant in pairs | H1+H2=96.3%, H3+H4=100%, H6+H7=100%. All dispensable 2-head combos near-perfect despite 25% capacity loss. | **Strong** | 047 |
+| 45 | At 50%, answer-head inclusion determines survival | Disp4 H1234 (50%): 22.2% vs Ans+disp H0125 (50%): 0.0%. Gap +22.2pp. Same capacity, different outcome based on which heads. | **Strong** | 047 |
+| 46 | Answer heads necessary but NOT sufficient | Leave only H0+H5 (75% destroyed): 0.0%. Answer heads alone cannot sustain computation — need dispensable head infrastructure. | **Strong** | 047 |
+| 47 | Redundancy curve has two regimes (dispensable-tolerant vs answer-catastrophic) | Dispensable removal: 98.8% (2h), 22.2% (4h). Answer removal: 3.7% (2h), 0% (4h). Head identity > capacity fraction. | **Decisive** | 045, 046, 047 |
 
 ---
 
@@ -243,8 +249,10 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 
 ### Lower Priority (extensions)
 13. Where exactly is the additive noise cliff on Qwen-Instruct? Between 0.3x and 1.0x. Finer sweep would locate it. (Exp 015)
-19. **Multi-head perturbation threshold:** How many heads can be simultaneously destroyed before accuracy collapses? (1=89.1%, 8≈0%, what about 2, 3, 4?) (Exp 045)
+19. ~~Multi-head perturbation threshold~~ **ANSWERED (Exp 047):** Two-regime curve: dispensable pairs=96-100%, 4 dispensable=22.2%. Answer pair H0+H5=3.7%. Gap +95pp. Head identity > capacity fraction.
 20. **Head 5 × position interaction:** Is head 5's answer routing critical at early, mid, or late positions specifically? (Exp 045)
+21. **Why can't answer heads sustain computation alone?** Leave-only H0+H5 = 0%. What infrastructure do dispensable heads provide? (Exp 047)
+22. **Multi-head threshold on Llama:** Does Llama (lower single-head redundancy, 50% mean) show same two-regime pattern? Should collapse faster. (Exp 047)
 14. Would targeted K-only PGD (maximize specific wrong answer) succeed at higher rates? (Exp 032)
 15. Would K-only PGD restricted to late layers (18+) be more efficient? (Exp 032)
 16. Does per-head SNR normalization mask individual head vulnerability? (Exp 027)
@@ -321,6 +329,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 044 | 44 | Qwen-Base | 5% dose 10-decile sweep: digital encoding provides UNIFORM elevation (~14% vs Llama 2.6%); non-monotonic pattern (r=-0.05); V-only 81.5%; K > V +63pp; 2×2 model×dose matrix complete |
 | 045 | 45 | Qwen-Base | **Per-head K-V sweep:** "Answer heads" discovered — H5=50%, H0=67%, 6 others=100%. V-immunity absolute (192/192). Head-level K-redundancy massive: 12.5% per-head → 89% acc vs 5% per-position → 14% acc. Fragility is about breadth not depth. |
 | 046 | 46 | Llama-Instruct | **Per-head K-V sweep (cross-model):** H5 = 18.2% (SAME primary answer head as Qwen!). Llama mean K-acc=50% (vs Qwen 89%). V-immunity absolute 264/264. Head-level redundancy encoding-dependent. K>V at 8/8 heads. |
+| 047 | 47 | Qwen-Base | **Multi-head threshold (DECISIVE):** H0+H5=3.7% vs dispensable pairs=96-100% (+95pp gap). Per-problem concordance 25/27. Disp4 at 50%=22.2% vs ans+disp=0%. Leave-only-answer=0%. Two-regime redundancy curve. |
 
 ---
 
@@ -342,7 +351,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 
 5. **Models encode differently but the hierarchy is universal** (Exp 23-38): Qwen uses digital encoding (sharp accuracy cliffs); Llama/Phi/Mistral use analog (gradual degradation). This affects fragility thresholds and superadditivity patterns but NOT the K > V hierarchy, which holds on every model tested. Digital encoding is Qwen-family-specific; instruction tuning converts V from digital→analog but preserves K digital encoding.
 
-6. **K-routing fragility is about breadth, not depth — "answer heads" localize the hidden channel** (Exp 045, 046): Per-head analysis reveals head-level K-routing redundancy on both models, but it is encoding-dependent: Qwen (digital) retains 89.1% accuracy under single-head destruction, Llama (analog) retains only 50.0%. Both still show breadth > depth: per-head K (12.5% capacity) is far less destructive than per-position K (5% capacity). Remarkably, **KV head 5 is the primary answer-routing head on BOTH Qwen and Llama** (50% and 18.2% accuracy respectively), suggesting an architectural or training-universal head specialization. V-immunity is absolute at per-head level on both models (456/456).
+6. **The hidden channel flows through specific "answer heads" — DECISIVELY confirmed** (Exp 045, 046, 047): KV heads H0 and H5 are specialized answer-routing heads. Destroying H0+H5 together (25% of K-routing capacity) reduces accuracy to 3.7%, while destroying ANY other pair of heads at 25% capacity leaves accuracy at 96-100% — a +95.1pp gap with non-overlapping CIs and 25/27 per-problem concordance. This is the strongest functional double dissociation in the program. The answer heads are NECESSARY but not SUFFICIENT: leaving only H0+H5 intact (75% destroyed) gives 0% accuracy. The dispensable heads provide routing infrastructure that answer heads depend on. Head 5 is the primary answer head on BOTH Qwen and Llama (cross-model convergence). V-immunity is absolute at per-head level (456/456 across 2 models).
 
 ### What this means
 
