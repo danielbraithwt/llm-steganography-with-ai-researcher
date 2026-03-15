@@ -31,7 +31,7 @@ TIME_BUDGET = 1750  # seconds
 MAX_GEN_TOKENS = 512
 MAX_SEQ_LEN = 2048
 RESULTS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)),
-                           "results", "exp_061")
+                           "results", "exp_062")
 
 MODELS = [
     "Qwen/Qwen3-4B-Base",
@@ -215,11 +215,18 @@ def analyze_kv_cache(model, tokenizer, question, max_gen=MAX_GEN_TOKENS, device=
 
     past_kv = out.past_key_values
 
-    # Handle DynamicCache or tuple format
+    # Handle DynamicCache (transformers 5.x uses .layers[i].keys/.values)
     from transformers import DynamicCache
     if isinstance(past_kv, DynamicCache):
-        n_layers = len(past_kv.key_cache)
-        sample_k = past_kv.key_cache[0]
+        # transformers 5.x: DynamicCache uses .layers list
+        if hasattr(past_kv, 'layers') and len(past_kv.layers) > 0:
+            n_layers = len(past_kv.layers)
+            sample_k = past_kv.layers[0].keys
+        elif hasattr(past_kv, 'key_cache'):
+            n_layers = len(past_kv.key_cache)
+            sample_k = past_kv.key_cache[0]
+        else:
+            return None
     else:
         n_layers = len(past_kv)
         sample_k = past_kv[0][0]
@@ -242,8 +249,12 @@ def analyze_kv_cache(model, tokenizer, question, max_gen=MAX_GEN_TOKENS, device=
     # Analyze per-layer (all heads concatenated) and per-head spectral properties
     for layer_idx in range(n_layers):
         if isinstance(past_kv, DynamicCache):
-            k = past_kv.key_cache[layer_idx]    # (1, n_kv_heads, seq_len, head_dim)
-            v = past_kv.value_cache[layer_idx]
+            if hasattr(past_kv, 'layers') and len(past_kv.layers) > 0:
+                k = past_kv.layers[layer_idx].keys    # (1, n_kv_heads, seq_len, head_dim)
+                v = past_kv.layers[layer_idx].values
+            else:
+                k = past_kv.key_cache[layer_idx]
+                v = past_kv.value_cache[layer_idx]
         else:
             k = past_kv[layer_idx][0]
             v = past_kv[layer_idx][1]
