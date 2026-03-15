@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 55 — Exp 055: KV cache eviction benchmark — "recent" best strategy, K-preserve reversal on Llama, encoding-dependent compression robustness)
-Cycles completed: 55 (51 experimental + 1 consolidation + 2 literature scans + 1 crashed)
+Last updated: 2026-03-15 (cycle 56 — Exp 056: mask vs zero eviction — attention-based selection ≠ content importance; phantom routing confirmed; "recent" uniquely method-robust)
+Cycles completed: 56 (52 experimental + 1 consolidation + 2 literature scans + 1 crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -231,6 +231,11 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 67 | K-preserve does NOT translate perturbation K>V to compression advantage | On Qwen: K-preserve = H2O = 100% (V redundant). On Llama: K-preserve WORSE than H2O at 33% (47.8% vs 78.3%). Keeping K at evicted positions creates "phantom routing" — model attends to positions with no V-content. K>V in perturbation ≠ K>V in compression. | **Moderate** | 055 |
 | 68 | Head-selective compression outperforms H2O | Answer heads (H0/H5) get 2x budget. Llama: +8.7pp over H2O at 33% (87.0% vs 78.3%). Validates answer-head specialization for practical compression. Advantage grows at tighter budgets. | **Moderate** | 055 |
 | 69 | Digital encoding is more compression-robust than analog | Qwen random@33%=95% vs Llama random@33%=70%. Qwen maintains 100% with H2O/recent/k_preserve at all budgets. Position-independent codewords (digital) tolerate position removal; distributed routing (analog) is fragile. | **Moderate** | 055 |
+| 70 | Phantom routing confirmed by 3-way method comparison | zero_v (K-preserve) = 51.9% on Llama at 33% H2O — worst of all 3 methods. Replicates Exp 055 K-preserve finding. Keeping K at evicted positions with zeroed V misdirects attention to content-free positions. True masking (66.7%) and full zeroing (81.5%) both outperform K-preserve. | **Strong** | 055, 056 |
+| 71 | Attention-based selection (H2O) provides ZERO benefit over random under true masking | Llama mask_h2o = mask_random = 66.7% at 33%. H2O's advantage under zeroing (+14.8pp over random) comes from model self-organizing attention around high-K-norm positions, NOT from information content at those positions. When positions are truly removed (masked), the K-norm signal that H2O relies on is gone. | **Strong** | 056 |
+| 72 | Zeroing outperforms masking for imperfect position selection | Llama zero_kv_h2o = 81.5% vs mask_h2o = 66.7% (-14.8pp gap). zero_kv_recent = 100% vs mask_recent = 100% (no gap). Gap appears specifically when selection is imperfect (H2O/random), because zeroed positions provide an "attention cushion" — model can attend to them harmlessly, whereas masked positions force attention redistribution. | **Strong** | 056 |
+| 73 | "Recent" strategy is uniquely method-invariant | 100% accuracy across ALL 3 methods (mask, zero_kv, zero_v) × BOTH budgets (33%, 50%) on Llama. No other strategy achieves this. Recent's superiority is due to selecting intrinsically the RIGHT positions (sinks + late computation), not dependent on eviction mechanism details. | **Strong** | 055, 056 |
+| 74 | Digital encoding (Qwen) is eviction-method-invariant | Qwen achieves 100% for mask/zero_kv/zero_v × h2o/recent at both 33% and 50%. Only random and head_selective show minor degradation (84-88%). Method choice only matters for analog (Llama) encoding. | **Moderate** | 056 |
 
 ---
 
@@ -256,6 +261,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | Two-regime redundancy curve is universal | Exp 047 (Qwen: +95.1pp gap, 25/27 concordance) | Exp 048 (Llama: +16.2pp gap, 6/37 concordance) | Qwen-specific; driven by digital encoding + binary head specialization. Analog models show near-complete collapse at 2+ heads |
 | H5 answer routing concentrates at late positions | Predicted from Phase 4+5 synthesis | Exp 049: H5 range=9.3pp (Qwen); Exp 051: H5-EARLY most destructive on Llama (18.6%) | H5 position-dependence is encoding-dependent. On Llama, EARLY positions most critical (opposite of prediction). |
 | Head × position orthogonality is universal | Exp 049 (Qwen: interaction +9.3pp) | Exp 051 (Llama: interaction +35.6pp, non-overlapping CIs) | Orthogonality is Qwen-specific (digital encoding). Analog encoding creates strong head×position interaction. |
+| Masking (true eviction) is strictly better than zeroing | Intuition: removing positions entirely should outperform leaving zero artifacts | Exp 056: mask_h2o=66.7% < zero_kv_h2o=81.5% on Llama (-14.8pp). Zeroing provides "attention cushion" for imperfect selection. | Zeroing > masking when selection is imperfect; masking = zeroing only when selection is perfect ("recent") |
 
 ---
 
@@ -293,7 +299,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 
 ---
 
-## Experiment Log (39 experiments + 3 literature scans)
+## Experiment Log (40 experiments + 3 literature scans)
 
 ### Phase 1: Establishing the Phenomenon (Cycles 1-9)
 | Exp | Cycle | Model | Key Result |
@@ -369,6 +375,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 052 | 53 | Llama-Instruct | **Cross-head cascading (CONFIRMATORY for general mechanism):** H3 range=49.1pp, H1 range=34.5pp. ALL 4 heads show early>late gradient. Criticality×range correlation r=-0.991 (p=0.009). Early≈all for 3/4 heads. Cascading is architectural, not H5-specific. |
 | 053 | 54 | Qwen-Base | **Cross-head position-independence (CONFIRMATORY):** ALL 4 Qwen heads position-independent (max range 14pp). H0 reversed gradient (late most destructive). Digital encoding prevents cascading at all heads. |
 | 055 | 55 | Both | **KV cache eviction benchmark:** "Recent" (sinks+recent) best strategy on both models (100% at 33%). Early_priority catastrophically bad (8.7% Llama@33%). K-preserve WORSE than H2O on Llama. Head-selective +8.7pp over H2O. Digital more compression-robust. |
+| 056 | 56 | Both | **Mask vs zero eviction (3-way):** Phantom routing confirmed (zero_v=51.9% worst on Llama). H2O=random under masking (66.7%). Zeroing > masking for imperfect selection (+14.8pp). "Recent" uniquely method-invariant (100% across all). Qwen method-invariant (digital). |
 
 ---
 

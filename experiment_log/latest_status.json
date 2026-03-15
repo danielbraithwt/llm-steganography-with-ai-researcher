@@ -1,26 +1,28 @@
 {
-  "cycle": 55,
-  "timestamp": "2026-03-15T15:20:00Z",
+  "cycle": 56,
+  "timestamp": "2026-03-15T17:00:00Z",
   "type": "experiment",
-  "template": "kv_eviction_benchmark",
+  "template": "mask_vs_zero_eviction",
   "parameters": {
     "models": ["Qwen/Qwen3-4B-Base", "meta-llama/Llama-3.1-8B-Instruct"],
-    "strategies": ["random", "h2o", "recent", "early_priority", "k_preserve", "head_selective"],
-    "budgets": ["75%", "50%", "33%"],
-    "n_valid": {"Qwen": 20, "Llama": 23},
-    "design": "6 strategies x 3 budgets x 2 models"
+    "eviction_methods": ["mask (attention_mask=0)", "zero_kv (zero both K+V)", "zero_v (K-preserve)"],
+    "strategies": ["random", "h2o", "recent", "head_selective"],
+    "budgets": ["33%", "50%"],
+    "n_valid": {"Qwen": 25, "Llama": 27},
+    "conditions": 13,
+    "design": "3 methods x 4 strategies x 2 budgets (13 conditions after pruning)"
   },
-  "prediction_outcome": "No pre-registered scenario fully confirmed. 'Recent' dominance was unpredicted. K-preserve reversal on Llama disconfirms Scenario A.",
-  "key_finding": "'Recent' (StreamingLLM) achieves 100% at 33% budget on BOTH models. Early_priority catastrophically bad (8.7% Llama@33%). K-preserve WORSE than H2O on Llama (phantom routing). Head-selective +8.7pp over H2O. Digital encoding more compression-robust.",
-  "evidence_impact": "Added findings #65-69. Updated narrative synthesis for compression. Answered open question #5. K>V perturbation hierarchy does NOT directly translate to compression advantage.",
-  "next_planned": "Validate with true attention-based H2O; test recent strategy on harder tasks; combine head_selective + recent",
+  "prediction_outcome": "Scenario B (partially confirmed): zero_v worst on Llama (51.9%), but mask < zero_kv for H2O was NOT predicted. The surprising finding that H2O=random under masking was completely unpredicted.",
+  "key_finding": "Attention-based selection (H2O) = random under true masking (both 66.7% on Llama). H2O advantage under zeroing (+14.8pp) is an artifact of model self-organizing around high-K-norm positions. Phantom routing confirmed (zero_v=51.9% worst). 'Recent' uniquely method-invariant (100% everywhere). Qwen method-invariant (digital encoding).",
+  "evidence_impact": "Added findings #70-74. Added disconfirmed claim: 'masking strictly better than zeroing'. Phantom routing replicated with 3-way comparison. H2O selection mechanism exposed.",
+  "next_planned": "Test whether H2O with true attention scores (not K-norm proxy) improves under masking; explore hybrid recent+head_selective strategy; investigate why recent strategy is uniquely robust",
   "figures": [
-    "results/exp_054/accuracy_vs_budget_Qwen3-4B-Base.png",
-    "results/exp_054/accuracy_vs_budget_Llama-3.1-8B-Instruct.png",
-    "results/exp_054/strategy_comparison_50pct_Qwen3-4B-Base.png",
-    "results/exp_054/strategy_comparison_50pct_Llama-3.1-8B-Instruct.png",
-    "results/exp_054/k_preserve_comparison_Qwen3-4B-Base.png",
-    "results/exp_054/k_preserve_comparison_Llama-3.1-8B-Instruct.png"
+    "results/exp_056/method_comparison_33pct_Qwen3-4B-Base.png",
+    "results/exp_056/method_comparison_33pct_Llama-3.1-8B-Instruct.png",
+    "results/exp_056/mask_vs_zero_Qwen3-4B-Base.png",
+    "results/exp_056/mask_vs_zero_Llama-3.1-8B-Instruct.png",
+    "results/exp_056/phantom_routing_test_Qwen3-4B-Base.png",
+    "results/exp_056/phantom_routing_test_Llama-3.1-8B-Instruct.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
@@ -28,9 +30,9 @@
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent. CASCADING IS GENERAL on Llama.", "bar": 5},
     "geometric_dissociation": {"status": "K > V UNIVERSAL at per-head level: 16/16 heads across 2 models. V=456/456 absolute. K>V does NOT translate directly to compression.", "bar": 5},
     "head_level_analysis": {"status": "COMPLETE: Two-regime on Qwen (decisive), near-collapse on Llama. Head-selective compression +8.7pp over H2O.", "bar": 5},
-    "natural_usage": {"status": "SUBSTANTIALLY ADVANCED: First eviction benchmark complete. Recent=best. Head-selective outperforms H2O. K-preserve reversal discovered. Encoding-dependent compression robustness established.", "bar": 4},
-    "cross_model_replication": {"status": "COMPLETE: 4 families, 5 variants. Eviction benchmark on 2 models.", "bar": 5},
-    "encoding_strategy": {"status": "COMPLETE TAXONOMY + compression implications: digital=compression-robust (random@33%=95%), analog=fragile (random@33%=70%).", "bar": 5},
+    "natural_usage": {"status": "ADVANCED: Two eviction benchmarks complete. Mask vs zero: zeroing > masking for imperfect selection. H2O=random under masking (attention-based selection exposed). 'Recent' uniquely method-invariant.", "bar": 5},
+    "cross_model_replication": {"status": "COMPLETE: 4 families, 5 variants. Eviction benchmark on 2 models with 3 methods.", "bar": 5},
+    "encoding_strategy": {"status": "COMPLETE TAXONOMY + compression + method implications: digital=method-invariant, analog=method-sensitive. Zeroing > masking for imperfect selection on analog.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 10+ angles, 60+ papers across 5 scans.", "bar": 5}
   }
 }

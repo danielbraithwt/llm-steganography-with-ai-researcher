@@ -1,0 +1,3 @@
+cycle 056: mask vs zero eviction — phantom routing confirmed, H2O=random under masking
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
