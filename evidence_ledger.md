@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 43 — 5% dose positional sweep on Llama)
-Cycles completed: 43 (41 experimental + 1 consolidation + 1 literature scan)
+Last updated: 2026-03-15 (cycle 45 — 5% dose positional sweep on Qwen-Base)
+Cycles completed: 45 (42 experimental + 1 consolidation + 1 literature scan + 1 crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -185,6 +185,10 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 29 | Text gradient is dose-independent | Slope ~9pp/bin and r≈1.0 at both 5% and 10% dose; trivial cascading effect | **Strong** | 041, 042, 043 |
 | 30 | K > V gap INCREASES at lower dose | +76pp at 5% vs +55pp at 10% — V recovers more at lower dose while K stays at floor | **Moderate** | 041, 043 |
 | 31 | Exp 028 "late=22%" was inflated by coarse binning | At 10-bin resolution: late=8.8% (bins 7-9 avg), not 22%; recovery concentrated at bin 9 only (15.8%) | **Moderate** | 028, 043 |
+| 32 | Digital encoding provides UNIFORM accuracy elevation at 5% dose | Qwen mean ~14% across all bins (non-monotonic, r=-0.05) vs Llama mean ~2% (weak gradient, r=0.64). Digital protection is stochastic, not positional. | **Moderate-Strong** | 044 |
+| 33 | Positional dissociation is encoding-DEPENDENT at 5% dose | At 10% both models saturate ~0%. At 5%, Qwen recovers ~14% uniformly while Llama recovers ~2%. Digital encoding shifts the dose-response threshold upward. | **Strong** | 041, 042, 043, 044 |
+| 34 | V-only direction vulnerability: Qwen more fragile than Llama | Qwen V-only 5%: 81.5% [63, 92]; Llama V-only 5%: 92.1% [79, 97]. Qwen V-only 10%: 56%; Llama V-only 10%: 71%. Consistent across both doses. | **Moderate** | 041, 042, 043, 044 |
+| 35 | K > V at bin 9 on Qwen-Base at 5% dose | V=81.5% vs K=18.5%, gap +63pp. Completes 2×2 model×dose matrix: gap always +55-76pp | **Strong** | 044 |
 
 ---
 
