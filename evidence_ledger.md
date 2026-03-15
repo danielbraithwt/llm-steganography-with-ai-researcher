@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 41 — positional sweep on Llama)
-Cycles completed: 41 (39 experimental + 1 consolidation + 1 literature scan)
+Last updated: 2026-03-15 (cycle 42 — positional sweep on Qwen-Base, cross-model comparison)
+Cycles completed: 42 (40 experimental + 1 consolidation + 1 literature scan)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -163,7 +163,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 7 | Digital encoding is Qwen-family-specific | 2/2 Qwen=digital, 3/3 non-Qwen=analog | **Strong** | 023-026, 035-037 |
 | 8 | Instruction tuning converts V digital→analog, preserves K digital | Qwen-Base→Qwen-Instruct comparison | **Strong** | 036 |
 | 9 | K-V superadditivity from degradation overlap | Analog models 7.9-16.8x, digital weak 1.1-2.0x | **Strong** | 025, 026, 035, 036, 037 |
-| 10 | Positional dissociation (late=answer, early=infrastructure) | Qwen-Base + Llama (text gradient 9→94% across deciles; accuracy saturated on Llama at 10% dose) | **Strong** | 013, 016, 017, 021, 028, 041 |
+| 10 | Positional dissociation (late=answer, early=infrastructure) | Qwen-Base + Llama: text gradient 9→95% across deciles; accuracy saturated on BOTH at 10% dose; encoding-independent | **Strong** | 013, 016, 017, 021, 028, 041, 042 |
 | 11 | Spatial selectivity (AC/TC) adds zero beyond position | Gold-standard double dissociation | **Decisive (negative)** | 021 |
 | 12 | SNR cliff is Qwen-specific (14 dB) | Llama robust to 5 dB, no cliff | **Strong** | 003, 007 |
 | 13 | Single-layer KV destruction tolerated by both models | Llama 93-100%, Qwen 100% (35/36 layers) | **Moderate** | 009 |
@@ -180,6 +180,8 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 24 | K > V at latest decile on Llama | V-K gap +55pp at 90-100% positions (V=71%, K=16%, n=38) | **Strong** | 041 |
 | 25 | Llama K-routing more fragile/distributed than Qwen | 10% K-direction perturbation saturates accuracy at ~0% at ALL positions; no accuracy gradient | **Moderate** | 041 |
 | 26 | No Reasoning Horizon detected at 70-85% | Dissociation transition is linear (~9pp/bin), no sharp phase transition | **Moderate (negative)** | 041 |
+| 27 | Positional dissociation is encoding-independent at 10% dose | Qwen-Base (digital) and Llama (analog) show identical patterns: acc~0% all bins, text 15→95% linear, dissociation r=0.997 | **Strong** | 041, 042 |
+| 28 | V-only direction perturbation NOT immune at 10% fraction | V-only direction at bin 9: Qwen 56%, Llama 71% (vs 100% V-only immunity at magnitude σ≤1) | **Moderate** | 041, 042 |
 
 ---
 
@@ -209,11 +211,12 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 1. **Why does instruction tuning convert V digital→analog but preserve K digital?** Hypothesis: K defines routing (architectural constraint from QK mechanism), V carries content (reorganizable by RLHF). (Exp 036)
 2. **Does K-only PGD succeed on Phi (MHA)?** Would confirm null space is universal K-routing phenomenon beyond GQA. (Exp 034 motivation)
 3. **Why is Qwen K-direction MORE robust than Llama despite being "digital"?** Possible: discrete direction clusters in digital encoding — random replacement sometimes lands near valid codewords. (Exp 029)
-4. **Does the positional dissociation replicate on Llama at lower dose?** At 10% dose, accuracy is saturated on Llama (Exp 041). At 5% dose (Exp 028), a gradient exists (0%→22%). Fine-grained 5% sweep would clarify. Qwen-Instruct also untested. (Exp 021, 028, 041)
+4. **Does a 5% dose reveal encoding-dependent accuracy gradients?** At 10% dose, accuracy saturates on BOTH Qwen and Llama (Exps 041-042). At 5% dose (Exp 028), Llama showed a gradient (0%→22%). A 5% 10-decile sweep on both models would test whether digital encoding creates position-dependent protection below the saturation threshold. (Exp 021, 028, 041, 042)
 5. **Can TC-aware compression outperform H2O on actual KV eviction benchmarks?** TC > H2O at noise injection, but never tested on real compression. (Exp 013)
 
 ### Medium Priority (mechanistic depth)
-6. **WHY do late positions selectively affect accuracy but not text?** Hypothesis: answer computation via attention from final positions to late reasoning positions; text computation is more local. (Exp 021)
+6. **Why does V-direction perturbation at 10% fraction drop accuracy to 56-71%?** V-magnitude at σ≤1 gives 100% immunity, but V-direction replacement at 10% of late positions is significantly destructive. Is V-direction immunity only at lower fractions (1-5%)? (Exp 041, 042)
+7. **WHY do late positions selectively affect accuracy but not text?** Hypothesis: answer computation via attention from final positions to late reasoning positions; text computation is more local. (Exp 021)
 7. **Is there a "procedural" third channel beyond text/answer?** KV cache steering (Belitsky 2025) encodes reasoning STYLE. Hub positions may be procedural nodes. (Lit scan 20)
 8. **Why is Mistral K the most magnitude-robust of all models (100% at σ=1)?** Model size (7B) or sliding window attention? (Exp 037)
 9. **Does the "Reasoning Theater" early internal confidence correspond to our null space?** Positions where model "already knows the answer" may carry answer-relevant KV info. (Lit scan 20)
@@ -294,6 +297,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | Exp | Cycle | Model | Key Result |
 |-----|-------|-------|------------|
 | 041 | 41 | Llama-Instruct | 10-decile K-only sweep: accuracy saturated ~0% at all positions (Llama K-routing extremely fragile); text gradient 9→94% (linear, no Reasoning Horizon); K > V +55pp at bin 9 |
+| 042 | 42 | Qwen-Base | 10-decile K-only sweep: accuracy saturated 0-4% at all positions (matches Llama); text 15→95% linear (r=0.997); K > V +52pp at bin 9; encoding-independent pattern confirmed |
 
 ---
 
