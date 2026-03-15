@@ -1,33 +1,34 @@
 {
   "cycle": 37,
-  "timestamp": "2026-03-15T02:55:00Z",
+  "timestamp": "2026-03-15T04:30:00Z",
   "type": "experiment",
-  "template": "Qwen-Instruct magnitude dose-response — instruction tuning asymmetrically converts V to analog, preserves K digital",
-  "parameters": {"model": "Qwen/Qwen3-4B", "num_layers": 36, "n_kv_heads": 8, "n_attn_heads": 32, "head_dim": 128, "architecture": "GQA (same as Qwen3-4B-Base)", "conditions": ["mag_k_03", "mag_k_05", "mag_k_10", "mag_k_20", "mag_k_50", "mag_v_10", "mag_v_30", "mag_v_50", "mag_v_100", "mag_kv_10", "mag_kv_20"], "position": "late_5pct", "n_valid": 32},
-  "prediction_outcome": "novel_mixed_result_not_predicted",
-  "key_finding": "Instruction tuning asymmetrically converts encoding: K stays DIGITAL (cliff σ=0.5-1.0, shifted right from Base σ=0.3-0.5), V converts from DIGITAL to ANALOG (gradual degradation σ=1-10, no cliff). Superadditivity STRONG (9.1x at σ=1) due to K-V overlap. K > V confirmed +72-78pp. Neither Scenario A (fully analog) nor B (fully digital) — novel mixed result.",
-  "evidence_impact": "Strong — resolves Base-vs-Instruct encoding strategy confound. K digital is Qwen-family-specific (architectural). V digital is Base-specific (training-dependent). Superadditivity mechanism is K-V degradation overlap. K > V extends to 4th model variant.",
-  "next_planned": "Priority: (1) Test Llama-3.1-8B-Base to determine if K digital is Qwen-specific or universal for Base models. (2) Evidence consolidation. (3) Final synthesis.",
+  "template": "Mistral-7B-v0.3 Base magnitude dose-response — K ≈ V disconfirms universality, digital encoding confirmed Qwen-specific",
+  "parameters": {"model": "mistralai/Mistral-7B-v0.3", "num_layers": 32, "n_kv_heads": 8, "n_attn_heads": 32, "head_dim": 128, "architecture": "GQA", "conditions": ["mag_k_03", "mag_k_05", "mag_k_10", "mag_k_20", "mag_k_50", "mag_v_10", "mag_v_30", "mag_v_50", "mag_v_100", "mag_kv_10", "mag_kv_20"], "position": "late_5pct", "n_valid": 47},
+  "prediction_outcome": "scenario_A_partially_confirmed_with_surprise",
+  "key_finding": "Mistral-Base is FULLY ANALOG (no cliffs), confirming digital encoding is Qwen-specific. SURPRISE: K ≈ V — gap is only +0-6pp across all doses (vs +17-78pp on other models). K > V universality DISCONFIRMED on 5th variant. V-only σ=1: 47/47 (228/228 combined). Superadditivity strong (2.2-13.3x), consistent with analog encoding. Mistral K is most robust of all models (100% at σ=1.0).",
+  "evidence_impact": "Strong — resolves Base-vs-Qwen encoding confound (digital = Qwen-specific). Moderate — K ≈ V finding challenges universality of K > V. V-only immunity extends to 5th variant. Encoding taxonomy complete at 5 variants across 4 families.",
+  "next_planned": "Priority: (1) Test Mistral direction perturbation to see if K > V holds there. (2) Evidence consolidation and final synthesis. (3) Consider Mistral-Instruct to test if instruction tuning creates K > V.",
   "figures": [
-    "results/exp_036/k_magnitude_base_vs_instruct.png",
-    "results/exp_036/v_magnitude_base_vs_instruct.png",
-    "results/exp_036/kv_combined_dose_response.png",
-    "results/exp_036/superadditivity.png",
-    "results/exp_036/encoding_strategy_decision.png"
+    "results/exp_037/k_magnitude_cross_model.png",
+    "results/exp_037/v_magnitude_cross_model.png",
+    "results/exp_037/kv_combined_dose_response.png",
+    "results/exp_037/superadditivity.png",
+    "results/exp_037/encoding_strategy_decision.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space. Combined p=0.013 (K 6/56 vs V 0/57). Survives maximum-effort V-only disconfirmation.", "bar": 5},
     "spatial_structure": {"status": "DECISIVELY DISCONFIRMED on spatial selectivity. Geometric/distributed confirmed by literature", "bar": 1},
     "positional_dissociation": {"status": "STRONG and universal across 3 families. Explained by attention sinks at early positions", "bar": 5},
-    "geometric_dissociation": {"status": "K-V dissociation UNIVERSAL: 3 families x 3 positions x 2 perturbation types + 4th variant (Qwen-Instruct). K>V gaps up to +78pp.", "bar": 5},
+    "geometric_dissociation": {"status": "REVISED: K-V dissociation holds on 4/5 variants but K ≈ V on Mistral-Base. K>V NOT universal — may depend on training type or architecture. Gaps: +17-78pp on 4 models, +0-6pp on Mistral.", "bar": 4},
     "natural_usage": {"status": "H2O/TC protection via position. Sparse attention explains V immunity", "bar": 3},
-    "cross_model_replication": {"status": "COMPLETE: 3 families + 4 training variants tested. V-only σ=1 immunity: 181/181 combined.", "bar": 5},
-    "encoding_strategy": {"status": "REVISED TAXONOMY: Qwen-Base=FULLY DIGITAL. Qwen-Instruct=MIXED (K=digital, V=analog). Llama-Instruct=FULLY ANALOG. Phi-Instruct=FULLY ANALOG. K digital is Qwen-family-specific. V digital is Base-specific.", "bar": 5},
-    "superadditive_interaction": {"status": "MECHANISM RESOLVED: superadditivity = K-V degradation range overlap. Qwen-Base staggered→weak(1.1x). Qwen-Instruct overlapping→strong(9.1x). Llama(7.9-16.8x). Phi(1.7-10.6x).", "bar": 5},
+    "cross_model_replication": {"status": "COMPLETE: 4 families + 5 training variants tested. V-only σ=1 immunity: 228/228 combined. K > V: 4/5 confirmed, 1/5 disconfirmed.", "bar": 5},
+    "encoding_strategy": {"status": "COMPLETE TAXONOMY: Qwen-Base=FULLY DIGITAL. Qwen-Instruct=MIXED. Llama-Instruct=FULLY ANALOG. Phi-Instruct=FULLY ANALOG. Mistral-Base=FULLY ANALOG. Digital = Qwen-specific.", "bar": 5},
+    "superadditive_interaction": {"status": "MECHANISM CONFIRMED on 5th model: Mistral analog → strong superadditivity (2.2-13.3x). All analog models show strong superadditivity. Only digital Qwen-Base shows weak (1.1-2.0x).", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 5+ independent groups. Gradient bottleneck. QK/OV framework grounds K>V. K-only PGD is novel experimental validation", "bar": 5},
     "null_space_kv_unification": {"status": "STATISTICALLY SIGNIFICANT: K-only PGD 6/56 vs V-only 0/57 (p=0.013). V-only failure is NOT hyperparameter artifact.", "bar": 5},
     "disruption_vs_redirection": {"status": "V=disruption (0 numeric redirects ever), K=redirection (2 genuine numeric redirects). Quality distinction holds.", "bar": 5},
     "mha_vs_gqa": {"status": "K > V holds on MHA (Phi) identically to GQA (Qwen/Llama). Phi analog encoding. GQA confound eliminated.", "bar": 5},
-    "base_vs_instruct": {"status": "NEW: K digital preserved by instruction tuning (Qwen-family). V digital converted to analog. Instruction tuning effect is COMPONENT-SPECIFIC.", "bar": 5}
+    "base_vs_instruct": {"status": "EXPANDED: Mistral-Base is analog (like Llama/Phi-Instruct). K digital is Qwen-family-specific, NOT base-model-specific. V digital is Qwen-Base-specific.", "bar": 5},
+    "k_v_universality": {"status": "NEW: K > V holds on 4/5 variants (Qwen-Base, Qwen-Instruct, Llama-Instruct, Phi-Instruct) but FAILS on Mistral-Base (K ≈ V, gap +0-6pp). Universality claim requires revision.", "bar": 3}
   }
 }
