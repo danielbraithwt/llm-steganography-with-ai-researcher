@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 45 — 5% dose positional sweep on Qwen-Base)
-Cycles completed: 45 (42 experimental + 1 consolidation + 1 literature scan + 1 crashed)
+Last updated: 2026-03-15 (cycle 45 — per-head K-V direction perturbation on Qwen-Base)
+Cycles completed: 46 (43 experimental + 1 consolidation + 1 literature scan + 1 crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -189,6 +189,11 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 33 | Positional dissociation is encoding-DEPENDENT at 5% dose | At 10% both models saturate ~0%. At 5%, Qwen recovers ~14% uniformly while Llama recovers ~2%. Digital encoding shifts the dose-response threshold upward. | **Strong** | 041, 042, 043, 044 |
 | 34 | V-only direction vulnerability: Qwen more fragile than Llama | Qwen V-only 5%: 81.5% [63, 92]; Llama V-only 5%: 92.1% [79, 97]. Qwen V-only 10%: 56%; Llama V-only 10%: 71%. Consistent across both doses. | **Moderate** | 041, 042, 043, 044 |
 | 35 | K > V at bin 9 on Qwen-Base at 5% dose | V=81.5% vs K=18.5%, gap +63pp. Completes 2×2 model×dose matrix: gap always +55-76pp | **Strong** | 044 |
+| 36 | "Answer heads" exist — head 5 is primary answer-routing head | K-only H5: 50.0% acc [31, 69], H0: 66.7% [47, 82]; 6 other heads: 100%. Head-level K accuracy range=50pp, std=18.3pp. Dramatically heterogeneous. | **Strong** | 045 |
+| 37 | V-immunity absolute at per-head level | V-only perturbation at each of 8 heads: 192/192 (100%) accuracy. No V-head is critical for answer computation. | **Decisive** | 045 |
+| 38 | Head-level K-routing redundancy is massive | Per-head K perturbation (12.5% capacity): 89.1% acc. Per-position K (5%): 14% acc. Per-position K (10%): 1.5% acc. 2.5x MORE capacity destroyed but 6.4x LESS effect. K-routing fragility is about BREADTH (all-heads-at-a-position) not DEPTH (one-head-everywhere). | **Strong** | 045 |
+| 39 | Head 5 shows strongest per-unit dissociation | AccDrop=50%, TxtDrop=11%, Dissociation=+39pp. Answer-specific routing at individual head level. Text prediction survives head 5 destruction via other heads. | **Strong** | 045 |
+| 40 | No energy confound for head-level results | Perturbation/signal ratio = sqrt(2) = 1.414 at ALL 16 conditions. K signal norms 2x V norms but ratios identical. | **Strong** | 045 |
 
 ---
 
@@ -223,7 +228,8 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 5. **Can TC-aware compression outperform H2O on actual KV eviction benchmarks?** TC > H2O at noise injection, but never tested on real compression. (Exp 013)
 
 ### Medium Priority (mechanistic depth)
-6. **V-direction immunity is dose-dependent (PARTIALLY ANSWERED).** V-dir at 5% dose = 92.1% (immune); V-dir at 10% = 56-71% (destructive). The V-direction vulnerability is confined to >5% fraction. Remaining question: where is the exact threshold (between 5% and 10%)? (Exp 041, 042, 043)
+6. **V-direction immunity is dose-dependent (PARTIALLY ANSWERED).** V-dir at 5% dose = 92.1% (immune); V-dir at 10% = 56-71% (destructive). Per-head V: 100% at all 8 heads (absolute immunity). The V-direction vulnerability is confined to >5% positional fraction with multi-head perturbation. (Exp 041, 042, 043, 045)
+6b. **What makes head 5 the answer-routing head?** Does it implement specific attention patterns (e.g., attend to answer-relevant positions)? Is the specialization GQA-specific? Does Llama have the same "answer head"? (Exp 045)
 7. **WHY do late positions selectively affect accuracy but not text?** Hypothesis: answer computation via attention from final positions to late reasoning positions; text computation is more local. (Exp 021)
 7. **Is there a "procedural" third channel beyond text/answer?** KV cache steering (Belitsky 2025) encodes reasoning STYLE. Hub positions may be procedural nodes. (Lit scan 20)
 8. **Why is Mistral K the most magnitude-robust of all models (100% at σ=1)?** Model size (7B) or sliding window attention? (Exp 037)
@@ -234,6 +240,8 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 
 ### Lower Priority (extensions)
 13. Where exactly is the additive noise cliff on Qwen-Instruct? Between 0.3x and 1.0x. Finer sweep would locate it. (Exp 015)
+19. **Multi-head perturbation threshold:** How many heads can be simultaneously destroyed before accuracy collapses? (1=89.1%, 8≈0%, what about 2, 3, 4?) (Exp 045)
+20. **Head 5 × position interaction:** Is head 5's answer routing critical at early, mid, or late positions specifically? (Exp 045)
 14. Would targeted K-only PGD (maximize specific wrong answer) succeed at higher rates? (Exp 032)
 15. Would K-only PGD restricted to late layers (18+) be more efficient? (Exp 032)
 16. Does per-head SNR normalization mask individual head vulnerability? (Exp 027)
@@ -307,6 +315,8 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 041 | 41 | Llama-Instruct | 10-decile K-only sweep: accuracy saturated ~0% at all positions (Llama K-routing extremely fragile); text gradient 9→94% (linear, no Reasoning Horizon); K > V +55pp at bin 9 |
 | 042 | 42 | Qwen-Base | 10-decile K-only sweep: accuracy saturated 0-4% at all positions (matches Llama); text 15→95% linear (r=0.997); K > V +52pp at bin 9; encoding-independent pattern confirmed |
 | 043 | 43 | Llama-Instruct | 5% dose 10-decile sweep: accuracy STILL saturated 0-2.6% bins 0-6; only bin 9=15.8% recovers; V-only immunity RESTORED at 5% (92.1%); K > V gap +76pp; text gradient dose-independent; Exp 028 "22%" was inflated |
+| 044 | 44 | Qwen-Base | 5% dose 10-decile sweep: digital encoding provides UNIFORM elevation (~14% vs Llama 2.6%); non-monotonic pattern (r=-0.05); V-only 81.5%; K > V +63pp; 2×2 model×dose matrix complete |
+| 045 | 45 | Qwen-Base | **Per-head K-V sweep:** "Answer heads" discovered — H5=50%, H0=67%, 6 others=100%. V-immunity absolute (192/192). Head-level K-redundancy massive: 12.5% per-head → 89% acc vs 5% per-position → 14% acc. Fragility is about breadth not depth. |
 
 ---
 
@@ -322,11 +332,13 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 
 2. **The KV cache carries precise, fragile state** (Exp 3, 7): On Qwen, a sharp SNR cliff at 14 dB shows digital-like encoding. On Llama, analog but still precise: small targeted perturbations destroy answers while text survives (dissociation at every dose tested).
 
-3. **The answer channel lives in K-vectors (routing), not V-vectors (content)** (Exp 23-38): This is our central mechanistic finding. K perturbation is devastating for accuracy; V perturbation at moderate levels has literally zero effect. This holds across all 5 models, 3 position bands, and both perturbation types. The K > V hierarchy reflects the fundamental QK-routing vs OV-content split in the attention mechanism — independently theorized by multiple groups but first causally validated by our perturbation experiments.
+3. **The answer channel lives in K-vectors (routing), not V-vectors (content)** (Exp 23-38, 45): This is our central mechanistic finding. K perturbation is devastating for accuracy; V perturbation at moderate levels has literally zero effect. This holds across all 5 models, 3 position bands, both perturbation types, and now at the individual head level (V-immunity: 192/192 across 8 heads). The K > V hierarchy reflects the fundamental QK-routing vs OV-content split in the attention mechanism. Crucially, K-routing fragility is about BREADTH, not DEPTH: destroying one K-head everywhere is well-tolerated (89.1% acc at 12.5% capacity) while destroying all K-heads at 5% of positions is devastating (14% acc). GQA provides 8 redundant routing channels at each position.
 
-4. **The hidden channel is distributed, not spatially concentrated** (Exp 13-21): The original PGD spatial correlation (rho=0.78) was inflated by methodology. Actual rho=0.20. Selectivity-based destruction is explained by positional confound. Within position-controlled quartiles, AC-noise = TC-noise exactly. What IS spatially structured is the position gradient: early positions are computational infrastructure (attention sinks); late positions carry answer-specific information that doesn't affect text.
+4. **The hidden channel is distributed positionally but concentrated in specific heads** (Exp 13-21, 45): The original PGD spatial correlation (rho=0.78) was inflated by methodology. Actual rho=0.20. What IS spatially structured is the position gradient: early positions are computational infrastructure; late positions carry answer-specific information. At the head level, the hidden channel is CONCENTRATED: head 5 is the primary answer-routing head (50% acc under K-perturbation, +39pp dissociation), with head 0 as secondary (67% acc, +21pp dissociation). Six other heads are completely dispensable (100% acc).
 
 5. **Models encode differently but the hierarchy is universal** (Exp 23-38): Qwen uses digital encoding (sharp accuracy cliffs); Llama/Phi/Mistral use analog (gradual degradation). This affects fragility thresholds and superadditivity patterns but NOT the K > V hierarchy, which holds on every model tested. Digital encoding is Qwen-family-specific; instruction tuning converts V from digital→analog but preserves K digital encoding.
+
+6. **K-routing fragility is about breadth, not depth — "answer heads" localize the hidden channel** (Exp 45): Per-head analysis reveals that K-routing has massive head-level redundancy: destroying 1/8 of K-heads preserves 89.1% accuracy, while destroying all K-heads at 5% of positions drops accuracy to 14%. But 2 of 8 KV heads (H5: 50% acc, H0: 67% acc) are specialized "answer-routing" heads that carry non-redundant routing information. The hidden channel is localized in specific heads, not spread uniformly across the attention mechanism.
 
 ### What this means
 

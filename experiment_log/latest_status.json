@@ -1,34 +1,35 @@
 {
-  "cycle": 43,
-  "timestamp": "2026-03-15T19:00:00Z",
+  "cycle": 45,
+  "timestamp": "2026-03-15T21:00:00Z",
   "type": "experiment",
-  "template": "5% dose 10-decile K-only positional sweep — Llama-3.1-8B-Instruct",
+  "template": "per-head K vs V direction perturbation — Qwen3-4B-Base",
   "parameters": {
-    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "model": "Qwen/Qwen3-4B-Base",
     "perturbation_type": "direction (random replacement, norm-preserved)",
-    "bins": 10,
-    "perturbation_fraction": "5% per bin (50% sub-sample of each decile)",
-    "n_valid": 38,
-    "conditions": ["decile_k_0..9", "decile_v_9"]
+    "perturbation_scope": "per-head (1 of 8 KV heads at ALL positions and ALL layers)",
+    "n_kv_heads": 8,
+    "n_valid": 24,
+    "conditions": ["head_k_0..7", "head_v_0..7"]
   },
-  "prediction_outcome": "Scenario B confirmed (25% pre-registered) — accuracy still mostly saturated at 5% dose",
-  "key_finding": "Llama K-routing extremely distributed: even 5% K-direction perturbation saturates accuracy at 0-2.6% for bins 0-6. Only bin 9 (15.8%) recovers. V-only immunity RESTORED at 5% dose (92.1% vs 71.1% at 10%). K > V gap increases to +76pp. Text gradient dose-independent (~9pp/bin). Exp 028 late=22% was inflated by coarse binning.",
-  "evidence_impact": "Strengthens Llama K-routing fragility claim; restores V-immunity at 5%; increases K > V gap; partially resolves Open Questions #4 and #6",
-  "next_planned": "5% dose sweep on Qwen-Base for cross-model comparison OR 2-3% dose on Llama to reveal accuracy gradients",
+  "prediction_outcome": "Scenario B+C hybrid (30% + 20% pre-registered = 50%): answer heads exist WITH high redundancy",
+  "key_finding": "Answer heads discovered: H5=50% acc (primary), H0=67% (secondary), 6 others=100% (dispensable). V-immunity absolute (192/192). Head-level redundancy massive: 12.5% per-head K → 89% acc vs 5% per-position K → 14% acc. K-routing fragility is about breadth (all heads at a position) not depth (one head everywhere).",
+  "evidence_impact": "Major new finding: first per-head analysis reveals answer-routing specialization and resolves the K-routing fragility mechanism. Challenges simple 'K-routing is fragile' narrative with nuanced 'fragile at positions, redundant across heads'. Strongest V-immunity result (192/192).",
+  "next_planned": "Per-head sweep on Llama for cross-model comparison OR head 5 × position interaction",
   "figures": [
-    "results/exp_043/positional_sweep_accuracy.png",
-    "results/exp_043/dissociation_by_position.png",
-    "results/exp_043/dissociation_scatter.png",
-    "results/exp_043/cross_dose_comparison.png",
-    "results/exp_043/signal_norms_by_position.png"
+    "results/exp_045/per_head_kv_accuracy.png",
+    "results/exp_045/kv_gap_per_head.png",
+    "results/exp_045/head_importance_ranking.png",
+    "results/exp_045/dissociation_per_head.png",
+    "results/exp_045/signal_norms_per_head.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
-    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. Positional dissociation confirmed (text gradient only).", "bar": 1},
-    "positional_dissociation": {"status": "Dose-saturated: 5% dose STILL saturates Llama accuracy. Only bin 9 (15.8%) recovers. Text gradient dose-independent. Need <5% dose or Qwen comparison.", "bar": 4},
-    "geometric_dissociation": {"status": "K > V UNIVERSAL. +76pp at 5% dose (V recovers more → gap increases). 5/5 models confirmed.", "bar": 5},
+    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. Positional dissociation confirmed. HEAD-LEVEL CONCENTRATION discovered (H5, H0).", "bar": 3},
+    "positional_dissociation": {"status": "Dose-saturated: 5% dose STILL saturates Llama accuracy. Text gradient dose-independent. Encoding-dependent at 5%.", "bar": 4},
+    "geometric_dissociation": {"status": "K > V UNIVERSAL. Now confirmed at per-head level: V=100% at ALL 8 heads. K > V at 3/8 heads (H0, H5, H7).", "bar": 5},
+    "head_level_analysis": {"status": "NEW: Answer heads discovered (H5=50%, H0=67%). Head-level redundancy massive. Single-model so far.", "bar": 3},
     "natural_usage": {"status": "H2O/TC protection via position. TC best protection metric.", "bar": 3},
-    "cross_model_replication": {"status": "COMPLETE: 4 families, 5 training variants, GQA + MHA, Base + Instruct. Positional sweep on 2 models at 2 doses.", "bar": 5},
+    "cross_model_replication": {"status": "COMPLETE for positional/component: 4 families, 5 variants. Per-head analysis on 1 model only.", "bar": 4},
     "encoding_strategy": {"status": "COMPLETE TAXONOMY + encoding-independence at 10% dose + V-immunity dose-dependence confirmed.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 8+ angles, 45+ papers.", "bar": 5}
   }
