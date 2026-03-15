@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 47 — multi-head K-direction perturbation threshold, decisive answer-head confirmation)
-Cycles completed: 48 (45 experimental + 1 consolidation + 1 literature scan + 1 crashed)
+Last updated: 2026-03-15 (cycle 48 — Llama multi-head threshold: two-regime pattern is Qwen-specific)
+Cycles completed: 49 (46 experimental + 1 consolidation + 1 literature scan + 1 crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -19,7 +19,7 @@ The hypothesis is supported by converging evidence from 39 experimental cycles, 
 - **V-only σ=1 immunity:** 228/228 across 5 variants (magnitude); 393/394 across 4 models at early+mid (direction); **456/456 per-head across 2 models**
 - **Text-answer dissociation:** Text ≥98% at near-zero accuracy, confirmed on all 5 models at all perturbation doses
 - **Answer head H5:** Primary answer-routing head on BOTH Qwen (50% acc) and Llama (18.2% acc); cross-model convergence at same KV head index
-- **Answer-head specialization (DECISIVE):** H0+H5 at 25% capacity → 3.7% acc; dispensable pairs at 25% → 96-100% acc; +95.1pp gap, per-problem concordance 25/27
+- **Answer-head specialization (Qwen-specific):** H0+H5 at 25% capacity → 3.7% acc; dispensable pairs at 25% → 96-100% acc; +95.1pp gap (Qwen). Llama: best pair 16.2%, worst 0.0%, gap only +16.2pp. Two-regime pattern does NOT replicate on analog models.
 
 ---
 
@@ -203,6 +203,10 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 45 | At 50%, answer-head inclusion determines survival | Disp4 H1234 (50%): 22.2% vs Ans+disp H0125 (50%): 0.0%. Gap +22.2pp. Same capacity, different outcome based on which heads. | **Strong** | 047 |
 | 46 | Answer heads necessary but NOT sufficient | Leave only H0+H5 (75% destroyed): 0.0%. Answer heads alone cannot sustain computation — need dispensable head infrastructure. | **Strong** | 047 |
 | 47 | Redundancy curve has two regimes (dispensable-tolerant vs answer-catastrophic) | Dispensable removal: 98.8% (2h), 22.2% (4h). Answer removal: 3.7% (2h), 0% (4h). Head identity > capacity fraction. | **Decisive** | 045, 046, 047 |
+| 48 | Two-regime redundancy curve is QWEN-SPECIFIC (does NOT replicate on Llama) | Llama best pair (H0+H7): 16.2% vs Qwen best pair: 98.8%. Gap +16.2pp vs +95.1pp. Concordance 16.2% vs 92.6%. 31/37 problems fail on BOTH pairs. | **Strong (disconfirmatory)** | 047, 048 |
+| 49 | Head-level redundancy is encoding-dependent at multi-head level | Qwen (digital): 2-head dispensable=98.8%, 4-head=22.2%. Llama (analog): 2-head best=16.2%, 4-head=2.7%. Digital encoding provides ~83pp more head-level redundancy. | **Strong** | 045, 046, 047, 048 |
+| 50 | Llama head-level redundancy collapses at 2/8 heads | 1-head mean=50.0% → 2-head best=16.2% (-33.8pp). Steepest transition in redundancy curve is 1→2 heads on Llama. | **Strong** | 046, 048 |
+| 51 | Critical pair still marginally more destructive on Llama | H3+H5=0.0% vs H0+H7=16.2%. Fisher exact p≈0.027. Per-problem: 6/37 differentiate, 0/37 reverse. But signal weak vs Qwen's 25/27. | **Moderate** | 048 |
 
 ---
 
@@ -224,6 +228,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | Digital encoding = Base models generally | Exp 023 (Qwen-Base) | Exp 037 (Mistral-Base analog) | Qwen-family-specific, not Base-specific |
 | Reasoning Horizon (70-85%) aligns with K-routing transition | Lit scan 40 (Ye et al. correlation) | Exp 041, 043 (linear gradient, no phase transition at both 5% and 10%) | Dissociation increases ~9pp/bin linearly; no sharp transition at 70-85% on Llama |
 | Exp 028 late accuracy gradient (22%) at 5% dose | Exp 028 (3 coarse bins) | Exp 043 (10 bins at 5%: late avg=8.8%, bin 9 only=15.8%) | Coarse binning inflated estimate; actual recovery concentrated at bin 9 only |
+| Two-regime redundancy curve is universal | Exp 047 (Qwen: +95.1pp gap, 25/27 concordance) | Exp 048 (Llama: +16.2pp gap, 6/37 concordance) | Qwen-specific; driven by digital encoding + binary head specialization. Analog models show near-complete collapse at 2+ heads |
 
 ---
 
@@ -252,7 +257,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 19. ~~Multi-head perturbation threshold~~ **ANSWERED (Exp 047):** Two-regime curve: dispensable pairs=96-100%, 4 dispensable=22.2%. Answer pair H0+H5=3.7%. Gap +95pp. Head identity > capacity fraction.
 20. **Head 5 × position interaction:** Is head 5's answer routing critical at early, mid, or late positions specifically? (Exp 045)
 21. **Why can't answer heads sustain computation alone?** Leave-only H0+H5 = 0%. What infrastructure do dispensable heads provide? (Exp 047)
-22. **Multi-head threshold on Llama:** Does Llama (lower single-head redundancy, 50% mean) show same two-regime pattern? Should collapse faster. (Exp 047)
+22. ~~Multi-head threshold on Llama~~ **ANSWERED (Exp 048):** Two-regime DOES NOT replicate. Best pair=16.2% (vs Qwen 98.8%). Head-level redundancy is near-zero on analog models. The two-regime pattern is Qwen-specific (digital encoding). (Exp 047, 048)
 14. Would targeted K-only PGD (maximize specific wrong answer) succeed at higher rates? (Exp 032)
 15. Would K-only PGD restricted to late layers (18+) be more efficient? (Exp 032)
 16. Does per-head SNR normalization mask individual head vulnerability? (Exp 027)
@@ -330,6 +335,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 045 | 45 | Qwen-Base | **Per-head K-V sweep:** "Answer heads" discovered — H5=50%, H0=67%, 6 others=100%. V-immunity absolute (192/192). Head-level K-redundancy massive: 12.5% per-head → 89% acc vs 5% per-position → 14% acc. Fragility is about breadth not depth. |
 | 046 | 46 | Llama-Instruct | **Per-head K-V sweep (cross-model):** H5 = 18.2% (SAME primary answer head as Qwen!). Llama mean K-acc=50% (vs Qwen 89%). V-immunity absolute 264/264. Head-level redundancy encoding-dependent. K>V at 8/8 heads. |
 | 047 | 47 | Qwen-Base | **Multi-head threshold (DECISIVE):** H0+H5=3.7% vs dispensable pairs=96-100% (+95pp gap). Per-problem concordance 25/27. Disp4 at 50%=22.2% vs ans+disp=0%. Leave-only-answer=0%. Two-regime redundancy curve. |
+| 048 | 48 | Llama-Instruct | **Multi-head threshold (DISCONFIRMATORY):** Two-regime DOES NOT replicate. Best pair 16.2% (vs Qwen 98.8%). Gap +16.2pp (vs +95.1pp). 31/37 fail on both pairs. Head-level redundancy near-zero on analog model. |
 
 ---
 
@@ -351,7 +357,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 
 5. **Models encode differently but the hierarchy is universal** (Exp 23-38): Qwen uses digital encoding (sharp accuracy cliffs); Llama/Phi/Mistral use analog (gradual degradation). This affects fragility thresholds and superadditivity patterns but NOT the K > V hierarchy, which holds on every model tested. Digital encoding is Qwen-family-specific; instruction tuning converts V from digital→analog but preserves K digital encoding.
 
-6. **The hidden channel flows through specific "answer heads" — DECISIVELY confirmed** (Exp 045, 046, 047): KV heads H0 and H5 are specialized answer-routing heads. Destroying H0+H5 together (25% of K-routing capacity) reduces accuracy to 3.7%, while destroying ANY other pair of heads at 25% capacity leaves accuracy at 96-100% — a +95.1pp gap with non-overlapping CIs and 25/27 per-problem concordance. This is the strongest functional double dissociation in the program. The answer heads are NECESSARY but not SUFFICIENT: leaving only H0+H5 intact (75% destroyed) gives 0% accuracy. The dispensable heads provide routing infrastructure that answer heads depend on. Head 5 is the primary answer head on BOTH Qwen and Llama (cross-model convergence). V-immunity is absolute at per-head level (456/456 across 2 models).
+6. **The hidden channel flows through specific "answer heads" — but redundancy is encoding-dependent** (Exp 045, 046, 047, 048): KV heads H0 and H5 are specialized answer-routing heads on both Qwen and Llama. On Qwen (digital): destroying H0+H5 (25%) reduces accuracy to 3.7%, while dispensable pairs preserve 96-100% — a +95.1pp gap. On Llama (analog): the best pair (H0+H7) achieves only 16.2%, and the critical pair (H3+H5) gives 0.0% — a +16.2pp gap. The two-regime redundancy curve is **Qwen-specific**: digital encoding provides massive head-level redundancy (dispensable heads at 96-100%), while analog encoding provides near-zero redundancy (best pair at 16.2%). Head 5 remains the primary answer head on BOTH models, but the practical significance of head specialization depends entirely on encoding type. V-immunity is absolute at per-head level (456/456 across 2 models).
 
 ### What this means
 

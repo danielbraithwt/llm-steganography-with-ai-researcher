@@ -1,36 +1,37 @@
 {
-  "cycle": 47,
-  "timestamp": "2026-03-15T22:30:00Z",
+  "cycle": 48,
+  "timestamp": "2026-03-15T23:00:00Z",
   "type": "experiment",
-  "template": "multi-head K-direction perturbation threshold — Qwen3-4B-Base",
+  "template": "multi-head K-direction perturbation threshold — Llama-3.1-8B-Instruct",
   "parameters": {
-    "model": "Qwen/Qwen3-4B-Base",
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
     "perturbation_type": "direction (random replacement, norm-preserved)",
     "perturbation_scope": "multi-head K-only (2-8 heads at ALL positions and ALL layers)",
     "n_kv_heads": 8,
-    "n_valid": 27,
-    "conditions": ["answer_h05(2h)", "disp_h12(2h)", "disp_h34(2h)", "disp_h67(2h)", "disp4_h1234(4h)", "ans_disp_h0125(4h)", "leave_ans_only(6h)", "all8(8h)"]
+    "n_valid": 37,
+    "conditions": ["critical_h35(2h)", "mid_h46(2h)", "mid_h01(2h)", "disp_h07(2h)", "crit4_h2345(4h)", "disp4_h0167(4h)", "leave_disp(6h)", "all8(8h)"]
   },
-  "prediction_outcome": "Scenario A CONFIRMED but stronger than predicted. H0+H5=3.7% (predicted 25-50%). Gap +95.1pp (predicted ≥25pp). Scenarios B,C,D all DISCONFIRMED.",
-  "key_finding": "DECISIVE answer-head specialization: H0+H5 (25% cap) → 3.7% acc vs dispensable pairs (25%) → 96-100%. Gap +95.1pp. Per-problem concordance 25/27. At 50%: disp4=22.2% vs ans+disp=0%. Answer heads necessary but NOT sufficient (leave-only=0%).",
-  "evidence_impact": "Strongest functional dissociation in the program. Answer heads DECISIVELY confirmed as specialized answer-routing circuit. Head identity matters more than capacity fraction. Two-regime redundancy curve established.",
-  "next_planned": "Multi-head threshold on Llama OR H5 x position interaction OR H5 attention pattern analysis",
+  "prediction_outcome": "Scenario C CONFIRMED (20% confidence). Two-regime pattern does NOT replicate on Llama. Near-complete collapse for all pairs.",
+  "key_finding": "DISCONFIRMATORY: Two-regime redundancy curve is Qwen-specific. Llama best pair: 16.2% (vs Qwen 98.8%). Gap +16.2pp (vs +95.1pp). 31/37 fail both pairs. Head-level redundancy near-zero on analog model.",
+  "evidence_impact": "Revises answer-head specialization from 'universal decisive' to 'encoding-dependent'. Digital encoding provides ~83pp more head-level redundancy. Two-regime pattern added to disconfirmed claims.",
+  "next_planned": "Finer threshold sweep (1-2 head transition) OR Qwen-Instruct (mixed encoding) replication OR Phase 6 synthesis",
   "figures": [
-    "results/exp_047/multi_head_threshold.png",
-    "results/exp_047/dose_matched_25pct.png",
-    "results/exp_047/dose_matched_50pct.png",
-    "results/exp_047/redundancy_curve.png",
-    "results/exp_047/dissociation_by_condition.png"
+    "results/exp_048/multi_head_threshold.png",
+    "results/exp_048/dose_matched_25pct.png",
+    "results/exp_048/dose_matched_50pct.png",
+    "results/exp_048/accuracy_vs_sensitivity.png",
+    "results/exp_048/cross_model_redundancy.png",
+    "results/exp_048/dissociation_by_condition.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
-    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. Positional dissociation confirmed. HEAD-LEVEL CONCENTRATION decisive (H0+H5 +95pp gap).", "bar": 5},
+    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. Positional dissociation confirmed. HEAD-LEVEL CONCENTRATION decisive on Qwen, weak on Llama.", "bar": 5},
     "positional_dissociation": {"status": "Dose-saturated: 5% dose STILL saturates Llama accuracy. Text gradient dose-independent. Encoding-dependent at 5%.", "bar": 4},
     "geometric_dissociation": {"status": "K > V UNIVERSAL at per-head level: 16/16 heads across 2 models. V=456/456 absolute.", "bar": 5},
-    "head_level_analysis": {"status": "DECISIVE: Answer-head specialization confirmed by multi-head dose-matched test (+95pp, 25/27 concordance). H0+H5 necessary but not sufficient.", "bar": 5},
+    "head_level_analysis": {"status": "COMPLETE: Two-regime on Qwen (decisive), near-collapse on Llama (disconfirmatory). Head specialization is encoding-dependent.", "bar": 5},
     "natural_usage": {"status": "H2O/TC protection via position. TC best protection metric.", "bar": 3},
-    "cross_model_replication": {"status": "COMPLETE for major findings: 4 families, 5 variants. Per-head on 2 models. Multi-head on 1 model (Qwen).", "bar": 5},
-    "encoding_strategy": {"status": "COMPLETE TAXONOMY + head-level redundancy encoding-dependent confirmed.", "bar": 5},
+    "cross_model_replication": {"status": "COMPLETE: 4 families, 5 variants. Multi-head on 2 models. Head-level redundancy encoding-dependent.", "bar": 5},
+    "encoding_strategy": {"status": "COMPLETE TAXONOMY + head-level redundancy encoding-dependent confirmed at multi-head level.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 8+ angles, 45+ papers.", "bar": 5}
   }
 }
