@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 53 — Exp 052: early-position cascading is GENERAL on Llama; position-dependence scales perfectly with criticality r=-0.991)
-Cycles completed: 53 (49 experimental + 1 consolidation + 2 literature scans + 1 crashed)
+Last updated: 2026-03-15 (cycle 54 — Exp 053: ALL 4 Qwen heads position-independent; encoding-dependent cascading COMPLETE on both models)
+Cycles completed: 54 (50 experimental + 1 consolidation + 2 literature scans + 1 crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
