@@ -1,36 +1,31 @@
 {
-  "cycle": 59,
-  "timestamp": "2026-03-15T19:30:00Z",
-  "type": "experiment",
-  "template": "large_n_compression_replication",
+  "cycle": 60,
+  "timestamp": "2026-03-15T21:00:00Z",
+  "type": "literature_scan",
+  "template": "literature_scan_6",
   "parameters": {
-    "models": ["Qwen/Qwen3-4B-Base", "meta-llama/Llama-3.1-8B-Instruct"],
-    "strategies": ["recent", "k_norm", "random", "hybrid_50_50", "hybrid_70_30"],
-    "methods": ["mask (true removal)"],
-    "budget": "33%",
-    "n_valid": {"Qwen": 20, "Llama": 40},
-    "conditions": 5,
-    "design": "5 strategies at 33% budget under masking, chain-length analysis"
+    "papers_surveyed": 22,
+    "focus_areas": [
+      "KV cache compression for reasoning models (8 papers)",
+      "CoT faithfulness and hidden computation (7 papers)",
+      "K-V asymmetry and head specialization (7 papers)"
+    ],
+    "literature_notes_written": 3
   },
-  "prediction_outcome": "Scenario A confirmed — recent remains universal at n=40. Both hybrids also 100% but no improvement over recent. K-norm drops to 95% on Qwen (first failure ever).",
-  "key_finding": "Recent confirmed 40/40=100% on Llama [91.2%, 100%]. Pooled 134/134 across Exp 055-059 [97.3%, 100%]. Both hybrid strategies also 100% (60/60) but add no value over pure recent. K-norm drops to 95% on Qwen at n=20 — first failure detected. K-norm = random = 87.5% on Llama under masking. No chain-length effect detected on Qwen (limited range 73-189 tokens).",
-  "evidence_impact": "Added findings #88-92. 'Recent' universality now at decisive evidence level (pooled 134/134). K-norm 100% on Qwen myth busted. Hybrid strategies shown unnecessary.",
-  "next_planned": "Test recent on long-chain problems (>200 tokens); test at 20% budget; cross-task validation (non-GSM8K); per-problem concordance analysis",
-  "figures": [
-    "results/exp_059/overall_accuracy_Qwen3-4B-Base.png",
-    "results/exp_059/overall_accuracy_Llama-3.1-8B-Instruct.png",
-    "results/exp_059/chain_length_Qwen3-4B-Base.png",
-    "results/exp_059/cross_model_comparison.png"
-  ],
+  "prediction_outcome": "N/A (literature scan)",
+  "key_finding": "Reasoning Theater (2603.05488) confirms answers decodable from hidden states 80% earlier than text reveals — direct confirmation of lossy projection hypothesis. Causal Bypass (2602.03994) shows CMI≈0 bypass regimes where text has zero causal influence. K>V now 6-angle confirmed including low-rank K-manifold geometry. Per-head RL policies (KVP, RLKV) independently confirm head specialization. R-KV/TRIM-KV show removing scaffolding can IMPROVE accuracy. Warning: our 'recent' universality may be post-hoc-masking-specific (H2O+SnapKV-D better for real-time decoding).",
+  "evidence_impact": "Strengthens core hypothesis with 3 new independent confirmation angles. Adds mechanistic insight: K cache low-rank manifold explains digital encoding. Identifies deployment limitation of our compression findings.",
+  "next_planned": "Effective rank analysis of K vs V cache (test low-rank prediction); real-time eviction benchmark (not post-hoc masking); CMI measurement for CoT mediation index",
+  "figures": [],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
     "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. HEAD-LEVEL CONCENTRATION decisive on Qwen, weak on Llama.", "bar": 5},
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
-    "geometric_dissociation": {"status": "K > V UNIVERSAL at per-head level: 16/16 heads across 2 models.", "bar": 5},
-    "head_level_analysis": {"status": "COMPLETE: Two-regime on Qwen (decisive), near-collapse on Llama.", "bar": 5},
-    "natural_usage": {"status": "DECISIVE: 'Recent' 134/134 pooled [97.3%, 100%] across 5 experiments. Hybrid unnecessary. K-norm=95% Qwen (not 100%). K-norm=random under masking. Chain-length independent (limited range).", "bar": 5},
+    "geometric_dissociation": {"status": "K > V UNIVERSAL at per-head level: 16/16 heads across 2 models. Now 6-angle confirmed.", "bar": 5},
+    "head_level_analysis": {"status": "COMPLETE: Two-regime on Qwen (decisive), near-collapse on Llama. Independently confirmed by RLKV and KVP.", "bar": 5},
+    "natural_usage": {"status": "DECISIVE for post-hoc: 'Recent' 134/134 pooled [97.3%, 100%]. CAVEAT: may not generalize to real-time decoding (Hold Onto That Thought).", "bar": 5},
     "cross_model_replication": {"status": "COMPLETE: 4 families, 5 variants.", "bar": 5},
-    "encoding_strategy": {"status": "COMPLETE TAXONOMY + compression + method implications.", "bar": 5},
-    "literature_convergence": {"status": "DECISIVE: 10+ angles, 60+ papers across 5 scans.", "bar": 5}
+    "encoding_strategy": {"status": "COMPLETE TAXONOMY + low-rank K-manifold geometry explains digital/analog.", "bar": 5},
+    "literature_convergence": {"status": "DECISIVE: 6 scans, 65+ papers, 6-angle K>V confirmation, independent head specialization replication, Reasoning Theater + Causal Bypass confirm hidden computation.", "bar": 5}
   }
 }

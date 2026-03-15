@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 59 — Exp 059: large-N replication + hybrid strategy + chain-length — "recent" confirmed 40/40=100% on Llama [91.2, 100%]; pooled 134/134 across Exp 055-059; hybrid_50_50 and hybrid_70_30 also 100% but no improvement over recent; k_norm drops to 95% on Qwen (first failure ever); no chain-length effect detected)
-Cycles completed: 59 (55 experimental + 1 consolidation + 2 literature scans + 1 crashed)
+Last updated: 2026-03-15 (cycle 60 — Literature scan #6: 20+ papers surveyed across KV cache compression, CoT faithfulness, head specialization, K-V asymmetry. Key findings: "Reasoning Theater" confirms hidden computation decodable from activations far before text commits (80% token reduction on easy tasks); Causal Bypass shows CMI≈0 bypass regimes; 6 independent confirmations of K>V now including low-rank K-manifold; per-head RL policies (KVP, RLKV) independently confirm head specialization; R-KV/TRIM-KV show removing text-scaffolding can IMPROVE accuracy; "Hold Onto That Thought" warns our "recent" finding may be post-hoc-masking specific)
+Cycles completed: 60 (55 experimental + 1 consolidation + 3 literature scans + 1 crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -400,6 +400,8 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 056 | 56 | Both | **Mask vs zero eviction (3-way):** Phantom routing confirmed (zero_v=51.9% worst on Llama). H2O=random under masking (66.7%). Zeroing > masking for imperfect selection (+14.8pp). "Recent" uniquely method-invariant (100% across all). Qwen method-invariant (digital). |
 | 057 | 57 | Both | **True H2O vs K-norm proxy:** K-norm and cumulative attention are ANTI-CORRELATED on Llama (rho=-0.431, Jaccard=0.057). True H2O selects WORSE positions than random (Qwen 33.3% vs 91.7%; Llama 55.6% vs 66.7%). K-norm captures content-density, not routing importance. Budget-dependent reversal at 50%: true_h2o beats k_norm under masking (+14.8pp). "Recent" still universally best (100%). |
 | 058 | 58 | Both | **Sink-dominance analysis + budget crossover:** True H2O selects Q1 positions (39-40%); K-norm selects late. Sinks=11-12% (NOT the full explanation). Crossover at 40% budget on Llama. Random > both at 25-33% on Llama. Sink-excluded H2O +11.8pp on Llama; late-layer H2O +13.3pp on Qwen. Neither fully rescues. "Recent" 100% at ALL 6 budgets. Anti-correlation rho=-0.435 replicates. |
+| 059 | 59 | Both | **Large-N replication + hybrid + chain-length:** "Recent" 40/40=100% on Llama [91.2%, 100%]. Pooled 134/134 [97.3%, 100%]. Hybrid 50/50 and 70/30 also 100% but no improvement. K-norm drops to 95% on Qwen (first failure). No chain-length effect detected. |
+| — | 60 | **Lit scan #6** | 20+ papers: "Reasoning Theater" (2603.05488) — hidden computation decodable 80% earlier than text; Causal Bypass (2602.03994) — CMI≈0 bypass regimes; K>V now 6-angle confirmed (low-rank K manifold); KVP/RLKV — per-head RL policies confirm head specialization; R-KV/TRIM-KV — removing scaffolding can improve accuracy; CoT in Wild — 0.04-13% unfaithfulness rates; Hold Onto That Thought — H2O+SnapKV-D best for real-time eviction (challenges our "recent" finding for deployment) |
 
 ---
 
