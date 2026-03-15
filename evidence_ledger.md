@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 62 — Effective rank analysis of K vs V cache. K has lower effective rank than V on BOTH Qwen and Llama (K/V ratio 0.87-0.94). K top-1 energy is 3.5-4.1x higher than V — K routing dominated by one principal direction. Layer-dependent crossover: early layers K>V rank, late layers K<V rank. Qwen K has 3x higher layer variability than Llama K (std 40 vs 13). Cross-model K rank difference small (2.4%) — effective rank doesn't capture digital/analog, but spectral gap and top-1 energy DO show Qwen>Llama.)
-Cycles completed: 62 (56 experimental + 1 consolidation + 3 literature scans + 2 crashed)
+Last updated: 2026-03-15 (cycle 63 — RoPE confound test. Pre-RoPE K has EVEN MORE extreme spectral properties than post-RoPE K on BOTH models. K_pre top-1 energy 4.7-5.0x higher than V. K_pre effective rank 40-45% lower than V. RoPE WEAKENS K spectral dominance by distributing energy across dimensions — Exp 062 UNDERSTATED the intrinsic K>V asymmetry. Scenario C (15% confidence) confirmed. RoPE effect stronger on Llama (71.7% rank increase) than Qwen (40.6%). All Wilcoxon tests p<0.01.)
+Cycles completed: 63 (57 experimental + 1 consolidation + 3 literature scans + 2 crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -61,9 +61,9 @@ Qwen-Instruct not tested at all 3 positions but K > V confirmed at late (+51pp, 
 
 **Mechanistic explanation (literature-grounded):** K vectors determine attention routing (WHICH positions to attend to). V vectors carry content (WHAT information flows through). Destroying routing (K) is catastrophic because the model attends to wrong positions. Destroying content (V) at any individual position is recoverable via routing redundancy — intact K-routing finds alternative content sources. Confirmed by Anthropic's attention sparsity finding (99.7% of edges prunable) and the Patterns/Messages framework (McCormick 2025).
 
-**Geometric evidence (Exp 062):** K cache has lower effective rank than V (K/V ratio 0.87-0.94) and K top-1 singular value captures 3.5-4.1x more energy than V top-1. K routing is dominated by ONE principal direction; V content is distributed across many dimensions. K spectral gap is 2.2-2.8x larger than V. This is independent, non-perturbation geometric evidence for K > V from spectral analysis.
+**Geometric evidence (Exp 062, 063):** K cache has lower effective rank than V (K/V ratio 0.87-0.94 post-RoPE) and K top-1 singular value captures 3.5-4.1x more energy than V top-1. **Critically, the RoPE confound test (Exp 063) shows pre-RoPE K has EVEN MORE extreme spectral properties** (K_pre/V top-1 = 4.7-5.0x; K_pre/V effective rank = 0.55-0.60). RoPE actually WEAKENS K spectral dominance by distributing energy — the intrinsic K spectral asymmetry is stronger than post-RoPE measurements indicated. All Wilcoxon tests for K_pre vs V are p < 0.01. The K>V spectral hierarchy is definitively NOT a RoPE artifact.
 
-**Key experiments:** Exp 023, 024, 027, 028, 029, 032, 033, 034, 035, 036, 037, 038, 062
+**Key experiments:** Exp 023, 024, 027, 028, 029, 032, 033, 034, 035, 036, 037, 038, 062, 063
 
 ### 3. PGD Null Space Is K-Specific
 **Status: Statistically significant (p=0.013); smaller than originally claimed**
