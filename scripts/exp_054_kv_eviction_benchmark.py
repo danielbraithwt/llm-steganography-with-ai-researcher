@@ -78,6 +78,9 @@ def build_prompt(question):
 
 
 def extract_answer(text):
+    # Truncate at first "Q:" to avoid picking up numbers from continuation
+    if "\nQ:" in text:
+        text = text[:text.index("\nQ:")]
     if "####" in text:
         after = text.split("####")[-1].strip()
         m = re.search(r'-?[\d,]+\.?\d*', after)
@@ -170,7 +173,7 @@ def generate_and_build_cache(model, tokenizer, prompt, max_tokens=MAX_GEN_TOKENS
     per_head_importance = np.zeros((n_kv_heads, total_len))
 
     for l in range(num_layers):
-        k = full_cache.key_cache[l][0]  # [n_kv_heads, seq_len, head_dim]
+        k = full_cache.layers[l].keys[0]  # [n_kv_heads, seq_len, head_dim]
         k_norms = k.float().norm(dim=-1).cpu().numpy()  # [n_kv_heads, seq_len]
         importance += k_norms.mean(axis=0)
         per_head_importance += k_norms
@@ -277,26 +280,24 @@ def evict_and_generate(model, tokenizer, full_cache, full_ids, prompt_len,
 
     if isinstance(strategy_result, tuple) and strategy_result[0] == "k_preserve":
         _, full_keep_positions, v_zero_positions = strategy_result
-        # Keep all positions but zero V at evicted positions
-        keep_set = set(full_keep_positions)
-        vzero_set = set(v_zero_positions)
-        # All prompt + reasoning positions kept
-        all_keep = list(range(total_reasoning_end))
+        v_zero_set = set(v_zero_positions)
+        # Build mask for V-zeroing (vectorized)
+        v_mask = torch.ones(total_reasoning_end, device=model.device, dtype=torch.bool)
+        for pos in v_zero_positions:
+            v_mask[pos] = False
 
         for layer_idx in range(num_layers):
-            k = full_cache.key_cache[layer_idx][:, :, :total_reasoning_end, :].clone()
-            v = full_cache.value_cache[layer_idx][:, :, :total_reasoning_end, :].clone()
+            k = full_cache.layers[layer_idx].keys[:, :, :total_reasoning_end, :].clone()
+            v = full_cache.layers[layer_idx].values[:, :, :total_reasoning_end, :].clone()
             # Zero V at evicted reasoning positions
-            for pos in v_zero_positions:
-                v[:, :, pos, :] = 0.0
+            v[:, :, ~v_mask, :] = 0.0
             evicted_cache.update(k, v, layer_idx)
 
     elif isinstance(strategy_result, tuple) and strategy_result[0] == "head_selective":
         _, head_positions = strategy_result
-        # For each head, keep different positions. Zero out evicted positions per head.
         for layer_idx in range(num_layers):
-            k = full_cache.key_cache[layer_idx][:, :, :total_reasoning_end, :].clone()
-            v = full_cache.value_cache[layer_idx][:, :, :total_reasoning_end, :].clone()
+            k = full_cache.layers[layer_idx].keys[:, :, :total_reasoning_end, :].clone()
+            v = full_cache.layers[layer_idx].values[:, :, :total_reasoning_end, :].clone()
             for kv_h in range(n_kv_heads):
                 keep_set = set(head_positions[kv_h])
                 for pos in range(prompt_len, total_reasoning_end):
@@ -309,12 +310,10 @@ def evict_and_generate(model, tokenizer, full_cache, full_ids, prompt_len,
         # Standard position eviction: keep only selected positions
         keep_positions = strategy_result
         keep_set = set(keep_positions)
-        # Prompt positions are ALWAYS kept
-        all_prompt = list(range(prompt_len))
 
         for layer_idx in range(num_layers):
-            k = full_cache.key_cache[layer_idx][:, :, :total_reasoning_end, :].clone()
-            v = full_cache.value_cache[layer_idx][:, :, :total_reasoning_end, :].clone()
+            k = full_cache.layers[layer_idx].keys[:, :, :total_reasoning_end, :].clone()
+            v = full_cache.layers[layer_idx].values[:, :, :total_reasoning_end, :].clone()
             # Zero out evicted reasoning positions
             for pos in range(prompt_len, total_reasoning_end):
                 if pos not in keep_set:
@@ -333,16 +332,17 @@ def evict_and_generate(model, tokenizer, full_cache, full_ids, prompt_len,
         out = model(input_ids=tok, past_key_values=evicted_cache, use_cache=True)
         evicted_cache = out.past_key_values
 
-    # Generate answer tokens
+    # Generate answer tokens — stop at EOS or newline
     gen_tokens = []
     next_logits = out.logits[:, -1, :]
+    newline_ids = set(tokenizer.encode("\n", add_special_tokens=False))
 
     for step in range(max_answer_tokens):
         next_tok = torch.argmax(next_logits, dim=-1, keepdim=True)
         token_id = next_tok[0, 0].item()
-        gen_tokens.append(token_id)
-        if token_id == tokenizer.eos_token_id:
+        if token_id == tokenizer.eos_token_id or token_id in newline_ids:
             break
+        gen_tokens.append(token_id)
         out = model(input_ids=next_tok, past_key_values=evicted_cache, use_cache=True)
         evicted_cache = out.past_key_values
         next_logits = out.logits[:, -1, :]

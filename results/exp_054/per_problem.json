@@ -1,0 +1,4349 @@
+{
+  "Qwen/Qwen3-4B-Base": [
+    {
+      "idx": 0,
+      "true_answer": "52",
+      "clean_answer": "52",
+      "reasoning_len": 101,
+      "random_1.00": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A school has 15 classrooms. 4 of them are for primary grades, 6 of them a"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A school has 15 classrooms. 4 of them are large classrooms that can fit 3"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "50",
+        "raw": "50\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "52",
+        "raw": "52\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      }
+    },
+    {
+      "idx": 1,
+      "true_answer": "5",
+      "clean_answer": "5",
+      "reasoning_len": 59,
+      "random_1.00": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A school has 15 classrooms. 10 of these classrooms have 30 desks each, and"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A school has 15 classrooms. 10 of them have 30 desks each and the remainin"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "early_priority_0.33": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A school has 15 classrooms. 10 of these classrooms have 30 desks each and "
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      }
+    },
+    {
+      "idx": 2,
+      "true_answer": "83",
+      "clean_answer": "83",
+      "reasoning_len": 76,
+      "random_1.00": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fill"
+      },
+      "random_0.75": {
+        "correct": false,
+        "pred": "8",
+        "raw": "8\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fille"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fill"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fill"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fill"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fill"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fill"
+      },
+      "random_0.50": {
+        "correct": false,
+        "pred": "8",
+        "raw": "8\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fille"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fill"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "124",
+        "raw": "124\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fil"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fill"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fill"
+      },
+      "random_0.33": {
+        "correct": false,
+        "pred": "33",
+        "raw": "33.33\n\nSince we can't have a fraction of a box, the maximum number of boxes that"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fill"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "76",
+        "raw": "76\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fill"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fill"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A wooden bridge can carry no more than 5000 pounds. A delivery truck fill"
+      }
+    },
+    {
+      "idx": 3,
+      "true_answer": "10",
+      "clean_answer": "10",
+      "reasoning_len": 116,
+      "random_1.00": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: The number of students in Kylie's class is 50. In a particular test, ten "
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: Tim has 30 toads. Jim has 20 more toads than Tim does. Sarah has twice as"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "4",
+        "raw": "4\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "4",
+        "raw": "4\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      }
+    },
+    {
+      "idx": 4,
+      "true_answer": "70",
+      "clean_answer": "70",
+      "reasoning_len": 106,
+      "random_1.00": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A group of 30 tourists is going on a trip. They need to be divided into 3"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: Every day, Lou works out by running three miles on a circular track that "
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.75": {
+        "correct": false,
+        "pred": "50",
+        "raw": "50\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: Every day, Lou works out by running three miles on a circular track that "
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A group of 30 tourists is going on a trip. They need to be divided into 3"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "30",
+        "raw": "30\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: Every day, Lou works out by running three miles on a circular track that "
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A group of 4 fruit baskets contains 9 apples, 15 oranges, and 14 bananas "
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A group of 4 fruit baskets contains 9 apples, 15 oranges, and 14 bananas "
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A group of 30 tourists sets out on a walking tour of the rainforest. Two "
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A group of 30 tourists is going on a trip. They need to be divided into 3"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A group of 4 fruit baskets contains 9 apples, 15 oranges, 14 bananas, 16 "
+      },
+      "head_selective_0.33": {
+        "correct": false,
+        "pred": "100",
+        "raw": "100\n\nQ: A group of 30 tourists went on a safari. Half of them went on a game dri"
+      }
+    },
+    {
+      "idx": 5,
+      "true_answer": "36",
+      "clean_answer": "36",
+      "reasoning_len": 183,
+      "random_1.00": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is having a car wash to raise money. Their goal is to col"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is having a car wash to raise money. Their goal is to col"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is having a car wash to raise money. Their goal is to col"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is having a car wash to raise money. Their goal is to col"
+      },
+      "early_priority_0.75": {
+        "correct": false,
+        "pred": "18",
+        "raw": "18\n\nQ: The school band is going to a competition. Five members play the flute. T"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is going to a competition. Five members play the flute. T"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is having a car wash to raise money. Their goal is to col"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is having a car wash to raise money. Their goal is to col"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is having a car wash to raise money. Their goal is to col"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is having a car wash to raise money. Their goal is to col"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "18",
+        "raw": "18\n\nQ: The school band is going to a competition. Five members play the flute. T"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is having a car wash to raise money. Their goal is to col"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is having a car wash to raise money. Their goal is to col"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is going to a competition. Five members play the flute. T"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is going to a competition. Five members play the flute. T"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is going to a competition. Five members play the flute. T"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "48",
+        "raw": "48\n\nQ: The school band is going to a competition. Five members play the flute. T"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school band is having a car wash to raise money. Their goal is to col"
+      },
+      "head_selective_0.33": {
+        "correct": false,
+        "pred": "6",
+        "raw": "6\n\nQ: The school band is going to a competition. Five members play the flute. Th"
+      }
+    },
+    {
+      "idx": 6,
+      "true_answer": "48",
+      "clean_answer": "48",
+      "reasoning_len": 143,
+      "random_1.00": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 5 dogs, 2 cats, and 10 birds. How many legs in "
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 4 dogs, 3 cats, and 2 birds. How many legs in t"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 4 dogs, 3 cats, and 2 birds. How many legs in t"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 5 dogs, 2 cats, and 10 birds. How many legs in "
+      },
+      "early_priority_0.75": {
+        "correct": false,
+        "pred": "20",
+        "raw": "20\n\nQ: A pet store currently has 5 dogs, 2 cats, and 10 birds. How many legs in "
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 5 dogs, 2 cats, and 10 birds. How many legs in "
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 5 dogs, 2 cats, and 10 birds. How many legs in "
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 4 dogs, 3 cats, and 2 birds. How many legs in t"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store has 15 puppies, 6 kittens, and 8 hamsters. Alice, Bob, and Ch"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 5 dogs, 2 cats, and 10 birds. How many legs in "
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "20",
+        "raw": "20\n\nQ: A pet store currently has 5 dogs, 2 cats, and 10 birds. How many legs in "
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 5 dogs, 2 cats, and 10 birds. How many legs in "
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 4 dogs, 3 cats, and 2 birds. How many legs in t"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 5 dogs, 2 cats, and 10 birds. How many legs in "
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 4 dogs, 3 cats, and 2 birds. How many legs in t"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 5 dogs, 2 cats, and 10 birds. How many legs in "
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "20",
+        "raw": "20\n\nQ: A pet store currently has 5 dogs, 2 cats, and 10 birds. How many legs in "
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 5 dogs, 2 cats, and 10 birds. How many legs in "
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A pet store currently has 4 dogs, 3 cats, and 2 birds. How many legs in t"
+      }
+    },
+    {
+      "idx": 7,
+      "true_answer": "16",
+      "clean_answer": "16",
+      "reasoning_len": 98,
+      "random_1.00": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "160",
+        "raw": "160\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow "
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A car in the fast lane is traveling at 60 miles/hour. A car in the slow l"
+      }
+    },
+    {
+      "idx": 8,
+      "true_answer": "8",
+      "clean_answer": "8",
+      "reasoning_len": 145,
+      "random_1.00": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "early_priority_0.75": {
+        "correct": false,
+        "pred": "42",
+        "raw": "42\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A school has 15 classrooms. 4 of them are used for science classes, 3 for "
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A school has 15 classrooms. 4 of them are used for science classes, 3 for "
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      }
+    },
+    {
+      "idx": 9,
+      "true_answer": "48",
+      "clean_answer": "48",
+      "reasoning_len": 71,
+      "random_1.00": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 4 friends went into a restaurant. The chef already had 9 chick"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 30 tourists sets out on a walking tour of the rainforest. Two "
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 30 tourists sets out on a walking tour of the rainforest. Two "
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 30 tourists sets out on a walking tour of the rainforest. Two "
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 30 tourists sets out on a walking tour of the rainforest. Two "
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 4 friends pay for lunch. The total bill is $120. If they split"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 4 friends went into a restaurant. The chef already had 9 chick"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 4 friends went into a restaurant. The chef already had 9 chick"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 30 tourists sets out on a walking tour of the rainforest. Two "
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 30 tourists is going on a trip. They need to rent boats that c"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "16",
+        "raw": "16\n\nQ: A glass of milk is 8 ounces of milk.  John drinks 2 glasses of milk.  If "
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 4 friends pay for lunch. The total bill is $60. If they split "
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 4 friends went into a restaurant. The chef already had 9 chick"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A glass of milk is 8 ounces of milk.  John drinks 2 glasses of milk.  If "
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 4 friends pay for rent each month, and the average rent is $80"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 30 tourists is going on a tour. They need to be divided into 2"
+      },
+      "early_priority_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 4 friends went into a restaurant. The chef already had 9 chick"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A group of 4 friends pay for rent each month, which is $1200. If two of t"
+      },
+      "head_selective_0.33": {
+        "correct": false,
+        "pred": "16",
+        "raw": "16\n\nQ: A group of 4 friends went into a restaurant. 2 of them ordered a meal cos"
+      }
+    },
+    {
+      "idx": 10,
+      "true_answer": "90",
+      "clean_answer": "90",
+      "reasoning_len": 63,
+      "random_1.00": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A school has 15 classrooms. 1/3 of these classrooms have 30 desks in each"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.33": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      }
+    },
+    {
+      "idx": 11,
+      "true_answer": "10",
+      "clean_answer": "10",
+      "reasoning_len": 78,
+      "random_1.00": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "6",
+        "raw": "6\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.33": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      }
+    },
+    {
+      "idx": 12,
+      "true_answer": "2",
+      "clean_answer": "2",
+      "reasoning_len": 77,
+      "random_1.00": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "random_0.75": {
+        "correct": false,
+        "pred": "4",
+        "raw": "4\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "early_priority_0.75": {
+        "correct": false,
+        "pred": "4",
+        "raw": "4\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A group of 4 friends went into a restaurant. The chef already had 9 chicke"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "4",
+        "raw": "4\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A group of 10 friends are planning a road trip. They want to split the cos"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A group of 4 friends went into a restaurant. The chef already had 9 chicke"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "4",
+        "raw": "4\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A group of 10 friends are planning a road trip. They have a budget of $500"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "2",
+        "raw": "2\n\nQ: A group of 10 friends are planning a road trip. They want to split the cos"
+      }
+    },
+    {
+      "idx": 13,
+      "true_answer": "45000",
+      "clean_answer": "45000",
+      "reasoning_len": 180,
+      "random_1.00": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 space"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: The sum of the three sides of a triangle is 50. The right side of the "
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: The sum of the three sides of a triangle is 50. The right side of the "
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 space"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 space"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: The number of goals scored in a game against Barca by exactly two play"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: Valerie earns $5000 per month, 1/2 of what her brother earns. If their"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 space"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: The sum of the three sides of a triangle is 50. The right side of the "
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 space"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "30000",
+        "raw": "30000\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 space"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: The sum of the first 100 numbers, 1 to 100, equals 5050 (you can work "
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: The sum of the three sides of a triangle is 50. The right side of the "
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: Valerie earns $5000 per month, 1/2 of what her brother earns. If their"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: The sum of the three sides of a triangle is 50. The right side of the "
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 space"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "25000",
+        "raw": "25000\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 space"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: Valerie earns $5000 per month, 1/2 of what her brother earns. If their"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 space"
+      }
+    },
+    {
+      "idx": 14,
+      "true_answer": "18",
+      "clean_answer": "18",
+      "reasoning_len": 78,
+      "random_1.00": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A group of 4 friends went into a restaurant. The chef already had 9 chick"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "3",
+        "raw": "3\n\nQ: A group of 4 friends went into a restaurant. The chef already had 9 chicke"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A group of 4 friends went into a restaurant. 2 of them ordered coffee and"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A group of 4 friends went into a restaurant. 2 of them ordered coffee and"
+      }
+    },
+    {
+      "idx": 15,
+      "true_answer": "140",
+      "clean_answer": "140",
+      "reasoning_len": 79,
+      "random_1.00": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A group of 30 tourists is going on a trip. They need to be divided into "
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "early_priority_0.33": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A rope is cut into two pieces, one 18 meters longer than the other. The "
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces "
+      }
+    },
+    {
+      "idx": 16,
+      "true_answer": "17",
+      "clean_answer": "17",
+      "reasoning_len": 240,
+      "random_1.00": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "18",
+        "raw": "18\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "12",
+        "raw": "12\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "17",
+        "raw": "17\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      }
+    },
+    {
+      "idx": 17,
+      "true_answer": "68",
+      "clean_answer": "68",
+      "reasoning_len": 105,
+      "random_1.00": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "47",
+        "raw": "47\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "25",
+        "raw": "25\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: Mary is two years younger than Joan, who is five years older than Jessa. "
+      }
+    },
+    {
+      "idx": 18,
+      "true_answer": "8",
+      "clean_answer": "8",
+      "reasoning_len": 89,
+      "random_1.00": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A school has 15 classrooms. 1/3 of these classrooms have 30 desks in each "
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A school has 15 classrooms. 10 of these classrooms have 30 desks each, and"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "4",
+        "raw": "4\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces in"
+      }
+    },
+    {
+      "idx": 19,
+      "true_answer": "14",
+      "clean_answer": "14",
+      "reasoning_len": 57,
+      "random_1.00": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: James has 20 friends. Yesterday at work he got into an argument with 2 of"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "early_priority_0.33": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A 1000 car parking lot is divided into 3 sections. There are 320 spaces i"
+      }
+    }
+  ],
+  "meta-llama/Llama-3.1-8B-Instruct": [
+    {
+      "idx": 1,
+      "true_answer": "5",
+      "clean_answer": "5",
+      "reasoning_len": 91,
+      "random_1.00": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 pe"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on each"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on each"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on each"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on each"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 pe"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery sells 250 loaves of bread per day.  They make a profit of $0.25 p"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on al"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on al"
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on al"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 pe"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on al"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on al"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on al"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on al"
+      },
+      "early_priority_0.33": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on al"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 pe"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on al"
+      }
+    },
+    {
+      "idx": 2,
+      "true_answer": "83",
+      "clean_answer": "83",
+      "reasoning_len": 58,
+      "random_1.00": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sells 2500 loaves of bread per day. They make a 10% profit on ea"
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83"
+      },
+      "random_0.33": {
+        "correct": false,
+        "pred": "1230",
+        "raw": "82.67. Since you can't have a fraction of a box, the maximum number of boxes is "
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sold 2500 loaves of bread in a day. They sold 1/4 of the bread i"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "145",
+        "raw": "145"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "83",
+        "raw": "83\n\nQ: A bakery sold 2500 loaves of bread in a day. They sold 1/4 of the bread i"
+      }
+    },
+    {
+      "idx": 4,
+      "true_answer": "70",
+      "clean_answer": "70",
+      "reasoning_len": 86,
+      "random_1.00": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "early_priority_0.75": {
+        "correct": false,
+        "pred": "60",
+        "raw": "60\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "random_0.50": {
+        "correct": false,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery is having a sale on bread. A standard loaf of bread is on sale f"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A bakery is making a cake that requires 2 1/4 cups of sugar and 3/4 cup o"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "30",
+        "raw": "30\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "k_preserve_0.50": {
+        "correct": false,
+        "pred": "3",
+        "raw": "3\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 pe"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A bakery is having a sale on bread. A standard loaf of bread is on sale f"
+      },
+      "random_0.33": {
+        "correct": false,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "h2o_0.33": {
+        "correct": false,
+        "pred": "60",
+        "raw": "60. 60\n\nQ: A bakery is having a sale on bread. A loaf of whole wheat bread is on"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "30",
+        "raw": "30\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "k_preserve_0.33": {
+        "correct": false,
+        "pred": "1",
+        "raw": "1"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "70",
+        "raw": "70. was incorrect. The correct answer is 70. 70. The correct answer is 70. The c"
+      }
+    },
+    {
+      "idx": 5,
+      "true_answer": "36",
+      "clean_answer": "36",
+      "reasoning_len": 153,
+      "random_1.00": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "early_priority_0.75": {
+        "correct": false,
+        "pred": "18",
+        "raw": "18"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "recent_0.50": {
+        "correct": false,
+        "pred": "6",
+        "raw": "36\n\nQ6\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount "
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "54",
+        "raw": "54\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The school has 4 rows of seats with 18 seats in each row. If 1/4 of the s"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: The final answer is: 36. I. (B) 36 is incorrect. The correct answer is (A"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "24",
+        "raw": "24\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "36",
+        "raw": "36\n\nQ: A bakery is having a sale on bread. The price of bread is reduced by 20% "
+      }
+    },
+    {
+      "idx": 6,
+      "true_answer": "48",
+      "clean_answer": "48",
+      "reasoning_len": 83,
+      "random_1.00": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery is making a cake that requires 2 1/4 cups of sugar, 1 3/4 cups o"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "68",
+        "raw": "68\n\nQ: A bakery is making a cake that requires 2 1/4 cups of flour, 1/2 cup of s"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.50": {
+        "correct": false,
+        "pred": "20",
+        "raw": "20\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "random_0.33": {
+        "correct": false,
+        "pred": "38",
+        "raw": "38"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "68",
+        "raw": "68\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "k_preserve_0.33": {
+        "correct": false,
+        "pred": "1",
+        "raw": "1"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48>>48 legs in total.\n#### 48\n\nQ: A bakery is having a sale on bread. They are o"
+      }
+    },
+    {
+      "idx": 7,
+      "true_answer": "16",
+      "clean_answer": "16",
+      "reasoning_len": 80,
+      "random_1.00": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "early_priority_0.75": {
+        "correct": false,
+        "pred": "24",
+        "raw": "24\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on al"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on al"
+      },
+      "k_preserve_0.33": {
+        "correct": false,
+        "pred": "480",
+        "raw": "480 miles.\n#### 480\n\nQ: A bakery sells 250 loaves of bread per day. They make a "
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "16",
+        "raw": "16\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      }
+    },
+    {
+      "idx": 8,
+      "true_answer": "8",
+      "clean_answer": "8",
+      "reasoning_len": 102,
+      "random_1.00": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 pe"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on each"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on each"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on each"
+      },
+      "early_priority_0.75": {
+        "correct": false,
+        "pred": "42",
+        "raw": "42\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 pe"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 pe"
+      },
+      "random_0.50": {
+        "correct": false,
+        "pred": "0",
+        "raw": "0\n\nQ: A bakery is having a sale on bread. The price of a loaf of bread is reduce"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery is having a sale on bread. The price of a loaf of bread is reduce"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery is having a sale on bread. The price of a loaf of bread is reduce"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "42",
+        "raw": "42\n\nQ: A bakery is having a sale on bread. The regular price of a loaf of bread "
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 pe"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery is having a sale on bread. The regular price of a loaf of bread i"
+      },
+      "random_0.33": {
+        "correct": false,
+        "pred": "25",
+        "raw": "25\n\nQ: A bakery is having a sale on bread. The price of a loaf of bread is reduc"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery is having a sale on bread. The price of a loaf of bread is reduce"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery is having a sale on bread. The price of a loaf of bread is reduce"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "0",
+        "raw": "0\n\nQ: A bakery is having a sale on bread. The price of a loaf of bread is reduce"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8 left after the purchase.\n#### 8\n\nQ: A bakery sells 250 loaves of bread per day"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery is having a sale on bread. The price of a loaf of bread is reduce"
+      }
+    },
+    {
+      "idx": 9,
+      "true_answer": "48",
+      "clean_answer": "48",
+      "reasoning_len": 43,
+      "random_1.00": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ:  A bakery sells 250 loaves of bread per day.  They make a 10% profit on e"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ:  A bakery sells 250 loaves of bread per day.  They make a 10% profit on e"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ:  A bakery sells 250 loaves of bread per day.  They make a 10% profit on e"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "k_preserve_0.50": {
+        "correct": false,
+        "pred": "4",
+        "raw": "4\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 pe"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "64",
+        "raw": "64\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "k_preserve_0.33": {
+        "correct": false,
+        "pred": "4",
+        "raw": "4\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 pe"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "48",
+        "raw": "48\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      }
+    },
+    {
+      "idx": 10,
+      "true_answer": "90",
+      "clean_answer": "90",
+      "reasoning_len": 49,
+      "random_1.00": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "60",
+        "raw": "60"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "90",
+        "raw": "90"
+      }
+    },
+    {
+      "idx": 11,
+      "true_answer": "10",
+      "clean_answer": "10",
+      "reasoning_len": 78,
+      "random_1.00": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "early_priority_0.75": {
+        "correct": false,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $1 per "
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "12",
+        "raw": "12\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "h2o_0.33": {
+        "correct": false,
+        "pred": "13",
+        "raw": "13 inches. the third week. \n#### 13\n\nQ: A bakery is having a sale on bread. They"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "10",
+        "raw": "10\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "15",
+        "raw": "15\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "k_preserve_0.33": {
+        "correct": false,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.33": {
+        "correct": false,
+        "pred": "13",
+        "raw": "13\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      }
+    },
+    {
+      "idx": 13,
+      "true_answer": "45000",
+      "clean_answer": "45000",
+      "reasoning_len": 118,
+      "random_1.00": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.2"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A bakery sells 2500 loaves of bread per day. They make a 25% profit on"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A bakery sells 2500 loaves of bread per day. They make a 25% profit on"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A bakery sells 2500 loaves of bread per day. They make a 25% profit on"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000>>45,000.\n#### 45000\n\nQ: A bakery sells 2500 loaves of bread per day. They "
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.2"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on "
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000"
+      },
+      "h2o_0.50": {
+        "correct": false,
+        "pred": "60000",
+        "raw": "45000. per month. The total amount of money they all have together is 45,000+5,0"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount o"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "35000",
+        "raw": "35000"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.2"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount o"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount o"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "30000",
+        "raw": "30000"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A bakery sells 250 loaves of bread per day. They sell 1/4 of their bre"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "45000",
+        "raw": "45000\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount o"
+      }
+    },
+    {
+      "idx": 14,
+      "true_answer": "18",
+      "clean_answer": "18",
+      "reasoning_len": 43,
+      "random_1.00": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "3",
+        "raw": "3\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on each"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They sell 1/4 of their bread "
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18>>18 to the delivery man.\n#### 18\n\nQ: A bakery sells 250 loaves of bread per d"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 2500 loaves of bread per day. They make a 25% profit on ea"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "3",
+        "raw": "3\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on each"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They sell 1/4 of their bread "
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      }
+    },
+    {
+      "idx": 15,
+      "true_answer": "140",
+      "clean_answer": "140",
+      "reasoning_len": 67,
+      "random_1.00": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A bakery sells 250 loaves of bread per day. They sell 1/4 of their bread"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on ea"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on ea"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on ea"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on ea"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A bakery sells 250 loaves of bread per day. They sell 1/4 of their bread"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $1.50 "
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A bakery sells 2400 dozen pastries per day. If each pastry sells for $2,"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A bakery sells 2400 dozen pastries per day. If each pastry sells for $2,"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A bakery sells 2400 dozen pastries per day. If each pastry sells for $2,"
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A bakery sells 2400 loaves of bread per day. They make a 10% profit on e"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140 flowers in total.\n#### 140\n\nQ: A bakery sells 250 loaves of bread per day. T"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on "
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on "
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "30",
+        "raw": "30\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "k_preserve_0.33": {
+        "correct": false,
+        "pred": "1",
+        "raw": "1"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "140",
+        "raw": "140. flowers in total. 140\n\nQ: A bakery sells 2400 dozen pastries per day. If ea"
+      }
+    },
+    {
+      "idx": 17,
+      "true_answer": "68",
+      "clean_answer": "68",
+      "reasoning_len": 75,
+      "random_1.00": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "h2o_0.50": {
+        "correct": false,
+        "pred": "1",
+        "raw": "68. = 68 years. Q: A bakery is having a sale on bread. A loaf of bread that norm"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "65",
+        "raw": "65\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68. 68\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount "
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "68",
+        "raw": "68\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "65",
+        "raw": "65\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "k_preserve_0.33": {
+        "correct": false,
+        "pred": "23",
+        "raw": "23\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.33": {
+        "correct": false,
+        "pred": "70",
+        "raw": "70\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      }
+    },
+    {
+      "idx": 18,
+      "true_answer": "8",
+      "clean_answer": "8",
+      "reasoning_len": 76,
+      "random_1.00": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 pe"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on each"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on each"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on each"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on each"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 pe"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 250 loaves of bread per day.  They make a profit of $0.50 p"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 2400 dozen pastries per day.  If each pastry sells for $2.5"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 2400 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 2400 dozen pastries per day.  If each pastry costs $2.50, h"
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 2400 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8 days. days.\n#### 8\n\nQ: A bakery sells 250 loaves of bread per day. They make a"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery sells 2400 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on al"
+      },
+      "h2o_0.33": {
+        "correct": false,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on al"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery is making a cake that requires 2 1/4 cups of sugar and 1 3/4 cups"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on al"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8 days. days.\n#### 8\n\nQ: A bakery sells 250 loaves of bread per day. They make a"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "8",
+        "raw": "8\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on al"
+      }
+    },
+    {
+      "idx": 19,
+      "true_answer": "14",
+      "clean_answer": "14",
+      "reasoning_len": 41,
+      "random_1.00": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They sell 1/4 of their bread "
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 p"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They sell 1/4 of their bread "
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $1.50 p"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make 25% more loaves of "
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "early_priority_0.33": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They sell 1/4 of their bread "
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "14",
+        "raw": "14\n\nQ: A bakery sells 250 loaves of bread per day. They make 25% more loaves of "
+      }
+    },
+    {
+      "idx": 20,
+      "true_answer": "50",
+      "clean_answer": "50",
+      "reasoning_len": 113,
+      "random_1.00": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "0.58",
+        "raw": "0.58"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "h2o_0.33": {
+        "correct": false,
+        "pred": "6",
+        "raw": "6\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on al"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "45",
+        "raw": "45\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "k_preserve_0.33": {
+        "correct": false,
+        "pred": "1",
+        "raw": "1"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "50",
+        "raw": "50\n\nQ: A bakery is having a sale on bread. The price of a loaf of bread is reduc"
+      }
+    },
+    {
+      "idx": 21,
+      "true_answer": "100",
+      "clean_answer": "100",
+      "reasoning_len": 51,
+      "random_1.00": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sells 250 loaves of bread per day. They sell 1/4 of their bread"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 "
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 "
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 "
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 "
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sells 250 loaves of bread per day. They sell 1/4 of their bread"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50 "
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on ea"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on ea"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on ea"
+      },
+      "early_priority_0.50": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on ea"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sells 250 loaves of bread per day. They sell 1/4 of their bread"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on ea"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sells 2400 loaves of bread per day. They make a 10% profit on e"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on "
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sold 2500 dozen pastries in a day. If they sold 3/4 of the past"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "80",
+        "raw": "80\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on a"
+      },
+      "k_preserve_0.33": {
+        "correct": false,
+        "pred": "1",
+        "raw": "1"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "100",
+        "raw": "100\n\nQ: A bakery sold 2500 loaves of bread in a day. They sold 1/4 of the bread "
+      }
+    },
+    {
+      "idx": 24,
+      "true_answer": "15400",
+      "clean_answer": "15400",
+      "reasoning_len": 82,
+      "random_1.00": {
+        "correct": true,
+        "pred": "15400",
+        "raw": "15400\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.5"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "15400",
+        "raw": "15400\n\nQ: A bakery sells 250 loaves of bread per day.  They make a 25% profit on"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "15400",
+        "raw": "15400\n\nQ: A bakery sells 2500 loaves of bread per day.  They make a 25% profit o"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "15400",
+        "raw": "15400\n\nQ: A bakery sells 2500 loaves of bread per day.  They make a 25% profit o"
+      },
+      "early_priority_0.75": {
+        "correct": false,
+        "pred": "10400",
+        "raw": "10400\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on "
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "15400",
+        "raw": "15400\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.2"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "15400",
+        "raw": "15400\n\nQ: A bakery sells 250 loaves of bread per day.  They make a 10% profit on"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "15400",
+        "raw": "15400\n\nQ: A bakery is making a cake that requires 2 1/4 cups of flour.  If they "
+      },
+      "h2o_0.50": {
+        "correct": false,
+        "pred": "10800",
+        "raw": "10800"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "15400",
+        "raw": "15400\n\nQ: A bakery sells 2500 loaves of bread per day.  They make a 25% profit o"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "1800",
+        "raw": "1800"
+      },
+      "k_preserve_0.50": {
+        "correct": false,
+        "pred": "16000",
+        "raw": "5400 + 5000 + 5000 = 16000"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "15400",
+        "raw": "15400"
+      },
+      "random_0.33": {
+        "correct": false,
+        "pred": "15000",
+        "raw": "15000"
+      },
+      "h2o_0.33": {
+        "correct": false,
+        "pred": "5400",
+        "raw": "5400\n\nQ: A bakery is having a sale on bread.  A loaf of bread that normally cost"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "15400",
+        "raw": "15400\n\nQ: A bakery is having a sale on bread.  A loaf of whole wheat bread is no"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "1500",
+        "raw": "1500"
+      },
+      "k_preserve_0.33": {
+        "correct": false,
+        "pred": "1",
+        "raw": "1"
+      },
+      "head_selective_0.33": {
+        "correct": false,
+        "pred": "10800",
+        "raw": "10800"
+      }
+    },
+    {
+      "idx": 25,
+      "true_answer": "250",
+      "clean_answer": "250",
+      "reasoning_len": 96,
+      "random_1.00": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 "
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on ea"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on ea"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on ea"
+      },
+      "early_priority_0.75": {
+        "correct": false,
+        "pred": "750",
+        "raw": "750\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on ea"
+      },
+      "k_preserve_0.75": {
+        "correct": false,
+        "pred": "",
+        "raw": "250 Q: A bakery sells 250 loaves of bread per day. They sell 1/4 of their bread "
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 "
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on "
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250\n\nQ: A bakery is making 4800 cookies per day. They package 3 cookies in a bag"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250\n\nQ: A bakery is making 4800 cookies per day.  They come in 3 different flavo"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "1500",
+        "raw": "1500\n\nQ: A bakery is making 480 cookies and they put 5 chocolate chips in each c"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 "
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250\n\nQ: A bakery is having a sale on bread. They are selling a 2 pound loaf of b"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on "
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on "
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on "
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "1500",
+        "raw": "1500\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 "
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "250",
+        "raw": "250>>250"
+      }
+    },
+    {
+      "idx": 26,
+      "true_answer": "18",
+      "clean_answer": "18",
+      "reasoning_len": 165,
+      "random_1.00": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They sell 1/4 of their bread "
+      },
+      "random_0.75": {
+        "correct": false,
+        "pred": "",
+        "raw": "18. toys per hour. 18. Q: A bakery is making a cake that requires 2 1/2 cups of "
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 2400 loaves of bread per day. They make 2500 loaves of bre"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make 250 loaves of bread"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18 toys per hour. \n\nQ: A bakery sells 250 loaves of bread per day. They make 250"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They make 250 loaves per day."
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18 per hour. an hour. 18\n\nQ: A bakery is making 4800 cookies a day. They package"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "2",
+        "raw": "2\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on al"
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery sells 250 loaves of bread per day. They sell 1/4 of their bread "
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery is having a sale on bread. The bakery is offering a 10% discount"
+      },
+      "random_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18 per hour. per hour. hour. 180/10=<<180/10=18>>18 toys per hour.\n#### 18\n\nQ: A"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A toy manufacturer receives an order for 400 toys. 5 workers are availabl"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A bakery is selling a variety of cookies for $1.75 each. A \"Bakery\" is se"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "2",
+        "raw": "2\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on al"
+      },
+      "k_preserve_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A toy manufacturer receives an order for 400 toys. 5 workers are availabl"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "18",
+        "raw": "18\n\nQ: A toy manufacturer receives an order for 400 toys. 5 workers are availabl"
+      }
+    },
+    {
+      "idx": 27,
+      "true_answer": "1490",
+      "clean_answer": "1490",
+      "reasoning_len": 131,
+      "random_1.00": {
+        "correct": true,
+        "pred": "1490",
+        "raw": "1490\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "1490",
+        "raw": "1490\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on e"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "1490",
+        "raw": "1490\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on e"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "1490",
+        "raw": "1490\n\nQ: A bakery sells 2500 loaves of bread per day. They make a 10% profit on "
+      },
+      "early_priority_0.75": {
+        "correct": false,
+        "pred": "1500",
+        "raw": "1500\n\nQ: A bakery sells 2500 loaves of bread per day. They make a 10% profit on "
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "1490",
+        "raw": "1490\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "1490",
+        "raw": "1490\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on e"
+      },
+      "random_0.50": {
+        "correct": true,
+        "pred": "1490",
+        "raw": "1490\n\nQ: The population of rabbits in a certain area is 500. The ratio of males "
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "1490",
+        "raw": "1490\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "1490",
+        "raw": "1490\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "160",
+        "raw": "160\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on "
+      },
+      "k_preserve_0.50": {
+        "correct": true,
+        "pred": "1490",
+        "raw": "1490\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.50"
+      },
+      "head_selective_0.50": {
+        "correct": true,
+        "pred": "1490",
+        "raw": "1490\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on"
+      },
+      "random_0.33": {
+        "correct": false,
+        "pred": "150",
+        "raw": "150\n\nQ: The population of porcupines in the park is 50. The number of female por"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "1490",
+        "raw": "1490.0>>1490>>1490"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "1490",
+        "raw": "1490\n\nQ: The population of porcupines in the park is 50. The number of female po"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "150",
+        "raw": "150\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on "
+      },
+      "k_preserve_0.33": {
+        "correct": false,
+        "pred": "1",
+        "raw": "1"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "1490",
+        "raw": "1490\n\nQ: The number of porcupines in the park will be 1490 after a year. 1490>>1"
+      }
+    },
+    {
+      "idx": 28,
+      "true_answer": "11",
+      "clean_answer": "11",
+      "reasoning_len": 88,
+      "random_1.00": {
+        "correct": true,
+        "pred": "11",
+        "raw": "11\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "random_0.75": {
+        "correct": true,
+        "pred": "11",
+        "raw": "11\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "h2o_0.75": {
+        "correct": true,
+        "pred": "11",
+        "raw": "11\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "recent_0.75": {
+        "correct": true,
+        "pred": "11",
+        "raw": "11\n\nQ: A bakery sells 250 loaves of bread per day. They make a 25% profit on eac"
+      },
+      "early_priority_0.75": {
+        "correct": true,
+        "pred": "11",
+        "raw": "11\n\nQ: A bakery sells 250 loaves of bread per day. They make a 10% profit on eac"
+      },
+      "k_preserve_0.75": {
+        "correct": true,
+        "pred": "11",
+        "raw": "11\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $0.25 p"
+      },
+      "head_selective_0.75": {
+        "correct": true,
+        "pred": "11",
+        "raw": "11\n\nQ: A bakery sells 250 loaves of bread per day. They make a profit of $1.50 p"
+      },
+      "random_0.50": {
+        "correct": false,
+        "pred": "5",
+        "raw": "5\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on al"
+      },
+      "h2o_0.50": {
+        "correct": true,
+        "pred": "11",
+        "raw": "11"
+      },
+      "recent_0.50": {
+        "correct": true,
+        "pred": "11",
+        "raw": "11\n\nQ: A bakery is making a cake that requires 2 1/4 cups of sugar and 1 3/4 cup"
+      },
+      "early_priority_0.50": {
+        "correct": false,
+        "pred": "7",
+        "raw": "7\n\nQ: A bakery is having a sale on bread. They are offering a 10% discount on al"
+      },
+      "k_preserve_0.50": {
+        "correct": false,
+        "pred": "1",
+        "raw": "1"
+      },
+      "head_selective_0.50": {
+        "correct": false,
+        "pred": "2",
+        "raw": "2"
+      },
+      "random_0.33": {
+        "correct": false,
+        "pred": "7",
+        "raw": "7\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on al"
+      },
+      "h2o_0.33": {
+        "correct": true,
+        "pred": "11",
+        "raw": "11\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "recent_0.33": {
+        "correct": true,
+        "pred": "11",
+        "raw": "11\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      },
+      "early_priority_0.33": {
+        "correct": false,
+        "pred": "6",
+        "raw": "6\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on al"
+      },
+      "k_preserve_0.33": {
+        "correct": false,
+        "pred": "1",
+        "raw": "1"
+      },
+      "head_selective_0.33": {
+        "correct": true,
+        "pred": "11",
+        "raw": "11\n\nQ: A bakery is having a sale on bread. They are offering a 20% discount on a"
+      }
+    }
+  ]
+}

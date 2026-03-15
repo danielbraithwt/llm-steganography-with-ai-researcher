@@ -1,37 +1,36 @@
 {
-  "cycle": 53,
-  "timestamp": "2026-03-15T13:20:00Z",
+  "cycle": 55,
+  "timestamp": "2026-03-15T15:20:00Z",
   "type": "experiment",
-  "template": "cross_head_cascading_llama",
+  "template": "kv_eviction_benchmark",
   "parameters": {
-    "model": "meta-llama/Llama-3.1-8B-Instruct",
-    "critical_head": 3,
-    "dispensable_head": 1,
-    "position_bands": ["early (0-33%)", "mid (33-66%)", "late (66-100%)"],
-    "perturbation": "K-only direction replacement",
-    "n_valid": 55,
-    "design": "2x3 factorial + 2 all-position references"
+    "models": ["Qwen/Qwen3-4B-Base", "meta-llama/Llama-3.1-8B-Instruct"],
+    "strategies": ["random", "h2o", "recent", "early_priority", "k_preserve", "head_selective"],
+    "budgets": ["75%", "50%", "33%"],
+    "n_valid": {"Qwen": 20, "Llama": 23},
+    "design": "6 strategies x 3 budgets x 2 models"
   },
-  "prediction_outcome": "Scenario A CONFIRMED — general cascading established. All quantitative predictions matched.",
-  "key_finding": "Early-position cascading is GENERAL on Llama (not H5-specific). Position-dependence scales perfectly with criticality: r=-0.991 (p=0.009). 4-head spectrum: H5=50.8pp, H3=49.1pp, H1=34.5pp, H7=15.3pp. Cascading is architectural (analog encoding), not circuit-specific.",
-  "evidence_impact": "Added findings #62-64. Updated narrative synthesis. Established that head x position coupling on analog models is a general multiplicative interaction, not answer-head-specific.",
-  "next_planned": "Test cascading generality on Qwen (do other Qwen heads also show position-independence?), or comprehensive final synthesis",
+  "prediction_outcome": "No pre-registered scenario fully confirmed. 'Recent' dominance was unpredicted. K-preserve reversal on Llama disconfirms Scenario A.",
+  "key_finding": "'Recent' (StreamingLLM) achieves 100% at 33% budget on BOTH models. Early_priority catastrophically bad (8.7% Llama@33%). K-preserve WORSE than H2O on Llama (phantom routing). Head-selective +8.7pp over H2O. Digital encoding more compression-robust.",
+  "evidence_impact": "Added findings #65-69. Updated narrative synthesis for compression. Answered open question #5. K>V perturbation hierarchy does NOT directly translate to compression advantage.",
+  "next_planned": "Validate with true attention-based H2O; test recent strategy on harder tasks; combine head_selective + recent",
   "figures": [
-    "results/exp_052/head_position_accuracy.png",
-    "results/exp_052/interaction_plot_4head.png",
-    "results/exp_052/dissociation_by_condition.png",
-    "results/exp_052/criticality_spectrum.png",
-    "results/exp_052/dose_check.png"
+    "results/exp_054/accuracy_vs_budget_Qwen3-4B-Base.png",
+    "results/exp_054/accuracy_vs_budget_Llama-3.1-8B-Instruct.png",
+    "results/exp_054/strategy_comparison_50pct_Qwen3-4B-Base.png",
+    "results/exp_054/strategy_comparison_50pct_Llama-3.1-8B-Instruct.png",
+    "results/exp_054/k_preserve_comparison_Qwen3-4B-Base.png",
+    "results/exp_054/k_preserve_comparison_Llama-3.1-8B-Instruct.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
-    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. Positional dissociation confirmed. HEAD-LEVEL CONCENTRATION decisive on Qwen, weak on Llama. Head x position ENCODING-DEPENDENT.", "bar": 5},
-    "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent. CASCADING IS GENERAL on Llama: all 4 heads show early>late gradient, r=-0.991.", "bar": 5},
-    "geometric_dissociation": {"status": "K > V UNIVERSAL at per-head level: 16/16 heads across 2 models. V=456/456 absolute. TRIPLE-CONFIRMED.", "bar": 5},
-    "head_level_analysis": {"status": "COMPLETE: Two-regime on Qwen (decisive), near-collapse on Llama. Head x position: orthogonal on Qwen, multiplicative scaling on Llama (r=-0.991). 4-head cascading spectrum established.", "bar": 5},
-    "natural_usage": {"status": "H2O/TC protection via position. TC best protection metric.", "bar": 3},
-    "cross_model_replication": {"status": "COMPLETE: 4 families, 5 variants. Head x position on 2 models. Encoding-dependent cascading established.", "bar": 5},
-    "encoding_strategy": {"status": "COMPLETE TAXONOMY + explains cascading: digital=orthogonal (error-correcting codewords), analog=coupled (continuous routing cascades). r=-0.991 criticality scaling.", "bar": 5},
+    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. HEAD-LEVEL CONCENTRATION decisive on Qwen, weak on Llama. Head x position ENCODING-DEPENDENT.", "bar": 5},
+    "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent. CASCADING IS GENERAL on Llama.", "bar": 5},
+    "geometric_dissociation": {"status": "K > V UNIVERSAL at per-head level: 16/16 heads across 2 models. V=456/456 absolute. K>V does NOT translate directly to compression.", "bar": 5},
+    "head_level_analysis": {"status": "COMPLETE: Two-regime on Qwen (decisive), near-collapse on Llama. Head-selective compression +8.7pp over H2O.", "bar": 5},
+    "natural_usage": {"status": "SUBSTANTIALLY ADVANCED: First eviction benchmark complete. Recent=best. Head-selective outperforms H2O. K-preserve reversal discovered. Encoding-dependent compression robustness established.", "bar": 4},
+    "cross_model_replication": {"status": "COMPLETE: 4 families, 5 variants. Eviction benchmark on 2 models.", "bar": 5},
+    "encoding_strategy": {"status": "COMPLETE TAXONOMY + compression implications: digital=compression-robust (random@33%=95%), analog=fragile (random@33%=70%).", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 10+ angles, 60+ papers across 5 scans.", "bar": 5}
   }
 }
