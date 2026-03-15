@@ -1,33 +1,34 @@
 {
-  "cycle": 40,
-  "timestamp": "2026-03-15T12:00:00Z",
-  "type": "literature_scan",
-  "template": "Literature scan #4 — 13 papers across 4 topics",
+  "cycle": 41,
+  "timestamp": "2026-03-15T16:00:00Z",
+  "type": "experiment",
+  "template": "Fine-grained positional K-only sweep (10 decile bins + V control)",
   "parameters": {
-    "topics_searched": [
-      "KV cache K/V functional roles and perturbation",
-      "CoT faithfulness/unfaithfulness in reasoning models",
-      "KV cache compression and phase transitions",
-      "Latent reasoning and continuous thought",
-      "Hidden channels and steganography in LLMs"
-    ],
-    "papers_reviewed": 13,
-    "literature_notes_written": 4,
-    "new_evidence_table_entries": 2
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "perturbation_type": "direction (random replacement, norm-preserved)",
+    "bins": 10,
+    "perturbation_fraction": "10% per bin",
+    "n_valid": 38,
+    "conditions": ["decile_k_0..9", "decile_v_9"]
   },
-  "prediction_outcome": "N/A (literature scan)",
-  "key_finding": "K > V independently confirmed by quantization literature (AsymKV: V can be 1-bit). Reasoning Horizon at 70-85% maps to our positional dissociation. 'Where Matters More Than What' confirms position > content. Steganographic capabilities nascent but growing in frontier LLMs.",
-  "evidence_impact": "Literature convergence upgraded to DECISIVE (8+ angles, 45+ papers). Two new independent confirmations added to evidence table (rows 22-23).",
-  "next_planned": "Potential: (1) Test K/V perturbation at Reasoning Horizon (70-85% chain position), (2) Write-up/technical report, (3) AsymKV-informed layer-wise precision experiments",
-  "figures": [],
+  "prediction_outcome": "mixed — closest to Scenario B + elements of C",
+  "key_finding": "K-direction perturbation at 10% dose saturates Llama accuracy at ~0% for ALL position bins (0-5.3%, bin 9 = 15.8%). Text accuracy shows clean linear gradient 9→94%. No Reasoning Horizon at 70-85%. K > V confirmed at bin 9 (+55pp gap).",
+  "evidence_impact": "Extends K > V to Llama latest positions; positional dissociation partially replicates via text gradient; Reasoning Horizon connection disconfirmed; reveals Llama K-routing is more fragile/distributed than Qwen",
+  "next_planned": "Reduced-dose (5%) fine-grained sweep to reveal accuracy gradient on Llama; or same experiment on Qwen-Base for cross-model comparison",
+  "figures": [
+    "results/exp_041/positional_sweep_accuracy.png",
+    "results/exp_041/dissociation_by_position.png",
+    "results/exp_041/dissociation_scatter.png",
+    "results/exp_041/signal_norms_by_position.png"
+  ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
-    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. Positional dissociation confirmed.", "bar": 1},
-    "positional_dissociation": {"status": "STRONG. Late=answer (59x ratio), early=infrastructure. Now independently confirmed by 'Where > What' (Tian 2026).", "bar": 5},
-    "geometric_dissociation": {"status": "K > V UNIVERSAL (5/5 models). Now independently confirmed by AsymKV quantization (COLING 2025).", "bar": 5},
+    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. Positional dissociation confirmed (text gradient).", "bar": 1},
+    "positional_dissociation": {"status": "Qwen-Base established. Llama: text gradient replicates (9→94%); accuracy saturated at 10% dose. No Reasoning Horizon.", "bar": 4},
+    "geometric_dissociation": {"status": "K > V UNIVERSAL (5/5 models). Extended to Llama latest decile (+55pp). Now independently confirmed by AsymKV.", "bar": 5},
     "natural_usage": {"status": "H2O/TC protection via position. TC best protection metric.", "bar": 3},
     "cross_model_replication": {"status": "COMPLETE: 4 families, 5 training variants, GQA + MHA, Base + Instruct.", "bar": 5},
-    "encoding_strategy": {"status": "COMPLETE TAXONOMY: Qwen-Base=DIGITAL, Qwen-Instruct=MIXED, Llama/Phi/Mistral=ANALOG.", "bar": 5},
-    "literature_convergence": {"status": "DECISIVE: 8+ independent angles, 45+ papers across 4 scans. K > V and position > content independently confirmed.", "bar": 5}
+    "encoding_strategy": {"status": "COMPLETE TAXONOMY: Qwen-Base=DIGITAL, Qwen-Instruct=MIXED, Llama/Phi/Mistral=ANALOG. Llama more fragile/distributed.", "bar": 5},
+    "literature_convergence": {"status": "DECISIVE: 8+ angles, 45+ papers. Reasoning Horizon connection disconfirmed (linear, no phase transition).", "bar": 5}
   }
 }

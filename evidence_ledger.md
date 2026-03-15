@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 40 — literature scan #4)
-Cycles completed: 40 (38 experimental + 1 consolidation + 1 literature scan)
+Last updated: 2026-03-15 (cycle 41 — positional sweep on Llama)
+Cycles completed: 41 (39 experimental + 1 consolidation + 1 literature scan)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -163,7 +163,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 7 | Digital encoding is Qwen-family-specific | 2/2 Qwen=digital, 3/3 non-Qwen=analog | **Strong** | 023-026, 035-037 |
 | 8 | Instruction tuning converts V digital→analog, preserves K digital | Qwen-Base→Qwen-Instruct comparison | **Strong** | 036 |
 | 9 | K-V superadditivity from degradation overlap | Analog models 7.9-16.8x, digital weak 1.1-2.0x | **Strong** | 025, 026, 035, 036, 037 |
-| 10 | Positional dissociation (late=answer, early=infrastructure) | Established on Qwen-Base, consistent all models | **Strong** | 013, 016, 017, 021, 028 |
+| 10 | Positional dissociation (late=answer, early=infrastructure) | Qwen-Base + Llama (text gradient 9→94% across deciles; accuracy saturated on Llama at 10% dose) | **Strong** | 013, 016, 017, 021, 028, 041 |
 | 11 | Spatial selectivity (AC/TC) adds zero beyond position | Gold-standard double dissociation | **Decisive (negative)** | 021 |
 | 12 | SNR cliff is Qwen-specific (14 dB) | Llama robust to 5 dB, no cliff | **Strong** | 003, 007 |
 | 13 | Single-layer KV destruction tolerated by both models | Llama 93-100%, Qwen 100% (35/36 layers) | **Moderate** | 009 |
@@ -177,6 +177,9 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 21 | Energy confound does NOT explain K > V | SNR-matched test: K still more sensitive | **Strong** | 027 |
 | 22 | K > V confirmed by quantization literature (independent) | AsymKV: V 1-bit quantizable; PM-KVQ: K needs more precision for long-CoT | **Strong (independent)** | Lit scan 40 |
 | 23 | Positional > content confirmed by compression literature (independent) | "Where > What" (Tian 2026): position dominates semantic content for KV importance | **Strong (independent)** | Lit scan 40 |
+| 24 | K > V at latest decile on Llama | V-K gap +55pp at 90-100% positions (V=71%, K=16%, n=38) | **Strong** | 041 |
+| 25 | Llama K-routing more fragile/distributed than Qwen | 10% K-direction perturbation saturates accuracy at ~0% at ALL positions; no accuracy gradient | **Moderate** | 041 |
+| 26 | No Reasoning Horizon detected at 70-85% | Dissociation transition is linear (~9pp/bin), no sharp phase transition | **Moderate (negative)** | 041 |
 
 ---
 
@@ -196,6 +199,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | Direction-magnitude geometric double dissociation | 2602.11169 (literature) | Exp 023 | No crossover; K-V is the real dissociation, not dir-mag |
 | AC-aware compression outperforms H2O | Exp 011 (suggested) | Exp 012, 013 | AC-protection ≈ random on Llama |
 | Digital encoding = Base models generally | Exp 023 (Qwen-Base) | Exp 037 (Mistral-Base analog) | Qwen-family-specific, not Base-specific |
+| Reasoning Horizon (70-85%) aligns with K-routing transition | Lit scan 40 (Ye et al. correlation) | Exp 041 (linear gradient, no phase transition) | Dissociation increases ~9pp/bin linearly; no sharp transition at 70-85% on Llama |
 
 ---
 
@@ -205,7 +209,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 1. **Why does instruction tuning convert V digital→analog but preserve K digital?** Hypothesis: K defines routing (architectural constraint from QK mechanism), V carries content (reorganizable by RLHF). (Exp 036)
 2. **Does K-only PGD succeed on Phi (MHA)?** Would confirm null space is universal K-routing phenomenon beyond GQA. (Exp 034 motivation)
 3. **Why is Qwen K-direction MORE robust than Llama despite being "digital"?** Possible: discrete direction clusters in digital encoding — random replacement sometimes lands near valid codewords. (Exp 029)
-4. **Does the positional dissociation (late=answer, early=infrastructure) replicate on Llama and Qwen-Instruct?** Tested only on Qwen-Base (Exp 021). (Exp 021)
+4. **Does the positional dissociation replicate on Llama at lower dose?** At 10% dose, accuracy is saturated on Llama (Exp 041). At 5% dose (Exp 028), a gradient exists (0%→22%). Fine-grained 5% sweep would clarify. Qwen-Instruct also untested. (Exp 021, 028, 041)
 5. **Can TC-aware compression outperform H2O on actual KV eviction benchmarks?** TC > H2O at noise injection, but never tested on real compression. (Exp 013)
 
 ### Medium Priority (mechanistic depth)
@@ -285,6 +289,11 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 |-----|-------|------|------------|
 | — | 39 | Consolidation | Restructured 625→250 line ledger; 114→18 open questions; narrative synthesis |
 | — | 40 | **Lit scan #4** | K > V confirmed by quantization lit (AsymKV); Reasoning Horizon at 70-85% maps to positional dissociation; steganographic capabilities emerging; "Where > What" confirms position > content |
+
+### Phase 5: Fine-Grained Positional Analysis (Cycles 41+)
+| Exp | Cycle | Model | Key Result |
+|-----|-------|-------|------------|
+| 041 | 41 | Llama-Instruct | 10-decile K-only sweep: accuracy saturated ~0% at all positions (Llama K-routing extremely fragile); text gradient 9→94% (linear, no Reasoning Horizon); K > V +55pp at bin 9 |
 
 ---
 
