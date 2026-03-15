@@ -1,38 +1,38 @@
 {
-  "cycle": 56,
-  "timestamp": "2026-03-15T17:00:00Z",
+  "cycle": 57,
+  "timestamp": "2026-03-15T17:30:00Z",
   "type": "experiment",
-  "template": "mask_vs_zero_eviction",
+  "template": "true_h2o_vs_knorm_proxy",
   "parameters": {
     "models": ["Qwen/Qwen3-4B-Base", "meta-llama/Llama-3.1-8B-Instruct"],
-    "eviction_methods": ["mask (attention_mask=0)", "zero_kv (zero both K+V)", "zero_v (K-preserve)"],
-    "strategies": ["random", "h2o", "recent", "head_selective"],
+    "selections": ["true_h2o (cumulative attention)", "k_norm_h2o (K-vector L2 norm)", "random", "recent"],
+    "methods": ["mask (true removal)", "zero_kv (zero both K+V)"],
     "budgets": ["33%", "50%"],
-    "n_valid": {"Qwen": 25, "Llama": 27},
-    "conditions": 13,
-    "design": "3 methods x 4 strategies x 2 budgets (13 conditions after pruning)"
+    "n_valid": {"Qwen": 24, "Llama": 27},
+    "conditions": 12,
+    "design": "2 methods x 3 selections x 2 budgets + 2 recent controls"
   },
-  "prediction_outcome": "Scenario B (partially confirmed): zero_v worst on Llama (51.9%), but mask < zero_kv for H2O was NOT predicted. The surprising finding that H2O=random under masking was completely unpredicted.",
-  "key_finding": "Attention-based selection (H2O) = random under true masking (both 66.7% on Llama). H2O advantage under zeroing (+14.8pp) is an artifact of model self-organizing around high-K-norm positions. Phantom routing confirmed (zero_v=51.9% worst). 'Recent' uniquely method-invariant (100% everywhere). Qwen method-invariant (digital encoding).",
-  "evidence_impact": "Added findings #70-74. Added disconfirmed claim: 'masking strictly better than zeroing'. Phantom routing replicated with 3-way comparison. H2O selection mechanism exposed.",
-  "next_planned": "Test whether H2O with true attention scores (not K-norm proxy) improves under masking; explore hybrid recent+head_selective strategy; investigate why recent strategy is uniquely robust",
+  "prediction_outcome": "No scenario predicted K-norm/true-H2O anti-correlation. Scenario B closest for 33% budget (all methods equal under masking). Budget-dependent reversal at 50% was unpredicted.",
+  "key_finding": "K-norm and cumulative attention are ANTI-CORRELATED on Llama (rho=-0.431, Jaccard=0.057). True H2O selects WORSE positions than random (Qwen 33.3% vs 91.7%). K-norm captures content-density, cumulative attention captures routing-infrastructure. Most-attended positions are LEAST informative for compression. Budget-dependent reversal at 50%: true_h2o beats k_norm under masking (+14.8pp).",
+  "evidence_impact": "Added findings #75-80. Added 2 disconfirmed claims. Anti-correlation is novel mechanistic finding separating content-density from routing-frequency in KV positions.",
+  "next_planned": "Analyze which positions true H2O selects (sink-dominance hypothesis); budget sweep to find crossover point; layer-specific true H2O",
   "figures": [
-    "results/exp_056/method_comparison_33pct_Qwen3-4B-Base.png",
-    "results/exp_056/method_comparison_33pct_Llama-3.1-8B-Instruct.png",
-    "results/exp_056/mask_vs_zero_Qwen3-4B-Base.png",
-    "results/exp_056/mask_vs_zero_Llama-3.1-8B-Instruct.png",
-    "results/exp_056/phantom_routing_test_Qwen3-4B-Base.png",
-    "results/exp_056/phantom_routing_test_Llama-3.1-8B-Instruct.png"
+    "results/exp_057/true_h2o_vs_knorm_33pct_Qwen3-4B-Base.png",
+    "results/exp_057/true_h2o_vs_knorm_33pct_Llama-3.1-8B-Instruct.png",
+    "results/exp_057/paired_comparison_Qwen3-4B-Base.png",
+    "results/exp_057/paired_comparison_Llama-3.1-8B-Instruct.png",
+    "results/exp_057/selection_overlap_Qwen3-4B-Base.png",
+    "results/exp_057/selection_overlap_Llama-3.1-8B-Instruct.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
-    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. HEAD-LEVEL CONCENTRATION decisive on Qwen, weak on Llama. Head x position ENCODING-DEPENDENT.", "bar": 5},
-    "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent. CASCADING IS GENERAL on Llama.", "bar": 5},
-    "geometric_dissociation": {"status": "K > V UNIVERSAL at per-head level: 16/16 heads across 2 models. V=456/456 absolute. K>V does NOT translate directly to compression.", "bar": 5},
-    "head_level_analysis": {"status": "COMPLETE: Two-regime on Qwen (decisive), near-collapse on Llama. Head-selective compression +8.7pp over H2O.", "bar": 5},
-    "natural_usage": {"status": "ADVANCED: Two eviction benchmarks complete. Mask vs zero: zeroing > masking for imperfect selection. H2O=random under masking (attention-based selection exposed). 'Recent' uniquely method-invariant.", "bar": 5},
-    "cross_model_replication": {"status": "COMPLETE: 4 families, 5 variants. Eviction benchmark on 2 models with 3 methods.", "bar": 5},
-    "encoding_strategy": {"status": "COMPLETE TAXONOMY + compression + method implications: digital=method-invariant, analog=method-sensitive. Zeroing > masking for imperfect selection on analog.", "bar": 5},
+    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. HEAD-LEVEL CONCENTRATION decisive on Qwen, weak on Llama.", "bar": 5},
+    "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
+    "geometric_dissociation": {"status": "K > V UNIVERSAL at per-head level: 16/16 heads across 2 models.", "bar": 5},
+    "head_level_analysis": {"status": "COMPLETE: Two-regime on Qwen (decisive), near-collapse on Llama.", "bar": 5},
+    "natural_usage": {"status": "ADVANCED: 3 eviction benchmarks complete. K-norm vs true H2O ANTI-CORRELATED (rho=-0.431). True H2O < random at 33%. 'Recent' universally best. K-norm captures content-density, not routing.", "bar": 5},
+    "cross_model_replication": {"status": "COMPLETE: 4 families, 5 variants.", "bar": 5},
+    "encoding_strategy": {"status": "COMPLETE TAXONOMY + compression + method implications.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 10+ angles, 60+ papers across 5 scans.", "bar": 5}
   }
 }
