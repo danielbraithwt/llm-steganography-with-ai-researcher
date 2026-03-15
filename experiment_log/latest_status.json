@@ -1,35 +1,37 @@
 {
-  "cycle": 50,
-  "timestamp": "2026-03-15T23:59:00Z",
-  "type": "literature_scan",
-  "template": "literature_scan_5",
+  "cycle": 52,
+  "timestamp": "2026-03-15T12:32:00Z",
+  "type": "experiment",
+  "template": "head_position_interaction_llama",
   "parameters": {
-    "focus_areas": [
-      "KV head specialization and attention head pruning",
-      "CoT faithfulness and hidden computation safety",
-      "Latent reasoning and continuous thought advances",
-      "KV cache asymmetric compression and quantization",
-      "QK/OV mechanistic interpretability",
-      "KV cache attacks and steering"
-    ],
-    "papers_reviewed": 15,
-    "new_literature_notes": 5,
-    "new_evidence_findings": 4
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "answer_head": 5,
+    "dispensable_head": 7,
+    "position_bands": ["early (0-33%)", "mid (33-66%)", "late (66-100%)"],
+    "perturbation": "K-only direction replacement",
+    "n_valid": 59,
+    "design": "2x3 factorial + 2 all-position references"
   },
-  "prediction_outcome": "N/A (literature scan)",
-  "key_finding": "K > V triple-confirmed (mathematical proof: K spectral norms > V). Qwen funnel vs LLaMA inverted funnel explains encoding taxonomy. Head specialization survey confirms <7% of heads critical (our H5 finding addresses key gap). Latent reasoning mainstream (HybridCoT NeurIPS 2025). METR: CoT informative for complex behaviors despite unfaithfulness.",
-  "evidence_impact": "Upgraded finding #22 to Decisive. Added findings #55-58. Updated literature convergence to 10+ angles, 60+ papers.",
-  "next_planned": "Replicate H5 x position on Llama OR QK attribution analysis of H5 OR comprehensive final synthesis",
-  "figures": [],
+  "prediction_outcome": "Scenario B closest (position-dependent) but direction REVERSED (early most destructive, not late). Scenario A (position-independent replicates) DECISIVELY DISCONFIRMED.",
+  "key_finding": "H5 position-independence is QWEN-SPECIFIC. Llama H5 range=50.8pp (vs Qwen 9.3pp): early=18.6%=all (cascading), late=69.5%. 30:0 concordance. Head x position interaction is encoding-dependent: digital decouples, analog couples.",
+  "evidence_impact": "Added findings #59-61. Revised #52-54. Disconfirmed head-position orthogonality as universal. Updated narrative synthesis.",
+  "next_planned": "Test whether cascading is H5-specific or general (other heads at position bands) OR comprehensive final synthesis",
+  "figures": [
+    "results/exp_051/head_position_accuracy.png",
+    "results/exp_051/interaction_plot.png",
+    "results/exp_051/dissociation_by_condition.png",
+    "results/exp_051/cross_model_comparison.png",
+    "results/exp_051/dose_check.png"
+  ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
-    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. Positional dissociation confirmed. HEAD-LEVEL CONCENTRATION decisive on Qwen, weak on Llama. Head x position ORTHOGONAL.", "bar": 5},
-    "positional_dissociation": {"status": "Complete. Head and position orthogonal. Qwen funnel vs LLaMA inverted funnel explains architectural basis (lit scan 50).", "bar": 5},
-    "geometric_dissociation": {"status": "K > V UNIVERSAL at per-head level: 16/16 heads across 2 models. V=456/456 absolute. Now TRIPLE-CONFIRMED: perturbation + quantization + mathematical proof.", "bar": 5},
-    "head_level_analysis": {"status": "COMPLETE: Two-regime on Qwen (decisive), near-collapse on Llama (disconfirmatory). Head x position orthogonal. Literature confirms <7% head criticality.", "bar": 5},
+    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. Positional dissociation confirmed. HEAD-LEVEL CONCENTRATION decisive on Qwen, weak on Llama. Head x position ENCODING-DEPENDENT.", "bar": 5},
+    "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent: orthogonal on Qwen (digital), coupled on Llama (analog). Early positions dominate on analog models.", "bar": 5},
+    "geometric_dissociation": {"status": "K > V UNIVERSAL at per-head level: 16/16 heads across 2 models. V=456/456 absolute. TRIPLE-CONFIRMED.", "bar": 5},
+    "head_level_analysis": {"status": "COMPLETE: Two-regime on Qwen (decisive), near-collapse on Llama (disconfirmatory). Head x position encoding-dependent. H5 position-independent on Qwen, position-dependent on Llama.", "bar": 5},
     "natural_usage": {"status": "H2O/TC protection via position. TC best protection metric.", "bar": 3},
-    "cross_model_replication": {"status": "COMPLETE: 4 families, 5 variants. Multi-head on 2 models. Head-level redundancy encoding-dependent.", "bar": 5},
-    "encoding_strategy": {"status": "COMPLETE TAXONOMY + causally explained by architectural depth dynamics (Qwen funnel vs LLaMA inverted funnel, lit scan 50).", "bar": 5},
-    "literature_convergence": {"status": "DECISIVE: 10+ angles, 60+ papers across 5 scans. K > V triple-confirmed. Encoding taxonomy independently explained.", "bar": 5}
+    "cross_model_replication": {"status": "COMPLETE: 4 families, 5 variants. Head x position on 2 models. Encoding-dependent interaction discovered.", "bar": 5},
+    "encoding_strategy": {"status": "COMPLETE TAXONOMY + explains head x position interaction: digital=orthogonal, analog=coupled. Causally explained by architectural depth dynamics.", "bar": 5},
+    "literature_convergence": {"status": "DECISIVE: 10+ angles, 60+ papers across 5 scans.", "bar": 5}
   }
 }
