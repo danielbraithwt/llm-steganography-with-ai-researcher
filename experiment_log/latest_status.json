@@ -1,35 +1,35 @@
 {
-  "cycle": 42,
-  "timestamp": "2026-03-15T17:00:00Z",
+  "cycle": 43,
+  "timestamp": "2026-03-15T19:00:00Z",
   "type": "experiment",
-  "template": "Fine-grained positional K-only sweep (10 decile bins + V control) — Qwen-Base",
+  "template": "5% dose 10-decile K-only positional sweep — Llama-3.1-8B-Instruct",
   "parameters": {
-    "model": "Qwen/Qwen3-4B-Base",
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
     "perturbation_type": "direction (random replacement, norm-preserved)",
     "bins": 10,
-    "perturbation_fraction": "10% per bin",
-    "n_valid": 25,
+    "perturbation_fraction": "5% per bin (50% sub-sample of each decile)",
+    "n_valid": 38,
     "conditions": ["decile_k_0..9", "decile_v_9"]
   },
-  "prediction_outcome": "Scenario B confirmed (30% pre-registered) — encoding-independent saturation",
-  "key_finding": "Qwen-Base accuracy saturated at 0-4% for ALL position deciles, identical to Llama. Text gradient 15→95% (r=0.997, slope=8.9pp/bin). K > V +52pp at bin 9. Digital encoding does NOT protect at 10% dose. Positional dissociation structure is encoding-independent.",
-  "evidence_impact": "Establishes encoding-independence of positional dissociation; extends K > V to Qwen at fine resolution; qualifies V-immunity (V-direction at 10% = 56% not 100%)",
-  "next_planned": "5% dose 10-decile sweep on both models to reveal encoding-dependent accuracy gradients below saturation threshold",
+  "prediction_outcome": "Scenario B confirmed (25% pre-registered) — accuracy still mostly saturated at 5% dose",
+  "key_finding": "Llama K-routing extremely distributed: even 5% K-direction perturbation saturates accuracy at 0-2.6% for bins 0-6. Only bin 9 (15.8%) recovers. V-only immunity RESTORED at 5% dose (92.1% vs 71.1% at 10%). K > V gap increases to +76pp. Text gradient dose-independent (~9pp/bin). Exp 028 late=22% was inflated by coarse binning.",
+  "evidence_impact": "Strengthens Llama K-routing fragility claim; restores V-immunity at 5%; increases K > V gap; partially resolves Open Questions #4 and #6",
+  "next_planned": "5% dose sweep on Qwen-Base for cross-model comparison OR 2-3% dose on Llama to reveal accuracy gradients",
   "figures": [
-    "results/exp_042/positional_sweep_accuracy.png",
-    "results/exp_042/dissociation_by_position.png",
-    "results/exp_042/dissociation_scatter.png",
-    "results/exp_042/signal_norms_by_position.png",
-    "results/exp_042/cross_model_comparison.png"
+    "results/exp_043/positional_sweep_accuracy.png",
+    "results/exp_043/dissociation_by_position.png",
+    "results/exp_043/dissociation_scatter.png",
+    "results/exp_043/cross_dose_comparison.png",
+    "results/exp_043/signal_norms_by_position.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
-    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. Positional dissociation confirmed (text gradient).", "bar": 1},
-    "positional_dissociation": {"status": "Encoding-independent: both Qwen-Base and Llama show identical patterns at 10% dose (text 15→95% linear, acc~0%). 5% dose needed for accuracy gradients.", "bar": 4},
-    "geometric_dissociation": {"status": "K > V UNIVERSAL (5/5 models). +52pp Qwen, +55pp Llama at bin 9. Independently confirmed by AsymKV.", "bar": 5},
+    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. Positional dissociation confirmed (text gradient only).", "bar": 1},
+    "positional_dissociation": {"status": "Dose-saturated: 5% dose STILL saturates Llama accuracy. Only bin 9 (15.8%) recovers. Text gradient dose-independent. Need <5% dose or Qwen comparison.", "bar": 4},
+    "geometric_dissociation": {"status": "K > V UNIVERSAL. +76pp at 5% dose (V recovers more → gap increases). 5/5 models confirmed.", "bar": 5},
     "natural_usage": {"status": "H2O/TC protection via position. TC best protection metric.", "bar": 3},
-    "cross_model_replication": {"status": "COMPLETE: 4 families, 5 training variants, GQA + MHA, Base + Instruct. Positional sweep now on 2 models.", "bar": 5},
-    "encoding_strategy": {"status": "COMPLETE TAXONOMY + encoding-independence at 10% dose confirmed.", "bar": 5},
+    "cross_model_replication": {"status": "COMPLETE: 4 families, 5 training variants, GQA + MHA, Base + Instruct. Positional sweep on 2 models at 2 doses.", "bar": 5},
+    "encoding_strategy": {"status": "COMPLETE TAXONOMY + encoding-independence at 10% dose + V-immunity dose-dependence confirmed.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 8+ angles, 45+ papers.", "bar": 5}
   }
 }

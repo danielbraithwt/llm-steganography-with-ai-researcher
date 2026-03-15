@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-15 (cycle 42 — positional sweep on Qwen-Base, cross-model comparison)
-Cycles completed: 42 (40 experimental + 1 consolidation + 1 literature scan)
+Last updated: 2026-03-15 (cycle 43 — 5% dose positional sweep on Llama)
+Cycles completed: 43 (41 experimental + 1 consolidation + 1 literature scan)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -177,11 +177,14 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 21 | Energy confound does NOT explain K > V | SNR-matched test: K still more sensitive | **Strong** | 027 |
 | 22 | K > V confirmed by quantization literature (independent) | AsymKV: V 1-bit quantizable; PM-KVQ: K needs more precision for long-CoT | **Strong (independent)** | Lit scan 40 |
 | 23 | Positional > content confirmed by compression literature (independent) | "Where > What" (Tian 2026): position dominates semantic content for KV importance | **Strong (independent)** | Lit scan 40 |
-| 24 | K > V at latest decile on Llama | V-K gap +55pp at 90-100% positions (V=71%, K=16%, n=38) | **Strong** | 041 |
-| 25 | Llama K-routing more fragile/distributed than Qwen | 10% K-direction perturbation saturates accuracy at ~0% at ALL positions; no accuracy gradient | **Moderate** | 041 |
-| 26 | No Reasoning Horizon detected at 70-85% | Dissociation transition is linear (~9pp/bin), no sharp phase transition | **Moderate (negative)** | 041 |
+| 24 | K > V at latest decile on Llama | V-K gap +76pp at 5% dose (V=92%, K=16%), +55pp at 10% dose (V=71%, K=16%) | **Strong** | 041, 043 |
+| 25 | Llama K-routing extremely fragile/distributed | 5% K-direction perturbation STILL saturates accuracy at 0-2.6% for bins 0-6; only bin 9 (15.8%) recovers | **Strong** | 041, 043 |
+| 26 | No Reasoning Horizon detected at 70-85% | Dissociation transition is linear (~9pp/bin), no sharp phase transition; confirmed at both 5% and 10% dose | **Strong (negative)** | 041, 043 |
 | 27 | Positional dissociation is encoding-independent at 10% dose | Qwen-Base (digital) and Llama (analog) show identical patterns: acc~0% all bins, text 15→95% linear, dissociation r=0.997 | **Strong** | 041, 042 |
-| 28 | V-only direction perturbation NOT immune at 10% fraction | V-only direction at bin 9: Qwen 56%, Llama 71% (vs 100% V-only immunity at magnitude σ≤1) | **Moderate** | 041, 042 |
+| 28 | V-only direction perturbation is dose-dependent | V-dir at 5% dose: 92.1% (immune); V-dir at 10% dose: 56-71% (partially destructive). V-immunity holds at ≤5% direction perturbation | **Strong** | 041, 042, 043 |
+| 29 | Text gradient is dose-independent | Slope ~9pp/bin and r≈1.0 at both 5% and 10% dose; trivial cascading effect | **Strong** | 041, 042, 043 |
+| 30 | K > V gap INCREASES at lower dose | +76pp at 5% vs +55pp at 10% — V recovers more at lower dose while K stays at floor | **Moderate** | 041, 043 |
+| 31 | Exp 028 "late=22%" was inflated by coarse binning | At 10-bin resolution: late=8.8% (bins 7-9 avg), not 22%; recovery concentrated at bin 9 only (15.8%) | **Moderate** | 028, 043 |
 
 ---
 
@@ -201,7 +204,8 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | Direction-magnitude geometric double dissociation | 2602.11169 (literature) | Exp 023 | No crossover; K-V is the real dissociation, not dir-mag |
 | AC-aware compression outperforms H2O | Exp 011 (suggested) | Exp 012, 013 | AC-protection ≈ random on Llama |
 | Digital encoding = Base models generally | Exp 023 (Qwen-Base) | Exp 037 (Mistral-Base analog) | Qwen-family-specific, not Base-specific |
-| Reasoning Horizon (70-85%) aligns with K-routing transition | Lit scan 40 (Ye et al. correlation) | Exp 041 (linear gradient, no phase transition) | Dissociation increases ~9pp/bin linearly; no sharp transition at 70-85% on Llama |
+| Reasoning Horizon (70-85%) aligns with K-routing transition | Lit scan 40 (Ye et al. correlation) | Exp 041, 043 (linear gradient, no phase transition at both 5% and 10%) | Dissociation increases ~9pp/bin linearly; no sharp transition at 70-85% on Llama |
+| Exp 028 late accuracy gradient (22%) at 5% dose | Exp 028 (3 coarse bins) | Exp 043 (10 bins at 5%: late avg=8.8%, bin 9 only=15.8%) | Coarse binning inflated estimate; actual recovery concentrated at bin 9 only |
 
 ---
 
@@ -211,11 +215,11 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 1. **Why does instruction tuning convert V digital→analog but preserve K digital?** Hypothesis: K defines routing (architectural constraint from QK mechanism), V carries content (reorganizable by RLHF). (Exp 036)
 2. **Does K-only PGD succeed on Phi (MHA)?** Would confirm null space is universal K-routing phenomenon beyond GQA. (Exp 034 motivation)
 3. **Why is Qwen K-direction MORE robust than Llama despite being "digital"?** Possible: discrete direction clusters in digital encoding — random replacement sometimes lands near valid codewords. (Exp 029)
-4. **Does a 5% dose reveal encoding-dependent accuracy gradients?** At 10% dose, accuracy saturates on BOTH Qwen and Llama (Exps 041-042). At 5% dose (Exp 028), Llama showed a gradient (0%→22%). A 5% 10-decile sweep on both models would test whether digital encoding creates position-dependent protection below the saturation threshold. (Exp 021, 028, 041, 042)
+4. **Does a lower dose (<5%) reveal encoding-dependent accuracy gradients on Llama?** 5% dose on Llama (Exp 043) still saturates accuracy at 0-2.6% for bins 0-6; only bin 9 (15.8%) recovers. Exp 028's "late=22%" was inflated by coarse binning. A 2-3% dose sweep would test whether Llama has positional accuracy structure at ultra-low perturbation. Qwen at 5% dose still untested. (Exp 028, 041, 042, 043)
 5. **Can TC-aware compression outperform H2O on actual KV eviction benchmarks?** TC > H2O at noise injection, but never tested on real compression. (Exp 013)
 
 ### Medium Priority (mechanistic depth)
-6. **Why does V-direction perturbation at 10% fraction drop accuracy to 56-71%?** V-magnitude at σ≤1 gives 100% immunity, but V-direction replacement at 10% of late positions is significantly destructive. Is V-direction immunity only at lower fractions (1-5%)? (Exp 041, 042)
+6. **V-direction immunity is dose-dependent (PARTIALLY ANSWERED).** V-dir at 5% dose = 92.1% (immune); V-dir at 10% = 56-71% (destructive). The V-direction vulnerability is confined to >5% fraction. Remaining question: where is the exact threshold (between 5% and 10%)? (Exp 041, 042, 043)
 7. **WHY do late positions selectively affect accuracy but not text?** Hypothesis: answer computation via attention from final positions to late reasoning positions; text computation is more local. (Exp 021)
 7. **Is there a "procedural" third channel beyond text/answer?** KV cache steering (Belitsky 2025) encodes reasoning STYLE. Hub positions may be procedural nodes. (Lit scan 20)
 8. **Why is Mistral K the most magnitude-robust of all models (100% at σ=1)?** Model size (7B) or sliding window attention? (Exp 037)
@@ -298,6 +302,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 |-----|-------|-------|------------|
 | 041 | 41 | Llama-Instruct | 10-decile K-only sweep: accuracy saturated ~0% at all positions (Llama K-routing extremely fragile); text gradient 9→94% (linear, no Reasoning Horizon); K > V +55pp at bin 9 |
 | 042 | 42 | Qwen-Base | 10-decile K-only sweep: accuracy saturated 0-4% at all positions (matches Llama); text 15→95% linear (r=0.997); K > V +52pp at bin 9; encoding-independent pattern confirmed |
+| 043 | 43 | Llama-Instruct | 5% dose 10-decile sweep: accuracy STILL saturated 0-2.6% bins 0-6; only bin 9=15.8% recovers; V-only immunity RESTORED at 5% (92.1%); K > V gap +76pp; text gradient dose-independent; Exp 028 "22%" was inflated |
 
 ---
 
