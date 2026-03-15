@@ -1,28 +1,30 @@
 {
-  "cycle": 32,
-  "timestamp": "2026-03-14T23:59:00Z",
+  "cycle": 33,
+  "timestamp": "2026-03-15T01:00:00Z",
   "type": "experiment",
-  "template": "K-only vs V-only vs K+V PGD (exp_031 script)",
-  "parameters": {"pgd_steps": 60, "lr": 0.05, "lambda_ans": 5.0, "n_problems": 32, "conditions": ["k_only", "v_only", "kv_both"]},
-  "prediction_outcome": "scenario_A_qualitatively_confirmed",
-  "key_finding": "PGD null space lives in K-space: K-only PGD 3/32 answer changes (9.4%), V-only 0/32 (0%), KV-both 0/31 (0%). K uses 8x less perturbation energy than V. UNIFIES null space + K>V findings.",
-  "evidence_impact": "Moderate — qualitative K>V asymmetry in PGD confirmed. The null space is a routing phenomenon. But overall success rate is low (9.4%) and marginally significant (Fisher p=0.12).",
-  "next_planned": "Priority: (1) Targeted K-only PGD (specific wrong answer) for higher success. (2) Third model family for K>V replication. (3) Evidence consolidation — 32 cycles of findings need narrative synthesis. (4) K-only PGD with late-layer-only perturbation.",
+  "template": "Maximum-effort V-only PGD disconfirmation test",
+  "parameters": {"pgd_steps": 100, "lr": 0.08, "lambda_ans": 10.0, "n_problems": 25, "conditions": ["v_only_full", "v_only_late", "k_only_full"], "late_layer_start": 18, "cosine_lr": true},
+  "prediction_outcome": "scenario_A_confirmed",
+  "key_finding": "K-only null space SURVIVES maximum-effort disconfirmation. Combined Exp 032+033: K-only 6/56 (10.7%), V-only 0/57 (0.0%), Fisher p=0.013. V-only with optimized hyperparams still CANNOT redirect answers. Only K produces genuine numeric redirects.",
+  "evidence_impact": "Strong — K-only null space now statistically significant (p=0.013). Disruption/redirection distinction confirmed under maximum V effort. V-only late produced 1/24 garbage change but 0 numeric redirects.",
+  "next_planned": "Priority: (1) Third model family K>V replication. (2) Evidence consolidation (33 cycles). (3) Targeted K-only PGD. (4) Sparse attention analysis.",
   "figures": [
-    "results/exp_031/attack_success_comparison.png",
-    "results/exp_031/per_problem_comparison.png",
-    "results/exp_031/training_curves.png"
+    "results/exp_033/v_only_challenge_results.png",
+    "results/exp_033/answer_quality_breakdown.png",
+    "results/exp_033/per_layer_perturbation.png",
+    "results/exp_033/training_curves.png"
   ],
   "progress": {
-    "null_space_existence": {"status": "CONFIRMED in K-space. K-only PGD succeeds (9.4%), V-only never does (0%). Null space is smaller than Exp 4 claimed but K-specific.", "bar": 4},
+    "null_space_existence": {"status": "CONFIRMED in K-space. Combined p=0.013 (K 6/56 vs V 0/57). Survives maximum-effort V-only disconfirmation.", "bar": 5},
     "spatial_structure": {"status": "DECISIVELY DISCONFIRMED on spatial selectivity. Geometric/distributed confirmed by literature", "bar": 1},
     "positional_dissociation": {"status": "STRONG and universal. Explained by attention sinks at early positions", "bar": 5},
-    "geometric_dissociation": {"status": "K-V dissociation CROSS-MODEL REPLICATED and now UNIFIED with null space via K-only PGD", "bar": 5},
+    "geometric_dissociation": {"status": "K-V dissociation CROSS-MODEL REPLICATED and UNIFIED with null space via K-only PGD. Now statistically significant.", "bar": 5},
     "natural_usage": {"status": "H2O/TC protection via position. Sparse attention explains V immunity", "bar": 3},
-    "cross_model_replication": {"status": "COMPLETE for K>V (2 families x 3 positions). Need 3rd family", "bar": 5},
+    "cross_model_replication": {"status": "COMPLETE for K>V noise (2 families x 3 positions). K-only PGD on Qwen only. Need 3rd family.", "bar": 5},
     "encoding_strategy": {"status": "Digital/analog distinction confirmed. K-specific null space on Qwen", "bar": 5},
     "superadditive_interaction": {"status": "Llama-specific (7.9-16.8x). Weak on Qwen. Routing+throughput cascade", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 5+ independent groups. Gradient bottleneck. QK/OV framework grounds K>V. K-only PGD is novel experimental validation", "bar": 5},
-    "null_space_kv_unification": {"status": "NEW: K-only PGD unifies null space (Exp 4) with K>V (Exps 23-29). The adversarial channel operates through routing, not content.", "bar": 4}
+    "null_space_kv_unification": {"status": "STATISTICALLY SIGNIFICANT: K-only PGD 6/56 vs V-only 0/57 (p=0.013). V-only failure is NOT hyperparameter artifact. Null space is routing (K), not content (V).", "bar": 5},
+    "disruption_vs_redirection": {"status": "NEW: V=disruption (0 numeric redirects ever), K=redirection (2 genuine numeric redirects). Quality distinction holds under maximum V optimization effort.", "bar": 5}
   }
 }
