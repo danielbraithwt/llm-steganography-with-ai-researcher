@@ -444,3 +444,18 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 **For KV cache compression:** The eviction benchmark series (Exp 055-058) reveals critical insights. "Recent" (StreamingLLM-style: sinks + most recent) achieves 100% accuracy at ALL budgets (25-75%) on both models — the ONLY universally robust strategy, now confirmed across 6 budget levels. K-norm and cumulative attention (true H2O) are ANTI-CORRELATED on Llama (rho=-0.435, replicated n=17) but orthogonal on Qwen (rho=0.001). True H2O selects early positions (Q1=39-40%, mean_pos=0.32) because earlier positions participate in MORE query-key interactions, accumulating attention regardless of content value. K-norm selects middle-late positions (mean_pos=0.52-0.56) where content-density is highest. Sinks account for only 11-12% of true H2O's early bias — the problem is structural, not just about attention sinks. Two partial fixes: sink-excluded H2O gains +11.8pp on Llama at 33%; late-layer H2O gains +13.3pp on Qwen at 33%. But neither fully rescues true H2O to K-norm levels. The budget crossover on Llama is at 40% (true_h2o = k_norm = 76.5%); above 40%, true H2O wins (100% at 60% vs k_norm 82.4%). Most strikingly, random selection OUTPERFORMS both true H2O and K-norm at low budgets (25-33%) on Llama — on analog models, any selection bias hurts more than random sampling. The K>V perturbation hierarchy does NOT translate to compression: phantom routing (keeping K while zeroing V) is worse than full eviction. Head-selective compression (answer heads 2x budget) outperforms K-norm H2O by +8.7pp on Llama.
 
 **For latent reasoning:** The text bottleneck is now mainstream consensus in the field. Our results provide the most detailed mechanistic characterization of HOW the bottleneck operates at the KV cache level: K-routing carries the answer computation, V-content carries text prediction, and these channels share the same cache but are functionally separable.
+
+---
+
+## Phase 2: Natural Channel Usage
+
+Phase 2 begins at cycle 65. Focus shifts from perturbation-based causal evidence to **observational (non-perturbation) evidence** that models naturally use the K-routing hidden channel during normal inference.
+
+### Experiment A: Early Answer Decodability (Linear Probe)
+<!-- Results will be added as experiments complete -->
+
+### Experiment B: Attention Pattern Divergence
+<!-- Results will be added as experiments complete -->
+
+### Experiment C: Cross-Task Channel Generalization
+<!-- Results will be added as experiments complete -->

@@ -15,7 +15,7 @@
   "prediction_outcome": "Scenario B confirmed (K uniform) + Scenario D partially confirmed (V differentiates)",
   "key_finding": "K spectral properties do NOT differentiate answer from dispensable heads (K eff rank ratio 1.003-1.005, p=0.76-0.94 ns). Head specialization is a Q*K interaction effect. SURPRISE: V spectral properties DO differentiate — answer heads V eff rank +1.1-1.2 higher (p<0.0001 both models). Answer heads carry more distributed V-content.",
   "evidence_impact": "Strong negative — K spectral geometry cannot predict head function. Adds two new evidence entries (#94, #95). Adds one disconfirmed claim. Opens new question about V-content specialization.",
-  "next_planned": "Q-head spectral analysis to test whether head specialization lives in Q projections; attention pattern analysis for answer heads",
+  "next_planned": "Phase 2 Experiment A: Early answer decodability (linear probe on K-cache)",
   "figures": [
     "results/exp_064/per_head_eff_rank_Qwen3-4B-Base.png",
     "results/exp_064/per_head_top1_energy_Qwen3-4B-Base.png",
@@ -33,7 +33,8 @@
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
     "geometric_dissociation": {"status": "K > V UNIVERSAL: 8 angles. K spectral geometry uniform across heads (Exp 064). V spectral geometry DOES differentiate answer vs dispensable heads.", "bar": 5},
     "head_level_analysis": {"status": "COMPLETE + SPECTRAL: Two-regime on Qwen (decisive), near-collapse on Llama. Per-head K spectral uniform. V spectral differentiates. Head specialization is Q*K interaction, not K geometry.", "bar": 5},
-    "natural_usage": {"status": "DECISIVE for post-hoc: 'Recent' 134/134 pooled [97.3%, 100%]. CAVEAT: may not generalize to real-time decoding.", "bar": 5},
+    "compression_practical": {"status": "DECISIVE for post-hoc: 'Recent' 134/134 pooled [97.3%, 100%]. CAVEAT: may not generalize to real-time decoding.", "bar": 5},
+    "phase2_natural_channel": {"status": "not_started", "bar": 0},
     "cross_model_replication": {"status": "COMPLETE: 4 families, 5 variants.", "bar": 5},
     "encoding_strategy": {"status": "COMPLETE TAXONOMY + geometric evidence.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 6 scans, 65+ papers, 8-angle K>V confirmation.", "bar": 5}
