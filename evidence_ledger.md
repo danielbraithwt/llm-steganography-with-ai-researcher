@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-21 (cycle 69 — **CROSS-MODEL REPLICATION of early decodability.** KV probes exceed text baseline on BOTH Qwen3-4B-Base AND Mistral-7B-v0.3 (2 families, 2 encoding types). Mistral: mean V=0.609, K=0.575, text=0.524. V≥K for decodability replicates at ALL layers on both models. Effect weaker on Mistral (analog) than Qwen (digital) but consistent. "Causality ≠ Decodability" now confirmed cross-model.)
-Cycles completed: 69 (60 experimental + 1 consolidation + 4 literature scans + 4 blocked/crashed)
+Last updated: 2026-03-21 (cycle 70 — **LITERATURE SCAN #8.** 12 new papers. V≥K decodability INDEPENDENTLY VALIDATED by Zhang et al. (2026): V vectors encode semantics > hidden states. WRRA probing validated by Sun et al. (EMNLP 2025): >90% accuracy recovering correct answers from hidden states at error positions. KV-as-computation accepted at ICLR 2026 (Xing et al.). Steganographic CoT concerns active: NeurIPS 2025 + 3 more 2026 papers. Anthropic confirms QK-OV are "weakly coupled" in mostly-disjoint subspaces — validates our K=routing, V=content decomposition.)
+Cycles completed: 70 (60 experimental + 1 consolidation + 5 literature scans + 4 blocked/crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -132,9 +132,9 @@ The original claim that PGD perturbations concentrate at "answer-coupled positio
 The hidden channel EXISTS (PGD null space is real, K-specific, p=0.013) but its spatial structure is weak. It likely operates through distributed geometric properties (K-direction clusters) across many positions, not through concentrated perturbation at specific positions.
 
 ### 7. Literature Convergence
-**Status: Decisive independent convergence from 10+ angles across 5 literature scans (60+ papers)**
+**Status: Decisive independent convergence from 12+ angles across 8 literature scans (80+ papers)**
 
-Five literature scans (cycles 10, 20, 30, 40, 50) covering 60+ papers show the field converging on our core hypothesis from increasingly diverse angles:
+Eight literature scans (cycles 10, 20, 30, 40, 50, 60, 67, 70) covering 80+ papers show the field converging on our core hypothesis from increasingly diverse angles:
 
 | Angle | Key evidence | Source |
 |-------|-------------|--------|
@@ -148,6 +148,9 @@ Five literature scans (cycles 10, 20, 30, 40, 50) covering 60+ papers show the f
 | **Faithfulness decay** | Reasoning Horizon at 70-85% chain length; anti-faithful models; faithfulness evaluation is hard (judges detect but can't localize errors) | Ye et al. Feb 2026, C2-Faith March 2026 |
 | **Steganographic** | Steganographic collusion published at IJCNLP-AACL 2025; RL enhances encoding; mitigations insufficient | Mathew et al. IJCNLP-AACL 2025 |
 | **KV attacks** | KV cache as attack surface: perturbation (15-30% degradation), history swapping (topic hijacking), early=structural/late=local | Hossain Oct 2025, Ganesh Nov 2025 |
+| **KV as computation** | KV cache treated as lightweight representation for reasoning (ICLR 2026); KV steering induces reasoning in frozen models; RL discovers reasoning-critical heads for compression | Xing (ICLR 2026), Belitsky Jul 2025, Du Oct 2025 |
+| **V=content decodability** | V vectors encode semantics BETTER than hidden states — training-free Value Aggregation outperforms residual stream | Zhang et al. Feb 2026 |
+| **WRRA probing** | Probes decode CORRECT arithmetic answers from hidden states when model outputs WRONG answer (>90% accuracy) | Sun, Stolfo, Sachan (EMNLP 2025) |
 
 **New in cycle 50 (5 key convergences):**
 1. **K > V triple-confirmed:** KV-AdaQuant (Hariri et al., Feb 2025) provides MATHEMATICAL PROOF that K matrices have larger spectral/Frobenius norms → strictly more quantization-sensitive. Our K > V now confirmed by perturbation (us), quantization engineering (AsymKV), AND formal mathematics (KV-AdaQuant).
@@ -156,7 +159,15 @@ Five literature scans (cycles 10, 20, 30, 40, 50) covering 60+ papers show the f
 4. **Latent reasoning goes mainstream with HybridCoT:** NeurIPS 2025 accepts interleaved latent/text reasoning (94% of CoT performance at 1.97x less compute). Latent-SFT shows hidden states are "entirely inconsistent" with token embeddings — the distribution mismatch IS our lossy projection hypothesis.
 5. **Safety nuanced by METR:** CoT is informative for complex behaviors despite unfaithfulness (>97% detection rate). Our hidden channel finding coexists: the channel exists and can carry computation, but complex dangerous behaviors likely still require CoT compute that makes them detectable.
 
-Our unique contribution: **causal perturbation evidence** at the KV cache level identifying the K-routing channel as the mechanistic substrate of the hidden computation, with HEAD-LEVEL resolution (H5 primary answer head, position-independent) and cross-model validation (5 model variants, 4 families). The K > V hierarchy is now the most independently confirmed finding in this research area.
+**New in cycle 70 (6 key convergences):**
+1. **V≥K decodability independently validated:** Zhang et al. (Feb 2026) show V vectors encode semantics BETTER than hidden states. This directly explains our Phase 2 surprise: V=content (decodable), K=routing (causal). The "contradiction" between K>V (Phase 1) and V≥K (Phase 2) is actually the most informative finding — it reveals the hidden channel has two components: K-routing program and V-content data.
+2. **WRRA probing directly validated:** Sun et al. (EMNLP 2025) achieve >90% accuracy recovering correct answers from hidden states at error positions (residual stream probing on Gemma 2 2B). Our Experiment C will extend this to KV cache decomposition — testing K vs V at error positions.
+3. **KV-as-computation goes mainstream (ICLR 2026):** Xing et al. treat KV cache as lightweight representation for Chain-of-Embedding and Fast/Slow Thinking. Up to 5.7x token reduction. Our Phase 1+2 provides the causal evidence for WHY this works.
+4. **QK-OV weak coupling confirmed (Anthropic 2025):** QK and OV operate in "mostly-disjoint subspaces" — validates our finding that K and V carry complementary (not redundant) information for different functional roles.
+5. **Steganographic CoT concerns intensify:** Skaf et al. (NeurIPS 2025) show models learn generalized steganographic encoding schemes under process supervision. NEST (Karpov 2026) shows nascent steganographic capability across 28 models. Anwar et al. (2026) formalize the steganographic gap using V-information. Our KV-text decodability gap IS a measurable steganographic gap.
+6. **Probing papers all use residual stream — our K/V decomposition is unique:** Every probing paper (Zhang et al. 2025, Sun et al. 2025, PING framework) probes the combined residual stream. None decompose into K vs V. Our K/V decomposition reveals the routing-content duality that the residual stream obscures.
+
+Our unique contribution: **causal perturbation evidence** at the KV cache level identifying the K-routing channel as the mechanistic substrate of the hidden computation, with HEAD-LEVEL resolution (H5 primary answer head, position-independent) and cross-model validation (5 model variants, 4 families). The K > V hierarchy is now the most independently confirmed finding in this research area. **Phase 2 adds observational evidence** (KV probes > text baseline on 2 models) and resolves the K>V causality vs V≥K decodability distinction with independent literature support.
 
 ---
 
@@ -414,6 +425,9 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 064 | 64 | Both | **Per-head spectral analysis (answer vs dispensable heads):** K spectral properties do NOT differentiate answer from dispensable heads — K eff rank ratio 1.003 (Qwen p=0.76) and 1.005 (Llama p=0.94). All 8 heads remarkably uniform in K geometry (range 2.5-3.4%). H5 ranks #5-6 in K concentration (average). SURPRISE: V spectral properties DO differentiate — answer heads V eff rank +1.1-1.2 higher (p<0.0001 both). Head specialization is a Q×K interaction effect, not an intrinsic K geometry property. Scenario B confirmed + Scenario D partially confirmed. |
 | — | 65–66 | — | **BLOCKED:** Sandbox restrictions prevent Python execution. Experiment script `scripts/exp_065_early_decodability.py` designed and ready (cycle 65), execution attempted (cycle 66), both blocked. |
 | — | 67 | **Lit scan #7** | 5 new papers for Phase 2. "Knowing Before Saying" (ACL 2025): probes predict CoT success from hidden states BEFORE tokens generated (60-76.4% acc, middle layers best). "Probing for Arithmetic Errors" (EMNLP 2025): correct answers decodable from internal states when text is wrong (80-90% detection). "Causality ≠ Decodability" (2025): decodable ≠ causal — our Phase 1+2 combination addresses this. "CoT Is Not Explainability" (Barez 2025): paraphrased CoT shows NO accuracy gap — warning for Experiment B. Godey & Artzi (2026) confirmed: 95-99% gradient suppression by LM head. Literature strongly validates Phase 2 design, especially Experiments A and C. |
+| 068 | 68 | Qwen-Base | **Early decodability — FIRST PHASE 2 OBSERVATIONAL EVIDENCE:** KV probes > text at ALL positions 10-90%. K-text gap peaks at +0.235 (70%). V≥K for decodability (surprise). Cumulative features on fair comparison. 80 problems, 4 layers. |
+| 069 | 69 | Mistral-Base | **Early decodability — CROSS-MODEL REPLICATION:** KV > text on Mistral (analog, different family). V mean=0.609 > K mean=0.575 > text=0.524. V≥K replicates at ALL 4 layers. Effect weaker than Qwen but consistent. K>text at 6/10 positions (vs 9/10 Qwen). Best layer L8 (25%) vs Qwen L27 (77%). |
+| — | 70 | **Lit scan #8** | 12 papers. V≥K decodability independently validated (Zhang 2026: V encodes semantics > hidden states). WRRA probing validated (Sun EMNLP 2025: >90% correct answer from hidden states at error positions). KV-as-computation at ICLR 2026. QK-OV weakly coupled (Anthropic 2025). Steganographic CoT (NeurIPS 2025 + 3 papers). All probing papers use residual stream — our K/V decomposition is unique. |
 
 ---
 

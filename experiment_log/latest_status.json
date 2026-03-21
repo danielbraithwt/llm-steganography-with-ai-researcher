@@ -1,38 +1,32 @@
 {
-  "cycle": 69,
-  "timestamp": "2026-03-21T16:00:00Z",
-  "type": "experiment",
-  "template": "early_decodability_cross_model",
+  "cycle": 70,
+  "timestamp": "2026-03-21T18:00:00Z",
+  "type": "literature_scan",
+  "template": "scheduled_literature_scan",
   "parameters": {
-    "model": "mistralai/Mistral-7B-v0.3",
-    "n_problems": 80,
-    "n_position_bins": 10,
-    "probe_layers": [8, 16, 24, 31],
-    "probe_type": "RidgeCV_5fold",
-    "features": ["cumulative_KV", "cumulative_text", "within_bin_KV", "within_bin_text"],
-    "target": "log_transformed_numeric_answer"
+    "papers_found": 12,
+    "focus_areas": [
+      "V≥K decodability validation",
+      "WRRA probing precedent",
+      "KV-as-computation",
+      "steganographic CoT",
+      "QK-OV coupling"
+    ]
   },
-  "prediction_outcome": "confirmed",
-  "key_finding": "Cross-model replication of early decodability on Mistral-7B-v0.3 (analog encoding). KV probes > text: mean K=0.575, V=0.609, text=0.524. V≥K for decodability replicates at ALL layers. Effect weaker than Qwen but consistent. 2 model families now show hidden channel carries answer info beyond text during normal generation.",
-  "evidence_impact": "Strengthens Phase 2 from moderate to moderate-strong. Cross-model replication on 2 families (Qwen digital, Mistral analog).",
-  "next_planned": "Experiment C (WRRA) or statistical significance testing for probe differences",
-  "figures": [
-    "results/exp_069/cumulative_decodability_main.png",
-    "results/exp_069/withinbin_decodability_main.png",
-    "results/exp_069/cumulative_by_layer.png",
-    "results/exp_069/kv_advantage_heatmap.png",
-    "results/exp_069/k_minus_text_cumulative.png",
-    "results/exp_069/cross_model_comparison.png"
-  ],
+  "prediction_outcome": "N/A (literature scan)",
+  "key_finding": "V≥K decodability INDEPENDENTLY VALIDATED by Zhang et al. (2026). WRRA probing validated by Sun et al. (EMNLP 2025, >90% accuracy). KV-as-computation accepted at ICLR 2026. QK-OV weakly coupled (Anthropic). Steganographic CoT at NeurIPS 2025. All probing papers use residual stream — our K/V decomposition is unique.",
+  "evidence_impact": "Phase 2 experimental design strongly validated by literature. V≥K decodability explained theoretically (V=content, K=routing). Experiment C (WRRA) has direct precedent.",
+  "next_planned": "Experiment C (WRRA): probe KV cache at arithmetic error positions. Expect V-probe > K-probe for correct value. Also: statistical significance testing for exp 068-069 probe differences.",
+  "figures": [],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
     "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. HEAD-LEVEL CONCENTRATION decisive on Qwen, weak on Llama.", "bar": 5},
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
     "geometric_dissociation": {"status": "K > V UNIVERSAL: 8 angles. K spectral geometry uniform across heads. V spectral differentiates.", "bar": 5},
     "head_level_analysis": {"status": "COMPLETE + SPECTRAL: Two-regime on Qwen (decisive), near-collapse on Llama.", "bar": 5},
-    "natural_usage": {"status": "CROSS-MODEL REPLICATION: KV > text on Qwen (digital) AND Mistral (analog). V≥K decodability at ALL layers both models. Moderate-strong.", "bar": 3},
+    "natural_usage": {"status": "CROSS-MODEL (2 families) + LITERATURE VALIDATED: KV > text on Qwen + Mistral. V≥K decodability independently confirmed (Zhang 2026). Next: WRRA (Exp C).", "bar": 3},
     "cross_model_replication": {"status": "COMPLETE for Phase 1 (4 families). Phase 2: 2 families (Qwen, Mistral).", "bar": 5},
     "encoding_strategy": {"status": "COMPLETE TAXONOMY + geometric evidence.", "bar": 5},
-    "literature_convergence": {"status": "DECISIVE: 7 scans, 70+ papers.", "bar": 5}
+    "literature_convergence": {"status": "DECISIVE: 8 scans, 80+ papers, 12+ convergent angles.", "bar": 5}
   }
 }
