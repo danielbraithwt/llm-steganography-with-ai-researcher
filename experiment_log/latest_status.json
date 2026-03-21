@@ -1,42 +1,29 @@
 {
-  "cycle": 64,
-  "timestamp": "2026-03-15T23:45:00Z",
-  "type": "experiment",
-  "template": "per_head_spectral_analysis",
+  "cycle": 66,
+  "timestamp": "2026-03-21T11:15:00Z",
+  "type": "blocked",
+  "template": "early_decodability_linear_probe",
   "parameters": {
-    "models": ["Qwen/Qwen3-4B-Base", "meta-llama/Llama-3.1-8B-Instruct"],
-    "n_problems": 20,
-    "heads_analyzed": 8,
-    "layers_analyzed": "all (36 Qwen, 32 Llama)",
-    "answer_heads": [0, 5],
-    "dispensable_heads": [1, 2, 3, 4, 6, 7],
-    "metrics": ["effective_rank", "top1_energy", "spectral_gap", "top10_energy", "decay_rate"]
+    "model": "Qwen/Qwen3-4B-Base",
+    "n_problems_target": 80,
+    "n_position_bins": 10,
+    "probe_layers": "25%, 50%, 75%, 100% depth",
+    "probe_type": "ridge_regression_5fold_cv"
   },
-  "prediction_outcome": "Scenario B confirmed (K uniform) + Scenario D partially confirmed (V differentiates)",
-  "key_finding": "K spectral properties do NOT differentiate answer from dispensable heads (K eff rank ratio 1.003-1.005, p=0.76-0.94 ns). Head specialization is a Q*K interaction effect. SURPRISE: V spectral properties DO differentiate — answer heads V eff rank +1.1-1.2 higher (p<0.0001 both models). Answer heads carry more distributed V-content.",
-  "evidence_impact": "Strong negative — K spectral geometry cannot predict head function. Adds two new evidence entries (#94, #95). Adds one disconfirmed claim. Opens new question about V-content specialization.",
-  "next_planned": "Phase 2 Experiment A: Early answer decodability (linear probe on K-cache)",
-  "figures": [
-    "results/exp_064/per_head_eff_rank_Qwen3-4B-Base.png",
-    "results/exp_064/per_head_top1_energy_Qwen3-4B-Base.png",
-    "results/exp_064/layer_resolved_ans_vs_disp_Qwen3-4B-Base.png",
-    "results/exp_064/head_ranking_Qwen3-4B-Base.png",
-    "results/exp_064/per_head_eff_rank_Llama-3.1-8B-Instruct.png",
-    "results/exp_064/per_head_top1_energy_Llama-3.1-8B-Instruct.png",
-    "results/exp_064/layer_resolved_ans_vs_disp_Llama-3.1-8B-Instruct.png",
-    "results/exp_064/head_ranking_Llama-3.1-8B-Instruct.png",
-    "results/exp_064/cross_model_per_head_comparison.png"
-  ],
+  "prediction_outcome": "NOT_RUN",
+  "key_finding": "BLOCKED: Sandbox permissions prevent Python execution. Experiment script and pre-registered predictions ready from cycle 65.",
+  "evidence_impact": "None — no experiment executed",
+  "next_planned": "Re-run exp_065_early_decodability.py when Python permissions are available",
+  "figures": [],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
     "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. HEAD-LEVEL CONCENTRATION decisive on Qwen, weak on Llama.", "bar": 5},
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
-    "geometric_dissociation": {"status": "K > V UNIVERSAL: 8 angles. K spectral geometry uniform across heads (Exp 064). V spectral geometry DOES differentiate answer vs dispensable heads.", "bar": 5},
-    "head_level_analysis": {"status": "COMPLETE + SPECTRAL: Two-regime on Qwen (decisive), near-collapse on Llama. Per-head K spectral uniform. V spectral differentiates. Head specialization is Q*K interaction, not K geometry.", "bar": 5},
-    "compression_practical": {"status": "DECISIVE for post-hoc: 'Recent' 134/134 pooled [97.3%, 100%]. CAVEAT: may not generalize to real-time decoding.", "bar": 5},
-    "phase2_natural_channel": {"status": "not_started", "bar": 0},
+    "geometric_dissociation": {"status": "K > V UNIVERSAL: 8 angles. K spectral geometry uniform across heads. V spectral differentiates.", "bar": 5},
+    "head_level_analysis": {"status": "COMPLETE + SPECTRAL: Two-regime on Qwen (decisive), near-collapse on Llama.", "bar": 5},
+    "natural_usage": {"status": "NOT STARTED — Phase 2 experiment designed but blocked by sandbox permissions.", "bar": 0},
     "cross_model_replication": {"status": "COMPLETE: 4 families, 5 variants.", "bar": 5},
     "encoding_strategy": {"status": "COMPLETE TAXONOMY + geometric evidence.", "bar": 5},
-    "literature_convergence": {"status": "DECISIVE: 6 scans, 65+ papers, 8-angle K>V confirmation.", "bar": 5}
+    "literature_convergence": {"status": "DECISIVE: 6 scans, 65+ papers.", "bar": 5}
   }
 }

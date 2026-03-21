@@ -165,7 +165,7 @@ while true; do
         --effort high \
         -p "You are an autonomous research agent. Read AGENT.md for your full instructions. This is cycle $CYCLE_NUM. LITERATURE_SCAN_EVERY=${LITERATURE_SCAN_EVERY:-10}. Execute one complete research cycle. The experiment timeout is ${EXPERIMENT_TIMEOUT} seconds.${DRY_RUN_MSG}" \
         --allowedTools "Bash(command:*)" "Read" "Write" "Edit" "WebSearch" "WebFetch" \
-        --max-turns 50 \
+        --max-turns 200 \
         2>&1 | tee "logs/cycle_${CYCLE_NUM_PADDED}.log" || CLAUDE_EXIT=$?
 
     # Step 2: Check result — detect quota/rate limit errors
