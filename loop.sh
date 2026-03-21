@@ -165,7 +165,6 @@ while true; do
         --effort high \
         -p "You are an autonomous research agent. Read AGENT.md for your full instructions. This is cycle $CYCLE_NUM. LITERATURE_SCAN_EVERY=${LITERATURE_SCAN_EVERY:-10}. Execute one complete research cycle. The experiment timeout is ${EXPERIMENT_TIMEOUT} seconds.${DRY_RUN_MSG}" \
         --allowedTools "Bash(command:*)" "Read" "Write" "Edit" "WebSearch" "WebFetch" \
-        --dangerously-skip-permissions \
         --max-turns 200 \
         2>&1 | tee "logs/cycle_${CYCLE_NUM_PADDED}.log" || CLAUDE_EXIT=$?
 
