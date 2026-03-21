@@ -430,6 +430,8 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 069 | 69 | Mistral-Base | **Early decodability — CROSS-MODEL REPLICATION:** KV > text on Mistral (analog, different family). V mean=0.609 > K mean=0.575 > text=0.524. V≥K replicates at ALL 4 layers. Effect weaker than Qwen but consistent. K>text at 6/10 positions (vs 9/10 Qwen). Best layer L8 (25%) vs Qwen L27 (77%). |
 | — | 70 | **Lit scan #8** | 12 papers. V≥K decodability independently validated (Zhang 2026: V encodes semantics > hidden states). WRRA probing validated (Sun EMNLP 2025: >90% correct answer from hidden states at error positions). KV-as-computation at ICLR 2026. QK-OV weakly coupled (Anthropic 2025). Steganographic CoT (NeurIPS 2025 + 3 papers). All probing papers use residual stream — our K/V decomposition is unique. |
 | 071 | 71 | Qwen-Base | **WRRA attempt + computation-position probes:** Arithmetic error rate near-zero (2/1339=0.15%) — WRRA underpowered. BUT computation-position probes: V R=0.975, K R=0.961, text R=0.108 at arithmetic "=" positions. KV-text gap +0.85 (~10x general position gap). V>K at all 4 layers. 1337 operations, shuffle R≈-0.06. |
+| 072 | 72 | Mistral-Base | **Computation-position cross-model + expression-embed baseline:** KV(R=0.435) > expr-embed(0.310) > token-embed(0.111). 2.2x weaker than Qwen. Expr-embed narrows KV advantage to +0.125. WRRA alignment NEGATIVE (below chance, n=91 errors). Effect model-dependent. |
+| 073 | 73 | Qwen-Base | **Expression-embed retroactive baseline + permutation significance:** V R=0.977 replicates. Expr-embed R=0.771 (strong but below V). V-expr gap=+0.206 (narrows from +0.867 over token-embed but remains substantial). Perm p=0.000 for V,K,expr. Token-embed p=0.936 (uninformative). 1474 operations. Gap 1.65x > Mistral's +0.125. |
 
 ---
 
@@ -468,7 +470,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 ## Phase 2: Natural Channel Usage (Observational Evidence)
 
 ### 7. KV Cache Carries Answer Information Beyond Text During Normal Generation
-**Status: Moderate-Strong (2 models, 2 families — cross-model replication achieved)**
+**Status: Moderate-Strong (2 models, 2 families, expression-embed baseline tested, permutation significance confirmed)**
 
 **Experiment:** Train ridge regression probes (5-fold CV) on cumulative KV cache activations vs cumulative token embeddings at 10 normalized CoT positions, to predict the final numeric answer (log-transformed). Qwen3-4B-Base, 80 correctly-solved GSM8K problems, 4 probe layers.
 
@@ -578,30 +580,58 @@ N=877 correct-arithmetic positions, 5-fold CV, 396 problems, 41.9% accuracy.
 - No "hidden correct computation" evidence on Mistral
 - WRRA rate: only 3/91 errors had correct final answer (3.3%)
 
+**Expression-embedding retroactive baseline on Qwen (Exp 073):**
+
+Pre-registered experiment testing whether the expression-embedding baseline (mean of
+expression token embeddings) collapses Qwen's computation-position gap. Added permutation
+significance testing (N=1000 shuffles).
+
+| Layer | K-probe R | V-probe R | Expr-embed R | Token-embed R | Shuffle V |
+|-------|-----------|-----------|-------------|---------------|-----------|
+| L9 (27%) | 0.932 | 0.946 | 0.771 | -0.080 | -0.052 |
+| L18 (52%) | 0.937 | 0.956 | 0.771 | -0.080 | -0.068 |
+| L27 (77%) | 0.961 | 0.971 | 0.771 | -0.080 | -0.056 |
+| L35 (100%) | **0.965** | **0.977** | **0.771** | -0.080 | -0.042 |
+
+N=1474 correct-arithmetic positions, 5-fold CV, 493 problems, 85.2% accuracy.
+
+**Permutation significance (N=1000):** V p=0.000, K p=0.000, expr p=0.000, token p=0.936.
+
+**Key result: V - expr gap = +0.206.** Expression-embed narrows the gap from +0.867 (over
+token-embed) but does NOT collapse it. The KV cache encodes computation BEYOND what
+expression tokens provide. The gap is 1.65x larger than Mistral's +0.125.
+
 **The computation-position effect is MODEL-DEPENDENT:**
 
-| Metric | Qwen (digital) | Mistral (analog) |
-|--------|---------------|------------------|
-| Best V R | 0.975 | 0.435 |
-| Best K R | 0.961 | 0.431 |
-| Expr-embed R | not tested | 0.310 |
-| Token-embed R | 0.108 | 0.111 |
-| V - expr gap | ? | +0.125 |
-| V - token gap | +0.867 | +0.324 |
-| Error rate | 0.15% | 9.4% |
+| Metric | Qwen (digital, exp 073) | Mistral (analog, exp 072) |
+|--------|------------------------|--------------------------|
+| Best V R | 0.977 | 0.435 |
+| Best K R | 0.965 | 0.431 |
+| Expr-embed R | **0.771** | 0.310 |
+| Token-embed R | -0.080 | 0.111 |
+| **V - expr gap** | **+0.206** | **+0.125** |
+| V - token gap | +1.057 | +0.324 |
+| Perm p (V) | 0.0000 | — |
+| Error rate | 0.1% | 9.4% |
 | WRRA alignment | n/a (n=2) | Below chance |
-| Best layer | 97% depth | 53% depth |
+| Best layer | 100% depth | 53% depth |
 
 The hidden channel at computation positions is: near-perfect on Qwen (digital, high-accuracy),
-moderate on Mistral (analog, low-accuracy). Possible explanations:
+moderate on Mistral (analog, low-accuracy). With the expression-embed baseline, the Qwen
+advantage narrows from "decisive" to "moderate-strong" but remains substantial (+0.206).
+Possible explanations for cross-model difference:
 1. Digital encoding creates sharper cluster structure → more linearly decodable
 2. Higher accuracy models produce cleaner computation representations
 3. Mistral may rely more on text than hidden channel for computation
+4. Even the expression-embed baseline itself is 2.5x more decodable on Qwen (0.771 vs 0.310)
+
+**Dimensionality note:** The V-probe (dim=640-1024) outperforms expr-embed (dim=2560) despite
+having 2.5x FEWER features. The KV cache encodes MORE relevant computation in FEWER dimensions.
 
 **Limitations (remaining):**
-- Expression-embed baseline not yet tested retroactively on Qwen
 - Only 2 models for computation-position comparison
-- No statistical significance testing on KV - expr gap
+- Paired permutation test for V vs expr-embed not completed (individual tests highly significant)
 - WRRA "smoking gun" absent on both models (too few errors on Qwen, negative on Mistral)
+- Expression-embed is a static baseline; hidden-state baseline at expression positions untested
 
-**Key experiments:** Exp 065 (initial, confound identified), Exp 068 (Qwen, corrected), Exp 069 (Mistral, cross-model replication), Exp 071 (computation-position probes + WRRA attempt), Exp 072 (Mistral computation-position + expression-embed baseline + WRRA)
+**Key experiments:** Exp 065 (initial, confound identified), Exp 068 (Qwen, corrected), Exp 069 (Mistral, cross-model replication), Exp 071 (computation-position probes + WRRA attempt), Exp 072 (Mistral computation-position + expression-embed baseline + WRRA), Exp 073 (Qwen expression-embed retroactive baseline + permutation significance)
