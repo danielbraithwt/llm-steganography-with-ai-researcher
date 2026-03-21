@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-21 (cycle 72 — **Computation-position probing on Mistral.** KV > text replicates at arithmetic "=" positions (V R=0.435, K R=0.431, expr-embed R=0.310, token-embed R=0.111). BUT effect is **2.2x weaker** than Qwen (0.975). Expression-embedding baseline narrows the KV advantage to +0.125. WRRA alignment is **negative** (below chance) — no evidence of hidden correct computation at error positions on Mistral. The hidden channel is model-dependent: strong on Qwen (digital encoding), moderate on Mistral (analog).)
-Cycles completed: 72 (62 experimental + 1 consolidation + 5 literature scans + 4 blocked/crashed)
+Last updated: 2026-03-21 (cycle 74 — **Paraphrase disruption DECISIVE NULL.** Replacing ALL non-numeric CoT tokens with random gibberish has ZERO effect on accuracy (215/215 = 100% across original, synonym, and random conditions). The `<<EXPR=RESULT>>` calculator format preserves complete arithmetic information in numeric tokens, making English text entirely redundant. Result is UNINFORMATIVE about the hidden channel hypothesis due to this design confound — the experiment needs to be redesigned with plain-text CoT. Consistent with probing findings: computation flows through numeric positions, not English word positions.)
+Cycles completed: 74 (63 experimental + 1 consolidation + 5 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -432,6 +432,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 071 | 71 | Qwen-Base | **WRRA attempt + computation-position probes:** Arithmetic error rate near-zero (2/1339=0.15%) — WRRA underpowered. BUT computation-position probes: V R=0.975, K R=0.961, text R=0.108 at arithmetic "=" positions. KV-text gap +0.85 (~10x general position gap). V>K at all 4 layers. 1337 operations, shuffle R≈-0.06. |
 | 072 | 72 | Mistral-Base | **Computation-position cross-model + expression-embed baseline:** KV(R=0.435) > expr-embed(0.310) > token-embed(0.111). 2.2x weaker than Qwen. Expr-embed narrows KV advantage to +0.125. WRRA alignment NEGATIVE (below chance, n=91 errors). Effect model-dependent. |
 | 073 | 73 | Qwen-Base | **Expression-embed retroactive baseline + permutation significance:** V R=0.977 replicates. Expr-embed R=0.771 (strong but below V). V-expr gap=+0.206 (narrows from +0.867 over token-embed but remains substantial). Perm p=0.000 for V,K,expr. Token-embed p=0.936 (uninformative). 1474 operations. Gap 1.65x > Mistral's +0.125. |
+| 074 | 74 | Qwen-Base | **Paraphrase disruption DECISIVE NULL:** 100% accuracy across ALL conditions (original, synonym, random). Replacing ALL non-numeric tokens with random gibberish has ZERO effect on accuracy (215/215 on all 3 conditions). The `<<EXPR=RESULT>>` format makes English text completely redundant. UNINFORMATIVE about hidden channel — design confound. Needs redesign with plain-text CoT. |
 
 ---
 
@@ -628,10 +629,27 @@ Possible explanations for cross-model difference:
 **Dimensionality note:** The V-probe (dim=640-1024) outperforms expr-embed (dim=2560) despite
 having 2.5x FEWER features. The KV cache encodes MORE relevant computation in FEWER dimensions.
 
+**Paraphrase disruption — UNINFORMATIVE (Exp 074):**
+
+Replacing ALL non-numeric tokens in the CoT with random gibberish has ZERO effect on answer
+accuracy (215/215 = 100% across original, synonym, and random conditions). The `<<EXPR=RESULT>>`
+format preserves the complete arithmetic chain in numeric tokens, making English text entirely
+redundant. The model extracts answers from `<<EXPR=RESULT>>` expressions regardless of
+surrounding text.
+
+This result is UNINFORMATIVE about the hidden channel hypothesis because the experiment design
+has a critical confound: the format makes the manipulation ineffective by construction. A proper
+paraphrase test requires plain-text CoT without the calculator format.
+
+However, the null result is CONSISTENT with probing findings: the computation that matters flows
+through numeric/arithmetic positions, not through English word positions. The hidden channel
+(if it exists) operates at computation-specific positions, and non-numeric tokens are scaffolding.
+
 **Limitations (remaining):**
 - Only 2 models for computation-position comparison
 - Paired permutation test for V vs expr-embed not completed (individual tests highly significant)
 - WRRA "smoking gun" absent on both models (too few errors on Qwen, negative on Mistral)
 - Expression-embed is a static baseline; hidden-state baseline at expression positions untested
+- Paraphrase disruption uninformative due to `<<EXPR=RESULT>>` format confound — needs redesign
 
-**Key experiments:** Exp 065 (initial, confound identified), Exp 068 (Qwen, corrected), Exp 069 (Mistral, cross-model replication), Exp 071 (computation-position probes + WRRA attempt), Exp 072 (Mistral computation-position + expression-embed baseline + WRRA), Exp 073 (Qwen expression-embed retroactive baseline + permutation significance)
+**Key experiments:** Exp 065 (initial, confound identified), Exp 068 (Qwen, corrected), Exp 069 (Mistral, cross-model replication), Exp 071 (computation-position probes + WRRA attempt), Exp 072 (Mistral computation-position + expression-embed baseline + WRRA), Exp 073 (Qwen expression-embed retroactive baseline + permutation significance), Exp 074 (paraphrase disruption — decisive null due to format confound)

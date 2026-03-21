@@ -1,0 +1,40 @@
+{
+  "original": {
+    "total": 215,
+    "correct": 215,
+    "accuracy": 100.0,
+    "mean_tokens_replaced": 0.0,
+    "mean_tokens_replaceable": 41.46046511627907,
+    "replacement_rate": 0.0
+  },
+  "synonym": {
+    "total": 215,
+    "correct": 215,
+    "accuracy": 100.0,
+    "mean_tokens_replaced": 41.46046511627907,
+    "mean_tokens_replaceable": 41.46046511627907,
+    "replacement_rate": 1.0
+  },
+  "random": {
+    "total": 215,
+    "correct": 215,
+    "accuracy": 100.0,
+    "mean_tokens_replaced": 41.46046511627907,
+    "mean_tokens_replaceable": 41.46046511627907,
+    "replacement_rate": 1.0
+  },
+  "agreement": {
+    "orig_syn": 1.0,
+    "orig_rand": 1.0,
+    "syn_rand": 1.0
+  },
+  "n_generated": 250,
+  "n_correct_generated": 215,
+  "generation_accuracy": 86.0,
+  "n_paired": 215,
+  "drops": {
+    "synonym_drop_pp": 0.0,
+    "random_drop_pp": 0.0
+  },
+  "elapsed_seconds": 1810.2393743991852
+}

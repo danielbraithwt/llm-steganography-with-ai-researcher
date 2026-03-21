@@ -1,29 +1,26 @@
 {
-  "cycle": 73,
-  "timestamp": "2026-03-21T23:30:00Z",
+  "cycle": 74,
+  "timestamp": "2026-03-21T24:00:00Z",
   "type": "experiment",
-  "template": "expr_embed_qwen_permutation",
+  "template": "paraphrase_disruption",
   "parameters": {
     "model": "Qwen/Qwen3-4B-Base",
-    "n_problems": 493,
-    "n_ops_total": 1476,
-    "n_ops_correct": 1474,
-    "n_ops_error": 2,
-    "error_rate": 0.001,
-    "probe_layers": [9, 18, 27, 35],
-    "features": "K, V at '=' position, expression-mean embedding, token embedding",
-    "n_permutations": 1000,
-    "accuracy": 0.852
+    "n_generated": 250,
+    "n_correct": 215,
+    "generation_accuracy": 86.0,
+    "conditions": ["original", "synonym", "random"],
+    "mean_tokens_replaced": 41.5,
+    "replacement_rate": 1.0,
+    "format": "<<EXPR=RESULT>> (calculator format)"
   },
-  "prediction_outcome": "partially_confirmed",
-  "key_finding": "Expression-embed retroactive baseline on Qwen: V R=0.977 (replicates 0.975), expr-embed R=0.771, V-expr gap=+0.206. Gap narrows from +0.867 (over token-embed) but remains SUBSTANTIAL — 1.65x larger than Mistral's +0.125. Permutation p=0.000 for V, K, expr-embed; p=0.936 for token-embed. KV carries computation BEYOND what expression tokens encode. 7/9 pre-registered predictions confirmed.",
-  "evidence_impact": "Computation-position finding survives the stronger expression-embed baseline. Downgraded from 'decisive' to 'moderate-strong': the +0.206 V-expr gap is meaningful but not the +0.867 originally claimed. Dimensionality advantage: KV (dim=640-1024) outperforms expr-embed (dim=2560) with 2.5x fewer features. First permutation significance tests in the program — all key probes overwhelmingly significant.",
-  "next_planned": "Paraphrase disruption (Experiment B). Early-answer decodability with expression-embed methodology. Hidden-state baseline at expression positions (even stronger text baseline). Complete paired permutation test.",
+  "prediction_outcome": "neither_branch",
+  "key_finding": "DECISIVE NULL: 100% accuracy across ALL conditions (original=100%, synonym=100%, random=100%, n=215). Replacing ALL non-numeric tokens with random gibberish has ZERO effect. The <<EXPR=RESULT>> format makes English text completely redundant — model extracts answers from preserved numeric tokens. UNINFORMATIVE about hidden channel due to design confound. Consistent with probing: computation flows through numeric positions, not English words.",
+  "evidence_impact": "Paraphrase disruption (Experiment B) is uninformative in the current format. The <<EXPR=RESULT>> calculator format creates a self-contained numeric channel that makes English text irrelevant. Neither pre-registered prediction branch was confirmed (both predicted SOME random-condition drop). Experiment needs redesign with plain-text CoT for a valid test. However, the null result COMPLEMENTS probing (exp_071-073): computation is at numeric positions, non-numeric tokens are scaffolding.",
+  "next_planned": "Plain-text paraphrase disruption (without <<EXPR=RESULT>> format). Hidden-state baseline at expression positions. Paired permutation test for V vs expr-embed. Step-reordering disruption test.",
   "figures": [
-    "results/exp_073/probe_r_by_layer.png",
-    "results/exp_073/cross_model_comparison.png",
-    "results/exp_073/permutation_tests.png",
-    "results/exp_073/v_expr_advantage.png"
+    "results/exp_074/accuracy_by_condition.png",
+    "results/exp_074/accuracy_drop.png",
+    "results/exp_074/paired_outcomes.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
@@ -31,9 +28,9 @@
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
     "geometric_dissociation": {"status": "K > V UNIVERSAL: 8 angles. K spectral geometry uniform across heads. V spectral differentiates.", "bar": 5},
     "head_level_analysis": {"status": "COMPLETE + SPECTRAL: Two-regime on Qwen (decisive), near-collapse on Llama.", "bar": 5},
-    "natural_usage": {"status": "EXPRESSION-EMBED TESTED + PERMUTATION SIGNIFICANCE: V R=0.977 on Qwen with expr-embed R=0.771 → V-expr gap +0.206 (moderate-strong). Mistral V-expr gap +0.125 (moderate). Perm p=0.000 for V,K,expr. Effect encoding-dependent but statistically robust on both models.", "bar": 4},
-    "cross_model_replication": {"status": "COMPLETE for Phase 1 (4 families). Phase 2: 2 families for general decodability + computation-position + expression-embed baseline. Both models: KV > expr-embed > token-embed.", "bar": 5},
-    "encoding_strategy": {"status": "COMPLETE TAXONOMY + geometric evidence + Phase 2 computation-position effect depends on encoding type.", "bar": 5},
+    "natural_usage": {"status": "PROBING: V R=0.977 at computation positions (Qwen), V-expr gap +0.206 (moderate-strong), perm p=0.000. BEHAVIORAL: Paraphrase disruption UNINFORMATIVE (<<EXPR=RESULT>> confound — 100% accuracy even with gibberish). Needs plain-text redesign.", "bar": 4},
+    "cross_model_replication": {"status": "COMPLETE for Phase 1 (4 families). Phase 2: 2 families for computation-position probing.", "bar": 5},
+    "encoding_strategy": {"status": "COMPLETE TAXONOMY + geometric evidence.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 8 scans, 80+ papers, 12+ convergent angles.", "bar": 5}
   }
 }
