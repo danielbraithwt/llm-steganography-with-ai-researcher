@@ -1,0 +1,165 @@
+{
+  "n_problems": 400,
+  "n_correct": 350,
+  "accuracy": 87.5,
+  "n_operations": 1808,
+  "n_errors": 21,
+  "n_errors_high_confidence": 14,
+  "n_errors_low_confidence": 7,
+  "error_rate_pct": 1.1615044247787611,
+  "error_rate_high_conf_pct": 0.7743362831858407,
+  "n_wrra": 20,
+  "n_wrra_high_conf": 13,
+  "n_wrwa": 1,
+  "n_wrwa_high_conf": 1,
+  "exp071_error_rate_pct": 0.15,
+  "errors": [
+    {
+      "expr": "3/4 = 90",
+      "written": 90.0,
+      "correct": 0.75,
+      "final_correct": true,
+      "confidence": "low"
+    },
+    {
+      "expr": "2/3 * 16 = 32",
+      "written": 32.0,
+      "correct": 10.666666666666666,
+      "final_correct": false,
+      "confidence": "high"
+    },
+    {
+      "expr": "240 + 200 = 4",
+      "written": 4.0,
+      "correct": 440.0,
+      "final_correct": true,
+      "confidence": "low"
+    },
+    {
+      "expr": "1 - 1/10 = 9",
+      "written": 9.0,
+      "correct": 0.9,
+      "final_correct": true,
+      "confidence": "high"
+    },
+    {
+      "expr": "3 + 520 = 1000",
+      "written": 1000.0,
+      "correct": 523.0,
+      "final_correct": true,
+      "confidence": "high"
+    },
+    {
+      "expr": "3 + 200 = 240",
+      "written": 240.0,
+      "correct": 203.0,
+      "final_correct": true,
+      "confidence": "high"
+    },
+    {
+      "expr": "60 + 4 * 60 = 60",
+      "written": 60.0,
+      "correct": 300.0,
+      "final_correct": true,
+      "confidence": "high"
+    },
+    {
+      "expr": "500 * 501 / 2 = 250500",
+      "written": 250500.0,
+      "correct": 125250.0,
+      "final_correct": true,
+      "confidence": "high"
+    },
+    {
+      "expr": "4 * 3 - 5 = 12",
+      "written": 12.0,
+      "correct": 7.0,
+      "final_correct": true,
+      "confidence": "high"
+    },
+    {
+      "expr": "1/4 = 64",
+      "written": 64.0,
+      "correct": 0.25,
+      "final_correct": true,
+      "confidence": "low"
+    },
+    {
+      "expr": "3/4 = 48",
+      "written": 48.0,
+      "correct": 0.75,
+      "final_correct": true,
+      "confidence": "low"
+    },
+    {
+      "expr": "240 + 200 = 4",
+      "written": 4.0,
+      "correct": 440.0,
+      "final_correct": true,
+      "confidence": "low"
+    },
+    {
+      "expr": "0.20 * 300 = 6",
+      "written": 6.0,
+      "correct": 60.0,
+      "final_correct": true,
+      "confidence": "high"
+    },
+    {
+      "expr": "1/5 * 425 + 17 = 85",
+      "written": 85.0,
+      "correct": 102.0,
+      "final_correct": true,
+      "confidence": "high"
+    },
+    {
+      "expr": "2 * 102 + 5 = 204",
+      "written": 204.0,
+      "correct": 209.0,
+      "final_correct": true,
+      "confidence": "high"
+    },
+    {
+      "expr": "2 + 6 * 1/3 = 2",
+      "written": 2.0,
+      "correct": 4.0,
+      "final_correct": true,
+      "confidence": "high"
+    },
+    {
+      "expr": "70 + 40 = 0.7",
+      "written": 0.7,
+      "correct": 110.0,
+      "final_correct": true,
+      "confidence": "low"
+    },
+    {
+      "expr": "1/3 = 30",
+      "written": 30.0,
+      "correct": 0.3333333333333333,
+      "final_correct": true,
+      "confidence": "low"
+    },
+    {
+      "expr": "3 + 520 = 1000",
+      "written": 1000.0,
+      "correct": 523.0,
+      "final_correct": true,
+      "confidence": "high"
+    },
+    {
+      "expr": "3 + 200 = 240",
+      "written": 240.0,
+      "correct": 203.0,
+      "final_correct": true,
+      "confidence": "high"
+    },
+    {
+      "expr": "5 * 20 - 4 = 100",
+      "written": 100.0,
+      "correct": 96.0,
+      "final_correct": true,
+      "confidence": "high"
+    }
+  ]
+}

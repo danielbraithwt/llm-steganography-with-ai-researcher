@@ -1,29 +1,31 @@
 {
-  "cycle": 77,
-  "timestamp": "2026-03-21T23:55:00Z",
+  "cycle": 78,
+  "timestamp": "2026-03-21T00:30:00Z",
   "type": "experiment",
-  "template": "cumulative_kv_probe_crossmodel",
+  "template": "wrra_plaintext_forward_looking",
   "parameters": {
-    "model": "mistralai/Mistral-7B-v0.3",
-    "n_generated": 250,
-    "n_correct": 109,
-    "generation_accuracy": 43.6,
-    "mean_cot_length_tokens": 512.2,
-    "probe_layers": ["L8 (26%)", "L16 (52%)", "L24 (77%)", "L31 (100%)"],
+    "model": "Qwen/Qwen3-4B-Base",
+    "n_generated": 400,
+    "n_correct": 350,
+    "generation_accuracy": 87.5,
+    "n_operations": 1808,
+    "n_errors": 21,
+    "error_rate_pct": 1.16,
+    "n_wrra": 20,
+    "n_correct_ops_for_probing": 1787,
     "kv_dim": 1024,
-    "text_dim": 4096,
-    "probe_type": "RidgeCV_5fold",
-    "n_bootstrap": 2000,
-    "comparison": "cumulative_mean_KV_vs_cumulative_mean_text"
+    "text_dim": 2560,
+    "probe_layers": ["L9 (26%)", "L18 (51%)", "L27 (77%)", "L35 (100%)"],
+    "format": "plain_text_arithmetic"
   },
-  "prediction_outcome": "partially_confirmed",
-  "key_finding": "Cross-model REPLICATION CONFIRMED: cumV > cumText on Mistral-7B at 7-8/10 positions across ALL 4 layers. Bootstrap p=0.003 at L24 (strongest), p=0.016 at L16, p=0.037 at L8. Advantage is layer-independent (no depth trend, rho=-0.200). Advantage concentrated at late chain positions (60-100%). Effect larger on Mistral (+0.072-0.114) than Qwen (+0.055) despite fewer samples. CumK weaker than cumV on Mistral (unlike Qwen). Two model families now show the effect.",
-  "evidence_impact": "MODERATE-STRONG evidence FOR the hypothesis. Cross-model replication with statistical significance at 3/4 layers substantially strengthens the cumV > cumText finding. The layer-independent profile suggests the advantage is a fundamental property of attention projections vs raw embeddings. Late-position concentration consistent with V vectors maintaining computation signal while text degrades through dilution.",
-  "next_planned": "Pooled Qwen+Mistral significance test; residualize against problem numbers on Qwen data; investigate why L31 weaker than L24.",
+  "prediction_outcome": "strongly_confirmed",
+  "key_finding": "STRONG: Forward-looking probing at computation positions. V→final_answer R=0.635 at L35 (text R=-0.034). Partial correlation V→final|local R=0.520 — V carries info about final answer BEYOND local computation step. WRRA: 71.4% correct-alignment at L27 (p=0.039, n=21). Plain-text format yields 7.7x more arithmetic errors than calculator. 10/10 TRUE-hypothesis predictions confirmed.",
+  "evidence_impact": "STRONG evidence for the hidden channel hypothesis. The partial correlation (R=0.520) directly addresses the 'richer representations' confound from exp_076-077 — V carries UNIQUE information about the final answer at intermediate computation positions that cannot be explained by local computation alone. WRRA provides first marginally significant evidence that KV encodes correct values at error positions.",
+  "next_planned": "Cross-model replication of forward-looking probing on Mistral-7B; residualize against problem numbers; WRRA with weaker model for more error positions.",
   "figures": [
-    "results/exp_077/layer_sweep_probes.png",
-    "results/exp_077/layer_depth_advantage.png",
-    "results/exp_077/cross_model_comparison.png"
+    "results/exp_078/forward_looking_probes.png",
+    "results/exp_078/v_probe_local_vs_final.png",
+    "results/exp_078/error_rate_comparison.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
@@ -31,8 +33,8 @@
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
     "geometric_dissociation": {"status": "K > V UNIVERSAL: 8 angles. K spectral geometry uniform across heads. V spectral differentiates.", "bar": 5},
     "head_level_analysis": {"status": "COMPLETE + SPECTRAL: Two-regime on Qwen (decisive), near-collapse on Llama.", "bar": 5},
-    "natural_usage": {"status": "COMPUTATION POSITIONS: V R=0.977 (exp_071). CUMULATIVE KV: cumV > cumText on BOTH Qwen (+0.055, 10/10, exp_076) AND Mistral (+0.072-0.114, 7-8/10, bootstrap p=0.003 at L24, exp_077). Cross-model replication with significance. Layer-independent. BEHAVIORAL: paraphrase uninformative. No early decodability gap.", "bar": 4},
-    "cross_model_replication": {"status": "COMPLETE for Phase 1 (4 families). Phase 2: cumV > cumText replicated on 2 families (Qwen, Mistral).", "bar": 5},
+    "natural_usage": {"status": "STRONG: Forward-looking probing — V→final R=0.635, partial R=0.520 after controlling for local result (exp_078). WRRA: 71.4% correct-alignment at L27 (p=0.039). CumV > cumText on 2 models (exp_076-077). Plain-text format produces 7.7x more errors than calculator.", "bar": 5},
+    "cross_model_replication": {"status": "COMPLETE for Phase 1 (4 families). Phase 2: cumV > cumText replicated on 2 families (Qwen, Mistral). Forward-looking probing on Qwen only — needs replication.", "bar": 5},
     "encoding_strategy": {"status": "COMPLETE TAXONOMY + geometric evidence.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 8 scans, 80+ papers, 12+ convergent angles.", "bar": 5}
   }

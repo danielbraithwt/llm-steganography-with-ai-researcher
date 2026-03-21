@@ -1,0 +1,76 @@
+{
+  "model": "Qwen/Qwen3-4B-Base",
+  "n_problems_generated": 400,
+  "n_correct": 350,
+  "accuracy": 87.5,
+  "n_operations": 1808,
+  "n_errors": 21,
+  "error_rate_pct": 1.1615044247787611,
+  "n_wrra": 20,
+  "n_wrwa": 1,
+  "n_operation_features": 1808,
+  "n_correct_ops": 1787,
+  "kv_dim": 640,
+  "text_dim": 2560,
+  "probe_layers": [
+    9,
+    18,
+    27,
+    35
+  ],
+  "forward_looking_probes": {
+    "L9": {
+      "layer_pct": 26,
+      "V_local": 0.9515778558745638,
+      "V_final": 0.5936618816116858,
+      "K_final": 0.48305518607604264,
+      "Text_final": -0.03404097949501638,
+      "V_shuffle": -0.06933298560416648,
+      "V_partial": 0.47554568471842934,
+      "K_partial": 0.3636921916836443,
+      "Text_partial": -0.05631433242053192,
+      "local_final_corr": 0.47175959409055856
+    },
+    "L18": {
+      "layer_pct": 51,
+      "V_local": 0.9149677711874129,
+      "V_final": 0.5456812817248333,
+      "K_final": 0.4862678852499346,
+      "Text_final": -0.03404097949501638,
+      "V_shuffle": -0.06657663323724912,
+      "V_partial": 0.46021779248168015,
+      "K_partial": 0.40017604420409164,
+      "Text_partial": -0.05631433242053192,
+      "local_final_corr": 0.47175959409055856
+    },
+    "L27": {
+      "layer_pct": 77,
+      "V_local": 0.972737815696977,
+      "V_final": 0.6167933911685614,
+      "K_final": 0.5587327082061756,
+      "Text_final": -0.03404097949501638,
+      "V_shuffle": -0.06976333612390834,
+      "V_partial": 0.49556497995981974,
+      "K_partial": 0.4233831980014171,
+      "Text_partial": -0.05631433242053192,
+      "local_final_corr": 0.47175959409055856
+    },
+    "L35": {
+      "layer_pct": 100,
+      "V_local": 0.9738917964975411,
+      "V_final": 0.6353254087579443,
+      "K_final": 0.5700129323910463,
+      "Text_final": -0.03404097949501638,
+      "V_shuffle": -0.07435054416171888,
+      "V_partial": 0.5201498546435537,
+      "K_partial": 0.4225749529358877,
+      "Text_partial": -0.05631433242053192,
+      "local_final_corr": 0.47175959409055856
+    }
+  },
+  "wrra_analysis": {
+    "n_errors": 21,
+    "note": "See stdout for detailed alignment analysis"
+  },
+  "elapsed_seconds": 2530.638145685196
+}
