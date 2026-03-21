@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-21 (cycle 71 — **Exp C WRRA attempt.** Arithmetic error rate near-zero (2/1339=0.15%) on Qwen in `<<EXPR=RESULT>>` format — WRRA analysis underpowered. BUT computation-position probes reveal dramatic KV>>text gap: V-probe R=0.975, K-probe R=0.961, text R=0.108 at arithmetic positions. The KV-text gap at computation positions (+0.85) is ~10x the gap at general positions (+0.09). V>K at all layers.)
-Cycles completed: 71 (61 experimental + 1 consolidation + 5 literature scans + 4 blocked/crashed)
+Last updated: 2026-03-21 (cycle 72 — **Computation-position probing on Mistral.** KV > text replicates at arithmetic "=" positions (V R=0.435, K R=0.431, expr-embed R=0.310, token-embed R=0.111). BUT effect is **2.2x weaker** than Qwen (0.975). Expression-embedding baseline narrows the KV advantage to +0.125. WRRA alignment is **negative** (below chance) — no evidence of hidden correct computation at error positions on Mistral. The hidden channel is model-dependent: strong on Qwen (digital encoding), moderate on Mistral (analog).)
+Cycles completed: 72 (62 experimental + 1 consolidation + 5 literature scans + 4 blocked/crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -551,11 +551,57 @@ cache is sharply tuned to the result while text embeddings are generic.
 arithmetic. One error was expression notation ambiguity, not genuine arithmetic error.
 True error rate ≈ 0.07%. WRRA requires a less accurate model or different prompting format.
 
-**Limitations (remaining):**
-- Text baseline is cumulative mean of token embeddings (general) or single-position embedding (computation) — a stronger text-based probe might close the gap
-- Only correctly-solved problems for general decodability; computation-position probes use all problems
-- No statistical significance testing on K-text differences yet
-- Computation-position finding is post-hoc (not pre-registered)
-- WRRA analysis remains underpowered
+**Computation-position probes: Cross-model replication (Exp 072 — Mistral-7B-v0.3):**
 
-**Key experiments:** Exp 065 (initial, confound identified), Exp 068 (Qwen, corrected), Exp 069 (Mistral, cross-model replication), Exp 071 (computation-position probes + WRRA attempt)
+Pre-registered replication of exp_071's computation-position finding on Mistral, with
+enhanced text baseline (average of expression token embeddings).
+
+| Layer | K-probe R | V-probe R | Expr-embed R | Token-embed R | Shuffle K |
+|-------|-----------|-----------|-------------|---------------|-----------|
+| L8 (28%) | 0.295 | 0.357 | 0.310 | 0.111 | -0.066 |
+| L16 (53%) | **0.431** | **0.435** | 0.310 | 0.111 | +0.031 |
+| L24 (78%) | 0.390 | 0.348 | 0.310 | 0.111 | -0.070 |
+| L31 (100%) | 0.341 | 0.331 | 0.310 | 0.111 | -0.060 |
+
+N=877 correct-arithmetic positions, 5-fold CV, 396 problems, 41.9% accuracy.
+
+**Core finding PARTIALLY REPLICATES but is 2.2x weaker:**
+- KV (0.435) > expr-embed (0.310) > token-embed (0.111) → hierarchy confirmed
+- But KV advantage over expression embedding = only **+0.125** (Qwen: +0.87 over token-embed)
+- Expression-embed captures much of what KV knows — the KV "hidden computation" signal is modest
+- Peaks at L16 (53% depth), not deep layers (Qwen peaked at 97%)
+- V ≈ K (0.435 vs 0.431) — weak V-dominance, unlike Qwen's strong V > K
+
+**WRRA alignment on Mistral (n=91 errors, 9.4% error rate):**
+- All alignment rates BELOW chance (0.37-0.42)
+- KV does NOT encode correct values at arithmetic error positions
+- No "hidden correct computation" evidence on Mistral
+- WRRA rate: only 3/91 errors had correct final answer (3.3%)
+
+**The computation-position effect is MODEL-DEPENDENT:**
+
+| Metric | Qwen (digital) | Mistral (analog) |
+|--------|---------------|------------------|
+| Best V R | 0.975 | 0.435 |
+| Best K R | 0.961 | 0.431 |
+| Expr-embed R | not tested | 0.310 |
+| Token-embed R | 0.108 | 0.111 |
+| V - expr gap | ? | +0.125 |
+| V - token gap | +0.867 | +0.324 |
+| Error rate | 0.15% | 9.4% |
+| WRRA alignment | n/a (n=2) | Below chance |
+| Best layer | 97% depth | 53% depth |
+
+The hidden channel at computation positions is: near-perfect on Qwen (digital, high-accuracy),
+moderate on Mistral (analog, low-accuracy). Possible explanations:
+1. Digital encoding creates sharper cluster structure → more linearly decodable
+2. Higher accuracy models produce cleaner computation representations
+3. Mistral may rely more on text than hidden channel for computation
+
+**Limitations (remaining):**
+- Expression-embed baseline not yet tested retroactively on Qwen
+- Only 2 models for computation-position comparison
+- No statistical significance testing on KV - expr gap
+- WRRA "smoking gun" absent on both models (too few errors on Qwen, negative on Mistral)
+
+**Key experiments:** Exp 065 (initial, confound identified), Exp 068 (Qwen, corrected), Exp 069 (Mistral, cross-model replication), Exp 071 (computation-position probes + WRRA attempt), Exp 072 (Mistral computation-position + expression-embed baseline + WRRA)

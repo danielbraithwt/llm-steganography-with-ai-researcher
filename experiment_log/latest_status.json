@@ -1,25 +1,26 @@
 {
-  "cycle": 71,
-  "timestamp": "2026-03-21T20:00:00Z",
+  "cycle": 72,
+  "timestamp": "2026-03-21T22:00:00Z",
   "type": "experiment",
-  "template": "wrra_probing",
+  "template": "computation_position_mistral",
   "parameters": {
-    "model": "Qwen/Qwen3-4B-Base",
-    "n_problems": 447,
-    "n_ops_total": 1339,
-    "n_ops_error": 2,
-    "error_rate": 0.0015,
-    "probe_layers": [9, 18, 27, 35],
-    "features": "K, V at '=' position, text embeddings"
+    "model": "mistralai/Mistral-7B-v0.3",
+    "n_problems": 396,
+    "n_ops_total": 968,
+    "n_ops_correct": 877,
+    "n_ops_error": 91,
+    "error_rate": 0.094,
+    "probe_layers": [8, 16, 24, 31],
+    "features": "K, V at '=' position, expression-mean embedding, token embedding"
   },
   "prediction_outcome": "partially_confirmed",
-  "key_finding": "WRRA underpowered (0.15% arithmetic error rate — near-zero). BUT computation-position probes show V R=0.975, K R=0.961, text R=0.108. KV-text gap +0.85 at computation positions (~10x general position gap). V>K at all layers.",
-  "evidence_impact": "Strengthens Phase 2 natural usage evidence with computation-specific decodability. WRRA approach blocked by model's near-perfect arithmetic.",
-  "next_planned": "Cross-model computation-position probes on Mistral. Or try WRRA with plain text arithmetic (no calculator format).",
+  "key_finding": "Computation-position probing PARTIALLY replicates on Mistral: KV(R=0.435) > expr-embed(0.310) > token-embed(0.111). But 2.2x weaker than Qwen (R=0.975). Expression-embed baseline narrows KV advantage to +0.125. WRRA alignment NEGATIVE (below chance, n=91 errors) — no hidden correct computation at error positions.",
+  "evidence_impact": "Weakens computation-position finding from near-universal to model-dependent. Digital encoding (Qwen) shows strong computation encoding; analog (Mistral) shows moderate. Expression embedding is a critical new baseline that narrows the effect. WRRA remains unsupported.",
+  "next_planned": "Retroactive expression-embed baseline on Qwen. Consider paraphrase disruption (Experiment B). Statistical significance testing.",
   "figures": [
-    "results/exp_071/training_r_by_layer.png",
-    "results/exp_071/alignment_by_layer.png",
-    "results/exp_071/summary_alignment.png"
+    "results/exp_072/training_r_by_layer.png",
+    "results/exp_072/cross_model_comparison.png",
+    "results/exp_072/kv_advantage_over_text.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
@@ -27,9 +28,9 @@
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
     "geometric_dissociation": {"status": "K > V UNIVERSAL: 8 angles. K spectral geometry uniform across heads. V spectral differentiates.", "bar": 5},
     "head_level_analysis": {"status": "COMPLETE + SPECTRAL: Two-regime on Qwen (decisive), near-collapse on Llama.", "bar": 5},
-    "natural_usage": {"status": "CROSS-MODEL + COMPUTATION-POSITION: KV > text at all CoT positions (2 models). KV >> text at arithmetic positions (V R=0.975 vs text R=0.108). WRRA blocked by near-zero error rate.", "bar": 3},
-    "cross_model_replication": {"status": "COMPLETE for Phase 1 (4 families). Phase 2: 2 families (Qwen, Mistral) for general; 1 family (Qwen) for computation-position.", "bar": 5},
-    "encoding_strategy": {"status": "COMPLETE TAXONOMY + geometric evidence.", "bar": 5},
+    "natural_usage": {"status": "CROSS-MODEL + COMPUTATION-POSITION: General decodability KV>text (2 models). Computation-position KV>>text on Qwen (V R=0.975) but only moderately on Mistral (V R=0.435). Expression-embed narrows gap to +0.125 on Mistral. WRRA negative on Mistral. Effect is model-dependent.", "bar": 3},
+    "cross_model_replication": {"status": "COMPLETE for Phase 1 (4 families). Phase 2: 2 families for general decodability + computation-position. Computation-position effect is encoding-dependent (strong digital, moderate analog).", "bar": 5},
+    "encoding_strategy": {"status": "COMPLETE TAXONOMY + geometric evidence + Phase 2 computation-position effect depends on encoding type.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 8 scans, 80+ papers, 12+ convergent angles.", "bar": 5}
   }
 }
