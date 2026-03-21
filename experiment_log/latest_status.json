@@ -1,26 +1,28 @@
 {
-  "cycle": 74,
-  "timestamp": "2026-03-21T24:00:00Z",
+  "cycle": 75,
+  "timestamp": "2026-03-21T22:00:00Z",
   "type": "experiment",
-  "template": "paraphrase_disruption",
+  "template": "early_answer_decodability",
   "parameters": {
     "model": "Qwen/Qwen3-4B-Base",
-    "n_generated": 250,
-    "n_correct": 215,
+    "n_generated": 300,
+    "n_correct": 258,
     "generation_accuracy": 86.0,
-    "conditions": ["original", "synonym", "random"],
-    "mean_tokens_replaced": 41.5,
-    "replacement_rate": 1.0,
-    "format": "<<EXPR=RESULT>> (calculator format)"
+    "mean_cot_length_tokens": 511.8,
+    "probe_layers": [18, 35],
+    "n_deciles": 10,
+    "kv_dim": 1024,
+    "text_dim": 2560,
+    "probe_type": "RidgeCV_5fold"
   },
   "prediction_outcome": "neither_branch",
-  "key_finding": "DECISIVE NULL: 100% accuracy across ALL conditions (original=100%, synonym=100%, random=100%, n=215). Replacing ALL non-numeric tokens with random gibberish has ZERO effect. The <<EXPR=RESULT>> format makes English text completely redundant — model extracts answers from preserved numeric tokens. UNINFORMATIVE about hidden channel due to design confound. Consistent with probing: computation flows through numeric positions, not English words.",
-  "evidence_impact": "Paraphrase disruption (Experiment B) is uninformative in the current format. The <<EXPR=RESULT>> calculator format creates a self-contained numeric channel that makes English text irrelevant. Neither pre-registered prediction branch was confirmed (both predicted SOME random-condition drop). Experiment needs redesign with plain-text CoT for a valid test. However, the null result COMPLEMENTS probing (exp_071-073): computation is at numeric positions, non-numeric tokens are scaffolding.",
-  "next_planned": "Plain-text paraphrase disruption (without <<EXPR=RESULT>> format). Hidden-state baseline at expression positions. Paired permutation test for V vs expr-embed. Step-reordering disruption test.",
+  "key_finding": "TEXT DOMINATES KV: Text-cumulative baseline R=0.52-0.75 beats KV probes (R=-0.04 to 0.38) at ALL 10 positions and both layers. No early decodability gap (0 deciles). The cumulative mean of token embeddings — which accumulates problem number tokens from early in the chain — is far more predictive of the final answer than any single KV vector. Critical design limitation: asymmetric comparison (cumulative text aggregating hundreds of tokens vs single-position KV vector). Does NOT rule out early decodability through cumulative KV or hidden states.",
+  "evidence_impact": "WEAK evidence against early decodability (specific single-position form). The null is clear but the design has an identified asymmetry. The result is CONSISTENT with exp_071-073 showing answer info concentrates at computation positions (=), not uniformly across the chain. The text-cumulative baseline's strength (R=0.52 at 10%) comes from problem numbers appearing early in generated text. Follow-up with cumulative KV probe (fair comparison) is the highest priority.",
+  "next_planned": "Cumulative KV probe — mean of all KV vectors up to position P, vs cumulative text at same position. This removes the asymmetry and enables a fair apples-to-apples comparison of aggregate KV vs aggregate text information.",
   "figures": [
-    "results/exp_074/accuracy_by_condition.png",
-    "results/exp_074/accuracy_drop.png",
-    "results/exp_074/paired_outcomes.png"
+    "results/exp_075/early_decodability_by_layer.png",
+    "results/exp_075/kv_advantage_over_text.png",
+    "results/exp_075/probe_heatmap.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
@@ -28,7 +30,7 @@
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
     "geometric_dissociation": {"status": "K > V UNIVERSAL: 8 angles. K spectral geometry uniform across heads. V spectral differentiates.", "bar": 5},
     "head_level_analysis": {"status": "COMPLETE + SPECTRAL: Two-regime on Qwen (decisive), near-collapse on Llama.", "bar": 5},
-    "natural_usage": {"status": "PROBING: V R=0.977 at computation positions (Qwen), V-expr gap +0.206 (moderate-strong), perm p=0.000. BEHAVIORAL: Paraphrase disruption UNINFORMATIVE (<<EXPR=RESULT>> confound — 100% accuracy even with gibberish). Needs plain-text redesign.", "bar": 4},
+    "natural_usage": {"status": "PROBING AT COMPUTATION POSITIONS: V R=0.977, gap +0.206 over expr-embed (moderate-strong). EARLY DECODABILITY: text >> single-position KV at all positions (design limitation). BEHAVIORAL: paraphrase uninformative (format confound). CUMULATIVE KV PROBE needed for fair test.", "bar": 3},
     "cross_model_replication": {"status": "COMPLETE for Phase 1 (4 families). Phase 2: 2 families for computation-position probing.", "bar": 5},
     "encoding_strategy": {"status": "COMPLETE TAXONOMY + geometric evidence.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 8 scans, 80+ papers, 12+ convergent angles.", "bar": 5}

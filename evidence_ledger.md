@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-21 (cycle 74 — **Paraphrase disruption DECISIVE NULL.** Replacing ALL non-numeric CoT tokens with random gibberish has ZERO effect on accuracy (215/215 = 100% across original, synonym, and random conditions). The `<<EXPR=RESULT>>` calculator format preserves complete arithmetic information in numeric tokens, making English text entirely redundant. Result is UNINFORMATIVE about the hidden channel hypothesis due to this design confound — the experiment needs to be redesigned with plain-text CoT. Consistent with probing findings: computation flows through numeric positions, not English word positions.)
-Cycles completed: 74 (63 experimental + 1 consolidation + 5 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-21 (cycle 75 — **Early answer decodability NULL.** Text-cumulative baseline R=0.52-0.75 DOMINATES KV probes (R=-0.04 to 0.38) at ALL positions along the CoT chain. No early decodability gap (0 deciles). The cumulative mean of token embeddings — capturing problem numbers from the start — is far more predictive of the final answer than any single KV vector. Design limitation: asymmetric comparison (cumulative text from many tokens vs single-position KV vector). Does NOT rule out early decodability via cumulative KV or hidden states. Follow-up needed with cumulative KV probe.)
+Cycles completed: 75 (64 experimental + 1 consolidation + 5 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -652,4 +652,61 @@ through numeric/arithmetic positions, not through English word positions. The hi
 - Expression-embed is a static baseline; hidden-state baseline at expression positions untested
 - Paraphrase disruption uninformative due to `<<EXPR=RESULT>>` format confound — needs redesign
 
-**Key experiments:** Exp 065 (initial, confound identified), Exp 068 (Qwen, corrected), Exp 069 (Mistral, cross-model replication), Exp 071 (computation-position probes + WRRA attempt), Exp 072 (Mistral computation-position + expression-embed baseline + WRRA), Exp 073 (Qwen expression-embed retroactive baseline + permutation significance), Exp 074 (paraphrase disruption — decisive null due to format confound)
+**Key experiments:** Exp 065 (initial, confound identified), Exp 068 (Qwen, corrected), Exp 069 (Mistral, cross-model replication), Exp 071 (computation-position probes + WRRA attempt), Exp 072 (Mistral computation-position + expression-embed baseline + WRRA), Exp 073 (Qwen expression-embed retroactive baseline + permutation significance), Exp 074 (paraphrase disruption — decisive null due to format confound), Exp 075 (early answer decodability — text dominates KV at all positions, design limitation identified)
+
+---
+
+### Exp 075: Early Answer Decodability — Text Dominates KV at All Positions
+**Cycle 75 | Qwen3-4B-Base | n=258 correct problems | Experiment A from research_spec**
+
+**Core question:** Does the KV cache "know" the final answer before the text reveals it?
+
+**Method:** Trained RidgeCV probes at 10 evenly-spaced positions (10%-100% of CoT) to predict
+log(|final_answer|+1) from: (a) K-vector at that position (dim=1024), (b) V-vector at that
+position (dim=1024), (c) cumulative mean of token embeddings from CoT start to that position
+(dim=2560), (d) single token embedding at that position (dim=2560). Two layers: L18 (51%) and
+L35 (100%). Shuffle controls at each decile.
+
+**Results (L35):**
+
+| Position | K R | V R | Text-cum R | Text-tok R | Shuffle |
+|----------|-----|-----|-----------|-----------|---------|
+| 10% | 0.384 | 0.331 | **0.519** | 0.023 | -0.204 |
+| 20% | 0.309 | 0.355 | **0.689** | 0.232 | 0.016 |
+| 40% | 0.084 | 0.020 | **0.754** | -0.107 | -0.081 |
+| 70% | 0.028 | 0.091 | **0.690** | -0.103 | -0.065 |
+| 100% | -0.011 | -0.044 | **0.630** | -0.017 | -0.082 |
+
+**Key findings:**
+1. **Text-cumulative DOMINATES KV probes at ALL 10 positions and both layers.** Gap ranges
+   from +0.19 to +0.73 in favor of text. No position shows KV > text.
+2. **No early decodability gap:** Both reach R>0.3 at decile 1 (10%). Gap = 0 deciles.
+3. **Text-cum is already R=0.519 at 10%** because problem numbers appear early in the
+   generated CoT (model restates "Janet sells 16 - 3 - 4 = ..."), and the final answer is a
+   mathematical function of these numbers. The cumulative mean accumulates number-token
+   embeddings that are inherently predictive.
+4. **KV probes are weak and inconsistent:** best single R = 0.384 (K at L35/10%). Many
+   positions show R < 0.1 or negative. No monotonic pattern.
+5. **Shuffle controls clean:** R ∈ [-0.20, +0.02] across all conditions.
+
+**Pre-registered prediction evaluation:** 2/10 TRUE-branch confirmed, 1/4 FALSE-branch
+confirmed. NEITHER branch predicted the text-cumulative strength (both predicted text R < 0.3
+at early positions; actual R = 0.52 at 10%). The result fell outside BOTH prediction ranges.
+
+**Critical design limitation — asymmetric comparison:**
+- Text-cumulative: aggregates embeddings from hundreds of tokens (accumulates problem numbers)
+- KV at position P: a SINGLE vector at ONE position (encodes local attention state)
+
+This is NOT apples-to-apples. The text baseline has access to far more raw information (the
+identities of many tokens) than the KV probe (one compressed vector). The text advantage may be
+purely due to this asymmetry, not because the KV cache lacks answer information.
+
+**Interpretation:** The result is WEAKLY informative about the hidden channel hypothesis.
+- Does NOT support the specific "Reasoning Theater" claim that a single KV position encodes the answer early
+- Does NOT rule out early decodability through cumulative KV (mean of all KV vectors up to P) or through hidden states
+- IS consistent with exp_071-073: answer information in KV is CONCENTRATED at computation-specific positions ("="), not uniformly distributed
+
+**Evidence strength:** WEAK (clear null but design limitation prevents strong conclusions)
+
+**Follow-up needed:** Cumulative KV probe (mean of KV vectors up to P) vs cumulative text.
+This removes the asymmetry and enables a fair apples-to-apples comparison.
