@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-21 (cycle 67 — Literature scan: Phase 2 probing methods. Found 5 new papers directly validating Phase 2 experiments. "Knowing Before Saying" (ACL 2025): probes predict CoT success from hidden states before any tokens generated. "Probing for Arithmetic Errors" (EMNLP 2025): correct answers decodable from internal states when text is wrong. "Causality ≠ Decodability" (2025): important methodological caution — but our Phase 1+2 combination addresses it. Cycles 65-67 blocked by sandbox restrictions on Python execution.)
-Cycles completed: 67 (58 experimental + 1 consolidation + 4 literature scans + 4 blocked/crashed)
+Last updated: 2026-03-21 (cycle 68 — **FIRST PHASE 2 RESULT: Early answer decodability.** KV cache probes (both K and V) consistently exceed text baseline at ALL CoT positions 10-90%, with K-probe r=0.641 vs text r=0.406 at 70% — observational evidence the hidden channel carries answer information beyond text during normal generation. Surprising complementary finding: V ≥ K for decodability (V carries content) while Phase 1 showed K > V for causality (K controls routing). "Causality ≠ Decodability" predicted by literature.)
+Cycles completed: 68 (59 experimental + 1 consolidation + 4 literature scans + 4 blocked/crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -449,15 +449,41 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 
 ---
 
-## Phase 2: Natural Channel Usage
+## Phase 2: Natural Channel Usage (Observational Evidence)
 
-Phase 2 begins at cycle 65. Focus shifts from perturbation-based causal evidence to **observational (non-perturbation) evidence** that models naturally use the K-routing hidden channel during normal inference.
+### 7. KV Cache Carries Answer Information Beyond Text During Normal Generation (FIRST Phase 2 Result)
+**Status: Moderate (1 model, needs replication)**
 
-### Experiment A: Early Answer Decodability (Linear Probe)
-<!-- Results will be added as experiments complete -->
+**Experiment:** Train ridge regression probes (5-fold CV) on cumulative KV cache activations vs cumulative token embeddings at 10 normalized CoT positions, to predict the final numeric answer (log-transformed). Qwen3-4B-Base, 80 correctly-solved GSM8K problems, 4 probe layers.
 
-### Experiment B: Attention Pattern Divergence
-<!-- Results will be added as experiments complete -->
+**Key finding:** Both K-probe and V-probe consistently exceed the text baseline at ALL positions from 10% to 90% through CoT. The KV cache encodes answer information that goes BEYOND what the text tokens provide — **observational evidence that the hidden channel is used during normal, unperturbed generation.**
 
-### Experiment C: Cross-Task Channel Generalization
-<!-- Results will be added as experiments complete -->
+| Position | K-probe (L27) | V-probe (L27) | Text baseline | K-Text gap |
+|----------|---------------|---------------|---------------|------------|
+| 10% | 0.430 | 0.454 | 0.361 | +0.069 |
+| 30% | 0.629 | 0.625 | 0.581 | +0.048 |
+| 50% | 0.612 | 0.630 | 0.543 | +0.070 |
+| 70% | **0.641** | 0.509 | 0.406 | **+0.235** |
+| 90% | 0.397 | 0.488 | 0.356 | +0.041 |
+
+**K-text advantage grows through CoT**, peaking at +0.235 at 70%, then narrowing toward 100%.
+
+**Complementary finding — V ≥ K for decodability:**
+- V mean r across positions = 0.546, K mean r = 0.539 at best layer (L27)
+- At middle layers (L18), V dramatically exceeds K (mean V=0.623 vs K=0.467)
+- This COMPLEMENTS Phase 1's K > V for causality: **K controls routing (destructive when perturbed), V carries content (decodable by probes)**
+- Consistent with "Causality ≠ Decodability" (2025) literature finding
+
+**Controls:**
+- Shuffle control: r ≈ 0 or negative at all positions (validates real signal)
+- Dimensionality: KV features (1024-dim) vs text (2560-dim) — text has MORE dimensions but LOWER performance, strengthening the finding
+- Layer sweep: Effect present at all 4 layers (25%, 51%, 77%, 100% depth)
+- Within-bin comparison (symmetric local features): K ≥ text at all positions; text ≥ V only at some
+
+**Limitations:**
+- Text baseline is cumulative mean of token embeddings — a simple comparator. A stronger text-based probe might close the gap.
+- Only correctly-solved problems — results on incorrect problems may differ.
+- Single model (Qwen3-4B-Base) — needs replication on Llama.
+- No statistical significance testing on K-text differences yet.
+
+**Key experiments:** Exp 065 (initial, methodological confound identified), Exp 068 (corrected with cumulative features)
