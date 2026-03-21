@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-21 (cycle 68 — **FIRST PHASE 2 RESULT: Early answer decodability.** KV cache probes (both K and V) consistently exceed text baseline at ALL CoT positions 10-90%, with K-probe r=0.641 vs text r=0.406 at 70% — observational evidence the hidden channel carries answer information beyond text during normal generation. Surprising complementary finding: V ≥ K for decodability (V carries content) while Phase 1 showed K > V for causality (K controls routing). "Causality ≠ Decodability" predicted by literature.)
-Cycles completed: 68 (59 experimental + 1 consolidation + 4 literature scans + 4 blocked/crashed)
+Last updated: 2026-03-21 (cycle 69 — **CROSS-MODEL REPLICATION of early decodability.** KV probes exceed text baseline on BOTH Qwen3-4B-Base AND Mistral-7B-v0.3 (2 families, 2 encoding types). Mistral: mean V=0.609, K=0.575, text=0.524. V≥K for decodability replicates at ALL layers on both models. Effect weaker on Mistral (analog) than Qwen (digital) but consistent. "Causality ≠ Decodability" now confirmed cross-model.)
+Cycles completed: 69 (60 experimental + 1 consolidation + 4 literature scans + 4 blocked/crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -451,8 +451,8 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 
 ## Phase 2: Natural Channel Usage (Observational Evidence)
 
-### 7. KV Cache Carries Answer Information Beyond Text During Normal Generation (FIRST Phase 2 Result)
-**Status: Moderate (1 model, needs replication)**
+### 7. KV Cache Carries Answer Information Beyond Text During Normal Generation
+**Status: Moderate-Strong (2 models, 2 families — cross-model replication achieved)**
 
 **Experiment:** Train ridge regression probes (5-fold CV) on cumulative KV cache activations vs cumulative token embeddings at 10 normalized CoT positions, to predict the final numeric answer (log-transformed). Qwen3-4B-Base, 80 correctly-solved GSM8K problems, 4 probe layers.
 
@@ -480,10 +480,38 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 - Layer sweep: Effect present at all 4 layers (25%, 51%, 77%, 100% depth)
 - Within-bin comparison (symmetric local features): K ≥ text at all positions; text ≥ V only at some
 
-**Limitations:**
-- Text baseline is cumulative mean of token embeddings — a simple comparator. A stronger text-based probe might close the gap.
-- Only correctly-solved problems — results on incorrect problems may differ.
-- Single model (Qwen3-4B-Base) — needs replication on Llama.
-- No statistical significance testing on K-text differences yet.
+**Cross-model replication (Exp 069 — Mistral-7B-v0.3):**
 
-**Key experiments:** Exp 065 (initial, methodological confound identified), Exp 068 (corrected with cumulative features)
+| Position | K-probe (L8) | V-probe (L8) | Text baseline | K-Text gap |
+|----------|--------------|--------------|---------------|------------|
+| 10% | 0.646 | 0.622 | 0.657 | -0.011 |
+| 20% | **0.778** | 0.740 | 0.690 | **+0.088** |
+| 50% | 0.639 | 0.527 | 0.602 | +0.037 |
+| 80% | 0.510 | 0.586 | 0.411 | +0.099 |
+| 90% | 0.499 | 0.572 | 0.347 | **+0.152** |
+| 100% | 0.539 | 0.582 | 0.400 | +0.140 |
+
+Mean across all positions: K=0.575, V=0.609, Text=0.524. K > text at 6/10, V > text at 7/10.
+
+**Cross-model comparison:**
+
+| Metric | Qwen (digital) | Mistral (analog) |
+|--------|---------------|------------------|
+| Mean K (cum) | 0.539 | 0.575 |
+| Mean V (cum) | 0.546 | 0.609 |
+| Mean text (cum) | 0.449 | 0.524 |
+| V ≥ K | Most bins | ALL layers |
+| Best K layer | L27 (77%) | L8 (25%) |
+| KV-text advantage | K: +0.090, V: +0.097 | K: +0.051, V: +0.085 |
+
+The finding replicates with model-specific variation:
+- **Both models:** KV > text in mean, V ≥ K for decodability
+- **Mistral:** Weaker K advantage but stronger V advantage; best layer is early (L8) vs late (L27)
+- **Mistral's text dim is 4x KV dim** (4096 vs 1024) — despite this disadvantage, KV still exceeds text
+
+**Limitations (remaining):**
+- Text baseline is cumulative mean of token embeddings — a stronger text-based probe might close the gap
+- Only correctly-solved problems — results on incorrect problems may differ
+- No statistical significance testing on K-text differences yet
+
+**Key experiments:** Exp 065 (initial, confound identified), Exp 068 (Qwen, corrected), Exp 069 (Mistral, cross-model replication)

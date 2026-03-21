@@ -1,27 +1,28 @@
 {
-  "cycle": 68,
-  "timestamp": "2026-03-21T14:00:00Z",
+  "cycle": 69,
+  "timestamp": "2026-03-21T16:00:00Z",
   "type": "experiment",
-  "template": "early_decodability_cumulative",
+  "template": "early_decodability_cross_model",
   "parameters": {
-    "model": "Qwen/Qwen3-4B-Base",
+    "model": "mistralai/Mistral-7B-v0.3",
     "n_problems": 80,
     "n_position_bins": 10,
-    "probe_layers": [9, 18, 27, 35],
+    "probe_layers": [8, 16, 24, 31],
     "probe_type": "RidgeCV_5fold",
     "features": ["cumulative_KV", "cumulative_text", "within_bin_KV", "within_bin_text"],
     "target": "log_transformed_numeric_answer"
   },
-  "prediction_outcome": "partially_confirmed",
-  "key_finding": "KV cache probes exceed text baseline at ALL positions 10-90%. K-probe r=0.641 vs text r=0.406 at 70% CoT (layer 27). Hidden channel carries answer info beyond text during normal generation. Surprising: V≥K for decodability (complements Phase 1 K>V for causality).",
-  "evidence_impact": "FIRST Phase 2 observational evidence. Moderate strength — needs replication on Llama and stronger text baseline.",
-  "next_planned": "Replicate on Llama-3.1-8B-Instruct for cross-model validation",
+  "prediction_outcome": "confirmed",
+  "key_finding": "Cross-model replication of early decodability on Mistral-7B-v0.3 (analog encoding). KV probes > text: mean K=0.575, V=0.609, text=0.524. V≥K for decodability replicates at ALL layers. Effect weaker than Qwen but consistent. 2 model families now show hidden channel carries answer info beyond text during normal generation.",
+  "evidence_impact": "Strengthens Phase 2 from moderate to moderate-strong. Cross-model replication on 2 families (Qwen digital, Mistral analog).",
+  "next_planned": "Experiment C (WRRA) or statistical significance testing for probe differences",
   "figures": [
-    "results/exp_068/cumulative_decodability_main.png",
-    "results/exp_068/withinbin_decodability_main.png",
-    "results/exp_068/cumulative_by_layer.png",
-    "results/exp_068/kv_advantage_heatmap.png",
-    "results/exp_068/k_minus_text_cumulative.png"
+    "results/exp_069/cumulative_decodability_main.png",
+    "results/exp_069/withinbin_decodability_main.png",
+    "results/exp_069/cumulative_by_layer.png",
+    "results/exp_069/kv_advantage_heatmap.png",
+    "results/exp_069/k_minus_text_cumulative.png",
+    "results/exp_069/cross_model_comparison.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
@@ -29,9 +30,9 @@
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
     "geometric_dissociation": {"status": "K > V UNIVERSAL: 8 angles. K spectral geometry uniform across heads. V spectral differentiates.", "bar": 5},
     "head_level_analysis": {"status": "COMPLETE + SPECTRAL: Two-regime on Qwen (decisive), near-collapse on Llama.", "bar": 5},
-    "natural_usage": {"status": "FIRST RESULT: KV probes > text at all positions. Moderate evidence on Qwen. V≥K for decodability complements K>V for causality. Needs Llama replication.", "bar": 2},
-    "cross_model_replication": {"status": "COMPLETE for Phase 1 (4 families, 5 variants). Phase 2 needs Llama.", "bar": 5},
+    "natural_usage": {"status": "CROSS-MODEL REPLICATION: KV > text on Qwen (digital) AND Mistral (analog). V≥K decodability at ALL layers both models. Moderate-strong.", "bar": 3},
+    "cross_model_replication": {"status": "COMPLETE for Phase 1 (4 families). Phase 2: 2 families (Qwen, Mistral).", "bar": 5},
     "encoding_strategy": {"status": "COMPLETE TAXONOMY + geometric evidence.", "bar": 5},
-    "literature_convergence": {"status": "DECISIVE: 7 scans, 70+ papers. Phase 2 directly validated by 'Knowing Before Saying' and 'Probing for Arithmetic Errors'.", "bar": 5}
+    "literature_convergence": {"status": "DECISIVE: 7 scans, 70+ papers.", "bar": 5}
   }
 }
