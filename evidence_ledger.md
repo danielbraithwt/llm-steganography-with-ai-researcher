@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-21 (cycle 75 — **Early answer decodability NULL.** Text-cumulative baseline R=0.52-0.75 DOMINATES KV probes (R=-0.04 to 0.38) at ALL positions along the CoT chain. No early decodability gap (0 deciles). The cumulative mean of token embeddings — capturing problem numbers from the start — is far more predictive of the final answer than any single KV vector. Design limitation: asymmetric comparison (cumulative text from many tokens vs single-position KV vector). Does NOT rule out early decodability via cumulative KV or hidden states. Follow-up needed with cumulative KV probe.)
-Cycles completed: 75 (64 experimental + 1 consolidation + 5 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-21 (cycle 76 — **Cumulative KV probe: cumulative V > cumulative text at ALL 10/10 positions** (mean +0.055 R, largest +0.104 at 10%). Fair apples-to-apples comparison fixes exp_075 design flaw. KV cache carries information beyond what text tokens encode. Advantage is small but universal. Surprise: single hidden states much weaker than cumulative representations — answer info is distributed across positions, not concentrated. No early decodability gap (both reach threshold at 10%). Moderate evidence FOR hypothesis.)
+Cycles completed: 76 (65 experimental + 1 consolidation + 5 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -651,8 +651,11 @@ through numeric/arithmetic positions, not through English word positions. The hi
 - WRRA "smoking gun" absent on both models (too few errors on Qwen, negative on Mistral)
 - Expression-embed is a static baseline; hidden-state baseline at expression positions untested
 - Paraphrase disruption uninformative due to `<<EXPR=RESULT>>` format confound — needs redesign
+- Cumulative KV advantage (+0.055) is small and may reflect richer representations, not hidden computation
+- GSM8K answers are functions of problem numbers — task specificity limits generalization
+- Statistical significance of cumulative V - text difference not formally tested (permutation needed)
 
-**Key experiments:** Exp 065 (initial, confound identified), Exp 068 (Qwen, corrected), Exp 069 (Mistral, cross-model replication), Exp 071 (computation-position probes + WRRA attempt), Exp 072 (Mistral computation-position + expression-embed baseline + WRRA), Exp 073 (Qwen expression-embed retroactive baseline + permutation significance), Exp 074 (paraphrase disruption — decisive null due to format confound), Exp 075 (early answer decodability — text dominates KV at all positions, design limitation identified)
+**Key experiments:** Exp 065 (initial, confound identified), Exp 068 (Qwen, corrected), Exp 069 (Mistral, cross-model replication), Exp 071 (computation-position probes + WRRA attempt), Exp 072 (Mistral computation-position + expression-embed baseline + WRRA), Exp 073 (Qwen expression-embed retroactive baseline + permutation significance), Exp 074 (paraphrase disruption — decisive null due to format confound), Exp 075 (early answer decodability — text dominates KV at all positions, design limitation identified), Exp 076 (cumulative KV probe — cum_V > cum_text at 10/10 positions, +0.055 mean, fixes exp_075 design flaw)
 
 ---
 
@@ -710,3 +713,69 @@ purely due to this asymmetry, not because the KV cache lacks answer information.
 
 **Follow-up needed:** Cumulative KV probe (mean of KV vectors up to P) vs cumulative text.
 This removes the asymmetry and enables a fair apples-to-apples comparison.
+
+### Exp 076: Cumulative KV Probe — Fair Apples-to-Apples Comparison
+**Cycle 76 | Qwen3-4B-Base | n=258 correct problems | Fixes exp_075 design flaw**
+
+**Core question:** When KV and text are aggregated identically (cumulative mean from CoT start
+to position P), does the KV cache predict the final answer better than text?
+
+**Method:** At each of 10 decile positions (10%-100% of CoT), computed: (a) cumulative mean of
+V-vectors from positions 0:P (dim=1024), (b) cumulative mean of K-vectors from 0:P (dim=1024),
+(c) cumulative mean of token embeddings from 0:P (dim=2560), (d) hidden state at position P
+(dim=2560), (e) single-position V at P (dim=1024, for exp_075 comparison). RidgeCV 5-fold CV,
+target = log(|answer|+1) × sign(answer). L35 (100% depth).
+
+**Results:**
+
+| Position | cum_V R | cum_K R | cum_text R | hidden_st R | single_V R | Shuffle |
+|----------|---------|---------|------------|-------------|------------|---------|
+| 10% | **0.623** | 0.620 | 0.519 | 0.386 | 0.331 | -0.207 |
+| 20% | **0.722** | 0.712 | 0.689 | 0.374 | 0.355 | 0.008 |
+| 30% | **0.759** | 0.721 | 0.730 | 0.234 | 0.185 | -0.056 |
+| 40% | **0.784** | 0.760 | 0.754 | 0.138 | 0.020 | -0.059 |
+| 50% | **0.797** | 0.767 | 0.752 | 0.185 | 0.110 | -0.136 |
+| 60% | **0.771** | 0.726 | 0.711 | 0.020 | -0.015 | -0.048 |
+| 70% | **0.751** | 0.720 | 0.690 | -0.059 | 0.091 | -0.070 |
+| 80% | **0.716** | 0.705 | 0.648 | 0.152 | 0.136 | -0.116 |
+| 90% | 0.704 | **0.717** | 0.651 | 0.169 | 0.056 | -0.140 |
+| 100% | 0.694 | **0.699** | 0.630 | 0.012 | -0.044 | -0.106 |
+
+**KEY FINDING: Cumulative V > cumulative text at ALL 10/10 positions.**
+
+cum_V advantage: +0.104 (10%), +0.033 (20%), +0.029 (30%), +0.029 (40%), +0.045 (50%),
++0.060 (60%), +0.061 (70%), +0.067 (80%), +0.053 (90%), +0.065 (100%).
+**Mean advantage: +0.055 R. Universality: 10/10 positions.**
+
+**Aggregation improvement:** Single V → cumulative V: mean +0.609 R. Cumulative aggregation
+transforms single-position noise into strong signal. Answer information is DISTRIBUTED
+across many positions — no single position carries the full answer.
+
+**Surprise — hidden state at P underperforms cumulative text:** Mean disadvantage -0.517 R.
+Despite attending to all prior positions through causal attention, a single hidden state
+encodes ONE position's contribution to the sequence (optimized for next-token prediction),
+not a global answer representation. This confirms answer info is distributed.
+
+**No early decodability gap:** All probes reach R>0.3 at decile 1 (10%). Both KV and text
+are immediately informative because problem numbers appear at the start.
+
+**Interpretation:** The cumulative V advantage is small (+0.055 mean) but universal (10/10).
+It demonstrates that V-vectors at L35 carry COMPUTATION ARTIFACTS beyond raw token identities:
+each V[P] has been processed through 35 layers of attention + FFN, encoding attention-aggregated
+context and nonlinear computation. The text baseline, despite having 2.5x more dimensions
+(2560 vs 1024), consistently underperforms.
+
+The advantage is largest at 10% (+0.104) — the KV cache has encoded more answer-relevant
+information than the first few text tokens. This is because KV vectors incorporate inter-token
+relationships through attention, while text embeddings are position-independent.
+
+**Confounds:** (1) KV representations at L35 are inherently richer than input embeddings (35
+layers of computation) — the advantage could reflect general representational richness, not
+answer-specific "hidden computation." (2) GSM8K answers are functions of problem numbers — any
+representation capturing numbers will be predictive. (3) Single model (Qwen only).
+
+**Pre-registered predictions:** 7/11 TRUE-hypothesis confirmed, 1.5/4 FALSE confirmed.
+Hidden-state predictions wrong in both branches.
+
+**Evidence strength:** MODERATE — cumulative V universally exceeds cumulative text in a fair
+comparison, but the advantage is small (+0.055) and could be explained by richer representations.

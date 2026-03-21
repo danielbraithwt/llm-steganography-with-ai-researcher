@@ -1,28 +1,31 @@
 {
-  "cycle": 75,
-  "timestamp": "2026-03-21T22:00:00Z",
+  "cycle": 76,
+  "timestamp": "2026-03-21T23:30:00Z",
   "type": "experiment",
-  "template": "early_answer_decodability",
+  "template": "cumulative_kv_probe",
   "parameters": {
     "model": "Qwen/Qwen3-4B-Base",
     "n_generated": 300,
     "n_correct": 258,
     "generation_accuracy": 86.0,
     "mean_cot_length_tokens": 511.8,
-    "probe_layers": [18, 35],
+    "probe_layer": 35,
+    "probe_layer_pct": 100,
     "n_deciles": 10,
     "kv_dim": 1024,
+    "hs_dim": 2560,
     "text_dim": 2560,
-    "probe_type": "RidgeCV_5fold"
+    "probe_type": "RidgeCV_5fold",
+    "comparison": "cumulative_mean_KV_vs_cumulative_mean_text"
   },
-  "prediction_outcome": "neither_branch",
-  "key_finding": "TEXT DOMINATES KV: Text-cumulative baseline R=0.52-0.75 beats KV probes (R=-0.04 to 0.38) at ALL 10 positions and both layers. No early decodability gap (0 deciles). The cumulative mean of token embeddings — which accumulates problem number tokens from early in the chain — is far more predictive of the final answer than any single KV vector. Critical design limitation: asymmetric comparison (cumulative text aggregating hundreds of tokens vs single-position KV vector). Does NOT rule out early decodability through cumulative KV or hidden states.",
-  "evidence_impact": "WEAK evidence against early decodability (specific single-position form). The null is clear but the design has an identified asymmetry. The result is CONSISTENT with exp_071-073 showing answer info concentrates at computation positions (=), not uniformly across the chain. The text-cumulative baseline's strength (R=0.52 at 10%) comes from problem numbers appearing early in generated text. Follow-up with cumulative KV probe (fair comparison) is the highest priority.",
-  "next_planned": "Cumulative KV probe — mean of all KV vectors up to position P, vs cumulative text at same position. This removes the asymmetry and enables a fair apples-to-apples comparison of aggregate KV vs aggregate text information.",
+  "prediction_outcome": "partially_confirmed",
+  "key_finding": "Cumulative V > cumulative text at ALL 10/10 positions (mean +0.055 R, largest +0.104 at 10%). First fair apples-to-apples comparison (same aggregation, same positions) confirms KV cache carries information beyond raw text tokens. Aggregation transforms single-position noise into strong signal (+0.609 R improvement). SURPRISE: single hidden states at arbitrary positions are WEAKER than cumulative text (-0.517 R), confirming answer information is distributed across positions, not concentrated. No early decodability gap (both reach threshold at 10%).",
+  "evidence_impact": "MODERATE evidence FOR the hypothesis. The cumulative V advantage is small (+0.055) but universal (10/10 positions) and the comparison is now fair. The advantage could be explained by inherent richness of L35 V-vectors compared to input embeddings (35 layers of computation). The hidden-state weakness reveals that no single position carries the full answer — information is distributed. Statistical significance test and cross-model replication needed.",
+  "next_planned": "Paired permutation test for cumV vs cumText to determine if +0.055 is statistically significant. Consider residualizing against problem numbers. Cross-model replication on Mistral.",
   "figures": [
-    "results/exp_075/early_decodability_by_layer.png",
-    "results/exp_075/kv_advantage_over_text.png",
-    "results/exp_075/probe_heatmap.png"
+    "results/exp_076/cumulative_probes_vs_position.png",
+    "results/exp_076/advantage_over_text.png",
+    "results/exp_076/aggregation_improvement.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
@@ -30,7 +33,7 @@
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
     "geometric_dissociation": {"status": "K > V UNIVERSAL: 8 angles. K spectral geometry uniform across heads. V spectral differentiates.", "bar": 5},
     "head_level_analysis": {"status": "COMPLETE + SPECTRAL: Two-regime on Qwen (decisive), near-collapse on Llama.", "bar": 5},
-    "natural_usage": {"status": "PROBING AT COMPUTATION POSITIONS: V R=0.977, gap +0.206 over expr-embed (moderate-strong). EARLY DECODABILITY: text >> single-position KV at all positions (design limitation). BEHAVIORAL: paraphrase uninformative (format confound). CUMULATIVE KV PROBE needed for fair test.", "bar": 3},
+    "natural_usage": {"status": "COMPUTATION POSITIONS: V R=0.977, gap +0.206 over expr-embed (moderate-strong). CUMULATIVE KV PROBE: cum_V > cum_text at 10/10 positions (+0.055 mean, moderate). EARLY DECODABILITY: no gap (both immediate). BEHAVIORAL: paraphrase uninformative. Hidden states weaker than cumulative reps.", "bar": 3},
     "cross_model_replication": {"status": "COMPLETE for Phase 1 (4 families). Phase 2: 2 families for computation-position probing.", "bar": 5},
     "encoding_strategy": {"status": "COMPLETE TAXONOMY + geometric evidence.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 8 scans, 80+ papers, 12+ convergent angles.", "bar": 5}
