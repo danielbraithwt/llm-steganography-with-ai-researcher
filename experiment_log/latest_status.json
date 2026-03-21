@@ -1,31 +1,34 @@
 {
-  "cycle": 70,
-  "timestamp": "2026-03-21T18:00:00Z",
-  "type": "literature_scan",
-  "template": "scheduled_literature_scan",
+  "cycle": 71,
+  "timestamp": "2026-03-21T20:00:00Z",
+  "type": "experiment",
+  "template": "wrra_probing",
   "parameters": {
-    "papers_found": 12,
-    "focus_areas": [
-      "V≥K decodability validation",
-      "WRRA probing precedent",
-      "KV-as-computation",
-      "steganographic CoT",
-      "QK-OV coupling"
-    ]
+    "model": "Qwen/Qwen3-4B-Base",
+    "n_problems": 447,
+    "n_ops_total": 1339,
+    "n_ops_error": 2,
+    "error_rate": 0.0015,
+    "probe_layers": [9, 18, 27, 35],
+    "features": "K, V at '=' position, text embeddings"
   },
-  "prediction_outcome": "N/A (literature scan)",
-  "key_finding": "V≥K decodability INDEPENDENTLY VALIDATED by Zhang et al. (2026). WRRA probing validated by Sun et al. (EMNLP 2025, >90% accuracy). KV-as-computation accepted at ICLR 2026. QK-OV weakly coupled (Anthropic). Steganographic CoT at NeurIPS 2025. All probing papers use residual stream — our K/V decomposition is unique.",
-  "evidence_impact": "Phase 2 experimental design strongly validated by literature. V≥K decodability explained theoretically (V=content, K=routing). Experiment C (WRRA) has direct precedent.",
-  "next_planned": "Experiment C (WRRA): probe KV cache at arithmetic error positions. Expect V-probe > K-probe for correct value. Also: statistical significance testing for exp 068-069 probe differences.",
-  "figures": [],
+  "prediction_outcome": "partially_confirmed",
+  "key_finding": "WRRA underpowered (0.15% arithmetic error rate — near-zero). BUT computation-position probes show V R=0.975, K R=0.961, text R=0.108. KV-text gap +0.85 at computation positions (~10x general position gap). V>K at all layers.",
+  "evidence_impact": "Strengthens Phase 2 natural usage evidence with computation-specific decodability. WRRA approach blocked by model's near-perfect arithmetic.",
+  "next_planned": "Cross-model computation-position probes on Mistral. Or try WRRA with plain text arithmetic (no calculator format).",
+  "figures": [
+    "results/exp_071/training_r_by_layer.png",
+    "results/exp_071/alignment_by_layer.png",
+    "results/exp_071/summary_alignment.png"
+  ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
     "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. HEAD-LEVEL CONCENTRATION decisive on Qwen, weak on Llama.", "bar": 5},
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
     "geometric_dissociation": {"status": "K > V UNIVERSAL: 8 angles. K spectral geometry uniform across heads. V spectral differentiates.", "bar": 5},
     "head_level_analysis": {"status": "COMPLETE + SPECTRAL: Two-regime on Qwen (decisive), near-collapse on Llama.", "bar": 5},
-    "natural_usage": {"status": "CROSS-MODEL (2 families) + LITERATURE VALIDATED: KV > text on Qwen + Mistral. V≥K decodability independently confirmed (Zhang 2026). Next: WRRA (Exp C).", "bar": 3},
-    "cross_model_replication": {"status": "COMPLETE for Phase 1 (4 families). Phase 2: 2 families (Qwen, Mistral).", "bar": 5},
+    "natural_usage": {"status": "CROSS-MODEL + COMPUTATION-POSITION: KV > text at all CoT positions (2 models). KV >> text at arithmetic positions (V R=0.975 vs text R=0.108). WRRA blocked by near-zero error rate.", "bar": 3},
+    "cross_model_replication": {"status": "COMPLETE for Phase 1 (4 families). Phase 2: 2 families (Qwen, Mistral) for general; 1 family (Qwen) for computation-position.", "bar": 5},
     "encoding_strategy": {"status": "COMPLETE TAXONOMY + geometric evidence.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 8 scans, 80+ papers, 12+ convergent angles.", "bar": 5}
   }

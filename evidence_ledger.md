@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-21 (cycle 70 — **LITERATURE SCAN #8.** 12 new papers. V≥K decodability INDEPENDENTLY VALIDATED by Zhang et al. (2026): V vectors encode semantics > hidden states. WRRA probing validated by Sun et al. (EMNLP 2025): >90% accuracy recovering correct answers from hidden states at error positions. KV-as-computation accepted at ICLR 2026 (Xing et al.). Steganographic CoT concerns active: NeurIPS 2025 + 3 more 2026 papers. Anthropic confirms QK-OV are "weakly coupled" in mostly-disjoint subspaces — validates our K=routing, V=content decomposition.)
-Cycles completed: 70 (60 experimental + 1 consolidation + 5 literature scans + 4 blocked/crashed)
+Last updated: 2026-03-21 (cycle 71 — **Exp C WRRA attempt.** Arithmetic error rate near-zero (2/1339=0.15%) on Qwen in `<<EXPR=RESULT>>` format — WRRA analysis underpowered. BUT computation-position probes reveal dramatic KV>>text gap: V-probe R=0.975, K-probe R=0.961, text R=0.108 at arithmetic positions. The KV-text gap at computation positions (+0.85) is ~10x the gap at general positions (+0.09). V>K at all layers.)
+Cycles completed: 71 (61 experimental + 1 consolidation + 5 literature scans + 4 blocked/crashed)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -299,6 +299,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | K-norm is a good proxy for true H2O (cumulative attention) | H2O uses cumulative attention; K-norm (L2 norm of K-vectors) was assumed to approximate this | Exp 057: Spearman rho=-0.431 on Llama (ANTI-CORRELATED). Jaccard overlap=0.057 at 33%. They select OPPOSITE positions. | K-norm captures content-density (information stored at position); cumulative attention captures routing-importance (how often attended). These are DIFFERENT properties — high-attention positions have LOW information density. |
 | Cumulative attention identifies informative positions | "Heavy hitters" (most-attended positions) assumed to be most important | Exp 057: true_h2o=33.3% on Qwen (vs random 91.7%); true_h2o=55.6% on Llama zero_kv (vs random 66.7%). Most-attended = infrastructure/sinks, NOT content. | At tight budgets (33%), most-attended positions are sinks+structural markers. At 50%, enough budget for true H2O to include content positions too (85.2% under masking). |
 | K spectral geometry predicts head function (answer vs dispensable) | Exp 062-063 (K<V spectral asymmetry) + Exp 045-048 (head specialization) | Exp 064: K eff rank answer/dispensable = 1.003-1.005 (p=0.76-0.94 ns). H5 ranks #5-6 out of 8 in K concentration. | Head specialization is a Q×K interaction effect, not an intrinsic K manifold property. K spectral geometry is universal across heads. V (not K) differentiates answer from dispensable heads. |
+| WRRA (wrong reasoning, right answer) is common enough for probing on Qwen | Sun et al. EMNLP 2025 (5-15% error rate on similar tasks) | Exp 071: 2/1339 operations = 0.15% error rate (1 genuine error). | The `<<EXPR=RESULT>>` calculator format enforces near-perfect arithmetic. Errors in reasoning are in SETUP (wrong expressions), not COMPUTATION (wrong evaluation). WRRA requires models that make arithmetic errors, not reasoning errors. |
 
 ---
 
@@ -428,6 +429,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 068 | 68 | Qwen-Base | **Early decodability — FIRST PHASE 2 OBSERVATIONAL EVIDENCE:** KV probes > text at ALL positions 10-90%. K-text gap peaks at +0.235 (70%). V≥K for decodability (surprise). Cumulative features on fair comparison. 80 problems, 4 layers. |
 | 069 | 69 | Mistral-Base | **Early decodability — CROSS-MODEL REPLICATION:** KV > text on Mistral (analog, different family). V mean=0.609 > K mean=0.575 > text=0.524. V≥K replicates at ALL 4 layers. Effect weaker than Qwen but consistent. K>text at 6/10 positions (vs 9/10 Qwen). Best layer L8 (25%) vs Qwen L27 (77%). |
 | — | 70 | **Lit scan #8** | 12 papers. V≥K decodability independently validated (Zhang 2026: V encodes semantics > hidden states). WRRA probing validated (Sun EMNLP 2025: >90% correct answer from hidden states at error positions). KV-as-computation at ICLR 2026. QK-OV weakly coupled (Anthropic 2025). Steganographic CoT (NeurIPS 2025 + 3 papers). All probing papers use residual stream — our K/V decomposition is unique. |
+| 071 | 71 | Qwen-Base | **WRRA attempt + computation-position probes:** Arithmetic error rate near-zero (2/1339=0.15%) — WRRA underpowered. BUT computation-position probes: V R=0.975, K R=0.961, text R=0.108 at arithmetic "=" positions. KV-text gap +0.85 (~10x general position gap). V>K at all 4 layers. 1337 operations, shuffle R≈-0.06. |
 
 ---
 
@@ -523,9 +525,37 @@ The finding replicates with model-specific variation:
 - **Mistral:** Weaker K advantage but stronger V advantage; best layer is early (L8) vs late (L27)
 - **Mistral's text dim is 4x KV dim** (4096 vs 1024) — despite this disadvantage, KV still exceeds text
 
-**Limitations (remaining):**
-- Text baseline is cumulative mean of token embeddings — a stronger text-based probe might close the gap
-- Only correctly-solved problems — results on incorrect problems may differ
-- No statistical significance testing on K-text differences yet
+**Computation-position probes (Exp 071 — Qwen3-4B-Base):**
 
-**Key experiments:** Exp 065 (initial, confound identified), Exp 068 (Qwen, corrected), Exp 069 (Mistral, cross-model replication)
+At specific arithmetic positions (the "=" token in `<<EXPR=RESULT>>` operations), the
+KV-text gap is dramatically amplified:
+
+| Layer | K-probe R | V-probe R | Text R | KV-Text gap |
+|-------|-----------|-----------|--------|-------------|
+| L9 (25%) | 0.936 | 0.948 | 0.108 | +0.84 |
+| L18 (50%) | 0.936 | 0.955 | 0.108 | +0.85 |
+| L27 (75%) | 0.954 | 0.971 | 0.108 | +0.86 |
+| L35 (97%) | 0.961 | **0.975** | 0.108 | **+0.87** |
+
+N=1337 correct arithmetic operations, 5-fold CV, shuffle R ≈ -0.06.
+V > K at all layers — V encodes computation results better than K.
+Effect increases with depth (V: 0.948 → 0.975).
+Text R = 0.108 because the "=" token embedding is identical for all operations.
+
+The KV-text gap at computation positions (+0.85) is **~10x larger** than at general CoT
+positions (+0.09 from exp_068). At positions where computation actually happens, the KV
+cache is sharply tuned to the result while text embeddings are generic.
+
+**WRRA analysis (Exp 071):** Underpowered — only 2 arithmetic errors in 1339 operations
+(0.15% error rate). The `<<EXPR=RESULT>>` calculator format produces near-perfect
+arithmetic. One error was expression notation ambiguity, not genuine arithmetic error.
+True error rate ≈ 0.07%. WRRA requires a less accurate model or different prompting format.
+
+**Limitations (remaining):**
+- Text baseline is cumulative mean of token embeddings (general) or single-position embedding (computation) — a stronger text-based probe might close the gap
+- Only correctly-solved problems for general decodability; computation-position probes use all problems
+- No statistical significance testing on K-text differences yet
+- Computation-position finding is post-hoc (not pre-registered)
+- WRRA analysis remains underpowered
+
+**Key experiments:** Exp 065 (initial, confound identified), Exp 068 (Qwen, corrected), Exp 069 (Mistral, cross-model replication), Exp 071 (computation-position probes + WRRA attempt)
