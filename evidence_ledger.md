@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-22 (cycle 79 — **CHALLENGE: Problem-number residualization.** Within-problem data leakage discovered: exp_078 V→final|local R=0.520 inflated by KFold leakage, true GroupKFold R=0.299. With proper GroupKFold: V→final R=0.487 > embed→final R=0.344. V→final|embed R=0.14-0.22 — V carries computation info beyond problem context. V→final|embed+local R=0.13-0.22 — survives strictest control. Effect MODERATE (R≈0.2), not STRONG (R≈0.5). Key methodological lesson for all future probing.)
-Cycles completed: 79 (68 experimental + 1 consolidation + 5 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-22 (cycle 80 — **Literature scan.** 9th scan: 13 new papers, 90+ total. Key convergences: K=routing/V=content confirmed from 4th independent angle (SAE decomposition); Reasoning Theater updated with task-dependence; information bottleneck quantified (~30x compression from activations to text); CoT fragility validated for Experiment B design; important counter-evidence (iterative faithfulness) acknowledged and reconciled.)
+Cycles completed: 80 (68 experimental + 1 consolidation + 6 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -132,14 +132,14 @@ The original claim that PGD perturbations concentrate at "answer-coupled positio
 The hidden channel EXISTS (PGD null space is real, K-specific, p=0.013) but its spatial structure is weak. It likely operates through distributed geometric properties (K-direction clusters) across many positions, not through concentrated perturbation at specific positions.
 
 ### 7. Literature Convergence
-**Status: Decisive independent convergence from 12+ angles across 8 literature scans (80+ papers)**
+**Status: Decisive independent convergence from 14+ angles across 9 literature scans (90+ papers)**
 
-Eight literature scans (cycles 10, 20, 30, 40, 50, 60, 67, 70) covering 80+ papers show the field converging on our core hypothesis from increasingly diverse angles:
+Nine literature scans (cycles 10, 20, 30, 40, 50, 60, 67, 70, 80) covering 90+ papers show the field converging on our core hypothesis from increasingly diverse angles:
 
 | Angle | Key evidence | Source |
 |-------|-------------|--------|
 | **Architectural** | 95-99% gradient norm suppressed by LM head — text is architecturally guaranteed lossy projection | Godey & Artzi, March 2026 |
-| **Behavioral** | Models decide answers internally 80% of tokens before visible CoT | "Reasoning Theater," Boppana et al., 2026 |
+| **Behavioral** | Models decide answers internally 80% of tokens before visible CoT; TASK-DEPENDENT: MMLU=performative, GPQA-D=genuine | "Reasoning Theater" v3, Boppana et al., March 2026 |
 | **Safety** | <20% verbalization of reasoning; obfuscated reward hacking under optimization; CoT still informative for complex behaviors (METR) | Anthropic (Chen 2025), OpenAI (Baker 2025), METR Aug 2025 |
 | **Computational** | 3.1x compression (CODI); 4x compression (Latent-SFT); HybridCoT 94% perf at 1.97x less compute; multi-path superposition (Neff≈3-4) | CODI (EMNLP 2025), Latent-SFT (Oct 2025), HybridCoT (NeurIPS 2025) |
 | **Mechanistic** | QK=routing, OV=content; QK attributions unlock feature tracing; iteration heads carry forward CoT computation; KV cache steering induces reasoning styles | McCormick 2025, Anthropic QK (2025), Cabannes (NeurIPS 2024), Belitsky Jul 2025 |
@@ -151,6 +151,10 @@ Eight literature scans (cycles 10, 20, 30, 40, 50, 60, 67, 70) covering 80+ pape
 | **KV as computation** | KV cache treated as lightweight representation for reasoning (ICLR 2026); KV steering induces reasoning in frozen models; RL discovers reasoning-critical heads for compression | Xing (ICLR 2026), Belitsky Jul 2025, Du Oct 2025 |
 | **V=content decodability** | V vectors encode semantics BETTER than hidden states — training-free Value Aggregation outperforms residual stream | Zhang et al. Feb 2026 |
 | **WRRA probing** | Probes decode CORRECT arithmetic answers from hidden states when model outputs WRONG answer (>90% accuracy) | Sun, Stolfo, Sachan (EMNLP 2025) |
+| **SAE K/V decomposition** | Keys = "sparse routers with Semantic Elbow"; Values = "dense content payloads" — 4th independent confirmation of K=routing, V=content | Ma et al. (STA-Attention, Dec 2025) |
+| **Information bottleneck** | ~460 bits per activation vs ~15 bits per token = ~30x compression. CoT is bandwidth-constrained; latent CoT overcomes this. | Information Bottleneck of CoT (Oct 2025) |
+| **CoT fragility** | CoT perturbations cause 20-60% accuracy loss; token content matters more than chain length; scaling provides limited defense on dimensional reasoning | Fragile Thoughts (Aravindan & Kejriwal, Feb 2026) |
+| **Counter-evidence: iterative faithfulness** | Probing shows answers emerge iteratively during CoT, not before — CoT IS computation, but compatible with lossy projection | Kudo et al. (arXiv:2412.01113, revised March 2026) |
 
 **New in cycle 50 (5 key convergences):**
 1. **K > V triple-confirmed:** KV-AdaQuant (Hariri et al., Feb 2025) provides MATHEMATICAL PROOF that K matrices have larger spectral/Frobenius norms → strictly more quantization-sensitive. Our K > V now confirmed by perturbation (us), quantization engineering (AsymKV), AND formal mathematics (KV-AdaQuant).
@@ -166,6 +170,14 @@ Eight literature scans (cycles 10, 20, 30, 40, 50, 60, 67, 70) covering 80+ pape
 4. **QK-OV weak coupling confirmed (Anthropic 2025):** QK and OV operate in "mostly-disjoint subspaces" — validates our finding that K and V carry complementary (not redundant) information for different functional roles.
 5. **Steganographic CoT concerns intensify:** Skaf et al. (NeurIPS 2025) show models learn generalized steganographic encoding schemes under process supervision. NEST (Karpov 2026) shows nascent steganographic capability across 28 models. Anwar et al. (2026) formalize the steganographic gap using V-information. Our KV-text decodability gap IS a measurable steganographic gap.
 6. **Probing papers all use residual stream — our K/V decomposition is unique:** Every probing paper (Zhang et al. 2025, Sun et al. 2025, PING framework) probes the combined residual stream. None decompose into K vs V. Our K/V decomposition reveals the routing-content duality that the residual stream obscures.
+
+**New in cycle 80 (6 key convergences):**
+1. **K=routing, V=content SAE-confirmed (4th angle):** Ma et al. (STA-Attention, Dec 2025) use Top-K Sparse Autoencoders on KV cache: K = "sparse routers with Semantic Elbow," V = "dense content payloads." Now 4 independent confirmation angles: perturbation (us), quantization (AsymKV/KV-AdaQuant), spectral geometry (us), SAE decomposition (Ma et al.).
+2. **Reasoning Theater is TASK-DEPENDENT (v3):** Boppana et al. March 2026 update: MMLU = performative (early commitment, 80% tokens reducible), GPQA-D = genuine reasoning. GSM8K is intermediate → our forward-looking R≈0.29 is consistent with partial performative/partial genuine computation.
+3. **"Correct representations despite failure" now 3-group convergence:** Ye et al. (Feb 2026) + Sun et al. (EMNLP 2025) + our exp_078 WRRA: models encode correct answers internally despite text errors. Our unique contribution: K/V decomposition at error positions.
+4. **Information bottleneck QUANTIFIED:** ~460 bits/activation vs ~15 bits/token = ~30x compression. Our cumV > cumText gap (+0.055-0.114 R) empirically measures this bottleneck at the KV cache level.
+5. **CoT fragility validates Experiment B:** Fragile Thoughts (Feb 2026) shows CoT perturbations cause 20-60% accuracy loss depending on type. MathError > UnitConversion > SkippedSteps > ExtraSteps. Our planned paraphrase disruption (surface text changes, numbers preserved) should produce intermediate 10-30% loss.
+6. **Important counter-evidence acknowledged:** Kudo et al. (revised March 2026) show answers emerge iteratively during CoT (faithfulness claim). RESOLUTION: faithfulness and lossy projection are COMPATIBLE — the model computes during CoT (faithful) AND the text captures only part of the computation (lossy). Our partial R≈0.29 (not 0 and not 1) is consistent with both claims.
 
 Our unique contribution: **causal perturbation evidence** at the KV cache level identifying the K-routing channel as the mechanistic substrate of the hidden computation, with HEAD-LEVEL resolution (H5 primary answer head, position-independent) and cross-model validation (5 model variants, 4 families). The K > V hierarchy is now the most independently confirmed finding in this research area. **Phase 2 adds observational evidence** (KV probes > text baseline on 2 models) and resolves the K>V causality vs V≥K decodability distinction with independent literature support.
 
@@ -193,7 +205,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 16 | Cross-model text-dependence variation | Qwen-8B 94% compliant, Llama ~30% | **Moderate** | Exp 6 (research_spec) |
 | 17 | Unused output capacity (4-5 bits/token) | Established | **Strong** | Exp 1 (research_spec) |
 | 18 | CoT narrows entropy 3x (median near zero) | Established | **Strong** | Exp 2 (research_spec) |
-| 19 | Text = lossy projection (literature consensus) | Mainstream (10+ convergent angles, 60+ papers) | **Decisive (independent)** | Lit scans 10, 20, 30, 40, 50 |
+| 19 | Text = lossy projection (literature consensus) | Mainstream (14+ convergent angles, 90+ papers) | **Decisive (independent)** | Lit scans 10, 20, 30, 40, 50, 60, 70, 80 |
 | 20 | K routing at early positions = general infrastructure | K-early destroys everything; V-early dispensable | **Strong** | 028, 029, 034, 038 |
 | 21 | Energy confound does NOT explain K > V | SNR-matched test: K still more sensitive | **Strong** | 027 |
 | 22 | K > V confirmed by quantization literature (independent) | AsymKV: V 1-bit; PM-KVQ: K needs more precision; KV-AdaQuant: MATHEMATICAL PROOF K spectral norms > V | **Decisive (independent)** | Lit scans 40, 50 |
