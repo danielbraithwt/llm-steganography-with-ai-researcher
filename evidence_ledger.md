@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-22 (cycle 88 — **Exp 088: Position-sweep decodability on Qwen3-8B-Base (size scaling test).** REPLICATES: V|nums positive 20/20 bins BOTH layers. L27 p=0.013 (significant). Peak V|nums=0.488 (comparable to 4B's 0.497). Forward-looking channel is SIZE-INDEPENDENT within Qwen family. nums_R unexpectedly high (0.42 vs 4B's 0.26) despite similar accuracy (90% vs 88%). 4-model comparison: Qwen-4B (p=0.01), Qwen-8B (p=0.013), Phi (p=0.003) all significant; Mistral (p=0.137) marginal.)
-Cycles completed: 88 (76 experimental + 1 consolidation + 6 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-22 (cycle 89 — **Exp 089: Layer × Position heatmap on Qwen3-4B-Base.** Full layer sweep: V|nums at ALL 36 layers × 20 position bins. TWO-PHASE EMERGENCE: ramp L0-L9, plateau L10-L35. Signal emerges at L3 (9% depth), 19/20 bins positive from L10 onward. Mean V|nums plateaus at 0.17-0.22 across L10-L35. At chain start (0-5%, text=0%): V|nums emerges at L8 (+0.10), peaks at L19 (+0.32). Forward-looking is DISTRIBUTED and maintained, not localized to specific layers.)
+Cycles completed: 89 (77 experimental + 1 consolidation + 6 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -13,7 +13,7 @@ The hypothesis is supported by converging evidence from 39 experimental cycles, 
 
 ### Key Numbers
 - **Models tested:** Qwen3-4B-Base, Qwen3-4B (Instruct), Qwen3-8B-Base, Llama-3.1-8B-Instruct, Phi-3.5-mini-Instruct (MHA), Mistral-7B-v0.3 (Base)
-- **Phase 2 (natural channel usage):** V→final raw signal on 3 models (Qwen, Phi, Mistral); residualized signal (V|nums) confirmed on Qwen (R=0.24, p<0.001) AND Phi (R=0.19, p<0.001), not on Mistral (R=0.06, p>0.08). WRRA 87.5% on Phi (p=0.002), 71.4% on Qwen (p=0.039), 37.9% on Mistral (ns). Forward-looking V signal confirmed on 2/3 model families. Position-sweep decodability (Exp 083): V decodes from 3% of chain (R=0.34) where text reveals 0%. Input-number confound RULED OUT (Exp 084): V|nums_R = 0.357 at 2.5% (text reveals 0%), peak 0.497 (p=0.01). **CROSS-MODEL POSITION-SWEEP REPLICATION (Exp 086):** Phi-3.5-mini V|nums positive 20/20 bins, V|nums=0.233 at 2.5% (text reveals 0%), peak V|nums=0.540 (p=0.003), gap=70%. Position-sweep now confirmed on 2 model families (GQA+MHA, Base+Instruct). **Experiment B (paraphrase disruption) NULL (Exp 085):** Synonym paraphrase drops partial-TF accuracy by 0.6% (1/168, p=1.0); random replacement drops 6.0% (10/168, p=0.002). Non-number tokens don't carry essential hidden info. **MISTRAL BOUNDARY TEST (Exp 087):** Position-sweep V|nums positive 20/20 bins (L16) but bootstrap p=0.137 (NOT significant). Peak V|nums=0.369. 3-model gradient: channel strength scales with accuracy (Qwen 88%→0.50, Phi 85%→0.54, Mistral 44%→0.37). Mistral is partial exception. **SIZE SCALING (Exp 088):** Qwen3-8B-Base replicates position-sweep: V|nums positive 20/20 bins BOTH layers, L27 peak=0.478 (p=0.013), comparable to 4B (peak=0.497, p=0.01). Forward-looking channel is SIZE-INDEPENDENT within Qwen (4B→8B). Unexpected: nums_R much higher on 8B (0.42 vs 4B's 0.26) despite similar accuracy (90% vs 88%).
+- **Phase 2 (natural channel usage):** V→final raw signal on 3 models (Qwen, Phi, Mistral); residualized signal (V|nums) confirmed on Qwen (R=0.24, p<0.001) AND Phi (R=0.19, p<0.001), not on Mistral (R=0.06, p>0.08). WRRA 87.5% on Phi (p=0.002), 71.4% on Qwen (p=0.039), 37.9% on Mistral (ns). Forward-looking V signal confirmed on 2/3 model families. Position-sweep decodability (Exp 083): V decodes from 3% of chain (R=0.34) where text reveals 0%. Input-number confound RULED OUT (Exp 084): V|nums_R = 0.357 at 2.5% (text reveals 0%), peak 0.497 (p=0.01). **CROSS-MODEL POSITION-SWEEP REPLICATION (Exp 086):** Phi-3.5-mini V|nums positive 20/20 bins, V|nums=0.233 at 2.5% (text reveals 0%), peak V|nums=0.540 (p=0.003), gap=70%. Position-sweep now confirmed on 2 model families (GQA+MHA, Base+Instruct). **Experiment B (paraphrase disruption) NULL (Exp 085):** Synonym paraphrase drops partial-TF accuracy by 0.6% (1/168, p=1.0); random replacement drops 6.0% (10/168, p=0.002). Non-number tokens don't carry essential hidden info. **MISTRAL BOUNDARY TEST (Exp 087):** Position-sweep V|nums positive 20/20 bins (L16) but bootstrap p=0.137 (NOT significant). Peak V|nums=0.369. 3-model gradient: channel strength scales with accuracy (Qwen 88%→0.50, Phi 85%→0.54, Mistral 44%→0.37). Mistral is partial exception. **SIZE SCALING (Exp 088):** Qwen3-8B-Base replicates position-sweep: V|nums positive 20/20 bins BOTH layers, L27 peak=0.478 (p=0.013), comparable to 4B (peak=0.497, p=0.01). Forward-looking channel is SIZE-INDEPENDENT within Qwen (4B→8B). Unexpected: nums_R much higher on 8B (0.42 vs 4B's 0.26) despite similar accuracy (90% vs 88%). **LAYER SWEEP (Exp 089):** Full 36-layer × 20-bin heatmap on Qwen3-4B-Base reveals TWO-PHASE emergence: ramp L0-L9 (signal emerges at L3, 9% depth), plateau L10-L35 (mean V|nums 0.17-0.22, 19/20 bins positive). Forward-looking is DISTRIBUTED across 26 layers, not localized. At chain start (0-5%, text=0%): V|nums emerges at L8 (+0.10), peaks at L19 (+0.32). The signal is established at middle layers and maintained via residual stream.
 - **Architecture coverage:** GQA (4 models) + MHA (1 model); Base (2) + Instruct (3)
 - **Total valid problems across all experiments:** ~1,500+ evaluations
 - **K > V confirmed:** 5/5 models × 3 positions = 15 independent conditions under direction perturbation; 16/16 heads across 2 models; K/V effective rank ratio 0.87-0.94 (geometric evidence, Exp 062)
@@ -358,7 +358,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 
 ---
 
-## Experiment Log (40 experiments + 3 literature scans)
+## Experiment Log (41 experiments + 3 literature scans)
 
 ### Phase 1: Establishing the Phenomenon (Cycles 1-9)
 | Exp | Cycle | Model | Key Result |
@@ -1321,6 +1321,49 @@ computational chains, or its larger capacity enables more regular answer pattern
 **Evidence strength:** MODERATE-STRONG. Replicates within Qwen at 2x scale with L27 p=0.013.
 Does not add a new family (same Qwen architecture). Establishes size-independence as a new
 finding. The nums_R asymmetry is unexplained and warrants investigation.
+
+### Exp 089 (cycle 89): Layer × Position Heatmap — Full Layer Sweep
+**Model:** Qwen/Qwen3-4B-Base | **Accuracy:** 88.0% | **n:** 198 correct problems, 19,223 vectors/layer
+**Layers probed:** ALL 36 layers × 20 position bins = 720 probes
+
+**Key result: TWO-PHASE EMERGENCE — ramp then plateau.**
+
+The forward-looking signal (V|nums) shows a clear two-phase structure:
+- **Phase A — Ramp (L0-L9, 0-25% depth):** Signal emerges at L3 (9%), rapidly builds to 0.15
+- **Phase B — Plateau (L10-L35, 28-100% depth):** Signal stabilizes at 0.17-0.22 (mean), 19/20 bins positive
+
+**Layer-wise summary:**
+
+| Layer | Depth% | Mean V|nums | Positive | V|nums at 0-5% (text=0%) |
+|------:|-------:|------------:|---------:|-------------------------:|
+| L0    |   0%   |   -0.061    |   6/20   |      -0.134              |
+| L3    |   9%   |   +0.096    |  17/20   |      +0.009              |
+| L8    |  23%   |   +0.113    |  18/20   |      +0.096              |
+| L10   |  29%   |   +0.200    |  19/20   |      +0.253              |
+| L17   |  49%   | **+0.216**  |  19/20   |      +0.274              |
+| L19   |  54%   |   +0.214    |  19/20   |    **+0.315**            |
+| L27   |  77%   |   +0.208    |  19/20   |      +0.128              |
+| L35   | 100%   |   +0.209    |  19/20   |      +0.196              |
+
+**Key findings:**
+1. **Forward-looking is DISTRIBUTED**: Present across 26 layers (L10-L35) at similar strength.
+   Not localized to specific layers.
+2. **Very early emergence (L3, 9% depth)**: The model begins forward-looking computation
+   almost immediately after embedding layers.
+3. **Plateau, not accumulation**: Signal is ESTABLISHED at middle layers and MAINTAINED through
+   residual stream, rather than progressively refined.
+4. **At chain start (0-5%, text=0%)**: Forward-looking V|nums emerges at L8 (+0.10), peaks at
+   L19 (+0.32). The model "knows" the answer from the first CoT tokens by ~L8.
+5. **Shuffle controls**: Systematically negative (~-0.13, GroupKFold artifact), but gap to
+   V|nums is ~0.33 at plateau — large and consistent.
+
+**Pre-registered predictions:** TRUE 2.5/6, FALSE 0/3. TRUE wins but specific predictions
+about monotonic increase (PLATEAUS instead) and emergence layer (L3 vs predicted L12-L18) were
+wrong. The signal is MORE pervasive and emerges EARLIER than expected.
+
+**Evidence strength:** MODERATE-STRONG. First full layer sweep adds depth dimension to Phase 2
+evidence. Two-phase structure is a new mechanistic finding. Single model (Qwen-4B) limits
+generalizability. Consistent with prior results at L18 and L27.
 
 **Impact on Phase 2 evidence:** Strengthens to STRONG. Position-sweep now confirmed on:
 - 2 model families (Qwen + Phi) with significance
