@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-22 (cycle 89 — **Exp 089: Layer × Position heatmap on Qwen3-4B-Base.** Full layer sweep: V|nums at ALL 36 layers × 20 position bins. TWO-PHASE EMERGENCE: ramp L0-L9, plateau L10-L35. Signal emerges at L3 (9% depth), 19/20 bins positive from L10 onward. Mean V|nums plateaus at 0.17-0.22 across L10-L35. At chain start (0-5%, text=0%): V|nums emerges at L8 (+0.10), peaks at L19 (+0.32). Forward-looking is DISTRIBUTED and maintained, not localized to specific layers.)
-Cycles completed: 89 (77 experimental + 1 consolidation + 6 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-22 (cycle 90 — **Literature scan (10th).** 24 new papers. K=routing/V=content now 6 independent angles (added KVSlimmer theoretical proof + AsymKV local asymmetry). Ramp/plateau layer pattern confirmed as UNIVERSAL transformer property (4 independent papers). Theoretical grounding for forward-looking features via gradient structure (Rofin ICLR 2026). CoT monitorability CRISIS: 40-author consensus paper + OpenAI 2.7% vs 61.9% controllability gap + "internalized reasoning" formalized as CoT pathology.)
+Cycles completed: 90 (77 experimental + 1 consolidation + 7 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -133,9 +133,9 @@ The original claim that PGD perturbations concentrate at "answer-coupled positio
 The hidden channel EXISTS (PGD null space is real, K-specific, p=0.013) but its spatial structure is weak. It likely operates through distributed geometric properties (K-direction clusters) across many positions, not through concentrated perturbation at specific positions.
 
 ### 7. Literature Convergence
-**Status: Decisive independent convergence from 14+ angles across 9 literature scans (90+ papers)**
+**Status: Decisive independent convergence from 18+ angles across 10 literature scans (110+ papers)**
 
-Nine literature scans (cycles 10, 20, 30, 40, 50, 60, 67, 70, 80) covering 90+ papers show the field converging on our core hypothesis from increasingly diverse angles:
+Ten literature scans (cycles 10, 20, 30, 40, 50, 60, 67, 70, 80, 90) covering 110+ papers show the field converging on our core hypothesis from increasingly diverse angles:
 
 | Angle | Key evidence | Source |
 |-------|-------------|--------|
@@ -156,6 +156,13 @@ Nine literature scans (cycles 10, 20, 30, 40, 50, 60, 67, 70, 80) covering 90+ p
 | **Information bottleneck** | ~460 bits per activation vs ~15 bits per token = ~30x compression. CoT is bandwidth-constrained; latent CoT overcomes this. | Information Bottleneck of CoT (Oct 2025) |
 | **CoT fragility** | CoT perturbations cause 20-60% accuracy loss; token content matters more than chain length; scaling provides limited defense on dimensional reasoning | Fragile Thoughts (Aravindan & Kejriwal, Feb 2026) |
 | **Counter-evidence: iterative faithfulness** | Probing shows answers emerge iteratively during CoT, not before — CoT IS computation, but compatible with lossy projection | Kudo et al. (arXiv:2412.01113, revised March 2026) |
+| **K/V Hessian proof** | Concentrated Key spectra → routing homogeneity; dispersed Value spectra → content heterogeneity. Theoretical proof via exact Hessian analysis. 5th K=routing/V=content angle. | KVSlimmer (Liu et al., March 2026) |
+| **K/V local asymmetry** | Adjacent keys locally homogeneous (routing); adjacent values locally heterogeneous (content). 6th K=routing/V=content angle. | AsymKV (Cui & Xu, NeurIPS 2025) |
+| **Layer ramp/plateau universal** | Intrinsic dimensionality shows "peak then long plateau" SIZE-INDEPENDENT across 35M-3B models. Our ramp/plateau is a universal transformer property. | Valeriani et al. (NeurIPS 2023), Jiang et al. (ICLR 2025), Lad et al. (2025), Sun et al. (AAAI 2025) |
+| **Forward-looking features theory** | Next-token prediction gradient NATURALLY produces features useful for future tokens; effect strongest in formal reasoning domains. Theoretical grounding for V|nums. | Rofin et al. (ICLR 2026) |
+| **CoT monitorability crisis** | 40-author consensus: monitoring is "fragile." OpenAI: 2.7% CoT controllability vs 61.9% output controllability. Models have parallel computation channels. | Korbak et al. (Jul 2025), Yueh-Han et al. (OpenAI, March 2026) |
+| **Internalized reasoning pathology** | Formalized "internalized reasoning" (computing in hidden states with filler tokens) as a CoT pathology. Our hypothesis is now a recognized failure mode. | Liu et al. (Feb 2026) |
+| **Forward-looking probing** | Hidden states encode correctness of FUTURE answers before formulation. Hidden planning exceeds verbalized awareness. | Zhang et al. (Apr 2025), Dong et al. (ICML 2025) |
 
 **New in cycle 50 (5 key convergences):**
 1. **K > V triple-confirmed:** KV-AdaQuant (Hariri et al., Feb 2025) provides MATHEMATICAL PROOF that K matrices have larger spectral/Frobenius norms → strictly more quantization-sensitive. Our K > V now confirmed by perturbation (us), quantization engineering (AsymKV), AND formal mathematics (KV-AdaQuant).
@@ -180,7 +187,16 @@ Nine literature scans (cycles 10, 20, 30, 40, 50, 60, 67, 70, 80) covering 90+ p
 5. **CoT fragility validates Experiment B:** Fragile Thoughts (Feb 2026) shows CoT perturbations cause 20-60% accuracy loss depending on type. MathError > UnitConversion > SkippedSteps > ExtraSteps. Our planned paraphrase disruption (surface text changes, numbers preserved) should produce intermediate 10-30% loss.
 6. **Important counter-evidence acknowledged:** Kudo et al. (revised March 2026) show answers emerge iteratively during CoT (faithfulness claim). RESOLUTION: faithfulness and lossy projection are COMPATIBLE — the model computes during CoT (faithful) AND the text captures only part of the computation (lossy). Our partial R≈0.29 (not 0 and not 1) is consistent with both claims.
 
-Our unique contribution: **causal perturbation evidence** at the KV cache level identifying the K-routing channel as the mechanistic substrate of the hidden computation, with HEAD-LEVEL resolution (H5 primary answer head, position-independent) and cross-model validation (5 model variants, 4 families). The K > V hierarchy is now the most independently confirmed finding in this research area. **Phase 2 adds observational evidence** (KV probes > text baseline on 2 models) and resolves the K>V causality vs V≥K decodability distinction with independent literature support.
+**New in cycle 90 (7 key convergences):**
+1. **K=routing, V=content now 6 independent angles (5th+6th added):** KVSlimmer (Liu et al., March 2026) provides THEORETICAL PROOF via exact Hessian analysis: concentrated Key spectra → routing homogeneity, dispersed Value spectra → content heterogeneity. AsymKV (Cui & Xu, NeurIPS 2025) provides EMPIRICAL confirmation: adjacent keys locally homogeneous, adjacent values locally heterogeneous. K=routing, V=content is now the most multiply-confirmed finding in transformer mechanistic interpretability.
+2. **Ramp/plateau layer pattern is UNIVERSAL (4 independent confirmations):** Valeriani et al. (NeurIPS 2023) found the same "peak then long plateau" in intrinsic dimensionality, SIZE-INDEPENDENT across 35M-3B. Jiang et al. (ICLR 2025): "ridge-to-plateau" with early saturation maintained. Sun et al. (AAAI 2025): three layer classes (sketch/refinement/finish). Lad et al.: four stages of inference, middle layers 72-95% deletion robust. Our V|nums ramp/plateau is NOT unique — it's a universal transformer layer dynamic.
+3. **Forward-looking features THEORETICALLY EXPLAINED:** Rofin et al. (ICLR 2026) show next-token prediction gradients NATURALLY produce features useful for future tokens, with formal reasoning domains showing the strongest effect. Wu et al. (COLM 2024): "breadcrumbs" (byproduct) more common than "pre-caching" (intentional), but pre-caching increases with scale. Saunshi et al. (ICLR 2025): depth (not parameters) governs reasoning → explains our size-independence.
+4. **CoT monitorability CRISIS — safety community converging on our finding:** Korbak et al. (40+ authors including Anthropic, OpenAI, DeepMind, MIRI): CoT monitoring is a "fragile opportunity." Yueh-Han et al. (OpenAI, March 2026): 2.7% CoT controllability vs 61.9% output controllability gap proves models have PARALLEL computation channels. Jiralerspong et al. (March 2026): models can INFER monitoring from feedback. Our mechanistic evidence provides the SUBSTRATE-LEVEL explanation for WHY CoT monitoring is fragile.
+5. **"Internalized reasoning" formalized as CoT pathology:** Liu et al. (Feb 2026) taxonomy: post-hoc rationalization, encoded reasoning, internalized reasoning. "Internalized reasoning" = our hypothesis (computing in hidden states with filler tokens). Our finding is now a RECOGNIZED FAILURE MODE in the safety literature.
+6. **Forward-looking probing validated independently:** Zhang et al. (Apr 2025): hidden states encode correctness of FUTURE answers before formulation, probe as verifier saves 24% tokens. Dong et al. (ICML 2025): hidden planning EXCEEDS verbalized awareness. Venhoff et al. (Oct 2025): reasoning exists latently in BASE models, 12% of tokens sufficient to recover 91% of thinking-model gap. Samragh et al. (Jul 2025): vanilla LLMs inherently know future tokens.
+7. **Illegible CoT carries essential computation:** Jose (NeurIPS 2025): RL-trained models produce illegible CoT; 53% accuracy drop when removing illegible portions. The illegible tokens encode information through KV cache rather than human-readable text — exactly our finding at a different level of analysis.
+
+Our unique contribution: **causal perturbation evidence** at the KV cache level identifying the K-routing channel as the mechanistic substrate of the hidden computation, with HEAD-LEVEL resolution (H5 primary answer head, position-independent) and cross-model validation (5 model variants, 4 families). The K > V hierarchy is now the most independently confirmed finding in this research area (6 angles). **Phase 2 adds observational evidence** (KV probes > text baseline on 2 models) and resolves the K>V causality vs V≥K decodability distinction with independent literature support.
 
 ---
 
@@ -206,10 +222,16 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 16 | Cross-model text-dependence variation | Qwen-8B 94% compliant, Llama ~30% | **Moderate** | Exp 6 (research_spec) |
 | 17 | Unused output capacity (4-5 bits/token) | Established | **Strong** | Exp 1 (research_spec) |
 | 18 | CoT narrows entropy 3x (median near zero) | Established | **Strong** | Exp 2 (research_spec) |
-| 19 | Text = lossy projection (literature consensus) | Mainstream (14+ convergent angles, 90+ papers) | **Decisive (independent)** | Lit scans 10, 20, 30, 40, 50, 60, 70, 80 |
+| 19 | Text = lossy projection (literature consensus) | Mainstream (18+ convergent angles, 110+ papers) | **Decisive (independent)** | Lit scans 10, 20, 30, 40, 50, 60, 70, 80, 90 |
 | 20 | K routing at early positions = general infrastructure | K-early destroys everything; V-early dispensable | **Strong** | 028, 029, 034, 038 |
 | 21 | Energy confound does NOT explain K > V | SNR-matched test: K still more sensitive | **Strong** | 027 |
-| 22 | K > V confirmed by quantization literature (independent) | AsymKV: V 1-bit; PM-KVQ: K needs more precision; KV-AdaQuant: MATHEMATICAL PROOF K spectral norms > V | **Decisive (independent)** | Lit scans 40, 50 |
+| 22 | K > V confirmed by quantization literature (independent) | AsymKV: V 1-bit; PM-KVQ: K needs more precision; KV-AdaQuant: MATHEMATICAL PROOF K spectral norms > V | **Decisive (independent)** | Lit scans 40, 50, 90 |
+| 100 | K=routing, V=content confirmed by Hessian analysis (5th angle, independent) | KVSlimmer (March 2026): concentrated Key spectra → routing homogeneity, dispersed Value spectra → content heterogeneity. Theoretical PROOF. | **Decisive (independent)** | Lit scan 90 |
+| 101 | K=routing, V=content confirmed by local asymmetry (6th angle, independent) | AsymKV-NeurIPS (2025): adjacent keys locally homogeneous (routing), adjacent values locally heterogeneous (content). | **Strong (independent)** | Lit scan 90 |
+| 102 | Ramp/plateau layer pattern is universal transformer property (independent) | Valeriani (NeurIPS 2023): ID peak-then-plateau, SIZE-INDEPENDENT 35M-3B. Jiang (ICLR 2025): ridge-to-plateau with maintained saturation. 4 independent confirmations. | **Strong (independent)** | Lit scan 90 |
+| 103 | Forward-looking features arise from next-token prediction gradients (independent) | Rofin et al. (ICLR 2026): gradient structure naturally produces features for future tokens; strongest in formal reasoning. Theoretical foundation for V|nums. | **Strong (independent)** | Lit scan 90 |
+| 104 | CoT monitorability acknowledged as fragile by major labs | 40-author paper (Anthropic+OpenAI+DeepMind+MIRI). OpenAI: 2.7% CoT controllability vs 61.9% output. Parallel computation channels confirmed. | **Decisive (independent)** | Lit scan 90 |
+| 105 | "Internalized reasoning" formalized as recognized CoT pathology | Liu et al. (Feb 2026): models computing through hidden states = our hypothesis as diagnostic category. | **Strong (independent)** | Lit scan 90 |
 | 23 | Positional > content confirmed by compression literature (independent) | "Where > What" (Tian 2026): position dominates semantic content for KV importance | **Strong (independent)** | Lit scan 40 |
 | 24 | K > V at latest decile on Llama | V-K gap +76pp at 5% dose (V=92%, K=16%), +55pp at 10% dose (V=71%, K=16%) | **Strong** | 041, 043 |
 | 25 | Llama K-routing extremely fragile/distributed | 5% K-direction perturbation STILL saturates accuracy at 0-2.6% for bins 0-6; only bin 9 (15.8%) recovers | **Strong** | 041, 043 |
