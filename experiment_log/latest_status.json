@@ -1,35 +1,38 @@
 {
-  "cycle": 92,
-  "timestamp": "2026-03-22T16:00:00Z",
+  "cycle": 93,
+  "timestamp": "2026-03-22T12:45:00Z",
   "type": "experiment",
-  "template": "rope_ablation",
+  "template": "phi_kv_layer_sweep",
   "parameters": {
-    "model": "Qwen/Qwen3-4B-Base",
-    "layers": "8 selected (L0,L3,L6,L9,L12,L18,L24,L30)",
-    "bins": 20,
-    "n_problems": 199,
-    "n_vectors": 19306,
-    "comparison": "K_pre (no RoPE) vs K_post (with RoPE) vs V"
+    "model": "microsoft/Phi-3.5-mini-instruct",
+    "architecture": "MHA (32 KV heads, 32 attn heads)",
+    "layers_probed": 12,
+    "n_problems": 200,
+    "n_correct": 169,
+    "accuracy_pct": 84.5,
+    "kv_dim": 3072,
+    "n_bins": 20,
+    "bootstrap_samples": 500
   },
-  "prediction_outcome": "RoPE artifact REJECTED (0/4 artifact predictions confirmed, 3/4 intrinsic confirmed)",
-  "key_finding": "RoPE HURTS K probing at 8/8 layers (mean -0.159 Pearson R). K_pre (no RoPE) > K_post (with RoPE) everywhere. K_pre ≈ V overall (diff -0.011), K_pre > V at ramp (+0.024). Exp_091's K>V finding is NOT a RoPE artifact — it's conservative. Methodology bug in |nums metric (R² vs Pearson R) limits residualized analysis but relative findings are robust.",
-  "evidence_impact": "DECISIVELY REJECTS confound #1 from exp_091 self-review. K>V probing hierarchy is intrinsic to learned projections, not positional encoding. Exp_091's K>V is a LOWER BOUND on true K content advantage.",
-  "next_planned": "Fix probe methodology (Pearson R + CV residualization) and re-run RoPE ablation, or cross-model K layer sweep on Phi-3.5-mini, or bootstrap significance test for K-V gap.",
+  "prediction_outcome": "K>V universality REJECTED. V>K on Phi (10/12 layers, p<0.05). Disconfirmatory prediction correct in direction, exceeded in magnitude.",
+  "key_finding": "V > K probing on Phi-3.5-mini (MHA, analog) at 10/12 layers (bootstrap p<0.05). Mean V|nums=+0.167 vs K|nums=+0.120 (diff=-0.048). REVERSES Qwen's K>V (32/36 layers, diff=+0.043). K>V probing is architecture-specific (GQA→K wins, MHA→V wins), NOT universal. Causal importance (perturbation K>V) ≠ information content (probing K vs V).",
+  "evidence_impact": "MAJOR REVISION: K>V hierarchy split into two dissociated properties — universal perturbation fragility vs architecture-dependent information content. Hidden channel uses BOTH K and V; balance depends on GQA vs MHA.",
+  "next_planned": "Llama K vs V sweep (GQA architecture — test if K>V is GQA-general or Qwen-specific)",
   "figures": [
-    "results/exp_092/rope_ablation_by_layer.png",
-    "results/exp_092/position_sweep_rope_comparison.png",
-    "results/exp_092/kpre_scatter_comparison.png",
-    "results/exp_092/rope_vs_intrinsic_decomposition.png"
+    "results/exp_093/k_vs_v_layer_profile.png",
+    "results/exp_093/k_vs_v_heatmap.png",
+    "results/exp_093/position_sweep_key_layers.png",
+    "results/exp_093/cross_model_comparison.png"
   ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
     "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. HEAD-LEVEL CONCENTRATION decisive on Qwen, weak on Llama.", "bar": 5},
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
-    "geometric_dissociation": {"status": "K > V UNIVERSAL: 8 angles (6 independent). K spectral geometry uniform across heads. V spectral differentiates. K>V confirmed in PROBING (32/36 layers). RoPE ablation: NOT an artifact (Exp 092).", "bar": 5},
+    "geometric_dissociation": {"status": "REVISED: K>V perturbation fragility universal (5 models). K>V probing ARCHITECTURE-DEPENDENT: GQA (Qwen)→K wins, MHA (Phi)→V wins. RoPE not an artifact (Exp 092).", "bar": 5},
     "head_level_analysis": {"status": "COMPLETE + SPECTRAL: Two-regime on Qwen (decisive), near-collapse on Llama.", "bar": 5},
-    "natural_usage": {"status": "STRONG: Position-sweep on 2 families + 2 sizes. Layer sweep: ramp/plateau for BOTH K and V (exp 089, 091). K>V in probing. RoPE ablation confirms NOT artifact (exp 092). Per-operation probing on 2 families. WRRA on 2 families. Paraphrase NULL.", "bar": 5},
-    "cross_model_replication": {"status": "STRONG: Phase 1 complete (4 families). Phase 2: position-sweep STRONG on 2 families + 2 sizes, WEAK on Mistral. K+V layer sweep on Qwen only.", "bar": 5},
+    "natural_usage": {"status": "STRONG: Position-sweep on 2 families + 2 sizes. Layer sweep for both K+V on Qwen and Phi. K>V probing = architecture-dependent (exp 093). Paraphrase NULL. WRRA on 2 families.", "bar": 5},
+    "cross_model_replication": {"status": "STRONG: Phase 1 (4 families). Phase 2 position-sweep (2 families + 2 sizes). K vs V layer sweep on Qwen AND Phi (exp 093). Mistral weak.", "bar": 5},
     "encoding_strategy": {"status": "COMPLETE TAXONOMY + geometric evidence.", "bar": 5},
-    "literature_convergence": {"status": "DECISIVE: 10 scans, 110+ papers, 18+ convergent angles. K=routing/V=content 6 angles. Forward-looking features theoretically explained.", "bar": 5}
+    "literature_convergence": {"status": "DECISIVE: 10 scans, 110+ papers, 18+ convergent angles.", "bar": 5}
   }
 }

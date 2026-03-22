@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-22 (cycle 92 — **RoPE ablation: RoPE HURTS K probing (8/8 layers).** K>V is NOT a RoPE artifact — intrinsic to learned projections. K_pre (no RoPE) > K_post (with RoPE) at all 8 tested layers, mean degradation -0.159. K_pre ≈ V overall (diff -0.011), K_pre > V at ramp. Exp_091's K>V finding is CONSERVATIVE — true intrinsic advantage is larger. Confound #1 DECISIVELY REJECTED.)
-Cycles completed: 92 (79 experimental + 1 consolidation + 7 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-22 (cycle 93 — **K>V probing is ARCHITECTURE-SPECIFIC.** V > K on Phi-3.5-mini (MHA, analog) at 10/12 layers (p<0.05), REVERSING Qwen's K>V (32/36 layers). K>V probing = GQA/digital-specific. K>V perturbation fragility remains universal. Causal importance (K>V) ≠ information content (architecture-dependent). Both K and V carry forward-looking signal; balance depends on architecture.)
+Cycles completed: 93 (80 experimental + 1 consolidation + 7 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -14,11 +14,13 @@ The hypothesis is supported by converging evidence from 39 experimental cycles, 
 ### Key Numbers
 - **Models tested:** Qwen3-4B-Base, Qwen3-4B (Instruct), Qwen3-8B-Base, Llama-3.1-8B-Instruct, Phi-3.5-mini-Instruct (MHA), Mistral-7B-v0.3 (Base)
 - **Phase 2 (natural channel usage):** V→final raw signal on 3 models (Qwen, Phi, Mistral); residualized signal (V|nums) confirmed on Qwen (R=0.24, p<0.001) AND Phi (R=0.19, p<0.001), not on Mistral (R=0.06, p>0.08). WRRA 87.5% on Phi (p=0.002), 71.4% on Qwen (p=0.039), 37.9% on Mistral (ns). Forward-looking V signal confirmed on 2/3 model families. Position-sweep decodability (Exp 083): V decodes from 3% of chain (R=0.34) where text reveals 0%. Input-number confound RULED OUT (Exp 084): V|nums_R = 0.357 at 2.5% (text reveals 0%), peak 0.497 (p=0.01). **CROSS-MODEL POSITION-SWEEP REPLICATION (Exp 086):** Phi-3.5-mini V|nums positive 20/20 bins, V|nums=0.233 at 2.5% (text reveals 0%), peak V|nums=0.540 (p=0.003), gap=70%. Position-sweep now confirmed on 2 model families (GQA+MHA, Base+Instruct). **Experiment B (paraphrase disruption) NULL (Exp 085):** Synonym paraphrase drops partial-TF accuracy by 0.6% (1/168, p=1.0); random replacement drops 6.0% (10/168, p=0.002). Non-number tokens don't carry essential hidden info. **MISTRAL BOUNDARY TEST (Exp 087):** Position-sweep V|nums positive 20/20 bins (L16) but bootstrap p=0.137 (NOT significant). Peak V|nums=0.369. 3-model gradient: channel strength scales with accuracy (Qwen 88%→0.50, Phi 85%→0.54, Mistral 44%→0.37). Mistral is partial exception. **SIZE SCALING (Exp 088):** Qwen3-8B-Base replicates position-sweep: V|nums positive 20/20 bins BOTH layers, L27 peak=0.478 (p=0.013), comparable to 4B (peak=0.497, p=0.01). Forward-looking channel is SIZE-INDEPENDENT within Qwen (4B→8B). Unexpected: nums_R much higher on 8B (0.42 vs 4B's 0.26) despite similar accuracy (90% vs 88%). **LAYER SWEEP (Exp 089):** Full 36-layer × 20-bin heatmap on Qwen3-4B-Base reveals TWO-PHASE emergence: ramp L0-L9 (signal emerges at L3, 9% depth), plateau L10-L35 (mean V|nums 0.17-0.22, 19/20 bins positive). Forward-looking is DISTRIBUTED across 26 layers, not localized. At chain start (0-5%, text=0%): V|nums emerges at L8 (+0.10), peaks at L19 (+0.32). The signal is established at middle layers and maintained via residual stream.
-- **K LAYER SWEEP (Exp 091):** K|nums > V|nums at 32/36 layers on Qwen3-4B-Base. K emerges at L0 (V at L3). Ramp phase: K|nums=+0.156 vs V|nums=+0.071 (K 2.2x stronger). Plateau: K|nums=+0.219 vs V|nums=+0.193. K peak at L29 (0.246), V peak at L17 (0.216). Phase 1 K>V causal hierarchy EXTENDS to Phase 2 probing — K carries MORE decodable forward-looking info AND is more causally important. Same two-phase ramp+plateau structure.
+- **K LAYER SWEEP (Exp 091):** K|nums > V|nums at 32/36 layers on Qwen3-4B-Base. K emerges at L0 (V at L3). Ramp phase: K|nums=+0.156 vs V|nums=+0.071 (K 2.2x stronger). Plateau: K|nums=+0.219 vs V|nums=+0.193. K peak at L29 (0.246), V peak at L17 (0.216). Same two-phase ramp+plateau structure.
 - **RoPE ABLATION (Exp 092):** RoPE HURTS K probing at 8/8 layers (mean -0.159 Pearson R). K_pre (no RoPE) ≈ V overall, K_pre > V at ramp. K>V from exp_091 is NOT a RoPE artifact — it's conservative (true intrinsic K advantage larger). Confound #1 DECISIVELY REJECTED.
+- **CROSS-MODEL K vs V REVERSAL (Exp 093):** On Phi-3.5-mini (MHA, analog), V > K at 10/12 layers (83%), bootstrap p<0.05 at 10/12. Mean V|nums=+0.167 vs K|nums=+0.120 (diff=-0.048). Plateau: V|nums=+0.231 vs K|nums=+0.160 (diff=-0.070). REVERSES Qwen's K>V (32/36 layers, diff=+0.043). K>V probing is GQA/digital-specific, NOT universal. Both K and V carry forward-looking signal on all models; the balance depends on architecture. K>V perturbation fragility remains universal (Phase 1), but information content hierarchy is architecture-dependent.
 - **Architecture coverage:** GQA (4 models) + MHA (1 model); Base (2) + Instruct (3)
 - **Total valid problems across all experiments:** ~1,700+ evaluations
-- **K > V confirmed:** 5/5 models × 3 positions = 15 independent conditions under direction perturbation; 16/16 heads across 2 models; K/V effective rank ratio 0.87-0.94 (geometric evidence, Exp 062); K|nums > V|nums at 32/36 layers in probing (Exp 091); RoPE ablation confirms NOT a positional encoding artifact (Exp 092)
+- **K > V perturbation (universal):** 5/5 models × 3 positions = 15 independent conditions under direction perturbation; 16/16 heads across 2 models; K/V effective rank ratio 0.87-0.94 (geometric evidence, Exp 062). K>V perturbation fragility is UNIVERSAL.
+- **K vs V probing (architecture-dependent, Exp 091+093):** Qwen (GQA, digital): K>V at 32/36 layers (89%), mean diff +0.043. Phi (MHA, analog): V>K at 10/12 layers (83%), mean diff -0.048. Causal importance (K>V universal) ≠ information content (architecture-dependent). RoPE ablation (Exp 092) confirms K>V on Qwen is NOT a RoPE artifact.
 - **V-only σ=1 immunity:** 228/228 across 5 variants (magnitude); 393/394 across 4 models at early+mid (direction); **456/456 per-head across 2 models**
 - **Text-answer dissociation:** Text ≥98% at near-zero accuracy, confirmed on all 5 models at all perturbation doses
 - **Answer head H5:** Primary answer-routing head on BOTH Qwen (50% acc) and Llama (18.2% acc); cross-model convergence at same KV head index
@@ -40,10 +42,13 @@ KV cache perturbation can destroy answer accuracy while preserving text predicti
 
 **Key experiments:** Exp 003, 004, 005, 021, 023-038
 
-### 2. K > V Universal Hierarchy (Routing > Content)
-**Status: Universal under direction perturbation; encoding-specific under magnitude**
+### 2. K > V Hierarchy (Routing > Content) — REVISED: Architecture-Dependent
+**Status: Universal for PERTURBATION fragility; ARCHITECTURE-DEPENDENT for probing content**
 
-K (key) vectors carry functionally more critical information than V (value) vectors for answer computation. This reflects the QK routing vs OV content functional split in the attention mechanism.
+K (key) vectors are universally more FRAGILE (destroying K routing is catastrophic across all models), but the K/V balance for INFORMATION CONTENT is architecture-dependent:
+- **GQA models (Qwen):** K carries more decodable forward-looking info (K>V at 32/36 layers, Exp 091)
+- **MHA models (Phi):** V carries more decodable forward-looking info (V>K at 10/12 layers, Exp 093)
+This dissociates causal importance (perturbation) from information content (probing).
 
 **Direction perturbation (mechanistically correct test):**
 
@@ -384,7 +389,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 
 ---
 
-## Experiment Log (41 experiments + 3 literature scans)
+## Experiment Log (43 experiments + 3 literature scans)
 
 ### Phase 1: Establishing the Phenomenon (Cycles 1-9)
 | Exp | Cycle | Model | Key Result |
@@ -1442,3 +1447,72 @@ effect. Same methodology as exp_089. RoPE confound partially addressed. Single m
 - Probing (Phase 2): K carries more decodable forward-looking information
 This UNIFIES the Phase 1 and Phase 2 narratives: K-routing is the primary carrier of
 the hidden computation channel, in both causal and observational evidence.
+
+**UPDATE (Exp 093):** K>V probing does NOT generalize — V>K on Phi. See Exp 093 below.
+The unified narrative requires revision: K is universally more FRAGILE, but not universally
+more INFORMATIVE. The K/V information balance depends on architecture.
+
+---
+
+### Exp 092: RoPE Ablation — Is K>V Probing a Positional Encoding Artifact?
+**Cycle 92 | 2026-03-22 | Qwen3-4B-Base | DISCONFIRMATORY (RoPE confound test)**
+
+**Motivation:** Exp_091 found K>V at 32/36 layers. RoPE is applied to K but not V — could
+the K advantage come from positional encoding rather than learned content? Tested by
+comparing K_pre (before RoPE) vs K_post (after RoPE) vs V at 8 layers.
+
+**Key result:** RoPE HURTS K probing at 8/8 layers (mean effect: -0.159 Pearson R at bin 19).
+K_post (with RoPE) is WORSE than K_pre (without RoPE) at every tested layer. K_pre ≈ V
+overall (diff -0.011 raw R at bin 19). K_pre > V at ramp (+0.024). The RoPE artifact
+confound is DECISIVELY REJECTED — exp_091's K>V finding is conservative.
+
+**Methodology bug:** Residualized metric (|nums) used R² instead of Pearson R and in-sample
+residualization. Absolute resid_R values unreliable; relative comparisons and raw R valid.
+
+**Pre-registered predictions:** RoPE artifact hypothesis: 0/4 confirmed. Intrinsic hypothesis:
+3/4 confirmed (one exceeded). Mixed: 1/3.
+
+**Evidence strength:** MODERATE. RoPE hurts K probing (8/8) is robust. Single model.
+Methodology bug limits residualized analysis.
+
+---
+
+### Exp 093: Cross-Model K vs V Layer Sweep — Phi-3.5-mini-Instruct (MHA)
+**Cycle 93 | 2026-03-22 | Phi-3.5-mini-Instruct | DISCONFIRMATORY (K>V generalization)**
+
+**Motivation:** K>V probing (exp_091) demonstrated only on Qwen (GQA, digital encoding).
+Phi-3.5-mini is maximally different: MHA (not GQA), analog (not digital), different family.
+If K>V holds → universal. If K≈V or K<V → architecture-specific.
+
+**Key result: V > K at 10/12 layers (83%) on Phi, with bootstrap p<0.05 at 10/12 layers.**
+- Mean K|nums=+0.120, V|nums=+0.167 (diff=-0.048)
+- Ramp (L<10): K≈V (diff=-0.002)
+- Plateau (L≥10): V>>K (V|nums=+0.231 vs K|nums=+0.160, diff=-0.070)
+- Both emerge at L6, both peak at L18
+- V positive at 20/20 bins at peak layers; K positive at 17-18/20
+
+**Cross-model contrast:**
+- Qwen (GQA): K>V at 32/36 layers (89%), mean diff +0.043
+- Phi (MHA): V>K at 10/12 layers (83%), mean diff -0.048
+- The reversal is symmetric and dramatic
+
+**Interpretation:** K>V probing is architecture-specific, NOT universal. Possible
+explanation: GQA compression forces K to be more information-dense (8 KV heads serve
+36 Q heads), making it easier to probe. In MHA, K and V have symmetric dimensionality.
+
+**Pre-registered predictions:**
+- K>V universal: 1.5/5 confirmed → REJECTED
+- K≈V or K<V on Phi: 2/5 confirmed (direction right, magnitude exceeded prediction)
+
+**This DISSOCIATES two K>V properties:**
+1. Causal importance (perturbation fragility): K > V UNIVERSALLY (5/5 models, Phase 1)
+2. Information content (probing decodability): Architecture-dependent (GQA→K wins, MHA→V wins)
+Destroying routing (K) is always catastrophic. But which of K,V carries more DECODABLE
+forward-looking info depends on how the attention mechanism is structured.
+
+**Evidence strength:** STRONG. V>K at 10/12 layers with bootstrap significance. Same
+methodology as exp_091 on Qwen. Effect size comparable. Consistent with architectural theory.
+
+**Impact:** MAJOR REVISION to K>V narrative. "K is the primary hidden channel carrier" is
+now "K is universally more fragile, but the information balance depends on architecture."
+The hidden channel operates through BOTH K and V on all models.
