@@ -1,42 +1,22 @@
 {
-  "cycle": 98,
-  "timestamp": "2026-03-22T17:30:00+11:00",
+  "cycle": 99,
+  "timestamp": "2026-03-22T18:00:00+11:00",
   "type": "experiment",
-  "template": "custom (robust position control — 3 methods + permutation null)",
-  "parameters": {
-    "model": "Qwen/Qwen3-4B-Base",
-    "n_problems_generated": 200,
-    "n_correct": 175,
-    "accuracy_pct": 87.5,
-    "layers_probed": [9, 18, 27, 35],
-    "n_bins": 20,
-    "n_kv_heads": 8,
-    "architecture": "GQA",
-    "position_controls": ["linear", "quadratic", "rank-based (Spearman partial)"],
-    "n_permutations": 1000,
-    "vnums_source": "exp_084"
-  },
-  "prediction_outcome": "confirmed: Qwen-stronger predictions 5/5 ✓✓. Phi-generalizes 0/3 ✗. Rank control at L9-L18 retains 43-59% (r=0.155-0.159, 8/8 heads, all p<0.001). Deep-layer quadratic-rank dissociation (88% vs 15-17%).",
-  "key_finding": "Gold-standard rank-based control: Qwen genuine info-directed attention r≈0.16 at mid-plateau (3x Phi's r≈0.05). Deep layers dominated by non-quadratic monotonic recency. Phi's ~80% reduction was PHI-SPECIFIC. Architecture-dependent: digital >> analog.",
-  "evidence_impact": "UPGRADES info-directed attention from 'downgraded after exp_097' to 'architecture-dependent but genuine'. Definitive effect sizes: Qwen r≈0.16, Phi r≈0.05. Establishes rank-based control as gold standard for future analyses.",
-  "next_planned": "Apply rank control to Phi, or token-type control, or per-head V|nums probes",
+  "template": "wrra_kv_decomposition",
+  "parameters": {"n_problems": 566, "n_wrra": 25, "probe_layers": [9, 18, 27, 35], "model": "Qwen3-4B-Base"},
+  "prediction_outcome": "partially_disconfirmed",
+  "key_finding": "WRRA correct-alignment DOES NOT REPLICATE (exp_078 71.4% p=0.039 → 52% p=1.0). K-probe added: K=52-64%, V=40-52%, none significant. Novel: V>K at ALL 4 layers for numeric probing at computation positions.",
+  "evidence_impact": "Downgrades WRRA smoking gun from Moderate to Weak/Inconclusive. Adds V>K at computation positions (complementary to K>V position-sweep). Forward-looking probing replicates perfectly.",
+  "next_planned": "Scale WRRA to n≥100 (1600+ problems) or use harder benchmark. Consider V>K at computation positions for paper as K=routing/V=content evidence.",
   "figures": [
-    "results/exp_098/per_head_3methods.png",
-    "results/exp_098/method_comparison_bars.png",
-    "results/exp_098/retention_heatmap.png",
-    "results/exp_098/permutation_null.png",
-    "results/exp_098/delta_attention_vs_vnums.png"
+    "results/exp_099/wrra_kv_comparison.png",
+    "results/exp_099/kv_probe_comparison.png",
+    "results/exp_099/wrra_predictions_scatter.png"
   ],
   "progress": {
-    "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
-    "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. HEAD-LEVEL CONCENTRATION decisive on Qwen, weak on Llama.", "bar": 5},
-    "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
-    "geometric_dissociation": {"status": "FINAL: K>V perturbation universal. K>V probing ENCODING-DEPENDENT. NOT driven by GQA.", "bar": 5},
-    "head_level_analysis": {"status": "COMPLETE + SPECTRAL + ATTENTION: Two-regime on Qwen (decisive). H0 unique retrieval pattern (Exp 095).", "bar": 5},
-    "natural_usage": {"status": "STRONG: Probing (2 families + 2 sizes). Attention (Exp 095). REVISED probe-attn: rank-controlled r≈0.16 Qwen, r≈0.05 Phi (architecture-dependent). Paraphrase NULL. WRRA on 2 families.", "bar": 4},
-    "cross_model_replication": {"status": "COMPREHENSIVE: Phase 1 (4 families). Phase 2 probing (2 families + 2 sizes). Probe-attn on 2 models. K/V sweeps (3 models). Info-directed attention: 3x stronger on digital (Qwen) than analog (Phi).", "bar": 5},
-    "encoding_strategy": {"status": "COMPLETE TAXONOMY + ATTENTION: digital→K>V probing→stronger info-directed attention; analog→V≥K probing→weaker info-directed attention.", "bar": 5},
-    "attention_mechanism": {"status": "DEFINITIVE (Exp 098): Rank-controlled info-directed attention r≈0.16 (Qwen) and r≈0.05 (Phi). Mid-plateau genuine, deep layers dominated by non-quadratic recency. Architecture-dependent: digital > analog.", "bar": 5},
-    "literature_convergence": {"status": "DECISIVE: 10 scans, 110+ papers, 18+ convergent angles.", "bar": 5}
+    "null_space_existence": {"status": "strong", "bar": 4},
+    "spatial_structure": {"status": "decisive_negative", "bar": 5},
+    "natural_usage": {"status": "moderate", "bar": 3},
+    "cross_model_replication": {"status": "strong", "bar": 4}
   }
 }
