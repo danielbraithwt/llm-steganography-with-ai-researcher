@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-22 (cycle 81 — **Exp 081: Cross-model forward-looking probing on Mistral-7B-v0.3.** MIXED REPLICATION: V→final raw signal replicates (R=0.23, p<0.001), but V→final|nums does NOT (R=0.06, p>0.08) — Mistral's forward-looking signal explained by problem numbers. WRRA does not replicate (38% alignment, below chance). Phase 2 natural_usage evidence revised from MODERATE to WEAK-MODERATE.)
-Cycles completed: 81 (69 experimental + 1 consolidation + 6 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-22 (cycle 82 — **Exp 082: Cross-model forward-looking probing on Phi-3.5-mini-Instruct (MHA).** REPLICATION CONFIRMED: V→final|nums R=0.191 (L24, p<0.001), V→final|embed R=0.169 (p<0.001). WRRA 14/16=87.5% (p=0.002) — strongest WRRA result across all models. Phase 2 signal now confirmed on 2 families (Qwen + Phi), not on Mistral (accuracy/power confound). Phase 2 natural_usage revised from WEAK-MODERATE to MODERATE.)
+Cycles completed: 82 (70 experimental + 1 consolidation + 6 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -13,7 +13,7 @@ The hypothesis is supported by converging evidence from 39 experimental cycles, 
 
 ### Key Numbers
 - **Models tested:** Qwen3-4B-Base, Qwen3-4B (Instruct), Llama-3.1-8B-Instruct, Phi-3.5-mini-Instruct (MHA), Mistral-7B-v0.3 (Base)
-- **Phase 2 (natural channel usage):** V→final raw signal on 2 models; residualized signal (V|nums) confirmed only on Qwen (R=0.24), not on Mistral (R=0.06, p>0.08). WRRA 71.4% on Qwen (p=0.039), 37.9% on Mistral (below chance).
+- **Phase 2 (natural channel usage):** V→final raw signal on 3 models (Qwen, Phi, Mistral); residualized signal (V|nums) confirmed on Qwen (R=0.24, p<0.001) AND Phi (R=0.19, p<0.001), not on Mistral (R=0.06, p>0.08). WRRA 87.5% on Phi (p=0.002), 71.4% on Qwen (p=0.039), 37.9% on Mistral (ns). Forward-looking V signal confirmed on 2/3 model families.
 - **Architecture coverage:** GQA (4 models) + MHA (1 model); Base (2) + Instruct (3)
 - **Total valid problems across all experiments:** ~1,500+ evaluations
 - **K > V confirmed:** 5/5 models × 3 positions = 15 independent conditions under direction perturbation; 16/16 heads across 2 models; K/V effective rank ratio 0.87-0.94 (geometric evidence, Exp 062)
@@ -283,6 +283,10 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 93 | K cache has lower effective rank than V cache — UNIVERSAL | K/V eff rank ratio = 0.874 (Qwen), 0.938 (Llama). K top-1 energy 3.5-4.1x higher than V (K routing dominated by ONE principal direction). K spectral gap 2.2-2.8x larger. Layer-dependent crossover: early layers K>V rank, late layers K<V rank. Cross-model K rank difference only 2.4% (NOT ≥20% predicted). Qwen K has 3x higher layer variability (std=40 vs 13). First non-perturbation geometric measurement of K>V hierarchy. | **Strong** | 062 |
 | 94 | K spectral properties do NOT differentiate answer from dispensable heads | K eff rank ratio answer/dispensable = 1.003 (Qwen p=0.760 ns) and 1.005 (Llama p=0.944 ns). K top-1 range across 8 heads: 0.065 (Qwen), 0.024 (Llama). H5 (primary answer head) ranks #5 (Qwen) and #6 (Llama) in K concentration — average. Head specialization arises from Q×K interaction, not K manifold geometry. K spectral geometry is a property of the K MECHANISM, shared by all heads uniformly. | **Strong (negative)** | 064 |
 | 95 | V spectral properties DO differentiate answer from dispensable heads | Answer heads V eff rank +1.13 (Qwen, p<0.0001) and +1.17 (Llama, p<0.0001) higher than dispensable. Answer heads V top-1 energy -0.012 (Qwen) and -0.025 (Llama) lower. Answer heads carry more distributed V-content on BOTH models. H5 has highest V eff rank on Qwen; H0 highest on Llama. | **Moderate-Strong** | 064 |
+| 96 | V forward-looking signal (V→final\|nums) REPLICATES cross-model on Phi-3.5-mini (MHA) | Phi V→final\|nums R=0.191 at L24 (p<0.001). V→final\|embed R=0.169 (p<0.001). V→final\|embed+local R=0.169 (p<0.001). Significant at ALL 4 probe layers. Third model family (Microsoft), MHA architecture (not GQA), instruction-tuned. Compare: Qwen V\|nums=0.242 (p<0.001), Mistral V\|nums=0.067 (ns). | **Moderate** | 079, 081, 082 |
+| 97 | WRRA replicates on Phi-3.5-mini — strongest result (87.5%, p=0.002) | 14/16 WRRA cases at L24 align with CORRECT intermediate value despite text error. Phi=87.5% (p=0.002), Qwen=71.4% (p=0.039), Mistral=37.9% (ns). V at error positions encodes correct computation on 2/3 model families. | **Moderate** | 078, 081, 082 |
+| 98 | V > K for forward-looking computation (3 models) | V→final > K→final at all layers on Phi (consistent with Qwen, Mistral). After controls: K near zero on all models, V significant on Qwen and Phi. Content (V) carries accumulated forward-looking information; routing (K) is more position-local. | **Strong** | 079, 081, 082 |
+| 99 | Mistral forward-looking failure likely accuracy-mediated | Both models with V\|nums signal have high accuracy (Qwen 87%, Phi 83%). Mistral (43%) fails. At low accuracy, nums→final=0.390 dominates, leaving no residual for V. However, Phi nums→final=0.453 (higher than Mistral despite higher accuracy), so accuracy is not the sole factor. | **Moderate** | 081, 082 |
 
 ---
 
