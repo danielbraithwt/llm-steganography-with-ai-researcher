@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-22 (cycle 96 — **Probe-attention correlation.** Model attends to V|nums-rich positions BEYOND recency (partial r positive at ALL 32 head×layer conditions, all p<0.001, n=174). Answer step > control at all 32 conditions. V|nums r=0.45 >> nums_R r=0.18 (hidden info 2.5x > visible text). H5 partial_r increases L9→L35 (0.26→0.34). BRIDGES probing evidence (info exists) with attention evidence (model retrieves it). Complete encode→store→retrieve circuit demonstrated.)
-Cycles completed: 96 (83 experimental + 1 consolidation + 7 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-22 (cycle 97 — **Cross-model probe-attention correlation + quadratic control.** Phi-3.5-mini REPLICATES info-directed attention under LINEAR control (4/4 layers, 128/128 head×layer conditions positive, all p<0.001, Phi≈Qwen). BUT quadratic position control DRAMATICALLY reduces signal: only 21-22% retained at L8/L16, REVERSAL at L24/L31. L16 survives robustly: 32/32 heads positive, all p<0.001, r=0.054. Non-linear recency is a MAJOR confound (~80%). Ecological r=0.58-0.70, V|nums 4-5x > nums_R on Phi. Information-directed attention is CROSS-MODEL but SMALLER than exp_096 indicated.)
+Cycles completed: 97 (84 experimental + 1 consolidation + 7 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -30,6 +30,7 @@ The hypothesis is supported by converging evidence from 39 experimental cycles, 
 - **Early-position cascading is GENERAL on Llama (Exp 052):** All 4 tested heads show early>late gradient. Position-dependence scales perfectly with criticality: r=-0.991 (p=0.009). H3 range=49.1pp, H1 range=34.5pp. Early ≈ all for 3/4 heads. Cascading is architectural (analog encoding), not circuit-specific.
 - **ANSWER-STEP ATTENTION ROUTING (Exp 095):** 7/8 KV heads increase late-chain attention at answer step (mean +24pp, all p<0.001). H0 is the ONLY head that DECREASES late-chain attention (-3.4pp, p<0.001) — unique retrieval pattern. H5 entropy drops at deep layers (L27: -0.61 bits, L35: -0.75 bits). Two-stage retrieval: early layers→prompt, L18→computation chain. First mechanistic evidence connecting Phase 1 answer heads to Phase 2 natural behavior.
 - **PROBE-ATTENTION CORRELATION (Exp 096):** After controlling for position (recency), model attends to V|nums-rich positions at ALL 32 head×layer conditions (partial r = 0.04-0.36, all p<0.001, n=174). Answer step > control at ALL 32 conditions (Wilcoxon p<0.001). Ecological: V|nums r=0.45 >> nums_R r=0.18 (hidden info 2.5x > visible text). H5 partial_r increases L9→L35 (0.26→0.34). BRIDGES probing evidence (info exists) with attention evidence (model retrieves it) into complete encode→store→retrieve circuit.
+- **CROSS-MODEL PROBE-ATTENTION + QUADRATIC CONTROL (Exp 097):** Phi-3.5-mini REPLICATES linear partial_r: 4/4 layers, 128/128 head×layer, all p<0.001 (Phi≈Qwen at early-mid layers: L08=0.171 vs L09=0.160, L16=0.243 vs L18=0.260). BUT **quadratic position control** reveals ~80% of signal is non-linear recency: L16 retains 22% (r=0.054, 32/32 significant p<0.001), L24+L31 REVERSE to negative. Ecological r=0.58-0.70 on Phi (V|nums 4-5x > nums_R). Information-directed attention is CROSS-MODEL but MUCH SMALLER than linear-only analysis suggested. Mid-plateau (L16) signal is genuine beyond quadratic recency.
 
 ---
 
@@ -1622,3 +1623,69 @@ Phase 2 natural behavior.
 in attention patterns. H0 and H5 play DIFFERENT roles: H5 follows majority pattern (late-chain),
 H0 uniquely retrieves from earlier positions. Complements probing evidence (exps 083-094) with
 mechanistic retrieval evidence.
+
+---
+
+### Exp 097 — Cross-Model Probe-Attention Correlation + Quadratic Control (Phi-3.5-mini)
+**Cycle 97 | Phase 2 — Cross-model replication + robustness | 2026-03-22**
+
+**Model:** Phi-3.5-mini-Instruct (MHA, 32 KV heads, analog encoding)
+**n:** 200 generated, 173 correct, 173 with attention extracted
+**V|nums source:** exp_086 (Phi position-sweep, L16+L24)
+
+**Question:** Does the probe-attention correlation (exp_096) replicate on a maximally
+different architecture? Does it survive quadratic position control?
+
+**Pre-registered predictions:**
+1. Linear partial_r > 0 for ≥3/4 layers → CONFIRMED (4/4, all 128 head×layer p<0.001)
+2. Answer > control ≥3/4 layers → CONFIRMED (4/4 linear), PARTIAL (2/4 quadratic)
+3. ≥24/32 heads positive under quadratic at L16 → CONFIRMED (32/32)
+4. Ecological V|nums > nums_R → CONFIRMED (4-5x advantage)
+5. Quadratic retains ≥70% of linear → **DISCONFIRMED** (only 21-22%)
+
+**Key results:**
+
+| Layer | Linear ans_r | Quad ans_r | % Retained | Quad pos/32 | Quad sig/32 |
+|-------|-------------|-----------|------------|-------------|-------------|
+| L8    | 0.171       | 0.037     | 21%        | 32/32       | 21/32       |
+| L16   | 0.243       | **0.054** | 22%        | **32/32**   | **32/32**   |
+| L24   | 0.167       | -0.037    | -22%       | 5/32        | 2/32        |
+| L31   | 0.178       | -0.045    | -25%       | 3/32        | 0/32        |
+
+Cross-model comparison (linear):
+
+| Layers    | Qwen    | Phi     | Ratio |
+|-----------|---------|---------|-------|
+| L09/L08   | 0.160   | 0.171   | 1.07x |
+| L18/L16   | 0.260   | 0.243   | 0.93x |
+| L27/L24   | 0.261   | 0.167   | 0.64x |
+| L35/L31   | 0.292   | 0.178   | 0.61x |
+
+Ecological correlation (binned, all heads averaged):
+
+| Layer | r(Δattn, V|nums) | r(Δattn, nums_R) | p (V|nums) |
+|-------|-----------------|------------------|------------|
+| L8    | 0.695           | 0.121            | 0.0007     |
+| L16   | 0.660           | 0.147            | 0.0016     |
+| L24   | 0.640           | 0.143            | 0.0024     |
+| L31   | 0.577           | 0.171            | 0.0077     |
+
+**Confounds:**
+1. ~80% of linear partial_r attributable to non-linear recency (quadratic position effects)
+2. V|nums ramps up with position → ANY recency-biased attention correlates with V|nums
+3. Quadratic control may be too aggressive (removes genuine curvature in signal)
+4. Deep-layer reversal (L24, L31 go negative) is unexplained
+5. Same quadratic test should be applied to Qwen (exp_096) for fair comparison
+
+**Evidence strength:** MODERATE — Cross-model replication under linear control is strong
+(4/4 layers, n=173, all p<0.001). Quadratic control reveals ~80% is recency, but L16
+survives robustly (32/32, all p<0.001, r=0.054). The information-directed attention finding
+is REAL but MUCH SMALLER than exp_096 suggested. Net signal at mid-plateau is r≈0.05, not
+r≈0.24.
+
+**Impact:** (1) CONFIRMS cross-model generality of info-directed attention under standard
+linear control. (2) SUBSTANTIALLY DOWNGRADES the effect size by identifying non-linear
+recency as the primary driver of the raw correlation. (3) Establishes that the genuine
+signal (r≈0.05, surviving quadratic control) is concentrated at mid-plateau layers. (4)
+The exp_096 finding needs retrospective quadratic control to determine if Qwen shows the
+same pattern.
