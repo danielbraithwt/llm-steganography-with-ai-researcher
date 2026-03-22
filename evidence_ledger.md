@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-22 (cycle 85 — **Exp 085: Paraphrase disruption (Experiment B).** NULL RESULT: Synonym paraphrase drops accuracy by only 0.6% (1/168, p=1.0) in partial TF; random replacement drops 6.0% (10/168, p=0.002). Non-number tokens don't carry essential hidden info for computation. Model reads semantic/mathematical content. Refines hypothesis: hidden channel operates through number-token positions, not surface words. Phase 2 natural_usage STRONG overall but Experiment B is null.)
-Cycles completed: 85 (73 experimental + 1 consolidation + 6 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-22 (cycle 86 — **Exp 086: Position-sweep decodability on Phi-3.5-mini-Instruct.** STRONG REPLICATION: V|nums positive 20/20 bins (both layers), V|nums at 2.5%=0.233 (text reveals 0%), peak V|nums=0.540 (p=0.003). Early decodability gap 70-85%. Cross-model position-sweep confirmed on 2nd family (MHA + GQA). Phase 2 natural_usage STRONG with cross-model confirmation.)
+Cycles completed: 86 (74 experimental + 1 consolidation + 6 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -13,7 +13,7 @@ The hypothesis is supported by converging evidence from 39 experimental cycles, 
 
 ### Key Numbers
 - **Models tested:** Qwen3-4B-Base, Qwen3-4B (Instruct), Llama-3.1-8B-Instruct, Phi-3.5-mini-Instruct (MHA), Mistral-7B-v0.3 (Base)
-- **Phase 2 (natural channel usage):** V→final raw signal on 3 models (Qwen, Phi, Mistral); residualized signal (V|nums) confirmed on Qwen (R=0.24, p<0.001) AND Phi (R=0.19, p<0.001), not on Mistral (R=0.06, p>0.08). WRRA 87.5% on Phi (p=0.002), 71.4% on Qwen (p=0.039), 37.9% on Mistral (ns). Forward-looking V signal confirmed on 2/3 model families. Position-sweep decodability (Exp 083): V decodes from 3% of chain (R=0.34) where text reveals 0%. Input-number confound RULED OUT (Exp 084): V|nums_R = 0.357 at 2.5% (text reveals 0%), peak 0.497 (p=0.01). **Experiment B (paraphrase disruption) NULL (Exp 085):** Synonym paraphrase drops partial-TF accuracy by 0.6% (1/168, p=1.0); random replacement drops 6.0% (10/168, p=0.002). Non-number tokens don't carry essential hidden info. Hidden channel operates through number-token positions, not surface words.
+- **Phase 2 (natural channel usage):** V→final raw signal on 3 models (Qwen, Phi, Mistral); residualized signal (V|nums) confirmed on Qwen (R=0.24, p<0.001) AND Phi (R=0.19, p<0.001), not on Mistral (R=0.06, p>0.08). WRRA 87.5% on Phi (p=0.002), 71.4% on Qwen (p=0.039), 37.9% on Mistral (ns). Forward-looking V signal confirmed on 2/3 model families. Position-sweep decodability (Exp 083): V decodes from 3% of chain (R=0.34) where text reveals 0%. Input-number confound RULED OUT (Exp 084): V|nums_R = 0.357 at 2.5% (text reveals 0%), peak 0.497 (p=0.01). **CROSS-MODEL POSITION-SWEEP REPLICATION (Exp 086):** Phi-3.5-mini V|nums positive 20/20 bins, V|nums=0.233 at 2.5% (text reveals 0%), peak V|nums=0.540 (p=0.003), gap=70%. Position-sweep now confirmed on 2 model families (GQA+MHA, Base+Instruct). **Experiment B (paraphrase disruption) NULL (Exp 085):** Synonym paraphrase drops partial-TF accuracy by 0.6% (1/168, p=1.0); random replacement drops 6.0% (10/168, p=0.002). Non-number tokens don't carry essential hidden info. Hidden channel operates through number-token positions, not surface words.
 - **Architecture coverage:** GQA (4 models) + MHA (1 model); Base (2) + Instruct (3)
 - **Total valid problems across all experiments:** ~1,500+ evaluations
 - **K > V confirmed:** 5/5 models × 3 positions = 15 independent conditions under direction perturbation; 16/16 heads across 2 models; K/V effective rank ratio 0.87-0.94 (geometric evidence, Exp 062)
@@ -1160,3 +1160,54 @@ meaningful: it constrains the hidden channel to number-token positions and refin
 constraint: the hidden channel operates through number-token positions, not surface words.
 Experiment B is null for non-number tokens. Five methodologies tested, four positive
 (probing × 2, WRRA, position-sweep), one null (paraphrase disruption).
+
+### Exp 086: Position-Sweep Decodability on Phi-3.5-mini — STRONG REPLICATION
+**Cycle 86 | Phi-3.5-mini-Instruct (MHA) | Phase 2 — cross-model position-sweep | REPLICATES**
+
+**Cross-model replication of exp_083/084's position-sweep decodability finding.** First
+position-sweep on a non-Qwen model. Tests generality across model family (Microsoft vs
+Alibaba), architecture (MHA vs GQA), and training regime (Instruct vs Base).
+
+**Method:** Same as exp_084. 250 GSM8K problems, 212 correct (84.8%). Forward pass on all
+212 correct problems, extract V and K at ALL CoT positions at L16 (50%) and L24 (75%).
+20 bins, GroupKFold 5-fold Ridge probing. Cumulative numbers baseline at each bin. Bootstrap
+(300 iterations) for peak significance. KV dim = 3072 (32 MHA heads × 96 head_dim).
+
+**Results — L16 (50% depth):**
+
+| Position | V_R | V\|nums | text% | Interpretation |
+|----------|-----|---------|-------|----------------|
+| 2.5% | 0.343 | **0.233** | 0.0% | V knows answer before text reveals anything |
+| 22.5% | 0.425 | **0.315** | 6.6% | V carries beyond-numbers info early in chain |
+| 47.5% | 0.300 | **0.065** | 12.7% | Minimum (still positive) |
+| 72.5% | 0.504 | **0.410** | 16.0% | Growing as computation accumulates |
+| 92.5% | 0.717 | **0.536** | 69.3% | Near-peak as chain approaches answer |
+| 97.5% | 0.783 | **0.540** | 100% | Peak (computation complete) |
+
+**V|nums positive at ALL 20 bins on BOTH layers** — no anomalous bins (unlike Qwen's bin
+17 drop). More consistent signal than Qwen.
+
+**Key metrics:**
+- V|nums at 2.5% (text reveals 0%): L16 = 0.233, L24 = 0.194
+- V|nums peak: L16 = 0.540 (p=0.003), L24 = 0.556 (p=0.027)
+- V|nums early mean (0-30%): L16 = 0.261, L24 = 0.219
+- Early decodability gap: L16 = 70%, L24 = 85%
+- Shuffle control: range [-0.135, +0.118], mean ≈ 0
+
+**Cross-model comparison (Qwen L18 vs Phi L16):**
+- V|nums peak: Phi 0.540 vs Qwen 0.497 — **Phi slightly stronger**
+- V|nums positive bins: Phi 20/20 vs Qwen 19/20 — **Phi more consistent**
+- Bootstrap p: Phi 0.003 vs Qwen 0.010 — **Phi more significant**
+- Early gap: Phi 70% vs Qwen 25% — **Phi much larger gap**
+- V|nums at 2.5%: Phi 0.233 vs Qwen 0.357 — Qwen slightly stronger here
+
+**Pre-registered predictions:** 8/8 TRUE confirmed, 0/4 FALSE confirmed. DECISIVE.
+
+**Evidence strength:** STRONG. Position-sweep decodability now confirmed on 2 model families
+(GQA + MHA), 2 training regimes (Base + Instruct). Combined with per-operation probing
+(exp_079, 082) and WRRA (exp_079, 082), Phase 2 natural_usage is established across 3
+independent methodologies on 2 model families.
+
+**Impact on Phase 2 evidence:** Cross-model position-sweep replication complete. Phase 2
+natural_usage upgraded to STRONG with cross-model confirmation. Position-sweep is now the
+strongest single piece of evidence for a paper figure, confirmed across architectures.
