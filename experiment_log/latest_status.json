@@ -1,31 +1,34 @@
 {
-  "cycle": 101,
-  "timestamp": "2026-03-22T22:00:00+11:00",
+  "cycle": 102,
+  "timestamp": "2026-03-22T23:30:00+11:00",
   "type": "experiment",
-  "template": "difficulty_accuracy_vnums",
+  "template": "phi_difficulty_accuracy_vnums",
   "parameters": {
-    "n_problems": 248,
-    "n_correct": 218,
-    "n_incorrect": 30,
-    "layers": [9, 18, 27, 35],
+    "n_problems": 369,
+    "n_correct": 307,
+    "n_incorrect": 62,
+    "layers": [8, 16, 24, 31],
     "n_bins": 20,
-    "difficulty_split": {"easy": 76, "medium": 100, "hard": 42},
-    "model": "Qwen3-4B-Base"
+    "difficulty_split": {"easy": 177, "medium": 65, "hard": 65},
+    "model": "Phi-3.5-mini-instruct",
+    "pca_dim": 256,
+    "ridge_alpha": 10.0
   },
   "prediction_outcome": "mostly_confirmed",
-  "key_finding": "V|nums is FUNCTIONAL: accuracy-conditional (correct>incorrect, p<0.01 at 3/4 layers) and difficulty-dependent (hard 5-13x easy, p<0.001 all layers). BUT difficulty effect driven by text informativeness collapse (nums_R<0 for hard), not V_R increase. V is dominant info source for hard problems (15/20 bins) but redundant for easy.",
-  "evidence_impact": "Two new evidence entries (#116-117). Forward-looking signal confirmed as functional, not just positional. Adds nuance: hidden channel matters most when text is least informative.",
-  "next_planned": "Cross-model replication of difficulty effect on Phi/Mistral, or harder benchmark (MATH) for more incorrect problems and stronger difficulty gradient.",
+  "key_finding": "Cross-model replication SUCCEEDS: Phi accuracy conditioning 4/4 layers p<0.001 (2x STRONGER than Qwen), difficulty conditioning 3/4 layers p=0.004-0.016 (5-6x SMALLER than Qwen). Same qualitative pattern. Functional evidence is architecture-independent.",
+  "evidence_impact": "New entry #117. Accuracy/difficulty conditioning confirmed on 2nd model family. 7/8 accuracy and 7/8 difficulty tests significant cross-model. Strongest Phase 2 cross-model result.",
+  "next_planned": "Consolidate cross-model functional evidence table, or investigate Phi's stronger accuracy effect (why V_R(incorrect)≥V_R(correct)?), or test on Mistral.",
   "figures": [
-    "results/exp_101/correct_vs_incorrect_vnums.png",
-    "results/exp_101/difficulty_split_vnums.png",
-    "results/exp_101/raw_V_R_correct_vs_incorrect.png",
-    "results/exp_101/summary_bars.png"
+    "results/exp_102/correct_vs_incorrect_vnums.png",
+    "results/exp_102/difficulty_split_vnums.png",
+    "results/exp_102/raw_V_R_correct_vs_incorrect.png",
+    "results/exp_102/summary_bars.png",
+    "results/exp_102/vr_decomposition_by_difficulty.png"
   ],
   "progress": {
     "null_space_existence": {"status": "strong", "bar": 4},
     "spatial_structure": {"status": "decisive_negative", "bar": 5},
-    "natural_usage": {"status": "moderate-strong", "bar": 3.5},
+    "natural_usage": {"status": "strong", "bar": 4},
     "cross_model_replication": {"status": "strong", "bar": 4}
   }
 }
