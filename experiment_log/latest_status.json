@@ -1,18 +1,31 @@
 {
-  "cycle": 100,
-  "timestamp": "2026-03-22T20:00:00+11:00",
-  "type": "literature_scan",
-  "template": "milestone_synthesis",
-  "parameters": {"papers_found": 18, "themes": 7, "total_cumulative": 126, "scan_number": 11},
-  "prediction_outcome": "n/a",
-  "key_finding": "Anthropic circuit tracing QK blind spot validates our K-routing research direction. Retrieval heads (ICLR 2025 Oral) = 7th head specialization confirmation. KV cache steering (Belitsky Jul 2025) induces reasoning but no K/V decomposition — gap we fill. CoT faithfulness 25-39% (61-75% hidden). CRV (ICLR 2026 Oral) complementary method. Depth-recurrent latent CoT negative (counter-evidence for alternative arch).",
-  "evidence_impact": "5 new evidence entries (#110-115). Literature convergence upgraded to 22+ angles, 126+ papers. Strongest positioning for paper: our work fills Anthropic's QK blind spot.",
-  "next_planned": "Experiment 101: Consider K-only vs V-only steering (new causal test), difficulty-dependent V|nums, or retrieval head overlap with H5.",
-  "figures": [],
+  "cycle": 101,
+  "timestamp": "2026-03-22T22:00:00+11:00",
+  "type": "experiment",
+  "template": "difficulty_accuracy_vnums",
+  "parameters": {
+    "n_problems": 248,
+    "n_correct": 218,
+    "n_incorrect": 30,
+    "layers": [9, 18, 27, 35],
+    "n_bins": 20,
+    "difficulty_split": {"easy": 76, "medium": 100, "hard": 42},
+    "model": "Qwen3-4B-Base"
+  },
+  "prediction_outcome": "mostly_confirmed",
+  "key_finding": "V|nums is FUNCTIONAL: accuracy-conditional (correct>incorrect, p<0.01 at 3/4 layers) and difficulty-dependent (hard 5-13x easy, p<0.001 all layers). BUT difficulty effect driven by text informativeness collapse (nums_R<0 for hard), not V_R increase. V is dominant info source for hard problems (15/20 bins) but redundant for easy.",
+  "evidence_impact": "Two new evidence entries (#116-117). Forward-looking signal confirmed as functional, not just positional. Adds nuance: hidden channel matters most when text is least informative.",
+  "next_planned": "Cross-model replication of difficulty effect on Phi/Mistral, or harder benchmark (MATH) for more incorrect problems and stronger difficulty gradient.",
+  "figures": [
+    "results/exp_101/correct_vs_incorrect_vnums.png",
+    "results/exp_101/difficulty_split_vnums.png",
+    "results/exp_101/raw_V_R_correct_vs_incorrect.png",
+    "results/exp_101/summary_bars.png"
+  ],
   "progress": {
     "null_space_existence": {"status": "strong", "bar": 4},
     "spatial_structure": {"status": "decisive_negative", "bar": 5},
-    "natural_usage": {"status": "moderate", "bar": 3},
+    "natural_usage": {"status": "moderate-strong", "bar": 3.5},
     "cross_model_replication": {"status": "strong", "bar": 4}
   }
 }

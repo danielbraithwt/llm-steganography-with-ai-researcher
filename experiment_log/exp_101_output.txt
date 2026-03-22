@@ -1,0 +1,411 @@
+======================================================================
+Experiment 101: Accuracy- & Difficulty-Conditional Forward-Looking Signal
+Is the V|nums signal FUNCTIONAL (varies with difficulty & accuracy)?
+======================================================================
+
+Loading model...
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:01<07:15,  1.10s/it]Loading weights:   1%|▏         | 5/398 [00:01<01:22,  4.77it/s]Loading weights:   4%|▎         | 14/398 [00:01<00:26, 14.33it/s]Loading weights:   5%|▍         | 18/398 [00:01<00:26, 14.33it/s]Loading weights:   6%|▋         | 25/398 [00:01<00:19, 19.57it/s]Loading weights:   7%|▋         | 28/398 [00:02<00:18, 20.03it/s]Loading weights:   9%|▉         | 37/398 [00:02<00:11, 31.46it/s]Loading weights:  12%|█▏        | 47/398 [00:02<00:07, 44.58it/s]Loading weights:  14%|█▎        | 54/398 [00:03<00:15, 21.70it/s]Loading weights:  15%|█▍        | 59/398 [00:03<00:18, 18.19it/s]Loading weights:  17%|█▋        | 69/398 [00:03<00:12, 26.18it/s]Loading weights:  19%|█▊        | 74/398 [00:03<00:11, 27.20it/s]Loading weights:  20%|██        | 81/398 [00:03<00:10, 30.30it/s]Loading weights:  22%|██▏       | 89/398 [00:03<00:08, 37.73it/s]Loading weights:  24%|██▍       | 95/398 [00:04<00:09, 30.59it/s]Loading weights:  25%|██▌       | 100/398 [00:04<00:09, 32.47it/s]Loading weights:  26%|██▋       | 105/398 [00:04<00:11, 25.90it/s]Loading weights:  28%|██▊       | 113/398 [00:04<00:09, 29.76it/s]Loading weights:  29%|██▉       | 117/398 [00:05<00:11, 24.62it/s]Loading weights:  31%|███       | 124/398 [00:05<00:14, 19.41it/s]Loading weights:  33%|███▎      | 130/398 [00:05<00:11, 23.56it/s]Loading weights:  34%|███▎      | 134/398 [00:06<00:14, 18.75it/s]Loading weights:  34%|███▍      | 137/398 [00:06<00:15, 17.30it/s]Loading weights:  36%|███▋      | 145/398 [00:06<00:10, 23.61it/s]Loading weights:  37%|███▋      | 148/398 [00:07<00:17, 14.27it/s]Loading weights:  38%|███▊      | 152/398 [00:07<00:17, 14.26it/s]Loading weights:  39%|███▉      | 157/398 [00:07<00:15, 15.73it/s]Loading weights:  41%|████      | 163/398 [00:07<00:12, 18.58it/s]Loading weights:  42%|████▏     | 168/398 [00:08<00:13, 16.75it/s]Loading weights:  43%|████▎     | 170/398 [00:08<00:13, 16.96it/s]Loading weights:  45%|████▍     | 179/398 [00:08<00:08, 24.44it/s]Loading weights:  46%|████▌     | 182/398 [00:08<00:09, 23.89it/s]Loading weights:  47%|████▋     | 187/398 [00:08<00:08, 24.70it/s]Loading weights:  48%|████▊     | 190/398 [00:09<00:09, 22.07it/s]Loading weights:  48%|████▊     | 193/398 [00:09<00:10, 19.99it/s]Loading weights:  49%|████▉     | 196/398 [00:09<00:11, 17.30it/s]Loading weights:  51%|█████     | 201/398 [00:09<00:10, 19.22it/s]Loading weights:  51%|█████     | 203/398 [00:09<00:10, 18.69it/s]Loading weights:  53%|█████▎    | 209/398 [00:10<00:08, 21.68it/s]Loading weights:  53%|█████▎    | 212/398 [00:10<00:11, 15.85it/s]Loading weights:  54%|█████▍    | 214/398 [00:10<00:11, 15.56it/s]Loading weights:  56%|█████▌    | 223/398 [00:10<00:07, 24.06it/s]Loading weights:  57%|█████▋    | 226/398 [00:11<00:09, 17.38it/s]Loading weights:  59%|█████▉    | 234/398 [00:11<00:06, 24.62it/s]Loading weights:  60%|█████▉    | 237/398 [00:11<00:08, 19.23it/s]Loading weights:  60%|██████    | 240/398 [00:11<00:08, 19.11it/s]Loading weights:  61%|██████    | 243/398 [00:11<00:08, 18.81it/s]Loading weights:  62%|██████▏   | 246/398 [00:12<00:08, 18.00it/s]Loading weights:  62%|██████▏   | 248/398 [00:12<00:08, 18.34it/s]Loading weights:  64%|██████▍   | 256/398 [00:12<00:06, 20.57it/s]Loading weights:  65%|██████▌   | 259/398 [00:14<00:28,  4.90it/s]Loading weights:  66%|██████▌   | 262/398 [00:14<00:22,  5.98it/s]Loading weights:  66%|██████▋   | 264/398 [00:15<00:19,  6.75it/s]Loading weights:  67%|██████▋   | 267/398 [00:15<00:18,  7.20it/s]Loading weights:  68%|██████▊   | 269/398 [00:15<00:17,  7.24it/s]Loading weights:  70%|███████   | 280/398 [00:15<00:07, 16.69it/s]Loading weights:  71%|███████▏  | 284/398 [00:16<00:06, 17.79it/s]Loading weights:  73%|███████▎  | 289/398 [00:16<00:06, 17.85it/s]Loading weights:  73%|███████▎  | 292/398 [00:16<00:07, 14.83it/s]Loading weights:  74%|███████▍  | 295/398 [00:16<00:06, 15.96it/s]Loading weights:  75%|███████▍  | 298/398 [00:16<00:05, 17.17it/s]Loading weights:  76%|███████▌  | 301/398 [00:17<00:06, 14.99it/s]Loading weights:  78%|███████▊  | 311/398 [00:17<00:03, 21.83it/s]Loading weights:  79%|███████▉  | 314/398 [00:18<00:06, 13.47it/s]Loading weights:  80%|███████▉  | 317/398 [00:18<00:05, 14.14it/s]Loading weights:  80%|████████  | 319/398 [00:18<00:05, 14.71it/s]Loading weights:  81%|████████  | 322/398 [00:18<00:06, 12.61it/s]Loading weights:  81%|████████▏ | 324/398 [00:19<00:08,  9.12it/s]Loading weights:  83%|████████▎ | 329/398 [00:19<00:05, 12.52it/s]Loading weights:  84%|████████▎ | 333/398 [00:19<00:04, 14.59it/s]Loading weights:  85%|████████▌ | 339/398 [00:19<00:02, 21.12it/s]Loading weights:  86%|████████▌ | 343/398 [00:19<00:02, 21.28it/s]Loading weights:  87%|████████▋ | 346/398 [00:20<00:03, 15.65it/s]Loading weights:  89%|████████▉ | 355/398 [00:20<00:03, 13.21it/s]Loading weights:  90%|████████▉ | 357/398 [00:21<00:03, 11.92it/s]Loading weights:  91%|█████████ | 361/398 [00:21<00:02, 14.25it/s]Loading weights:  91%|█████████ | 363/398 [00:21<00:02, 13.81it/s]Loading weights:  92%|█████████▏| 366/398 [00:21<00:02, 11.93it/s]Loading weights:  92%|█████████▏| 368/398 [00:22<00:02, 10.04it/s]Loading weights:  93%|█████████▎| 372/398 [00:22<00:02, 12.40it/s]Loading weights:  94%|█████████▍| 374/398 [00:22<00:01, 12.79it/s]Loading weights:  94%|█████████▍| 376/398 [00:22<00:02,  9.54it/s]Loading weights:  95%|█████████▍| 378/398 [00:23<00:01, 10.32it/s]Loading weights:  96%|█████████▌| 383/398 [00:23<00:01, 14.86it/s]Loading weights:  97%|█████████▋| 385/398 [00:23<00:00, 14.36it/s]Loading weights:  97%|█████████▋| 388/398 [00:23<00:00, 13.94it/s]Loading weights:  98%|█████████▊| 390/398 [00:23<00:00, 13.07it/s]Loading weights:  99%|█████████▉| 394/398 [00:24<00:00, 13.06it/s]Loading weights: 100%|██████████| 398/398 [00:24<00:00, 16.50it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Model: Qwen/Qwen3-4B-Base
+KV heads: 8, head_dim: 128, KV dim: 1024
+GSM8K test set: 1319 problems
+Reasoning step distribution: min=2, max=11, median=3, mean=3.7
+  2 steps: 326 problems
+  3 steps: 371 problems
+  4 steps: 298 problems
+  5 steps: 174 problems
+  6 steps: 87 problems
+  7 steps: 41 problems
+  8 steps: 19 problems
+  9 steps: 2 problems
+  11 steps: 1 problems
+
+======================================================================
+PHASE 1: Generating CoT traces
+======================================================================
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+  Generated 50 problems, 45/50 correct (90.0%) [318s]
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+  Generated 100 problems, 87/100 correct (87.0%) [604s]
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+  Generated 150 problems, 131/150 correct (87.3%) [895s]
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+  Generated 200 problems, 176/200 correct (88.0%) [1182s]
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.
+  Time budget (22%) reached at problem 248
+
+Phase 1 complete: 248 generated, 218 correct (87.9%), 30 incorrect
+Usable correct: 218, Usable incorrect: 30
+Difficulty terciles: Easy ≤2 steps, Medium 2-4, Hard >4
+  easy: 76 problems (mean 2.0 steps)
+  medium: 100 problems (mean 3.5 steps)
+  hard: 42 problems (mean 5.7 steps)
+
+======================================================================
+PHASE 2: Extracting V-cache at all CoT positions
+======================================================================
+  Extracted 50 problems (correct=41, incorrect=9) [1461s]
+  Extracted 100 problems (correct=89, incorrect=11) [1466s]
+  Extracted 150 problems (correct=135, incorrect=15) [1470s]
+  Extracted 200 problems (correct=175, incorrect=25) [1474s]
+
+Phase 2 complete: 248 problems extracted (correct=218, incorrect=30)
+
+======================================================================
+PHASE 3: Analysis — Accuracy-conditional & difficulty-conditional V|nums
+======================================================================
+Analysis samples: 218 correct, 30 incorrect
+
+--- Layer 9 ---
+  Bin  0: V_R(correct)=0.011 V_R(incorrect)=0.222 V|nums(c)=0.000 V|nums(i)=-0.680 text_reveals(c)=0.00
+  Bin  5: V_R(correct)=0.275 V_R(incorrect)=0.151 V|nums(c)=0.000 V|nums(i)=-0.187 text_reveals(c)=0.07
+  Bin 10: V_R(correct)=0.209 V_R(incorrect)=0.272 V|nums(c)=0.000 V|nums(i)=-0.130 text_reveals(c)=0.11
+  Bin 15: V_R(correct)=0.248 V_R(incorrect)=0.077 V|nums(c)=0.000 V|nums(i)=-0.229 text_reveals(c)=0.13
+  Bin 19: V_R(correct)=0.619 V_R(incorrect)=0.530 V|nums(c)=0.004 V|nums(i)=0.375 text_reveals(c)=1.00
+
+--- Layer 18 ---
+  Bin  0: V_R(correct)=0.251 V_R(incorrect)=-0.104 V|nums(c)=0.083 V|nums(i)=-1.005 text_reveals(c)=0.00
+  Bin  5: V_R(correct)=0.276 V_R(incorrect)=0.327 V|nums(c)=0.000 V|nums(i)=-0.010 text_reveals(c)=0.07
+  Bin 10: V_R(correct)=0.263 V_R(incorrect)=-0.046 V|nums(c)=0.000 V|nums(i)=-0.448 text_reveals(c)=0.11
+  Bin 15: V_R(correct)=0.280 V_R(incorrect)=0.425 V|nums(c)=0.000 V|nums(i)=0.119 text_reveals(c)=0.13
+  Bin 19: V_R(correct)=0.716 V_R(incorrect)=0.553 V|nums(c)=0.101 V|nums(i)=0.398 text_reveals(c)=1.00
+
+--- Layer 27 ---
+  Bin  0: V_R(correct)=0.173 V_R(incorrect)=0.507 V|nums(c)=0.006 V|nums(i)=-0.395 text_reveals(c)=0.00
+  Bin  5: V_R(correct)=0.227 V_R(incorrect)=0.671 V|nums(c)=0.000 V|nums(i)=0.333 text_reveals(c)=0.07
+  Bin 10: V_R(correct)=0.291 V_R(incorrect)=0.254 V|nums(c)=0.000 V|nums(i)=-0.147 text_reveals(c)=0.11
+  Bin 15: V_R(correct)=0.337 V_R(incorrect)=0.329 V|nums(c)=0.000 V|nums(i)=0.023 text_reveals(c)=0.13
+  Bin 19: V_R(correct)=0.709 V_R(incorrect)=0.385 V|nums(c)=0.094 V|nums(i)=0.231 text_reveals(c)=1.00
+
+--- Layer 35 ---
+  Bin  0: V_R(correct)=0.010 V_R(incorrect)=0.140 V|nums(c)=0.000 V|nums(i)=-0.762 text_reveals(c)=0.00
+  Bin  5: V_R(correct)=0.207 V_R(incorrect)=0.278 V|nums(c)=0.000 V|nums(i)=-0.060 text_reveals(c)=0.07
+  Bin 10: V_R(correct)=0.240 V_R(incorrect)=0.294 V|nums(c)=0.000 V|nums(i)=-0.108 text_reveals(c)=0.11
+  Bin 15: V_R(correct)=0.348 V_R(incorrect)=-0.027 V|nums(c)=0.000 V|nums(i)=-0.333 text_reveals(c)=0.13
+  Bin 19: V_R(correct)=0.585 V_R(incorrect)=0.419 V|nums(c)=0.000 V|nums(i)=0.265 text_reveals(c)=1.00
+
+======================================================================
+PHASE 4: Bootstrap tests for correct vs incorrect and difficulty effects
+======================================================================
+  L9: Correct-Incorrect gap = 0.164 (p=0.008)
+  L9: Hard-Easy gap = 0.203 (p=0.000)
+  L18: Correct-Incorrect gap = 0.163 (p=0.012)
+  L18: Hard-Easy gap = 0.233 (p=0.000)
+  L27: Correct-Incorrect gap = 0.036 (p=0.216)
+  L27: Hard-Easy gap = 0.241 (p=0.000)
+  L35: Correct-Incorrect gap = 0.151 (p=0.006)
+  L35: Hard-Easy gap = 0.213 (p=0.000)
+
+======================================================================
+PHASE 5: Summary
+======================================================================
+
+=== ANALYSIS A: CORRECT vs INCORRECT ===
+
+Layer 9:
+  V_R    : correct mean=0.240, incorrect mean=0.199
+  nums_R : correct mean=0.419, incorrect mean=0.360
+  V|nums : correct mean=0.003, incorrect mean=-0.161, gap=0.164, p=0.008
+
+Layer 18:
+  V_R    : correct mean=0.300, incorrect mean=0.211
+  nums_R : correct mean=0.419, incorrect mean=0.360
+  V|nums : correct mean=0.014, incorrect mean=-0.149, gap=0.163, p=0.012
+
+Layer 27:
+  V_R    : correct mean=0.294, incorrect mean=0.336
+  nums_R : correct mean=0.419, incorrect mean=0.360
+  V|nums : correct mean=0.012, incorrect mean=-0.024, gap=0.036, p=0.216
+
+Layer 35:
+  V_R    : correct mean=0.234, incorrect mean=0.215
+  nums_R : correct mean=0.419, incorrect mean=0.360
+  V|nums : correct mean=0.006, incorrect mean=-0.145, gap=0.151, p=0.006
+
+=== ANALYSIS B: DIFFICULTY SPLIT (correct only) ===
+
+Layer 9:
+  easy   : V_R mean=0.198, V|nums mean=0.054
+  medium : V_R mean=0.177, V|nums mean=0.001
+  hard   : V_R mean=0.145, V|nums mean=0.257
+  Hard-Easy gap = 0.203 (p=0.000)
+
+Layer 18:
+  easy   : V_R mean=0.195, V|nums mean=0.037
+  medium : V_R mean=0.152, V|nums mean=0.011
+  hard   : V_R mean=0.139, V|nums mean=0.270
+  Hard-Easy gap = 0.233 (p=0.000)
+
+Layer 27:
+  easy   : V_R mean=0.196, V|nums mean=0.034
+  medium : V_R mean=0.208, V|nums mean=0.007
+  hard   : V_R mean=0.127, V|nums mean=0.275
+  Hard-Easy gap = 0.241 (p=0.000)
+
+Layer 35:
+  easy   : V_R mean=0.099, V|nums mean=0.021
+  medium : V_R mean=0.197, V|nums mean=0.007
+  hard   : V_R mean=0.072, V|nums mean=0.234
+  Hard-Easy gap = 0.213 (p=0.000)
+
+=== EARLY DECODABILITY ===
+  L18: V|nums > 0.05 at bin 0 (0% of chain), text reveals at 0%
+  L27: V|nums > 0.05 at bin 4 (20% of chain), text reveals at 7%
+  L35: V|nums > 0.05 at bin 17 (85% of chain), text reveals at 19%
+
+Results saved to /workspace/llm-steganography-with-ai-researcher/results/exp_101/results.json
+
+======================================================================
+PHASE 6: Generating figures
+======================================================================
+  Saved correct_vs_incorrect_vnums.png
+  Saved difficulty_split_vnums.png
+  Saved raw_V_R_correct_vs_incorrect.png
+  Saved summary_bars.png
+
+======================================================================
+Total runtime: 1480s (24.7 min)
+======================================================================

@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-22 (cycle 100 — **10th literature scan (milestone).** 18 new papers across 7 themes. HEADLINE: Anthropic circuit tracing explicitly states QK routing is INVISIBLE to their methods — validates our K-routing research as filling the critical blind spot. Retrieval heads (ICLR 2025 Oral) = 7th confirmation of head specialization (sparse, universal, intrinsic — parallel to H5). KV cache steering (Belitsky, Jul 2025) induces reasoning in frozen models but no K/V decomposition — gap we fill. CoT faithfulness quantified: 25-39% (Anthropic), 0.04-13% natural unfaithfulness (Arcuschin). CRV (ICLR 2026 Oral) verifies reasoning via computational graph structure. Depth-recurrent latent CoT = negative result (counter-evidence for alternative architecture). Total: 126+ papers across 11 scans, 22+ convergent angles.)
-Cycles completed: 100 (86 experimental + 1 consolidation + 8 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-22 (cycle 101 — **Accuracy- & difficulty-conditional V|nums.** HEADLINE: Forward-looking signal is FUNCTIONAL. V|nums is accuracy-conditional (positive only for correct problems, p<0.01 at 3/4 layers) and difficulty-dependent (hard 5-13x stronger than easy, p<0.001 at 4/4 layers). BUT difficulty effect is driven by text informativeness collapse for hard problems (nums_R<0), not by V_R increase. V is the DOMINANT information source for hard problems (V>nums at 15/20 bins) but redundant for easy ones. Hidden channel contributes proportionally more when computation is complex.)
+Cycles completed: 101 (87 experimental + 1 consolidation + 8 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -32,6 +32,7 @@ The hypothesis is supported by converging evidence from 39 experimental cycles, 
 - **PROBE-ATTENTION CORRELATION (Exp 096):** After controlling for position (recency), model attends to V|nums-rich positions at ALL 32 head×layer conditions (partial r = 0.04-0.36, all p<0.001, n=174). Answer step > control at ALL 32 conditions (Wilcoxon p<0.001). Ecological: V|nums r=0.45 >> nums_R r=0.18 (hidden info 2.5x > visible text). H5 partial_r increases L9→L35 (0.26→0.34). BRIDGES probing evidence (info exists) with attention evidence (model retrieves it) into complete encode→store→retrieve circuit.
 - **CROSS-MODEL PROBE-ATTENTION + QUADRATIC CONTROL (Exp 097):** Phi-3.5-mini REPLICATES linear partial_r: 4/4 layers, 128/128 head×layer, all p<0.001 (Phi≈Qwen at early-mid layers: L08=0.171 vs L09=0.160, L16=0.243 vs L18=0.260). BUT **quadratic position control** reveals ~80% of signal is non-linear recency: L16 retains 22% (r=0.054, 32/32 significant p<0.001), L24+L31 REVERSE to negative. Ecological r=0.58-0.70 on Phi (V|nums 4-5x > nums_R). Information-directed attention is CROSS-MODEL but MUCH SMALLER than linear-only analysis suggested. Mid-plateau (L16) signal is genuine beyond quadratic recency.
 - **ROBUST POSITION CONTROL ON QWEN (Exp 098):** GOLD-STANDARD rank-based (Spearman partial, non-parametric) control applied to Qwen. L9-L18 retain **43-59%** of linear signal under rank control (r=0.155-0.159, 8/8 heads positive, ALL p<0.001). This is **~3x MORE** than Phi's quadratic retention (22%). **Deep-layer QUADRATIC-RANK DISSOCIATION:** L27-L35 retain 88% under quadratic but ONLY 15-17% under rank — reveals non-quadratic monotonic recency at deep layers, explaining Phi's L24/L31 reversal. Phi's ~80% reduction was PHI-SPECIFIC, not universal. **Definitive effect sizes:** Qwen r≈0.16, Phi r≈0.05, concentrated at mid-plateau layers. Architecture-dependent: digital encoding (Qwen) produces 3x stronger information-directed attention than analog (Phi). Permutation null borderline (p=0.047-0.052); V|nums ≈ nums_R ecological on Qwen (weaker hidden-vs-text distinction than Phi).
+- **ACCURACY- & DIFFICULTY-CONDITIONAL V|nums (Exp 101):** Forward-looking signal is FUNCTIONAL. V|nums is accuracy-conditional: positive for correct problems (+0.003 to +0.014), NEGATIVE for incorrect (-0.024 to -0.161), gap significant at 3/4 layers (L9 p=0.008, L18 p=0.012, L35 p=0.006). V|nums scales with difficulty: Hard (>4 steps) mean=0.234-0.275, Easy (≤2 steps) mean=0.021-0.054, gap=0.20-0.24, p<0.001 ALL 4 layers. **CRITICAL CONFOUND:** Difficulty effect driven by text informativeness collapse — nums_R for hard is NEGATIVE (-0.085) while easy nums_R=0.334. V_R is actually LOWER for hard (0.145) than easy (0.198). The hidden channel is the DOMINANT information source for hard problems (V>nums at 15/20 bins) but REDUNDANT for easy (V<nums at 14/20 bins). Correct interpretation: harder problems → proportionally more reliance on hidden channel because text becomes anti-predictive.
 
 ---
 
@@ -264,6 +265,8 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 113 | CoT faithfulness quantified at 25-39% — 61-75% hidden computation | Anthropic (May 2025): 25% Claude 3.7 Sonnet, 39% DeepSeek R1. Arcuschin et al. (Mar 2025): 0.04-13% natural unfaithfulness. Consistent with our R≈0.29 forward-looking signal (capturing ~30% genuine computation). | **Strong (independent)** | Lit scan 100 |
 | 114 | CRV — structural verification via computational graphs (ICLR 2026 Oral) | Zhao et al.: reasoning errors have "highly predictive" structural signatures in attribution graphs. Domain-specific patterns. Feature-level interventions correct faulty reasoning causally. Complementary to our probing approach. | **Moderate (independent)** | Lit scan 100 |
 | 115 | Depth-recurrent latent CoT NEGATIVE (counter-evidence) | Lu et al. (Jul 2025): Huginn-3.5B shows "limited evidence of interpretable latent CoT" via logit lens/coda lens. Specific to depth-recurrent architecture (layer reuse), not standard autoregressive (our models). | **Moderate (counter-evidence)** | Lit scan 100 |
+| 116 | V|nums is accuracy-conditional: positive for correct, negative for incorrect | V|nums gap 0.15-0.16, p<0.01 at 3/4 layers. Channel carries answer info only when model succeeds. Incorrect V|nums is NEGATIVE (V < text baseline). | **Moderate** | 101 |
+| 117 | V|nums scales with difficulty: hard 5-13x easy (p<0.001) — but driven by text collapse | Hard V|nums 0.23-0.28 vs easy 0.02-0.05. CONFOUNDED: nums_R<0 for hard (text anti-predictive), V_R actually LOWER for hard. V is dominant info source for hard (15/20 bins) but redundant for easy. | **Moderate (confounded)** | 101 |
 | 23 | Positional > content confirmed by compression literature (independent) | "Where > What" (Tian 2026): position dominates semantic content for KV importance | **Strong (independent)** | Lit scan 40 |
 | 24 | K > V at latest decile on Llama | V-K gap +76pp at 5% dose (V=92%, K=16%), +55pp at 10% dose (V=71%, K=16%) | **Strong** | 041, 043 |
 | 25 | Llama K-routing extremely fragile/distributed | 5% K-direction perturbation STILL saturates accuracy at 0-2.6% for bins 0-6; only bin 9 (15.8%) recovers | **Strong** | 041, 043 |
@@ -1711,3 +1714,78 @@ recency as the primary driver of the raw correlation. (3) Establishes that the g
 signal (r≈0.05, surviving quadratic control) is concentrated at mid-plateau layers. (4)
 The exp_096 finding needs retrospective quadratic control to determine if Qwen shows the
 same pattern.
+
+---
+
+### Entry #116: V|nums is Accuracy- and Difficulty-Conditional (Exp 101)
+**Cycle:** 101 | **Date:** 2026-03-22 | **Model:** Qwen3-4B-Base
+
+**Design:** Generate 8-shot CoT on 248 GSM8K problems (218 correct, 30 incorrect).
+Split correct problems by ground-truth difficulty (Easy ≤2 steps n=76, Medium 3-4 n=100,
+Hard >4 n=42). Train V-probe on correct (5-fold CV Ridge), apply to incorrect
+(train-on-correct → predict-on-incorrect). Extract V-cache at L9/L18/L27/L35, 20 position
+bins. Compare V|nums across accuracy and difficulty groups.
+
+**Pre-registered predictions:**
+- If TRUE: V|nums(correct) > V|nums(incorrect); V|nums(hard) > V|nums(easy)
+- If FALSE: V|nums similar across groups (position artifact)
+
+**Results:**
+
+Analysis A — Accuracy effect:
+
+| Layer | V|nums(correct) | V|nums(incorrect) | Gap | p |
+|-------|-----------------|-------------------|-----|---|
+| L9 | +0.003 | -0.161 | 0.164 | **0.008** |
+| L18 | +0.014 | -0.149 | 0.163 | **0.012** |
+| L27 | +0.012 | -0.024 | 0.036 | 0.216 |
+| L35 | +0.006 | -0.145 | 0.151 | **0.006** |
+
+Incorrect V|nums is NEGATIVE at 3/4 layers — the V-cache carries LESS answer info than
+visible text when the model gets the problem wrong. Functional evidence: the hidden
+channel carries the answer only when the model succeeds.
+
+Analysis B — Difficulty effect:
+
+| Layer | Easy V|nums | Hard V|nums | Gap | p |
+|-------|-------------|-------------|-----|---|
+| L9 | 0.054 | 0.257 | 0.203 | **<0.001** |
+| L18 | 0.037 | 0.270 | 0.233 | **<0.001** |
+| L27 | 0.034 | 0.275 | 0.241 | **<0.001** |
+| L35 | 0.021 | 0.234 | 0.213 | **<0.001** |
+
+V|nums is 5-13x higher for hard problems at all layers.
+
+**CRITICAL CONFOUND — decomposed V_R and nums_R:**
+
+| Difficulty | V_R mean | nums_R mean | V-nums (unclip) | Bins V>nums |
+|------------|----------|-------------|-----------------|-------------|
+| Easy (76) | 0.198 | 0.334 | -0.136 | 6/20 |
+| Medium (100) | 0.177 | 0.481 | -0.304 | 1/20 |
+| Hard (42) | 0.145 | **-0.085** | **+0.230** | **15/20** |
+
+V_R is LOWER for hard problems (0.145 vs 0.198). The V|nums effect is driven by nums_R
+collapsing for hard problems (negative, text numbers anti-predict the answer with many
+intermediate steps). V provides more info RELATIVE TO TEXT for hard problems because text
+becomes uninformative.
+
+**Predictions assessment:** Hypothesis predictions: 2.5/4 confirmed. Null predictions:
+0.5/3. Hypothesis better matches the data overall.
+
+**Confounds:**
+1. V|nums difficulty effect conflated with text informativeness (nums_R collapse)
+2. Small hard group (n=42) limits per-bin precision
+3. Bootstrap permutes bins, not problems (correlation structure)
+4. V|nums clipping at 0 introduces ~10% positive bias for noisier hard group
+
+**Evidence strength:** MODERATE — Accuracy effect is clean (3/4 layers, p<0.01). Difficulty
+effect is highly significant but confounded: reflects V being the dominant info source for
+hard problems (V>nums at 15/20 bins) rather than V carrying more info in absolute terms.
+The key insight: the hidden channel MATTERS MOST when computation is complex and text is
+least informative.
+
+**Impact:** (1) First functional test of forward-looking signal — V|nums is not merely a
+position artifact. (2) V-cache provides answer information that text cannot for hard
+problems. (3) Hidden channel is accuracy-conditional — carries the answer only for correct
+problems. (4) Nuances the narrative: the channel isn't "hidden computation" so much as
+"residual computation that text fails to capture, especially for hard problems."
