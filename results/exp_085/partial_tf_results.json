@@ -1,0 +1,25 @@
+{
+  "n": 168,
+  "avg_split_frac": 0.496389749684348,
+  "avg_prefix_lines": 1.7619047619047619,
+  "avg_suffix_lines": 1.6845238095238095,
+  "acc_original": 1.0,
+  "acc_synonym": 0.9940476190476191,
+  "acc_random": 0.9404761904761905,
+  "drop_synonym": 0.005952380952380931,
+  "drop_random": 0.059523809523809534,
+  "ci_synonym": [
+    0.0,
+    0.017857142857142905
+  ],
+  "ci_random": [
+    0.02961309523809525,
+    0.10119047619047616
+  ],
+  "n_orig_wrong": 0,
+  "n_syn_broken": 1,
+  "n_rand_broken": 10,
+  "n_syn_gained": 0,
+  "n_rand_gained": 0,
+  "runtime_seconds": 2859.8377063274384
+}

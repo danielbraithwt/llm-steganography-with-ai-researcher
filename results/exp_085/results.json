@@ -1,0 +1,79 @@
+{
+  "config": {
+    "model": "Qwen/Qwen3-4B-Base",
+    "n_problems": 200,
+    "replacement_rate": 0.5,
+    "seed": 42,
+    "synonym_dict_size": 200
+  },
+  "generation": {
+    "accuracy": 0.85,
+    "n_correct": 170,
+    "n_total": 200
+  },
+  "accuracy": {
+    "original": 1.0,
+    "synonym": 1.0,
+    "random": 1.0,
+    "drop_synonym": 0.0,
+    "drop_random": 0.0
+  },
+  "mcnemar": {
+    "orig_vs_syn": {
+      "both": 170,
+      "a_only": 0,
+      "b_only": 0,
+      "neither": 0,
+      "p": 1.0
+    },
+    "orig_vs_rand": {
+      "both": 170,
+      "a_only": 0,
+      "b_only": 0,
+      "neither": 0,
+      "p": 1.0
+    },
+    "syn_vs_rand": {
+      "both": 170,
+      "a_only": 0,
+      "b_only": 0,
+      "neither": 0,
+      "p": 1.0
+    }
+  },
+  "bootstrap": {
+    "ci_synonym": [
+      0.0,
+      0.0
+    ],
+    "ci_random": [
+      0.0,
+      0.0
+    ],
+    "p_boot_syn": 1.0,
+    "p_boot_rand": 1.0,
+    "n_boot": 2000
+  },
+  "dose_response": {
+    "r_pb": NaN,
+    "p": NaN
+  },
+  "text_stats": {
+    "avg_eligible_words": 33.54705882352941,
+    "avg_n_syn": 3.0764705882352943,
+    "avg_n_rand": 17.147058823529413,
+    "avg_syn_frac": 0.0899978066970667,
+    "avg_rand_frac": 0.5055883814866988,
+    "avg_similarity_synonym": 0.9230310987253255,
+    "avg_similarity_random": 0.5446657065519722,
+    "avg_token_change_synonym": 0.24384532505854783,
+    "avg_token_change_random": 0.8568090284716903,
+    "nums_preserved_synonym": 170,
+    "nums_preserved_random": 170
+  },
+  "sanity": {
+    "original_tf_mismatches": 0,
+    "original_tf_mismatch_rate": 0.0
+  },
+  "runtime_seconds": 1078.6294798851013
+}
