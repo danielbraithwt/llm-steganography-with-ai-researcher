@@ -1,18 +1,14 @@
 {
-  "cycle": 99,
-  "timestamp": "2026-03-22T18:00:00+11:00",
-  "type": "experiment",
-  "template": "wrra_kv_decomposition",
-  "parameters": {"n_problems": 566, "n_wrra": 25, "probe_layers": [9, 18, 27, 35], "model": "Qwen3-4B-Base"},
-  "prediction_outcome": "partially_disconfirmed",
-  "key_finding": "WRRA correct-alignment DOES NOT REPLICATE (exp_078 71.4% p=0.039 → 52% p=1.0). K-probe added: K=52-64%, V=40-52%, none significant. Novel: V>K at ALL 4 layers for numeric probing at computation positions.",
-  "evidence_impact": "Downgrades WRRA smoking gun from Moderate to Weak/Inconclusive. Adds V>K at computation positions (complementary to K>V position-sweep). Forward-looking probing replicates perfectly.",
-  "next_planned": "Scale WRRA to n≥100 (1600+ problems) or use harder benchmark. Consider V>K at computation positions for paper as K=routing/V=content evidence.",
-  "figures": [
-    "results/exp_099/wrra_kv_comparison.png",
-    "results/exp_099/kv_probe_comparison.png",
-    "results/exp_099/wrra_predictions_scatter.png"
-  ],
+  "cycle": 100,
+  "timestamp": "2026-03-22T20:00:00+11:00",
+  "type": "literature_scan",
+  "template": "milestone_synthesis",
+  "parameters": {"papers_found": 18, "themes": 7, "total_cumulative": 126, "scan_number": 11},
+  "prediction_outcome": "n/a",
+  "key_finding": "Anthropic circuit tracing QK blind spot validates our K-routing research direction. Retrieval heads (ICLR 2025 Oral) = 7th head specialization confirmation. KV cache steering (Belitsky Jul 2025) induces reasoning but no K/V decomposition — gap we fill. CoT faithfulness 25-39% (61-75% hidden). CRV (ICLR 2026 Oral) complementary method. Depth-recurrent latent CoT negative (counter-evidence for alternative arch).",
+  "evidence_impact": "5 new evidence entries (#110-115). Literature convergence upgraded to 22+ angles, 126+ papers. Strongest positioning for paper: our work fills Anthropic's QK blind spot.",
+  "next_planned": "Experiment 101: Consider K-only vs V-only steering (new causal test), difficulty-dependent V|nums, or retrieval head overlap with H5.",
+  "figures": [],
   "progress": {
     "null_space_existence": {"status": "strong", "bar": 4},
     "spatial_structure": {"status": "decisive_negative", "bar": 5},
