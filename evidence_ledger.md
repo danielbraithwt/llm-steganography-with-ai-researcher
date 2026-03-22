@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-22 (cycle 80 — **Literature scan.** 9th scan: 13 new papers, 90+ total. Key convergences: K=routing/V=content confirmed from 4th independent angle (SAE decomposition); Reasoning Theater updated with task-dependence; information bottleneck quantified (~30x compression from activations to text); CoT fragility validated for Experiment B design; important counter-evidence (iterative faithfulness) acknowledged and reconciled.)
-Cycles completed: 80 (68 experimental + 1 consolidation + 6 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-22 (cycle 81 — **Exp 081: Cross-model forward-looking probing on Mistral-7B-v0.3.** MIXED REPLICATION: V→final raw signal replicates (R=0.23, p<0.001), but V→final|nums does NOT (R=0.06, p>0.08) — Mistral's forward-looking signal explained by problem numbers. WRRA does not replicate (38% alignment, below chance). Phase 2 natural_usage evidence revised from MODERATE to WEAK-MODERATE.)
+Cycles completed: 81 (69 experimental + 1 consolidation + 6 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -13,6 +13,7 @@ The hypothesis is supported by converging evidence from 39 experimental cycles, 
 
 ### Key Numbers
 - **Models tested:** Qwen3-4B-Base, Qwen3-4B (Instruct), Llama-3.1-8B-Instruct, Phi-3.5-mini-Instruct (MHA), Mistral-7B-v0.3 (Base)
+- **Phase 2 (natural channel usage):** V→final raw signal on 2 models; residualized signal (V|nums) confirmed only on Qwen (R=0.24), not on Mistral (R=0.06, p>0.08). WRRA 71.4% on Qwen (p=0.039), 37.9% on Mistral (below chance).
 - **Architecture coverage:** GQA (4 models) + MHA (1 model); Base (2) + Instruct (3)
 - **Total valid problems across all experiments:** ~1,500+ evaluations
 - **K > V confirmed:** 5/5 models × 3 positions = 15 independent conditions under direction perturbation; 16/16 heads across 2 models; K/V effective rank ratio 0.87-0.94 (geometric evidence, Exp 062)
@@ -445,6 +446,8 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 | 072 | 72 | Mistral-Base | **Computation-position cross-model + expression-embed baseline:** KV(R=0.435) > expr-embed(0.310) > token-embed(0.111). 2.2x weaker than Qwen. Expr-embed narrows KV advantage to +0.125. WRRA alignment NEGATIVE (below chance, n=91 errors). Effect model-dependent. |
 | 073 | 73 | Qwen-Base | **Expression-embed retroactive baseline + permutation significance:** V R=0.977 replicates. Expr-embed R=0.771 (strong but below V). V-expr gap=+0.206 (narrows from +0.867 over token-embed but remains substantial). Perm p=0.000 for V,K,expr. Token-embed p=0.936 (uninformative). 1474 operations. Gap 1.65x > Mistral's +0.125. |
 | 074 | 74 | Qwen-Base | **Paraphrase disruption DECISIVE NULL:** 100% accuracy across ALL conditions (original, synonym, random). Replacing ALL non-numeric tokens with random gibberish has ZERO effect on accuracy (215/215 on all 3 conditions). The `<<EXPR=RESULT>>` format makes English text completely redundant. UNINFORMATIVE about hidden channel — design confound. Needs redesign with plain-text CoT. |
+| 075-080 | 75-80 | Various | See individual experiment logs. Key Phase 2 results: cumulative V > text (2 models), forward-looking V→final R=0.49 (Qwen), V→final\|embed R=0.14-0.22 (Qwen GroupKFold), WRRA 71.4% (Qwen, p=0.039). Within-problem data leakage discovered and corrected. Lit scan #9: 90+ papers, K=routing/V=content SAE-confirmed. |
+| **081** | **81** | **Mistral-Base** | **Cross-model forward-looking probing — MIXED REPLICATION:** V→final R=0.23 (p<0.001) replicates raw signal. BUT V→final\|nums R=0.06 (p>0.08) does NOT replicate — Mistral's signal explained by problem numbers. WRRA 38% (below chance, n=29). K negative after all controls. nums→final R=0.39 (2.5x Qwen's 0.15) — accuracy selection effect. Phase 2 natural_usage revised WEAK-MODERATE. |
 
 ---
 
@@ -483,7 +486,7 @@ Our unique contribution: **causal perturbation evidence** at the KV cache level 
 ## Phase 2: Natural Channel Usage (Observational Evidence)
 
 ### 7. KV Cache Carries Answer Information Beyond Text During Normal Generation
-**Status: Moderate-Strong (2 models, 2 families, expression-embed baseline tested, permutation significance confirmed)**
+**Status: WEAK-MODERATE (revised down from Moderate-Strong after exp_081 mixed replication). V→final raw signal replicates cross-model, but residualized V|nums signal is Qwen-specific (R=0.24 on Qwen, R=0.06 not significant on Mistral). WRRA also Qwen-specific.**
 
 **Experiment:** Train ridge regression probes (5-fold CV) on cumulative KV cache activations vs cumulative token embeddings at 10 normalized CoT positions, to predict the final numeric answer (log-transformed). Qwen3-4B-Base, 80 correctly-solved GSM8K problems, 4 probe layers.
 
@@ -657,15 +660,14 @@ However, the null result is CONSISTENT with probing findings: the computation th
 through numeric/arithmetic positions, not through English word positions. The hidden channel
 (if it exists) operates at computation-specific positions, and non-numeric tokens are scaffolding.
 
-**Limitations (remaining):**
-- Only 2 models for computation-position comparison
-- Paired permutation test for V vs expr-embed not completed (individual tests highly significant)
-- WRRA "smoking gun" absent on both models (too few errors on Qwen, negative on Mistral)
-- Expression-embed is a static baseline; hidden-state baseline at expression positions untested
-- Paraphrase disruption uninformative due to `<<EXPR=RESULT>>` format confound — needs redesign
-- Cumulative KV advantage (+0.055) is small and may reflect richer representations, not hidden computation
+**Limitations (remaining — updated cycle 81):**
+- Residualized forward-looking signal (V|nums, V|embed) confirmed only on Qwen, NOT on Mistral (exp_081)
+- WRRA alignment above chance only on Qwen (71.4%, p=0.039, n=21); below chance on Mistral (38%, p=0.93, n=29; and exp_072: below chance, n=91)
+- Non-replication could be power (83 vs 341 problems), accuracy selection (43% vs 87%), or genuine architecture difference
+- Paraphrase disruption (Experiment B) untested with plain-text CoT — independent test needed
+- Cumulative KV advantage (+0.055) is small and may reflect richer representations
 - GSM8K answers are functions of problem numbers — task specificity limits generalization
-- Statistical significance of cumulative V - text difference not formally tested (permutation needed)
+- Need high-accuracy model replication (Llama-Instruct) to disambiguate power vs architecture
 
 **Key experiments:** Exp 065 (initial, confound identified), Exp 068 (Qwen, corrected), Exp 069 (Mistral, cross-model replication), Exp 071 (computation-position probes + WRRA attempt), Exp 072 (Mistral computation-position + expression-embed baseline + WRRA), Exp 073 (Qwen expression-embed retroactive baseline + permutation significance), Exp 074 (paraphrase disruption — decisive null due to format confound), Exp 075 (early answer decodability — text dominates KV at all positions, design limitation identified), Exp 076 (cumulative KV probe — cum_V > cum_text at 10/10 positions, +0.055 mean, fixes exp_075 design flaw)
 
@@ -945,3 +947,66 @@ and deflated V→final|embed to ~0.04. GroupKFold (no within-problem leakage) is
 **Evidence strength:** MODERATE. V carries forward-looking computation info beyond problem
 context (R=0.14-0.22 after strictest control). Effect is modest but real and survived the
 challenge. Most important contribution is the methodological correction of exp_078.
+
+### Exp 081: Cross-Model Forward-Looking Probing — Mistral-7B-v0.3
+**Cycle 81 | Mistral-7B-v0.3 | Phase 2 — cross-model replication | MIXED (partial replication)**
+
+**Core question:** Does the V forward-looking signal from exp_078/079 (V→final|nums R=0.24
+on Qwen with GroupKFold) replicate on a different model family?
+
+**Setup:** 200 GSM8K problems, plain-text CoT, Mistral-7B-v0.3 (base, GQA, analog encoding).
+86 correct (43%), 85 valid with operations, 573 correct operations from 83 problems.
+29 arithmetic errors (4.82% — 4.1x more than Qwen's 1.16%). GroupKFold ONLY.
+
+**GroupKFold results (n=573 ops from 83 problems):**
+
+| Probe | L8 (25%) | L16 (50%) | L24 (75%) | L31 (97%) | Qwen L27 |
+|-------|----------|-----------|-----------|-----------|----------|
+| V → final | 0.113 | **0.234** | **0.231** | **0.212** | 0.487 |
+| K → final | 0.011 | 0.100 | 0.195 | 0.129 | N/A |
+| nums → final | 0.390 | 0.390 | 0.390 | 0.390 | 0.153 |
+| embed → final | -0.045 | -0.045 | -0.045 | -0.045 | 0.344 |
+| V \| nums | **-0.055** | **0.067** | **0.057** | **0.066** | **0.242** |
+| V \| embed | 0.049 | 0.004 | -0.010 | 0.038 | 0.221 |
+| V \| e+l | 0.049 | 0.004 | -0.010 | 0.038 | 0.215 |
+| Shuffle | -0.061 | -0.088 | -0.083 | -0.026 | -0.017 |
+
+**Bootstrap significance:**
+- V→final: p < 0.007 at all layers (significant — raw signal is real)
+- V|nums: p = 0.088-0.876 at all layers (**NOT significant** — signal explained by numbers)
+- V|embed: p = 0.17-0.58 (not significant)
+
+**What REPLICATES:** V→final raw signal (R=0.21-0.23, p<0.001). V > K consistently.
+Depth increase (L8→L16). Shuffle ≈ 0.
+
+**What does NOT replicate:** V|nums (R=0.06 vs Qwen's 0.24, not significant).
+V|embed (≈0 vs Qwen's 0.22). V|e+l (≈0 vs Qwen's 0.22).
+
+**WRRA: DOES NOT REPLICATE.** 11/29 = 37.9% alignment at L24 (p=0.932, below chance).
+Compare Qwen: 15/21 = 71.4% at L27 (p=0.039). Mistral's V at error positions encodes the
+WRITTEN (wrong) value, not the correct value.
+
+**Interpretation:**
+
+Three possible explanations for non-replication of residualized signal:
+
+1. **Power issue:** 83 problems (Mistral) vs 341 (Qwen). GroupKFold has less power. But
+   V|nums R=0.06 is 4x smaller than Qwen's 0.24 — not just underpowered, genuinely smaller.
+
+2. **Accuracy selection effect:** At 43% accuracy, Mistral only solves easy problems where
+   answer ≈ f(numbers). This inflates nums→final (0.39 vs 0.15), leaving less residual for
+   V. The problems Mistral solves may not require "forward-looking computation."
+
+3. **Architecture difference:** Analog encoding (Mistral) may couple text and computation
+   more tightly than digital encoding (Qwen), meaning V follows text even when text is wrong
+   (explaining WRRA reversal).
+
+**Impact on Phase 2 evidence:** The forward-looking probing evidence is WEAKER than estimated:
+- V→final raw signal is cross-model (still moderate)
+- V|nums residualized signal is Qwen-specific so far (weak-moderate)
+- WRRA is Qwen-specific (Qwen: above chance, Mistral: below chance on both exp_072 and exp_081)
+- Revised natural_usage assessment: WEAK-MODERATE (down from MODERATE)
+
+**Evidence strength:** WEAK-MODERATE. Raw V→final replicates but residualized signal does not.
+Honest assessment: the Phase 2 forward-looking evidence may be Qwen-specific or
+accuracy-dependent. Needs replication on a high-accuracy model (Llama-Instruct) to disambiguate.
