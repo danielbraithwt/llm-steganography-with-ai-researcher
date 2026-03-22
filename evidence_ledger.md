@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-22 (cycle 94 — **K>V probing is ENCODING-DEPENDENT, not GQA-driven.** Mistral-7B (GQA, analog) shows V>K at 9/12 layers (75%), diff=-0.017, matching Phi (MHA, analog). K>V probing is QWEN-SPECIFIC (digital encoding), not GQA-general. 3-model taxonomy: digital→K>V, analog→V≥K regardless of GQA/MHA. K>V perturbation fragility remains universal.)
-Cycles completed: 94 (81 experimental + 1 consolidation + 7 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-22 (cycle 95 — **Answer-step attention routing.** 7/8 KV heads INCREASE late-chain attention at answer step (all p<0.001, mean +24pp). H0 is the ONLY head that DECREASES late-chain attention (-3.4pp), suggesting unique retrieval role. H5 shows moderate shift (+22.8pp) and entropy reduction at deep layers. Two-stage retrieval: early layers attend to prompt, L18 shifts to computation chain. First MECHANISTIC evidence connecting Phase 1 answer heads to Phase 2 natural behavior.)
+Cycles completed: 95 (82 experimental + 1 consolidation + 7 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -28,6 +28,7 @@ The hypothesis is supported by converging evidence from 39 experimental cycles, 
 - **Answer-head specialization (Qwen-specific):** H0+H5 at 25% capacity → 3.7% acc; dispensable pairs at 25% → 96-100% acc; +95.1pp gap (Qwen). Llama: best pair 16.2%, worst 0.0%, gap only +16.2pp. Two-regime pattern does NOT replicate on analog models.
 - **Head × position interaction is ENCODING-DEPENDENT:** Qwen H5 range=9.3pp (position-independent, Exp 049); Llama H5 range=50.8pp (position-DEPENDENT, Exp 051). Digital encoding → uniform H5; analog → early-concentrated H5.
 - **Early-position cascading is GENERAL on Llama (Exp 052):** All 4 tested heads show early>late gradient. Position-dependence scales perfectly with criticality: r=-0.991 (p=0.009). H3 range=49.1pp, H1 range=34.5pp. Early ≈ all for 3/4 heads. Cascading is architectural (analog encoding), not circuit-specific.
+- **ANSWER-STEP ATTENTION ROUTING (Exp 095):** 7/8 KV heads increase late-chain attention at answer step (mean +24pp, all p<0.001). H0 is the ONLY head that DECREASES late-chain attention (-3.4pp, p<0.001) — unique retrieval pattern. H5 entropy drops at deep layers (L27: -0.61 bits, L35: -0.75 bits). Two-stage retrieval: early layers→prompt, L18→computation chain. First mechanistic evidence connecting Phase 1 answer heads to Phase 2 natural behavior.
 
 ---
 
@@ -1564,3 +1565,56 @@ overall signal limits individual-layer significance.
 but by digital encoding (Qwen-specific). Updated narrative: "K>V perturbation fragility is
 universal (attention routing), but K>V information content is encoding-dependent (digital
 concentrates info in K, analog distributes more evenly with V slightly leading)."
+
+---
+
+### Exp 095: Answer-Step Attention Routing Analysis (Cycle 95)
+**Result: Universal late-chain attention shift at answer step; H0 shows UNIQUE reversal**
+
+**Setup:** Qwen3-4B-Base, GSM8K 8-shot CoT, 198 generated, 173 correct (87.4%).
+Forward pass with output_attentions at 9 layers (L0-L35). Attention extracted at
+answer position + 5 mid-chain control positions per problem. Late-chain = bins 14-19
+(70-100% of chain). Bootstrap significance test (n=2000).
+
+**Key findings:**
+
+1. **Universal late-chain shift:** 7/8 KV heads INCREASE late-chain attention at the
+   answer step vs control (all p<0.001). Mean increase: +24.0pp. The model concentrates
+   on recent computation when generating the answer.
+
+2. **H0 dissociation:** H0 is the ONLY head that DECREASES late-chain attention at the
+   answer step (diff=-0.034, p<0.001). While all other heads concentrate on recent chain,
+   H0 shifts attention AWAY from late chain. Suggests H0 retrieves from earlier positions
+   or prompt, complementing other heads' recent-chain retrieval.
+
+3. **Entropy at deep layers:** H5 and H0 become MORE focused (lower entropy) at the
+   answer step at L27 and L35 (H5: -0.61 to -0.75 bits, H0: -0.05 to -0.77 bits).
+   Other heads show minimal change. Confirms answer head specialization is active during
+   natural generation.
+
+4. **Two-stage retrieval at L18:** Early layers (L0-L14) show MORE prompt attention at
+   answer step. L18 dramatically shifts from prompt (37.1% vs 50.4% ctrl) to late-chain
+   (50.7% vs 30.2% ctrl). Suggests layer-dependent pipeline: prompt re-reading → chain retrieval.
+
+| KV Head | Late-ans | Late-ctrl | Diff | p |
+|---------|----------|-----------|------|---|
+| H0 | 0.508 | 0.542 | **-0.034** | <0.001 |
+| H1-H7 avg | 0.520 | 0.280 | **+0.240** | <0.001 |
+| H5 | 0.423 | 0.194 | **+0.228** | <0.001 |
+| H3 (max) | 0.608 | 0.248 | **+0.360** | <0.001 |
+
+**Confounds:**
+1. Late-chain attention ≠ hidden channel retrieval — model could simply be reading recent text
+2. Control positions are mid-chain (shorter visible sequence), making relative comparison imperfect
+3. H0 finding on single model — needs cross-model replication
+4. Cannot distinguish H0's early-position attention from attention sink behavior
+
+**Evidence strength:** MODERATE — Universal shift is strong (7/8 heads, all p<0.001), H0
+dissociation is striking and unexpected. But cannot definitively distinguish hidden channel
+retrieval from text reading. First mechanistic evidence connecting Phase 1 answer heads to
+Phase 2 natural behavior.
+
+**Impact:** Establishes that the answer step is computationally DISTINCT from reasoning steps
+in attention patterns. H0 and H5 play DIFFERENT roles: H5 follows majority pattern (late-chain),
+H0 uniquely retrieves from earlier positions. Complements probing evidence (exps 083-094) with
+mechanistic retrieval evidence.
