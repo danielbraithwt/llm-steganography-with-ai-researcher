@@ -1,27 +1,35 @@
 {
-  "cycle": 90,
-  "timestamp": "2026-03-22T12:00:00Z",
-  "type": "literature_scan",
+  "cycle": 91,
+  "timestamp": "2026-03-22T14:30:00Z",
+  "type": "experiment",
+  "template": "k_layer_heatmap",
   "parameters": {
-    "scan_number": 10,
-    "search_agents": 3,
-    "topics": ["layer-wise emergence dynamics", "KV cache probing/interpretability", "steganography/safety/cross-model"],
-    "papers_screened": "~80",
-    "papers_new": 24,
-    "papers_total_program": "110+"
+    "model": "Qwen/Qwen3-4B-Base",
+    "layers": "ALL 36",
+    "bins": 20,
+    "n_problems": 200,
+    "n_vectors_per_layer": 19444,
+    "comparison": "K (exp_091) vs V (exp_089)"
   },
-  "key_finding": "K=routing/V=content now 6 independent angles (KVSlimmer theoretical PROOF added). Ramp/plateau layer pattern confirmed UNIVERSAL (4 independent papers). Forward-looking features THEORETICALLY EXPLAINED (ICLR 2026). CoT monitorability CRISIS: 40-author consensus + OpenAI 2.7% vs 61.9% controllability gap. 'Internalized reasoning' formalized as recognized pathology.",
-  "evidence_impact": "Strongest literature scan yet. K=routing/V=content is now the most multiply-confirmed finding in transformer mechanistic interpretability (6 angles). Theoretical grounding for forward-looking features resolves 'why would a next-token predictor encode future info?' Safety community converging on our hypothesis as a recognized concern.",
-  "next_planned": "Cross-model layer sweep on Phi-3.5-mini, or K layer sweep to compare K vs V depth profiles.",
-  "figures": [],
+  "prediction_outcome": "K>V confirmed (4/5 TRUE, 0/4 FALSE)",
+  "key_finding": "K > V for forward-looking probing — K|nums > V|nums at 32/36 layers, mean diff +0.043. K emerges at L0 (V at L3), 2.2x stronger in ramp phase. Phase 1 K>V causal hierarchy EXTENDS to Phase 2 probing. Same ramp+plateau two-phase structure.",
+  "evidence_impact": "UNIFIES Phase 1 (perturbation) and Phase 2 (probing) narratives. K-routing is the primary carrier of the hidden computation channel in both causal and observational evidence.",
+  "next_planned": "Cross-model K layer sweep on Phi-3.5-mini, or bootstrap significance test for K-V gap, or RoPE ablation.",
+  "figures": [
+    "results/exp_091/k_layer_position_heatmap.png",
+    "results/exp_091/k_vs_v_heatmap_comparison.png",
+    "results/exp_091/k_vs_v_layer_profile.png",
+    "results/exp_091/k_vs_v_chain_start.png",
+    "results/exp_091/k_layer_profile_by_position.png"
+  ],
   "progress": {
     "null_space_existence": {"status": "CONFIRMED in K-space (p=0.013). Narrow but real. Qwen-specific.", "bar": 5},
     "spatial_structure": {"status": "DECISIVELY DISCONFIRMED for selectivity. HEAD-LEVEL CONCENTRATION decisive on Qwen, weak on Llama.", "bar": 5},
     "positional_dissociation": {"status": "Complete. Head x position interaction is encoding-dependent.", "bar": 5},
-    "geometric_dissociation": {"status": "K > V UNIVERSAL: 8 angles (6 independent). K spectral geometry uniform across heads. V spectral differentiates.", "bar": 5},
+    "geometric_dissociation": {"status": "K > V UNIVERSAL: 8 angles (6 independent). K spectral geometry uniform across heads. V spectral differentiates. K>V confirmed in PROBING (32/36 layers).", "bar": 5},
     "head_level_analysis": {"status": "COMPLETE + SPECTRAL: Two-regime on Qwen (decisive), near-collapse on Llama.", "bar": 5},
-    "natural_usage": {"status": "STRONG: Position-sweep on 2 families + 2 sizes. Layer sweep: ramp/plateau (exp 089). Per-operation probing on 2 families. WRRA on 2 families. Paraphrase NULL.", "bar": 5},
-    "cross_model_replication": {"status": "STRONG: Phase 1 complete (4 families). Phase 2: position-sweep STRONG on 2 families + 2 sizes, WEAK on Mistral. Layer sweep on Qwen only.", "bar": 5},
+    "natural_usage": {"status": "STRONG: Position-sweep on 2 families + 2 sizes. Layer sweep: ramp/plateau for BOTH K and V (exp 089, 091). K>V in probing. Per-operation probing on 2 families. WRRA on 2 families. Paraphrase NULL.", "bar": 5},
+    "cross_model_replication": {"status": "STRONG: Phase 1 complete (4 families). Phase 2: position-sweep STRONG on 2 families + 2 sizes, WEAK on Mistral. K+V layer sweep on Qwen only.", "bar": 5},
     "encoding_strategy": {"status": "COMPLETE TAXONOMY + geometric evidence.", "bar": 5},
     "literature_convergence": {"status": "DECISIVE: 10 scans, 110+ papers, 18+ convergent angles. K=routing/V=content 6 angles. Forward-looking features theoretically explained.", "bar": 5}
   }
