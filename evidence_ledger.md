@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-21 (cycle 78 — **STRONG: Forward-looking probing at computation positions.** V at "=" positions predicts FINAL answer R=0.635 (text R=-0.034). Partial correlation V→final|local R=0.520 — V carries info about final answer BEYOND the local computation step. WRRA: 71.4% correct-alignment at L27 (p=0.039, n=21 errors). Plain-text format yields 7.7x more arithmetic errors than calculator format. 10/10 TRUE-hypothesis predictions confirmed.)
-Cycles completed: 78 (67 experimental + 1 consolidation + 5 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-22 (cycle 79 — **CHALLENGE: Problem-number residualization.** Within-problem data leakage discovered: exp_078 V→final|local R=0.520 inflated by KFold leakage, true GroupKFold R=0.299. With proper GroupKFold: V→final R=0.487 > embed→final R=0.344. V→final|embed R=0.14-0.22 — V carries computation info beyond problem context. V→final|embed+local R=0.13-0.22 — survives strictest control. Effect MODERATE (R≈0.2), not STRONG (R≈0.5). Key methodological lesson for all future probing.)
+Cycles completed: 79 (68 experimental + 1 consolidation + 5 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -882,5 +882,54 @@ through attention, which are correlated with the final answer. Partial correlati
 for local result but not problem numbers directly. (2) n=21 for WRRA is small; needs
 cross-model replication with more errors.
 
-**Evidence strength:** STRONG for forward-looking probing (large effect, large n, clean
-controls, depth-dependent). MODERATE for WRRA (significant at L27 but small n).
+**Evidence strength:** ~~STRONG~~ **REVISED TO MODERATE** for forward-looking probing.
+Exp_079 discovered that the V→final|local R=0.520 was inflated by within-problem data
+leakage (KFold assigns same-problem operations to train/test). With proper GroupKFold CV:
+V→final|local R=0.299 (not 0.520). V→final|embed R=0.14-0.22 (V survives problem-context
+control). V→final|embed+local R=0.13-0.22 (survives strictest control). Effect is MODERATE
+(R≈0.2), not STRONG (R≈0.5). Still positive evidence, but exp_078 overstated the effect.
+MODERATE for WRRA (significant at L27 but small n, unaffected by the leakage issue).
+
+### Exp 079: Problem-Number Residualization — CHALLENGE Experiment
+**Cycle 79 | Qwen3-4B-Base | Phase 2 — challenge experiment | MODERATE (methodological correction)**
+
+**Challenge:** Last 3 experiments (076-078) all confirmed hypothesis. This experiment attacks
+the biggest confound: does V at computation positions predict the final answer because of
+hidden computation, or because V encodes problem numbers via attention?
+
+**Critical methodological discovery: within-problem data leakage.** With ~4.6 operations per
+problem sharing identical (prob_embed, final_answer), standard KFold leaks same-problem
+observations between train/test folds. This inflated exp_078's R=0.977 for embed→final
+and deflated V→final|embed to ~0.04. GroupKFold (no within-problem leakage) is the ground truth.
+
+**GroupKFold results (ground truth, n=1573 ops from 341 problems):**
+
+| Probe | L27 (75%) | L35 (97%) | Interpretation |
+|-------|-----------|-----------|----------------|
+| V → final | **0.487** | **0.476** | V carries substantial answer info |
+| embed → final | 0.344 | 0.344 | Problem context predicts moderately |
+| nums → final | 0.153 | 0.153 | Raw numbers weakly predictive |
+| V → final \| nums | **0.242** | **0.235** | V survives number control ✓ |
+| V → final \| embed | **0.221** | **0.140** | V survives context control ✓ |
+| V → final \| local | 0.299 | 0.285 | V survives local control (corrects exp_078's 0.520) |
+| V → final \| e+l | **0.215** | **0.134** | V survives strictest combined ✓ |
+| Shuffle | -0.017 | 0.032 | Valid |
+
+**Challenge outcome: PARTIALLY SURVIVED.**
+- V's forward-looking signal is REAL: V → final (0.49) > embed → final (0.34), and V
+  survives all residualization controls
+- But the effect is MODERATE (R≈0.2), not STRONG (R≈0.5 as exp_078 claimed)
+- Exp_078's R=0.520 partial was inflated ~1.8x by data leakage (true R≈0.29)
+
+**KFold vs GroupKFold comparison (key methodological lesson):**
+
+| Probe | KFold | GroupKFold | Inflation |
+|-------|-------|-----------|-----------|
+| V → final | 0.633 | 0.487 | +0.146 |
+| embed → final | 0.977 | 0.344 | **+0.633** |
+| V → final \| embed | 0.040 | 0.221 | **-0.181** (deflated) |
+| V → final \| e+l | -0.001 | 0.215 | **-0.216** (deflated) |
+
+**Evidence strength:** MODERATE. V carries forward-looking computation info beyond problem
+context (R=0.14-0.22 after strictest control). Effect is modest but real and survived the
+challenge. Most important contribution is the methodological correction of exp_078.
