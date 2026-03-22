@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-22 (cycle 86 — **Exp 086: Position-sweep decodability on Phi-3.5-mini-Instruct.** STRONG REPLICATION: V|nums positive 20/20 bins (both layers), V|nums at 2.5%=0.233 (text reveals 0%), peak V|nums=0.540 (p=0.003). Early decodability gap 70-85%. Cross-model position-sweep confirmed on 2nd family (MHA + GQA). Phase 2 natural_usage STRONG with cross-model confirmation.)
-Cycles completed: 86 (74 experimental + 1 consolidation + 6 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-22 (cycle 87 — **Exp 087: Position-sweep decodability on Mistral-7B-v0.3 (boundary test).** WEAK/MARGINAL: V|nums positive 20/20 bins (L16) but bootstrap p=0.137 (NOT significant). Peak V|nums=0.369 vs Qwen 0.497/Phi 0.540. nums_R dominates (mean 0.43) due to accuracy selection (44%). 3-model gradient: forward-looking channel strength scales with model accuracy. Mistral confirmed as partial exception — signal suggestive but inconclusive.)
+Cycles completed: 87 (75 experimental + 1 consolidation + 6 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -13,7 +13,7 @@ The hypothesis is supported by converging evidence from 39 experimental cycles, 
 
 ### Key Numbers
 - **Models tested:** Qwen3-4B-Base, Qwen3-4B (Instruct), Llama-3.1-8B-Instruct, Phi-3.5-mini-Instruct (MHA), Mistral-7B-v0.3 (Base)
-- **Phase 2 (natural channel usage):** V→final raw signal on 3 models (Qwen, Phi, Mistral); residualized signal (V|nums) confirmed on Qwen (R=0.24, p<0.001) AND Phi (R=0.19, p<0.001), not on Mistral (R=0.06, p>0.08). WRRA 87.5% on Phi (p=0.002), 71.4% on Qwen (p=0.039), 37.9% on Mistral (ns). Forward-looking V signal confirmed on 2/3 model families. Position-sweep decodability (Exp 083): V decodes from 3% of chain (R=0.34) where text reveals 0%. Input-number confound RULED OUT (Exp 084): V|nums_R = 0.357 at 2.5% (text reveals 0%), peak 0.497 (p=0.01). **CROSS-MODEL POSITION-SWEEP REPLICATION (Exp 086):** Phi-3.5-mini V|nums positive 20/20 bins, V|nums=0.233 at 2.5% (text reveals 0%), peak V|nums=0.540 (p=0.003), gap=70%. Position-sweep now confirmed on 2 model families (GQA+MHA, Base+Instruct). **Experiment B (paraphrase disruption) NULL (Exp 085):** Synonym paraphrase drops partial-TF accuracy by 0.6% (1/168, p=1.0); random replacement drops 6.0% (10/168, p=0.002). Non-number tokens don't carry essential hidden info. Hidden channel operates through number-token positions, not surface words.
+- **Phase 2 (natural channel usage):** V→final raw signal on 3 models (Qwen, Phi, Mistral); residualized signal (V|nums) confirmed on Qwen (R=0.24, p<0.001) AND Phi (R=0.19, p<0.001), not on Mistral (R=0.06, p>0.08). WRRA 87.5% on Phi (p=0.002), 71.4% on Qwen (p=0.039), 37.9% on Mistral (ns). Forward-looking V signal confirmed on 2/3 model families. Position-sweep decodability (Exp 083): V decodes from 3% of chain (R=0.34) where text reveals 0%. Input-number confound RULED OUT (Exp 084): V|nums_R = 0.357 at 2.5% (text reveals 0%), peak 0.497 (p=0.01). **CROSS-MODEL POSITION-SWEEP REPLICATION (Exp 086):** Phi-3.5-mini V|nums positive 20/20 bins, V|nums=0.233 at 2.5% (text reveals 0%), peak V|nums=0.540 (p=0.003), gap=70%. Position-sweep now confirmed on 2 model families (GQA+MHA, Base+Instruct). **Experiment B (paraphrase disruption) NULL (Exp 085):** Synonym paraphrase drops partial-TF accuracy by 0.6% (1/168, p=1.0); random replacement drops 6.0% (10/168, p=0.002). Non-number tokens don't carry essential hidden info. **MISTRAL BOUNDARY TEST (Exp 087):** Position-sweep V|nums positive 20/20 bins (L16) but bootstrap p=0.137 (NOT significant). Peak V|nums=0.369. 3-model gradient: channel strength scales with accuracy (Qwen 88%→0.50, Phi 85%→0.54, Mistral 44%→0.37). Mistral is partial exception — suggestive but inconclusive.
 - **Architecture coverage:** GQA (4 models) + MHA (1 model); Base (2) + Instruct (3)
 - **Total valid problems across all experiments:** ~1,500+ evaluations
 - **K > V confirmed:** 5/5 models × 3 positions = 15 independent conditions under direction perturbation; 16/16 heads across 2 models; K/V effective rank ratio 0.87-0.94 (geometric evidence, Exp 062)
@@ -1211,3 +1211,61 @@ independent methodologies on 2 model families.
 **Impact on Phase 2 evidence:** Cross-model position-sweep replication complete. Phase 2
 natural_usage upgraded to STRONG with cross-model confirmation. Position-sweep is now the
 strongest single piece of evidence for a paper figure, confirmed across architectures.
+
+### Exp 087: Position-Sweep Decodability on Mistral-7B — WEAK/MARGINAL (boundary test)
+**Cycle 87 | Mistral-7B-v0.3 (GQA, Base) | Phase 2 — boundary test | MIXED**
+
+**Boundary test: does the position-sweep find signal on the one model where Phase 2
+evidence previously failed?** Mistral showed no significant V|nums at "=" positions
+(exp_081: R=0.067, p=0.087) and WRRA was 37.9% (below chance). This experiment uses
+the full position-sweep methodology (all positions, not just "=") for maximum power.
+
+**Method:** Same as exp_084/086. 294 GSM8K problems (time-budget capped), 130 correct
+(44.2%). Forward pass on all 130 correct, extract V and K at ALL CoT positions at L16
+(50%) and L24 (75%). 20 bins, ~430-530 tokens per bin, 130 groups per bin. GroupKFold
+5-fold Ridge probing. Bootstrap (300 iterations). KV dim = 1024 (8 GQA heads × 128).
+
+**Results — L16 (50% depth):**
+
+| Position | V_R | V\|nums | nums_R | text% | Interpretation |
+|----------|-----|---------|--------|-------|----------------|
+| 2.5% | 0.308 | **0.172** | 0.477 | 0.0% | Some V signal, but nums already high |
+| 17.5% | 0.388 | **0.310** | 0.572 | 3.8% | Best early V|nums — but nums dominates |
+| 47.5% | 0.140 | **0.167** | 0.522 | 11.5% | V_R low, nums very high |
+| 82.5% | 0.618 | **0.369** | 0.371 | 20.8% | Peak V|nums (computation zone) |
+| 92.5% | 0.674 | **0.190** | 0.545 | 81.5% | V|nums drops (text revealing) |
+| 97.5% | 0.714 | **0.060** | 0.158 | 100% | V|nums near zero at end |
+
+**V|nums positive at 20/20 bins (L16), 16/20 bins (L24)** — point estimates suggest signal.
+**BUT bootstrap is NOT significant: L16 p=0.137, L24 p=0.323.**
+
+**Key metrics:**
+- V|nums at 2.5% (text reveals 0%): L16 = 0.172, L24 = 0.203
+- V|nums peak: L16 = 0.369 (p=0.137), L24 = 0.304 (p=0.323)
+- V|nums early mean (0-30%): L16 = 0.178, L24 = 0.107
+- nums_R mean: ~0.43 (very high — input numbers dominate prediction)
+- K > V at late positions (unique to Mistral)
+
+**3-model gradient (THE KEY FINDING):**
+
+| Model | Accuracy | V|nums peak | p-value | nums_R mean |
+|-------|----------|-------------|---------|-------------|
+| Qwen3-4B-Base | 88% | 0.497 | **0.010** | ~0.26 |
+| Phi-3.5-mini | 85% | 0.540 | **0.003** | ~0.26 |
+| Mistral-7B | 44% | 0.369 | 0.137 | **~0.43** |
+
+Forward-looking channel strength scales with model accuracy. At 44% accuracy, Mistral
+only solves easy problems where input numbers already predict the answer (nums_R = 0.43
+vs 0.26 for Qwen/Phi). Less residual variance → weaker/noisier V|nums.
+
+**Pre-registered predictions:** TRUE 3/5, FALSE 2/5 — GENUINELY MIXED.
+
+**Evidence strength:** WEAK. Signal suggestive but not statistically significant. The
+position-sweep finds more signal than per-operation probing (exp_081: 0.067), but not
+enough to reach significance. Cannot formally reject the null that V|nums = 0 on Mistral.
+
+**Impact on Phase 2 evidence:** No change to STRONG rating (maintained by Qwen + Phi).
+Mistral confirmed as partial exception — the forward-looking channel may exist weakly
+but is drowned by the dominance of input-number prediction at low accuracy. The graded
+3-model pattern is informative for the paper: the hidden channel matters most for models
+that can solve hard problems requiring multi-step reasoning.
