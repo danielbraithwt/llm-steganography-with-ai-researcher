@@ -1,29 +1,27 @@
 {
-  "cycle": 102,
-  "timestamp": "2026-03-22T23:30:00+11:00",
+  "cycle": 103,
+  "timestamp": "2026-03-23T00:30:00+11:00",
   "type": "experiment",
-  "template": "phi_difficulty_accuracy_vnums",
+  "template": "model_vs_gold_probe",
   "parameters": {
-    "n_problems": 369,
-    "n_correct": 307,
-    "n_incorrect": 62,
-    "layers": [8, 16, 24, 31],
+    "n_problems": 277,
+    "n_correct": 248,
+    "n_incorrect": 29,
+    "layers": [9, 18, 27, 35],
     "n_bins": 20,
-    "difficulty_split": {"easy": 177, "medium": 65, "hard": 65},
-    "model": "Phi-3.5-mini-instruct",
-    "pca_dim": 256,
-    "ridge_alpha": 10.0
+    "model": "Qwen/Qwen3-4B-Base",
+    "gold_pred_r_incorrect": 0.929,
+    "ridge_alpha": 1.0
   },
-  "prediction_outcome": "mostly_confirmed",
-  "key_finding": "Cross-model replication SUCCEEDS: Phi accuracy conditioning 4/4 layers p<0.001 (2x STRONGER than Qwen), difficulty conditioning 3/4 layers p=0.004-0.016 (5-6x SMALLER than Qwen). Same qualitative pattern. Functional evidence is architecture-independent.",
-  "evidence_impact": "New entry #117. Accuracy/difficulty conditioning confirmed on 2nd model family. 7/8 accuracy and 7/8 difficulty tests significant cross-model. Strongest Phase 2 cross-model result.",
-  "next_planned": "Consolidate cross-model functional evidence table, or investigate Phi's stronger accuracy effect (why V_R(incorrect)≥V_R(correct)?), or test on Mistral.",
+  "prediction_outcome": "inconclusive",
+  "key_finding": "METHODOLOGICAL NULL: gold-pred R=0.929 (near-miss errors) makes V_R(gold) ≈ V_R(pred) uninformative. Experiment underpowered to distinguish computation-faithful vs general-features interpretations. All Δ < 0.012, all p > 0.3.",
+  "evidence_impact": "New entry #118. Accuracy-conditional finding ambiguity identified but unresolved. Methodological insight: need qualitatively large errors or classification probes to test this question.",
+  "next_planned": "Classification probe (correct/incorrect from V-cache), or intermediate value probing, or Mistral functional conditioning replication.",
   "figures": [
-    "results/exp_102/correct_vs_incorrect_vnums.png",
-    "results/exp_102/difficulty_split_vnums.png",
-    "results/exp_102/raw_V_R_correct_vs_incorrect.png",
-    "results/exp_102/summary_bars.png",
-    "results/exp_102/vr_decomposition_by_difficulty.png"
+    "results/exp_103/V_R_gold_vs_predicted.png",
+    "results/exp_103/pct_closer_to_pred.png",
+    "results/exp_103/summary_bars.png",
+    "results/exp_103/mae_comparison.png"
   ],
   "progress": {
     "null_space_existence": {"status": "strong", "bar": 4},

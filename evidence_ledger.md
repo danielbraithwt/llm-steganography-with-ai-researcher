@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-22 (cycle 102 — **Cross-model replication of functional conditioning on Phi-3.5-mini.** HEADLINE: Accuracy conditioning REPLICATES and is STRONGER on Phi (4/4 layers p<0.001, gaps 0.17-0.31 vs Qwen's 0.04-0.16). Difficulty conditioning REPLICATES at 3/4 layers (p=0.004-0.016) but 5-6x smaller than Qwen (gaps 0.03-0.06 vs 0.20-0.24) because Phi's text stays informative for hard problems (nums_R=0.245 vs Qwen's -0.085). Same qualitative pattern: V|nums is accuracy-conditional and difficulty-dependent on BOTH models. Functional evidence is now CROSS-MODEL.)
-Cycles completed: 102 (88 experimental + 1 consolidation + 8 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-23 (cycle 103 — **Model's own answer vs gold truth V-probe: INCONCLUSIVE.** Tested whether V-cache encodes model's predicted answer or just problem features by comparing V_R(gold) vs V_R(pred) for incorrect problems. CRITICAL CONFOUND: gold-pred R=0.929 (model's errors are near-misses). V_R(gold) ≈ V_R(pred) at all 4 layers (|Δ|<0.012, all p>0.3). Experiment UNDERPOWERED to distinguish interpretations due to target collinearity. Methodological null, not substantive null. The accuracy-conditional finding from exp 101/102 remains ambiguous between computation-faithful and general-features interpretations.)
+Cycles completed: 103 (89 experimental + 1 consolidation + 8 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -1856,3 +1856,48 @@ effect is actually STRONGER on analog/MHA/instruct than digital/GQA/base — int
 dissociation from difficulty effect which is weaker. (3) 7/8 accuracy tests and 7/8
 difficulty tests significant across 2 models. (4) Architecture-independent principle:
 hidden channel usage scales with computational demand and predicts model success.
+
+---
+
+### Entry #118: Model's Own Answer vs Ground Truth V-Probe — INCONCLUSIVE (Gold-Pred Collinearity)
+**Exp 103** | Cycle 103 | 2026-03-22 | Qwen3-4B-Base
+
+**Question:** Does the V-cache encode the model's own predicted answer (computation-faithful)
+or just correlate with problem-level features (general features)?
+
+**Design:** Train V-probe on correct problems (where gold=pred), apply to incorrect (where
+gold≠pred). Compare V_R(gold) vs V_R(predicted) for incorrect. If V encodes computation:
+V_R(pred) >> V_R(gold). If general features: V_R(pred) ≈ V_R(gold).
+
+**CRITICAL CONFOUND: gold-pred correlation R=0.929 for incorrect problems.** The model's
+errors on GSM8K are near-misses (e.g., 12 vs 13, 8712 vs 9360). In log-space, the two
+targets are nearly collinear. The experiment lacks power to distinguish interpretations.
+
+**Results:** n=248 correct, n=29 incorrect.
+
+| Layer | V_R(gold) | V_R(pred) | Δ | p | %closer_pred |
+|-------|-----------|-----------|---|---|--------------|
+| L9    | 0.198 | 0.196 | -0.001 | 0.517 | 47.1% |
+| L18   | 0.197 | 0.196 | -0.001 | 0.521 | 47.9% |
+| L27   | 0.346 | 0.335 | -0.011 | 0.753 | 49.7% |
+| L35   | 0.256 | 0.267 | +0.010 | 0.313 | 50.0% |
+
+All differences negligible (|Δ|<0.012), all p>0.3, per-problem 47-50% (chance).
+Nums baseline: nums_R(gold)=0.365 > nums_R(pred)=0.285 (text tracks gold better, dominated
+by question numbers).
+
+**Predictions assessment:** Hypothesis TRUE: 0/4. Hypothesis FALSE: 2/3. But comparison
+is meaningless given R=0.929 confound.
+
+**Evidence strength:** INCONCLUSIVE — methodological null, not substantive null. The experiment
+cannot answer the question because the targets are insufficiently different on GSM8K.
+
+**Methodological insight:** Probing for model's own answer vs gold truth requires tasks
+where errors are qualitatively large (different operation, not just magnitude). GSM8K
+errors are proportional near-misses in log-space. Future: use harder benchmark (MATH),
+weaker model, or classification probe (correct/incorrect) to avoid the collinearity issue.
+
+**Impact:** The accuracy-conditional V|nums finding from exp 101/102 remains AMBIGUOUS
+between "computation-faithful" and "general features" interpretations. This is an important
+open question. The next best approach is classification probing or probing for intermediate
+computation values (which avoids the gold/pred confound entirely).
