@@ -1,0 +1,185 @@
+Device: cuda
+Loading Qwen/Qwen3-4B-Base...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:01<08:34,  1.30s/it]Loading weights:   1%|          | 4/398 [00:01<01:50,  3.56it/s]Loading weights:   3%|▎         | 13/398 [00:01<00:27, 13.92it/s]Loading weights:   5%|▍         | 18/398 [00:01<00:21, 17.89it/s]Loading weights:   6%|▌         | 23/398 [00:01<00:17, 22.02it/s]Loading weights:   7%|▋         | 28/398 [00:02<00:20, 17.73it/s]Loading weights:  10%|▉         | 38/398 [00:02<00:12, 29.03it/s]Loading weights:  11%|█         | 44/398 [00:02<00:11, 30.24it/s]Loading weights:  12%|█▏        | 49/398 [00:02<00:14, 24.80it/s]Loading weights:  13%|█▎        | 53/398 [00:02<00:12, 26.78it/s]Loading weights:  15%|█▍        | 59/398 [00:03<00:13, 25.71it/s]Loading weights:  17%|█▋        | 69/398 [00:03<00:11, 28.86it/s]Loading weights:  18%|█▊        | 73/398 [00:03<00:11, 29.28it/s]Loading weights:  19%|█▉        | 77/398 [00:03<00:11, 28.41it/s]Loading weights:  22%|██▏       | 86/398 [00:04<00:10, 29.43it/s]Loading weights:  23%|██▎       | 91/398 [00:04<00:10, 28.03it/s]Loading weights:  24%|██▎       | 94/398 [00:04<00:12, 24.87it/s]Loading weights:  26%|██▌       | 104/398 [00:04<00:08, 34.43it/s]Loading weights:  28%|██▊       | 110/398 [00:04<00:07, 36.01it/s]Loading weights:  29%|██▊       | 114/398 [00:05<00:12, 22.98it/s]Loading weights:  31%|███       | 124/398 [00:05<00:09, 30.28it/s]Loading weights:  32%|███▏      | 128/398 [00:05<00:09, 28.87it/s]Loading weights:  34%|███▍      | 136/398 [00:05<00:07, 33.80it/s]Loading weights:  35%|███▌      | 140/398 [00:05<00:07, 33.25it/s]Loading weights:  36%|███▌      | 144/398 [00:05<00:07, 34.40it/s]Loading weights:  37%|███▋      | 148/398 [00:06<00:11, 21.60it/s]Loading weights:  39%|███▉      | 157/398 [00:06<00:07, 32.41it/s]Loading weights:  41%|████▏     | 165/398 [00:06<00:05, 41.10it/s]Loading weights:  43%|████▎     | 171/398 [00:06<00:08, 27.19it/s]Loading weights:  44%|████▍     | 176/398 [00:07<00:07, 28.64it/s]Loading weights:  45%|████▌     | 181/398 [00:07<00:10, 20.38it/s]Loading weights:  48%|████▊     | 190/398 [00:07<00:08, 24.27it/s]Loading weights:  49%|████▊     | 194/398 [00:07<00:09, 22.43it/s]Loading weights:  51%|█████     | 202/398 [00:08<00:07, 26.98it/s]Loading weights:  53%|█████▎    | 212/398 [00:08<00:06, 27.73it/s]Loading weights:  54%|█████▍    | 216/398 [00:09<00:09, 18.59it/s]Loading weights:  56%|█████▋    | 224/398 [00:09<00:09, 18.93it/s]Loading weights:  59%|█████▉    | 234/398 [00:09<00:06, 25.05it/s]Loading weights:  60%|█████▉    | 238/398 [00:09<00:06, 24.96it/s]Loading weights:  61%|██████▏   | 244/398 [00:09<00:05, 29.43it/s]Loading weights:  64%|██████▍   | 256/398 [00:10<00:04, 31.34it/s]Loading weights:  65%|██████▌   | 260/398 [00:10<00:04, 29.46it/s]Loading weights:  66%|██████▋   | 264/398 [00:10<00:04, 29.38it/s]Loading weights:  68%|██████▊   | 269/398 [00:10<00:04, 29.36it/s]Loading weights:  70%|██████▉   | 277/398 [00:11<00:04, 29.86it/s]Loading weights:  71%|███████   | 281/398 [00:11<00:04, 29.01it/s]Loading weights:  73%|███████▎  | 289/398 [00:11<00:03, 33.82it/s]Loading weights:  74%|███████▎  | 293/398 [00:11<00:03, 29.93it/s]Loading weights:  76%|███████▌  | 301/398 [00:11<00:02, 38.30it/s]Loading weights:  77%|███████▋  | 306/398 [00:11<00:02, 39.15it/s]Loading weights:  79%|███████▊  | 313/398 [00:11<00:02, 40.38it/s]Loading weights:  80%|███████▉  | 318/398 [00:12<00:01, 40.23it/s]Loading weights:  81%|████████  | 323/398 [00:12<00:02, 25.77it/s]Loading weights:  84%|████████▍ | 335/398 [00:12<00:01, 34.39it/s]Loading weights:  86%|████████▌ | 341/398 [00:12<00:01, 36.56it/s]Loading weights:  87%|████████▋ | 346/398 [00:13<00:02, 18.95it/s]Loading weights:  89%|████████▉ | 356/398 [00:13<00:02, 19.44it/s]Loading weights:  92%|█████████▏| 366/398 [00:14<00:01, 23.63it/s]Loading weights:  93%|█████████▎| 370/398 [00:14<00:01, 15.26it/s]Loading weights:  94%|█████████▎| 373/398 [00:15<00:01, 15.43it/s]Loading weights:  94%|█████████▍| 376/398 [00:15<00:01, 13.25it/s]Loading weights:  95%|█████████▍| 378/398 [00:15<00:01, 13.92it/s]Loading weights:  97%|█████████▋| 388/398 [00:15<00:00, 20.06it/s]Loading weights: 100%|██████████| 398/398 [00:15<00:00, 24.94it/s]
+Model loaded in 20.4s
+  36 layers, hidden_size=2560, kv_dim=1024
+  Probe layers: [9, 18, 27, 35]
+
+Loading GSM8K...
+  1319 problems selected
+
+============================================================
+PHASE 1: Generating plain-text CoT
+============================================================
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+  [100/1319] Generated: 100, correct: 85 (85.0%), arith errors so far: 6, time: 604s
+  [200/1319] Generated: 200, correct: 173 (86.5%), arith errors so far: 11, time: 1176s
+  [300/1319] Generated: 300, correct: 265 (88.3%), arith errors so far: 17, time: 1753s
+  [400/1319] Generated: 400, correct: 350 (87.5%), arith errors so far: 21, time: 2331s
+  [500/1319] Generated: 500, correct: 430 (86.0%), arith errors so far: 28, time: 2905s
+  Generation time budget reached at problem 512
+
+Generation complete: 512 problems, 442 correct (86.3%)
+
+Arithmetic analysis:
+  Total operations: 2283
+  Errors: 28 (1.23%)
+  High-confidence errors: 17
+  WRRA cases (error + correct final): 24
+  WRWA cases (error + wrong final): 4
+  Correct operations: 2255
+
+============================================================
+PHASE 2: Hidden state + KV extraction at arithmetic positions
+============================================================
+  Problems with arithmetic: 495
+  [100/495] Extracted 444 positions (WRRA: 5), time: 2985s
+  [200/495] Extracted 896 positions (WRRA: 10), time: 2995s
+  [300/495] Extracted 1418 positions (WRRA: 16), time: 3005s
+  [400/495] Extracted 1867 positions (WRRA: 20), time: 3015s
+
+Extraction complete: 2283 arithmetic positions
+  Correct positions: 2255
+  Error positions: 28
+  WRRA positions: 24
+  WRWA positions: 4
+
+============================================================
+PHASE 3: Residual stream vs K vs V probing
+============================================================
+
+--- Layer 9 (25% depth) ---
+  Training data: 2255 correct positions, H dim=2560, K dim=1024, V dim=1024
+  H→local R = 0.955 (shuffle: -0.026)
+  K→local R = 0.923 (shuffle: -0.033)
+  V→local R = 0.942 (shuffle: -0.037)
+
+  WRRA correct-alignment (n=24):
+    H: 10/24 = 41.7% (p=0.8463)
+    K: 12/24 = 50.0% (p=0.5806)
+    V: 10/24 = 41.7% (p=0.8463)
+    McNemar H vs K: p=0.5000
+    McNemar H vs V: p=1.0000
+    McNemar K vs V: p=0.6250
+    H mean |pred-correct|=1.875, |pred-written|=1.780
+    K mean |pred-correct|=2.075, |pred-written|=2.052
+    V mean |pred-correct|=2.110, |pred-written|=2.135
+
+  WRWA correct-alignment (n=4, control — expect ~50%):
+    H: 1/4 = 25.0%
+    K: 0/4 = 0.0%
+    V: 2/4 = 50.0%
+
+--- Layer 18 (50% depth) ---
+  Training data: 2255 correct positions, H dim=2560, K dim=1024, V dim=1024
+  H→local R = 0.937 (shuffle: 0.014)
+  K→local R = 0.862 (shuffle: -0.011)
+  V→local R = 0.909 (shuffle: 0.006)
+
+  WRRA correct-alignment (n=24):
+    H: 10/24 = 41.7% (p=0.8463)
+    K: 14/24 = 58.3% (p=0.2706)
+    V: 11/24 = 45.8% (p=0.7294)
+    McNemar H vs K: p=0.2891
+    McNemar H vs V: p=1.0000
+    McNemar K vs V: p=0.4531
+    H mean |pred-correct|=1.496, |pred-written|=1.345
+    K mean |pred-correct|=1.460, |pred-written|=1.877
+    V mean |pred-correct|=2.074, |pred-written|=1.756
+
+  WRWA correct-alignment (n=4, control — expect ~50%):
+    H: 0/4 = 0.0%
+    K: 0/4 = 0.0%
+    V: 2/4 = 50.0%
+
+--- Layer 27 (75% depth) ---
+  Training data: 2255 correct positions, H dim=2560, K dim=1024, V dim=1024
+  H→local R = 0.972 (shuffle: -0.044)
+  K→local R = 0.942 (shuffle: -0.034)
+  V→local R = 0.966 (shuffle: -0.050)
+
+  WRRA correct-alignment (n=24):
+    H: 16/24 = 66.7% (p=0.0758)
+    K: 14/24 = 58.3% (p=0.2706)
+    V: 13/24 = 54.2% (p=0.4194)
+    McNemar H vs K: p=0.5000
+    McNemar H vs V: p=0.2500
+    McNemar K vs V: p=1.0000
+    H mean |pred-correct|=1.268, |pred-written|=1.172
+    K mean |pred-correct|=1.072, |pred-written|=1.095
+    V mean |pred-correct|=1.445, |pred-written|=1.184
+
+  WRWA correct-alignment (n=4, control — expect ~50%):
+    H: 4/4 = 100.0%
+    K: 2/4 = 50.0%
+    V: 2/4 = 50.0%
+
+--- Layer 35 (97% depth) ---
+  Training data: 2255 correct positions, H dim=2560, K dim=1024, V dim=1024
+  H→local R = 0.972 (shuffle: -0.004)
+  K→local R = 0.956 (shuffle: 0.010)
+  V→local R = 0.961 (shuffle: 0.002)
+
+  WRRA correct-alignment (n=24):
+    H: 13/24 = 54.2% (p=0.4194)
+    K: 13/24 = 54.2% (p=0.4194)
+    V: 12/24 = 50.0% (p=0.5806)
+    McNemar H vs K: p=1.0000
+    McNemar H vs V: p=1.0000
+    McNemar K vs V: p=1.0000
+    H mean |pred-correct|=1.450, |pred-written|=1.133
+    K mean |pred-correct|=1.498, |pred-written|=1.289
+    V mean |pred-correct|=1.371, |pred-written|=1.139
+
+  WRWA correct-alignment (n=4, control — expect ~50%):
+    H: 3/4 = 75.0%
+    K: 3/4 = 75.0%
+    V: 4/4 = 100.0%
+
+============================================================
+PHASE 4: Additional analyses
+============================================================
+
+--- Concatenated (H+K+V) probing at WRRA ---
+  L9: HKV align 11/24 = 45.8% (p=0.7294)
+  L18: HKV align 11/24 = 45.8% (p=0.7294)
+  L27: HKV align 15/24 = 62.5% (p=0.1537)
+  L35: HKV align 12/24 = 50.0% (p=0.5806)
+
+--- Error confidence breakdown ---
+  High-confidence WRRA: 13
+  Low-confidence WRRA: 11
+  High-confidence WRRA alignment (best layer only):
+    H at L35: 11/13 = 84.6% (p=0.0112)
+
+============================================================
+PHASE 5: Generating figures
+============================================================
+  Saved: wrra_residual_stream_alignment.png
+/workspace/llm-steganography-with-ai-researcher/scripts/exp_111_residual_stream_wrra.py:820: UserWarning: You passed a edgecolor/edgecolors ('none') for an unfilled marker ('x').  Matplotlib is ignoring the edgecolor in favor of the facecolor.  This behavior may change in the future.
+  ax.scatter(correct_vals[j], pred_vals[j], marker=marker, color=color,
+  Saved: wrra_per_case_scatter.png
+  Saved: wrra_distance_comparison.png
+
+============================================================
+SUMMARY
+============================================================
+Generated: 512 problems, 442 correct (86.3%)
+Arithmetic: 2283 ops, 28 errors (1.23%)
+WRRA cases: 24 (extracted: 24)
+
+Probe R on correct positions:
+  L9: H=0.955, K=0.923, V=0.942
+  L18: H=0.937, K=0.862, V=0.909
+  L27: H=0.972, K=0.942, V=0.966
+  L35: H=0.972, K=0.956, V=0.961
+
+WRRA correct-alignment (n=24):
+  L9: H=41.7% (p=0.8463), K=50.0% (p=0.5806), V=41.7% (p=0.8463)
+  L18: H=41.7% (p=0.8463), K=58.3% (p=0.2706), V=45.8% (p=0.7294)
+  L27: H=66.7% (p=0.0758), K=58.3% (p=0.2706), V=54.2% (p=0.4194)
+  L35: H=54.2% (p=0.4194), K=54.2% (p=0.4194), V=50.0% (p=0.5806)
+
+Total runtime: 3177s

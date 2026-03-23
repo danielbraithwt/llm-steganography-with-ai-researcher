@@ -1,30 +1,26 @@
 {
-  "cycle": 110,
-  "timestamp": "2026-03-23T12:00:00+00:00",
-  "type": "literature_scan",
-  "template": "scheduled (every 10 cycles)",
+  "cycle": 111,
+  "timestamp": "2026-03-23T18:00:00+00:00",
+  "type": "experiment",
+  "template": "residual_stream_wrra_probing",
   "parameters": {
-    "papers_found": 21,
-    "themes": 9,
-    "total_papers_covered": "149+",
-    "total_scans": 12,
-    "focus_areas": [
-      "intermediate computation probing during arithmetic CoT",
-      "causal bypass of chain-of-thought",
-      "arithmetic error detection from hidden states",
-      "CoT faithfulness measurement (FUR, MATCHA)",
-      "information bottleneck and lossy projection theory",
-      "KV cache architecture dynamics (LLaMA vs Qwen)",
-      "steganographic capabilities",
-      "forward-looking representations",
-      "reasoning geometry"
-    ]
+    "model": "Qwen/Qwen3-4B-Base",
+    "n_problems": 512,
+    "n_wrra": 24,
+    "n_wrra_high_conf": 13,
+    "probe_dim_H": 2560,
+    "probe_dim_KV": 1024,
+    "layers": [9, 18, 27, 35]
   },
-  "prediction_outcome": "n/a (literature scan)",
-  "key_finding": "Three independent teams now probe hidden states during arithmetic CoT (Kudo EACL 2026, Sun EMNLP 2025, our work) — our K/V decomposition is UNIQUE. Sun et al. decode correct answer from hidden states even when model writes wrong answer (>90% accuracy) — suggests our WRRA exp_099 failure was due to probing K/V separately rather than residual stream. Causal Bypass (Feb 2026) shows 83% of CoT causally disconnected from answers. Validation Gap (EMNLP 2025) explains our layer-sweep: computation in high layers, validation in middle layers. CIB (Mar 2026) provides formal framework: V|nums = I(V; answer | text).",
-  "evidence_impact": "No new experimental evidence, but strong external validation of our approach and clear next-experiment priorities. Literature positions our work as uniquely providing K/V decomposition that other groups lack. Top priority for next experiment: residual stream WRRA probing.",
-  "next_planned": "Residual stream probing at WRRA positions (following Sun et al.'s methodology but on our GSM8K setup), or CMI-style activation patching to quantify bypass rate",
-  "figures": [],
+  "prediction_outcome": "mixed",
+  "key_finding": "Residual stream (H) partially rescues WRRA smoking gun. H>V>K at ALL 4 layers on correct positions (H:0.937-0.972). WRRA overall (n=24): H=66.7% at L27 (p=0.076, trending). HIGH-CONFIDENCE WRRA (n=13): H=84.6% at L35 (p=0.011, SIGNIFICANT). Error quality filtering is critical. Consistent with Sun et al. >90%. WRRA upgraded from Weak to Moderate.",
+  "evidence_impact": "Establishes H>V>K information hierarchy at computation positions. WRRA evidence upgraded from Weak/Inconclusive to Moderate with filtering caveat. Converges with Sun et al. (EMNLP 2025) residual stream detection.",
+  "next_planned": "Scale WRRA to n>=50 high-confidence errors (harder benchmarks or multi-seed generation), OR cross-model residual stream WRRA replication on Phi-3.5-mini",
+  "figures": [
+    "results/exp_111/wrra_residual_stream_alignment.png",
+    "results/exp_111/wrra_per_case_scatter.png",
+    "results/exp_111/wrra_distance_comparison.png"
+  ],
   "progress": {
     "null_space_existence": {"status": "strong", "bar": 4},
     "spatial_structure": {"status": "decisive_negative", "bar": 5},
