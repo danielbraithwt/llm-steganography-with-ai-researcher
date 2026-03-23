@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-23 (cycle 109 — **K-V DISSOCIATION AT COMPUTATION POSITIONS — QUANTITATIVE, NOT QUALITATIVE.** V>K for result encoding at 4/4 layers (mean gap +0.024) and for ALL targets (result, operands, unique info). V|MLP ~2× K|MLP (V: 0.13-0.23, K: 0-0.13). BUT both K and V show the SAME encoding→computation transition (K_trans≈V_trans at each layer). V-K gap WIDENS at forward-looking offsets (L35: +0.014 at offset 0 → +0.072 at offset -10). K is NOT "just routing" — K also participates in computation, with less content. Phase 1 K>V perturbation = routing necessity, not content richness. 2.5/5 TRUE, 1.5/5 FALSE. n=930 ops, 326 problems.)
-Cycles completed: 109 (95 experimental + 1 consolidation + 8 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-23 (cycle 110 — **LITERATURE SCAN: 21 papers across 9 themes.** Three independent teams now probe hidden states during arithmetic CoT: Kudo et al. (EACL 2026, residual stream, 9 models), Sun et al. (EMNLP 2025, correct answer decodable even when output wrong, >90% accuracy), and our work (K/V separated, 6 models). Our K/V decomposition is UNIQUE. Causal Bypass (Feb 2026) quantifies: 83% of CoT causally disconnected from answers (CMI metric). Validation Gap (EMNLP 2025) explains our layer-sweep: computation in high layers, validation in middle layers. CIB (Mar 2026) formalizes V|nums = I(V; answer | text) as conditional information beyond prompt. Godey & Artzi (Mar 2026) confirms 95-99% gradient suppression at LM head. Reasoning Theater full paper (Mar 2026) confirms phenomenon at 671B scale. **KEY IMPLICATION: Sun et al.'s >90% WRRA detection via residual stream suggests our exp_099 failure (K-probe 52-64%) was due to probing K/V separately — residual stream WRRA probing is top priority.** 149+ papers covered across 12 scans.)
+Cycles completed: 110 (95 experimental + 1 consolidation + 9 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -2026,3 +2026,36 @@ operand features (V|MLP=0.13-0.23), concentrated in forward-looking positions, l
 and multi-step operations. The forward-looking V signal (V|MLP_vis=0.383) and the layer
 transition (encoding→computation) are the strongest surviving evidence for genuine hidden
 computation during normal generation.
+
+---
+
+### Cycle 110 — Literature Scan: Intermediate Computation, Causal Bypass, Arithmetic Error Detection
+
+**Date:** 2026-03-23
+**Type:** Literature scan (scheduled, 11th of 12 total scans)
+**Papers found:** 21 across 9 themes
+**Full notes:** `literature_notes/cycle_110_intermediate_computation_cot_bypass.md`
+
+**Key discoveries with direct impact on our work:**
+
+1. **Kudo et al. (EACL 2026)** — Linear probes on residual stream during multi-step arithmetic CoT across 9 models. Show iterative computation (sub-answers emerge during CoT, not before). DIRECTLY comparable to our exp 106-109 but they probe residual stream only. Our K/V decomposition adds granularity their work lacks.
+
+2. **Sun et al. (EMNLP 2025)** — Probes decode the CORRECT answer from hidden states even when model writes the WRONG answer (>90% detection accuracy). **Independent validation of WRRA hypothesis.** Critical: they probe RESIDUAL STREAM, not K/V separately. Explains why our exp_099 K-probe showed only 52-64% (ns) — the signal may require combined K+V information in the residual stream.
+
+3. **Sathyanarayanan et al. (Feb 2026, under review ICLR 2026)** — CoT Mediation Index (CMI) via activation patching shows 83% of CoT causally disconnected from answers. Arithmetic CMI = 0.08-0.125 (87-92% bypass). Strongest causal evidence that CoT is decorative.
+
+4. **Bertolazzi et al. (EMNLP 2025)** — "Validation Gap": computation in higher layers, validation in middle layers. Maps onto our ramp (L0-L9) → plateau (L10-L35) structure.
+
+5. **Massoli et al. (Mar 2026)** — CIB formalizes CoT as lossy compression: reasoning trace Z contains "only the information about response Y not directly accessible from prompt X." V|nums = I(V; answer | text) operationalizes this theory.
+
+6. **Godey & Artzi (Mar 2026)** — Updated "Lost in Backpropagation": 95-99% gradient norm suppressed by LM head. Architectural guarantee that text is a lossy projection.
+
+7. **Boppana et al. (Mar 2026)** — Reasoning Theater full paper. DeepSeek-R1 (671B) and GPT-OSS (120B). Probe-guided early exit saves 80% tokens on MMLU. Hidden channel phenomenon confirmed at 3 orders of magnitude of scale (4B to 671B).
+
+8. **Zhang et al. (Apr 2025)** — Hidden states encode correctness of FUTURE answers. Reduces inference tokens by 24% via probe-based early exit. "Encode but fail to exploit" = core of lossy projection.
+
+9. **Tutek et al. (EMNLP 2025, Outstanding Paper)** — FUR framework erases reasoning steps from parameters; predictions change → those steps are parametrically faithful. Complementary causal method to our KV perturbation.
+
+**Impact:** No new experimental evidence, but strong external validation. Our work is UNIQUELY positioned through K/V decomposition — no other group separates key from value vectors during arithmetic CoT probing. Top experimental priority from literature: residual stream WRRA probing (following Sun et al.'s methodology).
+
+**Total coverage:** 149+ papers across 12 scans.
