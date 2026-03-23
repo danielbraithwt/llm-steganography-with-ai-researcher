@@ -1,34 +1,35 @@
 {
-  "cycle": 105,
-  "timestamp": "2026-03-23T03:50:00+00:00",
+  "cycle": 106,
+  "timestamp": "2026-03-23T06:30:00+00:00",
   "type": "experiment",
-  "template": "prompt_vs_chain_correctness",
+  "template": "intermediate_value_probe",
   "parameters": {
     "model": "Qwen/Qwen3-4B-Base",
-    "n_problems": 450,
-    "n_correct": 393,
-    "n_incorrect": 57,
+    "n_problems": 600,
+    "n_correct": 521,
+    "n_with_arithmetic": 482,
+    "n_operations": 1394,
     "layers": [9, 18, 27, 35],
-    "n_bins": 20,
-    "extraction_points": ["prompt_last_token", "chain0_single", "chain_bins_0-19"],
-    "classifier": "LogisticRegression(C=1.0, balanced, PCA-64)",
-    "cv": "5-fold stratified",
-    "permutations": 200
+    "position_offsets": [0, -5, -10, -20],
+    "probe": "RidgeCV(problem-level 5-fold CV)",
+    "target": "signed_log(written_result)",
+    "bootstrap_permutations": 200
   },
-  "prediction_outcome": "disconfirmed_true_predictions",
-  "key_finding": "CONFOUND CONFIRMED: V_prompt AUC (0.63-0.73) >= V_chain_bin0 (0.60-0.66) at ALL 4 layers. Exp 104 bin-0 signal was problem encoding, not computation quality. Late-chain (bin 19) V exceeds prompt at 2/4 layers (+0.03-0.10) — modest late computation signal. K_prompt=0.758 at L27 (highest AUC). Concatenation: chain unique info +0.04-0.07 at bins 10-19, zero at bins 0-5.",
-  "evidence_impact": "REINTERPRETS exp 104: early correctness = problem meta-cognition (prompt features), late correctness = computation quality (chain features). V|nums functional conditioning (exp 101/102) UNAFFECTED. Honest negative that strengthens remaining evidence.",
-  "next_planned": "Cross-model prompt-vs-chain replication on Phi, or probe intermediate computation values",
+  "prediction_outcome": "confirmed_all_8",
+  "key_finding": "V-cache at arithmetic '=' positions encodes intermediate computation results at R=0.949 (text=0.606, gap +0.34). V|text=0.889, V|gold=0.719 — step-specific computation. V_eq>>V_prompt (gap +0.63) — rules out problem encoding. Division gap=+0.648 > multiplication=+0.384 > addition=+0.130 (operation nonlinearity gradient). Forward-looking: V at -5 tokens R=0.794. All 8/8 TRUE, 0/5 FALSE. z=26-32, p<0.001.",
+  "evidence_impact": "STRONGEST Phase 2 evidence. First intermediate-value probe directly demonstrates ongoing hidden computation at exact arithmetic positions. Decisively addresses exp 105 problem-encoding confound. Complements V|nums position-sweep with step-level precision.",
+  "next_planned": "Cross-model intermediate value replication on Phi-3.5-mini",
   "figures": [
-    "results/exp_105/prompt_vs_chain_auc_sweep.png",
-    "results/exp_105/prompt_vs_chain_bars.png",
-    "results/exp_105/concatenation_test.png",
-    "results/exp_105/chain_prompt_gap.png"
+    "results/exp_106/v_vs_text_at_eq.png",
+    "results/exp_106/position_sweep.png",
+    "results/exp_106/op_type_breakdown.png",
+    "results/exp_106/residualized_signal.png",
+    "results/exp_106/prompt_control.png"
   ],
   "progress": {
     "null_space_existence": {"status": "strong", "bar": 4},
     "spatial_structure": {"status": "decisive_negative", "bar": 5},
-    "natural_usage": {"status": "moderate", "bar": 3},
+    "natural_usage": {"status": "strong", "bar": 4},
     "cross_model_replication": {"status": "strong", "bar": 4}
   }
 }

@@ -1,0 +1,172 @@
+Device: cuda
+Loading Qwen/Qwen3-4B-Base...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   4%|▎         | 14/398 [00:00<00:02, 135.48it/s]Loading weights:  15%|█▌        | 60/398 [00:00<00:01, 319.84it/s]Loading weights:  28%|██▊       | 113/398 [00:00<00:00, 409.56it/s]Loading weights:  41%|████▏     | 165/398 [00:00<00:00, 449.93it/s]Loading weights:  54%|█████▍    | 214/398 [00:00<00:00, 462.61it/s]Loading weights:  69%|██████▊   | 273/398 [00:00<00:00, 504.97it/s]Loading weights:  84%|████████▎ | 333/398 [00:00<00:00, 528.55it/s]Loading weights:  98%|█████████▊| 389/398 [00:00<00:00, 537.35it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 481.91it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Model loaded in 4.5s
+  36 layers, kv_dim=640
+  600 problems selected
+
+============================================================
+PHASE 1: Generate CoT & extract V-cache at arithmetic positions
+============================================================
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+  Problem 50: 50 gen, 42 correct (84.0%), 42 w/arith, 110 ops@eq, 301s
+  Problem 100: 100 gen, 85 correct (85.0%), 83 w/arith, 235 ops@eq, 596s
+  Problem 150: 150 gen, 126 correct (84.0%), 122 w/arith, 354 ops@eq, 884s
+  Problem 250: 250 gen, 221 correct (88.4%), 203 w/arith, 580 ops@eq, 1470s
+  Problem 350: 350 gen, 310 correct (88.6%), 286 w/arith, 825 ops@eq, 2053s
+  Problem 400: 400 gen, 350 correct (87.5%), 326 w/arith, 930 ops@eq, 2347s
+  Problem 450: 450 gen, 391 correct (86.9%), 364 w/arith, 1043 ops@eq, 2639s
+  Problem 500: 500 gen, 430 correct (86.0%), 400 w/arith, 1146 ops@eq, 2929s
+  Problem 550: 550 gen, 477 correct (86.7%), 442 w/arith, 1279 ops@eq, 3224s
+  Problem 600: 600 gen, 521 correct (86.8%), 482 w/arith, 1394 ops@eq, 3516s
+
+Generation complete: 600 problems, 521 correct (86.8%)
+Problems with arithmetic: 482
+Total operation-offset entries: 5354
+Operations at offset=0: 1394
+
+============================================================
+PHASE 2: Probing Analysis
+============================================================
+
+Main analysis at offset=0:
+  N operations: 1394
+  N unique problems: 482
+  Target range: 0.00 to 12.92
+  Target std: 1.974
+
+  Text baseline R: 0.606
+  Gold answer R: 0.721
+
+  Layer 9:
+    V_R = 0.907   K_R = 0.881   text_R = 0.606
+    V|text = 0.826   V|gold = 0.616
+    V_eq - text = +0.301   V_eq - V_prompt = +0.592
+    prompt_V_R = 0.315
+
+  Layer 18:
+    V_R = 0.843   K_R = 0.776   text_R = 0.606
+    V|text = 0.813   V|gold = 0.676
+    V_eq - text = +0.237   V_eq - V_prompt = +0.393
+    prompt_V_R = 0.450
+
+  Layer 27:
+    V_R = 0.944   K_R = 0.913   text_R = 0.606
+    V|text = 0.884   V|gold = 0.719
+    V_eq - text = +0.338   V_eq - V_prompt = +0.434
+    prompt_V_R = 0.510
+
+  Layer 35:
+    V_R = 0.949   K_R = 0.940   text_R = 0.606
+    V|text = 0.889   V|gold = 0.708
+    V_eq - text = +0.343   V_eq - V_prompt = +0.626
+    prompt_V_R = 0.323
+
+============================================================
+OPERATION TYPE BREAKDOWN (at offset=0)
+============================================================
+
+  Operation '+' (n=261):
+    L9: V_R=0.932  text_R=0.778  gap=+0.154
+    L18: V_R=0.716  text_R=0.778  gap=-0.062
+    L27: V_R=0.889  text_R=0.778  gap=+0.110
+    L35: V_R=0.908  text_R=0.778  gap=+0.130
+
+  Operation '-' (n=233):
+    L9: V_R=0.904  text_R=0.758  gap=+0.146
+    L18: V_R=0.771  text_R=0.758  gap=+0.013
+    L27: V_R=0.896  text_R=0.758  gap=+0.138
+    L35: V_R=0.908  text_R=0.758  gap=+0.150
+
+  Operation '*' (n=543):
+    L9: V_R=0.894  text_R=0.557  gap=+0.338
+    L18: V_R=0.793  text_R=0.557  gap=+0.236
+    L27: V_R=0.943  text_R=0.557  gap=+0.386
+    L35: V_R=0.940  text_R=0.557  gap=+0.384
+
+  Operation '/' (n=211):
+    L9: V_R=0.823  text_R=0.256  gap=+0.567
+    L18: V_R=0.806  text_R=0.256  gap=+0.550
+    L27: V_R=0.894  text_R=0.256  gap=+0.638
+    L35: V_R=0.904  text_R=0.256  gap=+0.648
+
+  Operation 'multi' (n=146):
+    L9: V_R=0.766  text_R=0.712  gap=+0.054
+    L18: V_R=0.764  text_R=0.712  gap=+0.052
+    L27: V_R=0.922  text_R=0.712  gap=+0.210
+    L35: V_R=0.886  text_R=0.712  gap=+0.174
+
+============================================================
+POSITION SWEEP: Forward-looking analysis
+============================================================
+
+  Offset 0 (n=1394):
+    L9: V_R=0.907  text_R=0.606  gap=+0.301
+    L18: V_R=0.843  text_R=0.606  gap=+0.237
+    L27: V_R=0.944  text_R=0.606  gap=+0.338
+    L35: V_R=0.949  text_R=0.606  gap=+0.343
+
+  Offset -5 (n=1394):
+    L9: V_R=0.684  text_R=0.531  gap=+0.153
+    L18: V_R=0.688  text_R=0.531  gap=+0.157
+    L27: V_R=0.794  text_R=0.531  gap=+0.263
+    L35: V_R=0.782  text_R=0.531  gap=+0.251
+
+  Offset -10 (n=1354):
+    L9: V_R=0.404  text_R=0.442  gap=-0.038
+    L18: V_R=0.486  text_R=0.442  gap=+0.044
+    L27: V_R=0.625  text_R=0.442  gap=+0.184
+    L35: V_R=0.597  text_R=0.442  gap=+0.155
+
+  Offset -20 (n=1212):
+    L9: V_R=0.318  text_R=0.426  gap=-0.109
+    L18: V_R=0.421  text_R=0.426  gap=-0.005
+    L27: V_R=0.435  text_R=0.426  gap=+0.009
+    L35: V_R=0.355  text_R=0.426  gap=-0.071
+
+============================================================
+BOOTSTRAP SIGNIFICANCE (offset=0)
+============================================================
+  L9: observed=0.907, null_mean=-0.041±0.034, p=0.0000, z=28.1 (200 perms)
+  L18: observed=0.843, null_mean=-0.042±0.034, p=0.0000, z=26.4 (200 perms)
+  L27: observed=0.944, null_mean=-0.043±0.031, p=0.0000, z=32.2 (200 perms)
+  L35: observed=0.949, null_mean=-0.041±0.034, p=0.0000, z=29.1 (200 perms)
+
+============================================================
+PHASE 3: Generating Figures
+============================================================
+  Saved v_vs_text_at_eq.png
+  Saved position_sweep.png
+  Saved op_type_breakdown.png
+  Saved residualized_signal.png
+  Saved prompt_control.png
+
+============================================================
+SUMMARY
+============================================================
+
+At '=' position (offset=0, n=1394 operations, 482 problems):
+  Layer    V_R      K_R      text_R   V|text   V|gold   V_prompt V-text   V-prompt
+  L9      0.907    0.881    0.606    0.826    0.616    0.315    0.301+++ 0.592+++
+  L18     0.843    0.776    0.606    0.813    0.676    0.450    0.237+++ 0.393+++
+  L27     0.944    0.913    0.606    0.884    0.719    0.510    0.338+++ 0.434+++
+  L35     0.949    0.940    0.606    0.889    0.708    0.323    0.343+++ 0.626+++
+
+Operation type breakdown (L35):
+  +: V_R=0.908, text_R=0.778, gap=+0.130 (n=261)
+  -: V_R=0.908, text_R=0.758, gap=+0.150 (n=233)
+  *: V_R=0.940, text_R=0.557, gap=+0.384 (n=543)
+  /: V_R=0.904, text_R=0.256, gap=+0.648 (n=211)
+  multi: V_R=0.886, text_R=0.712, gap=+0.174 (n=146)
+
+Forward-looking position sweep:
+  Offset -20: V_R(L35)=0.355, text_R=0.426
+  Offset -10: V_R(L35)=0.597, text_R=0.442
+  Offset  -5: V_R(L35)=0.782, text_R=0.531
+  Offset  +0: V_R(L35)=0.949, text_R=0.606
+
+Results saved to /workspace/llm-steganography-with-ai-researcher/results/exp_106/results.json
+
+Total time: 5493s (91.6 min)
