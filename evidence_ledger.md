@@ -1,8 +1,8 @@
 # Evidence Ledger
 
 ## Current Summary
-Last updated: 2026-03-23 (cycle 107 — **CROSS-MODEL INTERMEDIATE VALUE REPLICATION.** Phi-3.5-mini (MHA/analog/instruct) REPLICATES exp 106: V at arithmetic "=" encodes intermediate results at R=0.884-0.938 (Qwen was 0.907-0.949). V|text=0.785-0.855, V|gold=0.528-0.672, V_eq>>V_prompt (gap +0.36 to +0.61), V>K at 4/4 layers, forward-looking V at -5 R=0.830. All z>28, p<0.001. Intermediate value decodability is now ESTABLISHED on 2 models (GQA/digital/base + MHA/analog/instruct). SURPRISE: operation-type breakdown does NOT replicate — only multiplication has V_R>0 on Phi (0.86-0.93), add/sub/div near zero (possible PCA artifact from 3072→256 on n=200-250 subsets). 7/8 TRUE predictions confirmed. n=1400 ops, 451 problems.)
-Cycles completed: 107 (93 experimental + 1 consolidation + 8 literature scans + 4 blocked/crashed + 1 null/confounded)
+Last updated: 2026-03-23 (cycle 108 — **NONLINEAR OPERAND BASELINE CHALLENGE — PARTIAL DISCONFIRMATION.** operand_MLP (R=0.961) nearly matches V (R=0.953), revealing that ~75% of V's "unique info" (V|text=0.81-0.89) was inflated by weak linear baseline. Corrected: V|MLP=0.13-0.23. BUT three signals survive: (1) forward-looking V|MLP_vis=0.383 at offset -5 (strongest), (2) layer-dependent computation transition: V→A>V→result at L9 (encoding) → V→result>>V→A at L27/L35 (computation), (3) multi-step ops: V>MLP by +0.088. HONEST REVISION of exp 106/107 V|text claims. 2.5/5 TRUE, 0.5/5 FALSE. n=930 ops, 326 problems.)
+Cycles completed: 108 (94 experimental + 1 consolidation + 8 literature scans + 4 blocked/crashed + 1 null/confounded)
 
 ### Core Hypothesis
 Chain-of-thought (CoT) reasoning text is a **lossy projection** of the model's internal computation. The KV cache carries a functionally separable hidden channel that encodes answer-relevant information independent of the visible reasoning tokens.
@@ -34,7 +34,7 @@ The hypothesis is supported by converging evidence from 39 experimental cycles, 
 - **ROBUST POSITION CONTROL ON QWEN (Exp 098):** GOLD-STANDARD rank-based (Spearman partial, non-parametric) control applied to Qwen. L9-L18 retain **43-59%** of linear signal under rank control (r=0.155-0.159, 8/8 heads positive, ALL p<0.001). This is **~3x MORE** than Phi's quadratic retention (22%). **Deep-layer QUADRATIC-RANK DISSOCIATION:** L27-L35 retain 88% under quadratic but ONLY 15-17% under rank — reveals non-quadratic monotonic recency at deep layers, explaining Phi's L24/L31 reversal. Phi's ~80% reduction was PHI-SPECIFIC, not universal. **Definitive effect sizes:** Qwen r≈0.16, Phi r≈0.05, concentrated at mid-plateau layers. Architecture-dependent: digital encoding (Qwen) produces 3x stronger information-directed attention than analog (Phi). Permutation null borderline (p=0.047-0.052); V|nums ≈ nums_R ecological on Qwen (weaker hidden-vs-text distinction than Phi).
 - **ACCURACY- & DIFFICULTY-CONDITIONAL V|nums (Exp 101+102, CROSS-MODEL):** Forward-looking signal is FUNCTIONAL on BOTH Qwen AND Phi. **Accuracy conditioning:** Qwen 3/4 layers (p=0.006-0.012, gaps 0.04-0.16); **Phi 4/4 layers (p<0.001, gaps 0.17-0.31 — 2x STRONGER than Qwen).** V|nums positive for correct (+0.002 to +0.015), NEGATIVE for incorrect (-0.15 to -0.30), on both models. **Difficulty conditioning:** Qwen 4/4 layers (p<0.001, gaps 0.20-0.24); **Phi 3/4 layers (p=0.004-0.016, gaps 0.03-0.06 — 5-6x SMALLER).** Phi's smaller difficulty effect explained by text staying informative for hard problems (Phi nums_R=0.245 vs Qwen nums_R=-0.085). Same qualitative pattern: V|nums scales with difficulty because text informativeness collapses. **CROSS-MODEL TABLE: 7/8 layer×model conditions significant for accuracy, 7/8 for difficulty.** V is dominant info source for hard problems: V>nums at 15/20 bins (Qwen) and 7-9/20 bins (Phi). Hidden channel carries the answer only when model succeeds and matters most when computation is complex — generalizes across GQA/MHA, digital/analog, base/instruct.
 - **CORRECTNESS CLASSIFICATION PROBE (Exp 104) — REINTERPRETED by Exp 105:** V-cache predicts correct/incorrect (AUC 0.63-0.80) but **PROMPT-ENCODING CONFOUND CONFIRMED.** V at last PROMPT token (AUC 0.63-0.73) ≥ V at chain bin 0 (AUC 0.60-0.66) at ALL 4 layers (mean gap -0.043). The bin-0 signal is problem encoding, NOT computation quality. **Late-chain computation quality IS real:** V_bin19 EXCEEDS V_prompt at 2/4 layers (L27: +0.03, L35: +0.10). Concatenation: chain adds +0.04-0.07 AUC at bins 10-19 but +0.00 at bins 0-5. K_prompt AUC up to 0.758 (L27) — highest in the experiment. V ≈ K for correctness dissociation holds. Prompt signal p<0.001. **Revised interpretation:** V-cache encodes (1) problem difficulty features at prompt time (dominant signal, 0.63-0.73 AUC) and (2) computation quality at late chain positions (modest addition, +0.02-0.10 AUC). The "V knows from the start" claim from exp 104 is WEAKENED; the V|nums functional conditioning (exp 101/102) is UNAFFECTED (different analysis, controls for text).
-- **INTERMEDIATE VALUE DECODABILITY (Exp 106) — STRONG CONFIRMATION:** First probe for INTERMEDIATE computation results (not final answer). V-cache at arithmetic "=" positions (before result is written) encodes step results at R=0.907-0.949 across ALL 4 layers (text_R=0.606, gap +0.24 to +0.34, all p<0.001, z=26-32). **V|text=0.813-0.889**: V carries massive unique info beyond visible numbers. **V|gold=0.616-0.719**: V encodes step-specific info beyond final answer. **V_eq >> V_prompt (gap +0.39 to +0.63)**: DECISIVELY rules out problem-encoding confound (exp 105 concern). **Operation-type natural experiment**: V-text gap scales with nonlinearity (/ gap=+0.648, * gap=+0.384, + gap=+0.130) — linear text baseline can't do multiplication/division but V can. V_R ≈ 0.90-0.94 for ALL operation types uniformly. **Forward-looking**: V at -5 tokens R=0.794 (text=0.531, gap +0.263 at L27); V at -10 tokens R=0.625 (text=0.442, gap +0.184 at L27). Computation builds over 5-10 tokens before output. V>K at 4/4 layers (consistent with V=content). n=1394 operations, 482 problems. 8/8 TRUE predictions confirmed, 0/5 FALSE. **Strongest Phase 2 evidence**: directly demonstrates ongoing hidden computation at exact computation positions with step-specific targets, prompt control, residualized controls, operation-type natural experiment, and forward-looking gradient.
+- **INTERMEDIATE VALUE DECODABILITY (Exp 106, REVISED by Exp 108) — CONFIRMED with weaker effect size:** V-cache at arithmetic "=" encodes step results at R=0.907-0.949 (text_R=0.606). **REVISION (Exp 108):** V|text=0.81-0.89 was INFLATED by weak linear baseline. Nonlinear MLP on [A, B, op] achieves R=0.961, reducing unique V info to **V|MLP=0.13-0.23** (~75% reduction). However, three signals SURVIVE the stronger baseline: (1) **Forward-looking V|MLP_vis=0.383** at offset -5 — strongest residual, V carries pre-computation beyond visible operands; (2) **Layer-dependent computation transition**: V→A>V→result at L9 (operand encoding) → V→result>>V→A at L27/L35 (+0.15 gap, genuine computation); (3) **Multi-step operations**: V>MLP (+0.088) when result depends on prior chain values. V_eq >> V_prompt (gap +0.39 to +0.63) STILL rules out problem-encoding confound. V>K at 4/4 layers. n=930 ops (exp 108), 1394 ops (exp 106). The "V carries massive unique info" claim is DOWNGRADED; the "V performs computation" claim survives in specific regimes (forward-looking, late layers, multi-step).
 - **CROSS-MODEL INTERMEDIATE VALUE REPLICATION (Exp 107) — STRONG REPLICATION:** Phi-3.5-mini-instruct (MHA, analog, instruct) REPLICATES exp 106's core findings. V at "=" encodes intermediate results at R=0.884-0.938 (Qwen: 0.907-0.949). **All core metrics replicate within ~0.03-0.05:** V|text=0.785-0.855 (Qwen: 0.813-0.889), V|gold=0.528-0.672 (Qwen: 0.616-0.719), V_eq−V_prompt=+0.36 to +0.61 (Qwen: +0.39 to +0.63). V>K at 4/4 layers (V-K gap +0.027 to +0.070), consistent with Phi V-dominance (exp 093). Forward-looking: V at -5 R=0.830 at L24 (Qwen L27: 0.794). All z>28, p<0.001 (200 permutations). n=1400 operations, 451 problems. **SURPRISE: operation-type breakdown does NOT replicate** — only multiplication has V_R>0 on Phi (0.84-0.93 at all layers); addition (0.13/-0.11), subtraction (-0.12/-0.16), division (0.07/-0.01), multi-op (-0.05/-0.12) all near zero. Most likely PCA artifact (3072→256 dim reduction on n=200-250 per-operation subsets vs Qwen's 640-dim no-PCA on n=200-550). Overall V_R=0.88-0.94 is dominated by multiplication (n=527/1400). Operation-type universality INCONCLUSIVE on Phi; core intermediate value decodability now **ESTABLISHED on 2 model families**. 7/8 TRUE, 0/5 FALSE.
 
 ---
@@ -1965,3 +1965,62 @@ of the chain. The "general features" interpretation becomes harder to maintain g
 functional conditioning. However, the "problem encoding" alternative (V at bin 0 picks up
 difficulty from prompt) is not fully ruled out — needs cross-model replication and
 difficulty-controlled analysis.
+
+---
+
+**Cycle 108 | Qwen3-4B-Base | Phase 2 — Nonlinear operand baseline challenge | PARTIAL DISCONFIRMATION**
+
+**Disconfirmation test for exp 106/107 intermediate value probes.** Tests whether V's
+"unique info" (V|text=0.81-0.89) was inflated by weak linear text baseline. Trains
+nonlinear MLP on [signed_log(A), signed_log(B), op_onehot] as stronger baseline.
+Also probes V for individual operands (V→A, V→B) to distinguish encoding from computation.
+
+**Baseline ladder (offset=0):**
+
+| Baseline | R |
+|----------|---|
+| text_linear | 0.590 |
+| operand_linear | 0.824 |
+| operand_MLP | **0.961** |
+| oracle | 0.882 |
+| V (best, L27/L35) | 0.953 |
+
+operand_MLP (0.961) nearly matches V (0.953). V|text drops from 0.81-0.89 to V|MLP=0.13-0.23.
+~75% of V's previously claimed "unique info" was better operand encoding, not pre-computed results.
+
+**Three signals SURVIVE the nonlinear baseline:**
+
+1. **Forward-looking (offset -5): V|MLP_vis=0.383** — Strongest residual. V at 5 tokens before
+   "=" encodes result beyond what's computable from visible operands. This is the most robust
+   evidence that V carries pre-computation.
+
+2. **Layer-dependent computation transition:** V→A (0.932) > V→result (0.900) at L9 (encoding),
+   but V→result (0.953) >> V→A (0.802) at L35 (computation). Gap of +0.151 at L35.
+   Early layers encode operands; late layers have transformed them into results.
+   This is a NOVEL finding: the network transitions from operand encoding to result computation
+   across layers, visible in the V-cache.
+
+3. **Multi-step operations: V > MLP (+0.088).** For operations where the result depends on
+   prior chain computation (not just the current operands), V carries info the MLP cannot
+   access. MLP exceeds V for all single operations.
+
+**Operation-type results:**
+
+| Op | n | V_R | MLP_R | V−MLP |
+|----|---|------|-------|-------|
+| + | 186 | 0.919 | 0.980 | −0.061 |
+| − | 155 | 0.845 | 0.970 | −0.125 |
+| × | 359 | 0.934 | 0.989 | −0.055 |
+| ÷ | 139 | 0.880 | 0.921 | −0.041 |
+| multi | 91 | 0.851 | 0.762 | **+0.088** |
+
+**Predictions: 2.5/5 TRUE, 0.5/5 FALSE.** Genuinely mixed outcome. The disconfirmation
+challenge PARTIALLY SUCCEEDS — it correctly identifies inflated effect size — but does NOT
+eliminate V's unique computational role entirely.
+
+**Impact:** REVISES exp 106/107 V|text claims. The "V carries massive unique info beyond text"
+framing was overstated. Correct framing: V carries moderate unique info beyond nonlinear
+operand features (V|MLP=0.13-0.23), concentrated in forward-looking positions, late layers,
+and multi-step operations. The forward-looking V signal (V|MLP_vis=0.383) and the layer
+transition (encoding→computation) are the strongest surviving evidence for genuine hidden
+computation during normal generation.

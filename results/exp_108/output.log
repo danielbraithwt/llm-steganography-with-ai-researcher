@@ -1,0 +1,106 @@
+Device: cuda
+Loading Qwen/Qwen3-4B-Base...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:01<10:35,  1.60s/it]Loading weights:   3%|▎         | 11/398 [00:01<00:44,  8.61it/s]Loading weights:   4%|▍         | 16/398 [00:02<00:39,  9.78it/s]Loading weights:   6%|▋         | 25/398 [00:02<00:26, 14.14it/s]Loading weights:   7%|▋         | 28/398 [00:02<00:24, 15.03it/s]Loading weights:   9%|▊         | 34/398 [00:02<00:18, 20.17it/s]Loading weights:  10%|▉         | 38/398 [00:03<00:23, 15.04it/s]Loading weights:  12%|█▏        | 48/398 [00:03<00:15, 22.89it/s]Loading weights:  14%|█▎        | 54/398 [00:03<00:13, 26.05it/s]Loading weights:  15%|█▍        | 58/398 [00:03<00:13, 24.68it/s]Loading weights:  16%|█▌        | 62/398 [00:04<00:16, 20.43it/s]Loading weights:  17%|█▋        | 69/398 [00:04<00:15, 21.63it/s]Loading weights:  18%|█▊        | 72/398 [00:04<00:16, 19.89it/s]Loading weights:  20%|█▉        | 78/398 [00:04<00:12, 25.82it/s]Loading weights:  21%|██        | 82/398 [00:04<00:13, 22.90it/s]Loading weights:  23%|██▎       | 90/398 [00:05<00:13, 23.26it/s]Loading weights:  23%|██▎       | 93/398 [00:05<00:22, 13.85it/s]Loading weights:  24%|██▍       | 97/398 [00:06<00:19, 15.08it/s]Loading weights:  25%|██▌       | 100/398 [00:06<00:19, 15.18it/s]Loading weights:  26%|██▌       | 102/398 [00:06<00:21, 13.74it/s]Loading weights:  26%|██▌       | 104/398 [00:06<00:21, 13.86it/s]Loading weights:  28%|██▊       | 112/398 [00:06<00:14, 19.79it/s]Loading weights:  29%|██▉       | 115/398 [00:06<00:14, 19.48it/s]Loading weights:  31%|███       | 124/398 [00:07<00:10, 25.59it/s]Loading weights:  32%|███▏      | 127/398 [00:07<00:12, 21.42it/s]Loading weights:  34%|███▍      | 135/398 [00:07<00:11, 22.57it/s]Loading weights:  35%|███▍      | 138/398 [00:07<00:11, 22.16it/s]Loading weights:  35%|███▌      | 141/398 [00:08<00:11, 22.35it/s]Loading weights:  36%|███▌      | 144/398 [00:08<00:10, 23.58it/s]Loading weights:  37%|███▋      | 147/398 [00:08<00:16, 14.97it/s]Loading weights:  39%|███▉      | 157/398 [00:08<00:09, 26.48it/s]Loading weights:  40%|████      | 161/398 [00:08<00:08, 26.96it/s]Loading weights:  42%|████▏     | 168/398 [00:09<00:08, 26.89it/s]Loading weights:  43%|████▎     | 172/398 [00:09<00:10, 22.37it/s]Loading weights:  45%|████▍     | 179/398 [00:09<00:09, 22.85it/s]Loading weights:  46%|████▌     | 182/398 [00:09<00:11, 18.48it/s]Loading weights:  46%|████▋     | 185/398 [00:10<00:11, 18.93it/s]Loading weights:  47%|████▋     | 188/398 [00:10<00:11, 17.59it/s]Loading weights:  48%|████▊     | 190/398 [00:10<00:15, 13.03it/s]Loading weights:  48%|████▊     | 192/398 [00:11<00:21,  9.71it/s]Loading weights:  49%|████▉     | 195/398 [00:11<00:19, 10.58it/s]Loading weights:  49%|████▉     | 197/398 [00:11<00:18, 11.01it/s]Loading weights:  51%|█████     | 201/398 [00:11<00:16, 11.68it/s]Loading weights:  51%|█████     | 203/398 [00:12<00:18, 10.48it/s]Loading weights:  52%|█████▏    | 207/398 [00:12<00:16, 11.45it/s]Loading weights:  53%|█████▎    | 212/398 [00:12<00:17, 10.58it/s]Loading weights:  54%|█████▍    | 214/398 [00:13<00:17, 10.39it/s]Loading weights:  55%|█████▍    | 218/398 [00:13<00:13, 13.04it/s]Loading weights:  56%|█████▌    | 221/398 [00:13<00:15, 11.21it/s]Loading weights:  57%|█████▋    | 225/398 [00:13<00:13, 13.11it/s]Loading weights:  58%|█████▊    | 229/398 [00:14<00:11, 14.13it/s]Loading weights:  59%|█████▉    | 234/398 [00:14<00:10, 16.33it/s]Loading weights:  59%|█████▉    | 236/398 [00:14<00:12, 13.35it/s]Loading weights:  60%|██████    | 240/398 [00:14<00:10, 15.36it/s]Loading weights:  61%|██████    | 242/398 [00:14<00:10, 15.06it/s]Loading weights:  62%|██████▏   | 245/398 [00:15<00:13, 11.22it/s]Loading weights:  62%|██████▏   | 247/398 [00:15<00:14, 10.75it/s]Loading weights:  63%|██████▎   | 251/398 [00:15<00:10, 13.60it/s]Loading weights:  64%|██████▎   | 253/398 [00:15<00:11, 13.08it/s]Loading weights:  64%|██████▍   | 256/398 [00:16<00:20,  7.08it/s]Loading weights:  65%|██████▍   | 258/398 [00:16<00:18,  7.41it/s]Loading weights:  66%|██████▌   | 262/398 [00:17<00:13, 10.03it/s]Loading weights:  66%|██████▋   | 264/398 [00:17<00:12, 10.59it/s]Loading weights:  67%|██████▋   | 267/398 [00:17<00:12, 10.45it/s]Loading weights:  68%|██████▊   | 269/398 [00:17<00:13,  9.48it/s]Loading weights:  69%|██████▊   | 273/398 [00:18<00:10, 12.35it/s]Loading weights:  69%|██████▉   | 275/398 [00:18<00:09, 12.59it/s]Loading weights:  70%|██████▉   | 278/398 [00:18<00:09, 12.69it/s]Loading weights:  70%|███████   | 280/398 [00:18<00:10, 10.97it/s]Loading weights:  71%|███████▏  | 284/398 [00:18<00:08, 14.02it/s]Loading weights:  72%|███████▏  | 286/398 [00:18<00:08, 13.92it/s]Loading weights:  73%|███████▎  | 289/398 [00:19<00:09, 11.52it/s]Loading weights:  73%|███████▎  | 291/398 [00:19<00:10, 10.18it/s]Loading weights:  74%|███████▍  | 295/398 [00:19<00:08, 11.70it/s]Loading weights:  75%|███████▌  | 300/398 [00:20<00:06, 14.30it/s]Loading weights:  76%|███████▌  | 302/398 [00:20<00:08, 11.88it/s]Loading weights:  77%|███████▋  | 306/398 [00:20<00:07, 13.10it/s]Loading weights:  77%|███████▋  | 308/398 [00:20<00:07, 11.75it/s]Loading weights:  78%|███████▊  | 311/398 [00:21<00:07, 11.46it/s]Loading weights:  79%|███████▊  | 313/398 [00:21<00:08, 10.44it/s]Loading weights:  80%|███████▉  | 317/398 [00:21<00:06, 13.14it/s]Loading weights:  80%|████████  | 319/398 [00:21<00:05, 13.26it/s]Loading weights:  81%|████████  | 321/398 [00:22<00:07, 10.29it/s]Loading weights:  81%|████████  | 323/398 [00:22<00:07, 10.54it/s]Loading weights:  82%|████████▏ | 325/398 [00:22<00:06, 11.30it/s]Loading weights:  82%|████████▏ | 328/398 [00:22<00:06, 10.71it/s]Loading weights:  84%|████████▎ | 333/398 [00:22<00:04, 13.53it/s]Loading weights:  84%|████████▍ | 335/398 [00:23<00:05, 11.33it/s]Loading weights:  85%|████████▌ | 339/398 [00:23<00:04, 14.03it/s]Loading weights:  86%|████████▌ | 341/398 [00:23<00:04, 13.59it/s]Loading weights:  86%|████████▋ | 344/398 [00:24<00:05,  9.02it/s]Loading weights:  87%|████████▋ | 346/398 [00:24<00:05,  9.17it/s]Loading weights:  88%|████████▊ | 350/398 [00:24<00:04, 10.19it/s]Loading weights:  89%|████████▉ | 355/398 [00:25<00:04,  8.90it/s]Loading weights:  90%|████████▉ | 357/398 [00:25<00:04,  9.09it/s]Loading weights:  90%|█████████ | 360/398 [00:25<00:03, 10.69it/s]Loading weights:  91%|█████████ | 363/398 [00:25<00:02, 12.74it/s]Loading weights:  92%|█████████▏| 366/398 [00:26<00:02, 11.84it/s]Loading weights:  92%|█████████▏| 368/398 [00:26<00:02, 10.36it/s]Loading weights:  93%|█████████▎| 372/398 [00:26<00:02, 10.17it/s]Loading weights:  95%|█████████▍| 377/398 [00:27<00:01, 11.63it/s]Loading weights:  95%|█████████▌| 379/398 [00:27<00:01, 10.52it/s]Loading weights:  96%|█████████▌| 383/398 [00:27<00:01, 13.27it/s]Loading weights:  97%|█████████▋| 385/398 [00:27<00:00, 13.44it/s]Loading weights:  97%|█████████▋| 387/398 [00:27<00:00, 12.15it/s]Loading weights:  98%|█████████▊| 389/398 [00:28<00:00, 10.80it/s]Loading weights:  98%|█████████▊| 391/398 [00:28<00:00, 10.23it/s]Loading weights:  99%|█████████▉| 394/398 [00:28<00:00, 10.60it/s]Loading weights: 100%|██████████| 398/398 [00:28<00:00, 13.85it/s]
+Model loaded in 33.1s
+  36 layers, kv_dim=640
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  400 problems selected
+
+============================================================
+PHASE 1: Generate CoT & extract V-cache at arithmetic positions
+============================================================
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+  Problem 50: 50 gen, 42 correct (84.0%), 42 w/arith, 110 ops@eq, 331s
+  Problem 100: 100 gen, 85 correct (85.0%), 83 w/arith, 235 ops@eq, 628s
+  Problem 150: 150 gen, 126 correct (84.0%), 122 w/arith, 354 ops@eq, 918s
+  Problem 250: 250 gen, 221 correct (88.4%), 203 w/arith, 580 ops@eq, 1507s
+  Problem 350: 350 gen, 310 correct (88.6%), 286 w/arith, 825 ops@eq, 2093s
+  Problem 400: 400 gen, 350 correct (87.5%), 326 w/arith, 930 ops@eq, 2389s
+
+Generation complete: 400 problems, 350 correct (87.5%)
+Problems with arithmetic: 326
+Total operation-offset entries: 3572
+Operations at offset=0: 930
+
+============================================================
+PHASE 2: Probing Analysis with Nonlinear Operand Baselines
+============================================================
+
+  text_linear_R:   0.590
+  operand_linear_R: 0.824
+  operand_MLP_R:    0.961
+  oracle_R:         0.882
+
+  N operations at offset=0: 930
+  N unique problems: 326
+
+============================================================
+LAYER-WISE V PROBING vs BASELINES at offset=0
+============================================================
+ Layer |    V_R |   text | op_lin | op_MLP | oracle |  V|MLP |    V→A |    V→B
+---------------------------------------------------------------------------
+  L 9  |  0.900 |  0.590 |  0.824 |  0.961 |  0.882 |  0.146 |  0.932 |  0.929
+  L18  |  0.829 |  0.590 |  0.824 |  0.961 |  0.882 |  0.132 |  0.768 |  0.745
+  L27  |  0.953 |  0.590 |  0.824 |  0.961 |  0.882 |  0.218 |  0.831 |  0.822
+  L35  |  0.953 |  0.590 |  0.824 |  0.961 |  0.882 |  0.232 |  0.802 |  0.742
+
+============================================================
+OPERATION-TYPE BREAKDOWN: MLP vs V at offset=0
+============================================================
+      + (n= 186): V_R=0.919, text_R=0.762, op_lin_R=0.982, op_MLP_R=0.980, V−MLP=-0.061
+      - (n= 155): V_R=0.845, text_R=0.722, op_lin_R=0.966, op_MLP_R=0.970, V−MLP=-0.125
+      * (n= 359): V_R=0.934, text_R=0.562, op_lin_R=0.965, op_MLP_R=0.989, V−MLP=-0.055
+      / (n= 139): V_R=0.880, text_R=0.065, op_lin_R=0.906, op_MLP_R=0.921, V−MLP=-0.042
+  multi (n=  91): V_R=0.851, text_R=0.652, op_lin_R=0.724, op_MLP_R=0.762, V−MLP=+0.088
+
+============================================================
+OFFSET ANALYSIS: Operand visibility & V vs MLP
+============================================================
+  offset=  0: n= 930, A_vis=100%, B_vis=100%, both=100%
+           V_R=0.953, text_R=0.590, MLP_all=0.961, MLP_vis=0.961, V|MLP_vis=0.218
+  offset= -5: n= 930, A_vis=90%, B_vis=74%, both=71%
+           V_R=0.777, text_R=0.506, MLP_all=0.961, MLP_vis=0.862, V|MLP_vis=0.383
+  offset=-10: n= 903, A_vis=80%, B_vis=73%, both=66%
+           V_R=0.598, text_R=0.429, MLP_all=0.955, MLP_vis=0.811, V|MLP_vis=0.226
+  offset=-20: n= 809, A_vis=69%, B_vis=53%, both=40%
+           V_R=0.367, text_R=0.454, MLP_all=0.960, MLP_vis=0.775, V|MLP_vis=0.074
+
+============================================================
+COMPUTATION vs ENCODING: V→result vs V→operandA vs V→operandB
+============================================================
+  If V encodes operands: V→A ≈ V→B ≈ V→result (all high)
+  If V has computed: V→result >> V→A, V→B (operands compressed)
+
+  L 9: V→result=0.900, V→A=0.932, V→B=0.929 → ENCODING
+  L18: V→result=0.829, V→A=0.768, V→B=0.745 → ENCODING
+  L27: V→result=0.953, V→A=0.831, V→B=0.822 → ENCODING
+  L35: V→result=0.953, V→A=0.802, V→B=0.742 → COMPUTATION
+
+Results saved to /workspace/llm-steganography-with-ai-researcher/results/exp_108/results.json
+
+============================================================
+GENERATING FIGURES
+============================================================
+  Saved baseline_ladder.png
+  Saved v_residualized.png
+  Saved computation_vs_encoding.png
+  Saved offset_analysis.png
+  Saved op_type_v_vs_mlp.png
+
+============================================================
+SUMMARY
+============================================================
+
+Baseline ladder at offset=0:
+  text_linear:     R = 0.590
+  operand_linear:  R = 0.824
+  operand_MLP:     R = 0.961
+  oracle:          R = 0.882
+  V at L9:        R = 0.900  |  V|op_MLP = 0.146  |  V→A = 0.932  |  V→B = 0.929
+  V at L18:        R = 0.829  |  V|op_MLP = 0.132  |  V→A = 0.768  |  V→B = 0.745
+  V at L27:        R = 0.953  |  V|op_MLP = 0.218  |  V→A = 0.831  |  V→B = 0.822
+  V at L35:        R = 0.953  |  V|op_MLP = 0.232  |  V→A = 0.802  |  V→B = 0.742
+
+Total time: 2506s
+Results saved to /workspace/llm-steganography-with-ai-researcher/results/exp_108

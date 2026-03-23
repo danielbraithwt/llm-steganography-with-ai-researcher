@@ -1,38 +1,36 @@
 {
-  "cycle": 107,
-  "timestamp": "2026-03-23T08:00:00+00:00",
+  "cycle": 108,
+  "timestamp": "2026-03-23T12:00:00+00:00",
   "type": "experiment",
-  "template": "phi_intermediate_value_probe",
+  "template": "nonlinear_operand_baseline",
   "parameters": {
-    "model": "microsoft/Phi-3.5-mini-instruct",
-    "n_problems": 500,
-    "n_correct": 407,
-    "n_with_arithmetic": 451,
-    "n_operations": 1400,
-    "layers": [8, 16, 24, 31],
+    "model": "Qwen/Qwen3-4B-Base",
+    "n_problems": 400,
+    "n_correct": 350,
+    "n_with_arithmetic": 326,
+    "n_operations": 930,
+    "layers": [9, 18, 27, 35],
     "position_offsets": [0, -5, -10, -20],
-    "probe": "RidgeCV(problem-level 5-fold CV)",
+    "mlp_hidden": [128, 64],
+    "probe": "RidgeCV(problem-level 5-fold CV) + MLPRegressor",
     "target": "signed_log(written_result)",
-    "pca_dim": 256,
-    "kv_dim": 3072,
-    "bootstrap_permutations": 200
+    "kv_dim": 640
   },
-  "prediction_outcome": "confirmed_7_of_8",
-  "key_finding": "Phi-3.5-mini REPLICATES intermediate value decodability: V_R=0.884-0.938 at '=' (Qwen was 0.907-0.949). V|text=0.785-0.855, V_eq>>V_prompt (gap +0.36 to +0.61), V>K at 4/4 layers, forward-looking V at -5 R=0.830. All z>28, p<0.001. SURPRISE: per-operation breakdown only works for multiplication (V_R=0.86-0.93), not add/sub/div (possible PCA artifact). 7/8 TRUE, 0/5 FALSE.",
-  "evidence_impact": "ESTABLISHES intermediate value decodability on 2 model families (GQA/digital/base + MHA/analog/instruct). Core computation finding is architecture-independent. V>K at computation positions is cross-model. Operation-type universality inconclusive.",
-  "next_planned": "Global PCA + per-operation probing to resolve operation-type artifact question",
+  "prediction_outcome": "partial_disconfirmation_2.5_of_5",
+  "key_finding": "PARTIAL DISCONFIRMATION of exp 106/107. operand_MLP (R=0.961) nearly matches V (R=0.953), reducing V|text=0.81-0.89 to V|MLP=0.13-0.23 (~75% reduction). 'Weak baseline' criticism VALID. BUT three signals survive: (1) forward-looking V|MLP_vis=0.383 at offset -5 (strongest), (2) layer-dependent computation transition: V→A>V→result at L9 (encoding) → V→result>>V→A at L27/L35 (computation, +0.151 gap), (3) multi-step ops V>MLP (+0.088). HONEST REVISION: V|text claims from exp 106/107 were overstated. 2.5/5 TRUE, 0.5/5 FALSE.",
+  "evidence_impact": "REVISES intermediate value decodability effect size downward. Forward-looking signal and layer computation transition SURVIVE as genuine hidden computation evidence. Multi-step operations uniquely benefit from V-cache. The 'V carries massive unique info' claim is DOWNGRADED; 'V performs computation' claim survives in specific regimes.",
+  "next_planned": "Cross-model nonlinear baseline replication on Phi (does V|MLP survive on MHA/analog?), or deeper MLP/ensemble to test if remaining V|MLP gap is real vs MLP underfit",
   "figures": [
-    "results/exp_107/v_vs_text_at_eq.png",
-    "results/exp_107/position_sweep.png",
-    "results/exp_107/op_type_breakdown.png",
-    "results/exp_107/residualized_signal.png",
-    "results/exp_107/prompt_control.png",
-    "results/exp_107/cross_model_comparison.png"
+    "results/exp_108/baseline_ladder.png",
+    "results/exp_108/v_residualized.png",
+    "results/exp_108/computation_vs_encoding.png",
+    "results/exp_108/offset_analysis.png",
+    "results/exp_108/op_type_v_vs_mlp.png"
   ],
   "progress": {
     "null_space_existence": {"status": "strong", "bar": 4},
     "spatial_structure": {"status": "decisive_negative", "bar": 5},
-    "natural_usage": {"status": "strong", "bar": 4},
+    "natural_usage": {"status": "strong_revised", "bar": 4},
     "cross_model_replication": {"status": "strong", "bar": 4}
   }
 }
