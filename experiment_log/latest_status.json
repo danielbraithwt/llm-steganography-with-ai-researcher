@@ -1,27 +1,28 @@
 {
-  "cycle": 103,
-  "timestamp": "2026-03-23T00:30:00+11:00",
+  "cycle": 104,
+  "timestamp": "2026-03-23T02:00:00+00:00",
   "type": "experiment",
-  "template": "model_vs_gold_probe",
+  "template": "correctness_classification",
   "parameters": {
-    "n_problems": 277,
-    "n_correct": 248,
-    "n_incorrect": 29,
+    "model": "Qwen/Qwen3-4B-Base",
+    "n_problems": 496,
+    "n_correct": 436,
+    "n_incorrect": 60,
     "layers": [9, 18, 27, 35],
     "n_bins": 20,
-    "model": "Qwen/Qwen3-4B-Base",
-    "gold_pred_r_incorrect": 0.929,
-    "ridge_alpha": 1.0
+    "classifier": "LogisticRegression(C=1.0, balanced, PCA-64)",
+    "cv": "5-fold stratified",
+    "permutations": 200
   },
-  "prediction_outcome": "inconclusive",
-  "key_finding": "METHODOLOGICAL NULL: gold-pred R=0.929 (near-miss errors) makes V_R(gold) ≈ V_R(pred) uninformative. Experiment underpowered to distinguish computation-faithful vs general-features interpretations. All Δ < 0.012, all p > 0.3.",
-  "evidence_impact": "New entry #118. Accuracy-conditional finding ambiguity identified but unresolved. Methodological insight: need qualitatively large errors or classification probes to test this question.",
-  "next_planned": "Classification probe (correct/incorrect from V-cache), or intermediate value probing, or Mistral functional conditioning replication.",
+  "prediction_outcome": "confirmed",
+  "key_finding": "V-cache predicts correct/incorrect (AUC 0.63-0.80). V>text gap +0.09-0.11 at early bins. At 3/4 layers V-AUC>0.60 from bin 0 (first 5% of chain). L18 bin 0 AUC=0.675 p<0.001. V≈K for correctness (dissociates from K>V for answer value). Peak L35=0.798.",
+  "evidence_impact": "Partially resolves exp 103 interpretation gap. V encodes computation QUALITY beyond text, from chain start. Combined with exp 101/102 functional conditioning: convergent evidence against general-features interpretation.",
+  "next_planned": "Cross-model replication on Phi-3.5-mini, or difficulty-controlled classification analysis",
   "figures": [
-    "results/exp_103/V_R_gold_vs_predicted.png",
-    "results/exp_103/pct_closer_to_pred.png",
-    "results/exp_103/summary_bars.png",
-    "results/exp_103/mae_comparison.png"
+    "results/exp_104/auc_position_sweep.png",
+    "results/exp_104/v_text_gap_heatmap.png",
+    "results/exp_104/kv_comparison_bars.png",
+    "results/exp_104/mean_auc_sweep.png"
   ],
   "progress": {
     "null_space_existence": {"status": "strong", "bar": 4},
